@@ -21,21 +21,21 @@
     }
 
     .header {
-      background: linear-gradient(135deg, #123c91, #1769e0);
+      background: linear-gradient(135deg, #102d72, #1769e0);
       color: white;
-      padding: 25px 18px;
+      padding: 28px 18px;
       text-align: center;
-      border-radius: 0 0 28px 28px;
+      border-radius: 0 0 30px 30px;
     }
 
     .header h1 {
-      font-size: 27px;
+      font-size: 28px;
       margin-bottom: 8px;
     }
 
     .header p {
       font-size: 14px;
-      opacity: 0.9;
+      opacity: 0.92;
     }
 
     .container {
@@ -49,17 +49,24 @@
       background: white;
       padding: 25px;
       border-radius: 22px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
     }
 
     .login-box {
       max-width: 430px;
-      margin: 40px auto;
+      margin: 45px auto;
     }
 
     h2 {
       color: #123c91;
-      margin-bottom: 18px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 20px;
+      line-height: 1.5;
     }
 
     input,
@@ -71,11 +78,13 @@
       margin-bottom: 13px;
       font-size: 15px;
       outline: none;
+      background: white;
     }
 
     input:focus,
     select:focus {
       border-color: #1769e0;
+      box-shadow: 0 0 0 3px rgba(23, 105, 224, 0.10);
     }
 
     button {
@@ -85,6 +94,12 @@
       font-size: 14px;
       font-weight: bold;
       cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      opacity: 0.92;
     }
 
     .primary-btn {
@@ -93,17 +108,18 @@
       color: white;
     }
 
-    .primary-btn:hover {
+    .dashboard-btn {
       background: #123c91;
+      color: white;
+    }
+
+    .refresh-btn {
+      background: #0f766e;
+      color: white;
     }
 
     .logout-btn {
       background: #d93025;
-      color: white;
-    }
-
-    .dashboard-btn {
-      background: #123c91;
       color: white;
     }
 
@@ -114,11 +130,17 @@
       line-height: 1.5;
     }
 
+    .success-message {
+      color: #15803d;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
     .top-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      gap: 15px;
       flex-wrap: wrap;
       margin-bottom: 22px;
     }
@@ -180,8 +202,16 @@
       color: #16a34a;
     }
 
-    .search-box {
+    .search-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
       margin-bottom: 20px;
+    }
+
+    .search-box {
+      flex: 1;
+      margin-bottom: 0;
     }
 
     .inquiry-list {
@@ -199,18 +229,51 @@
 
     .inquiry-card h3 {
       color: #123c91;
-      margin-bottom: 12px;
+      margin-bottom: 15px;
+      font-size: 20px;
     }
 
-    .inquiry-card p {
-      margin-bottom: 8px;
-      color: #444;
-      line-height: 1.5;
+    .customer-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .info-item {
+      background: #f7faff;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #edf2fa;
       word-break: break-word;
     }
 
-    .inquiry-card strong {
-      color: #172033;
+    .info-item strong {
+      display: block;
+      color: #123c91;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .info-item span {
+      color: #333;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .question-box {
+      background: #fffaf0;
+      border-left: 4px solid #f59e0b;
+      padding: 13px;
+      border-radius: 8px;
+      margin-top: 12px;
+      line-height: 1.6;
+      font-size: 14px;
+      word-break: break-word;
+    }
+
+    .question-box strong {
+      color: #92400e;
     }
 
     .status-row {
@@ -218,7 +281,9 @@
       gap: 10px;
       align-items: center;
       flex-wrap: wrap;
-      margin-top: 15px;
+      margin-top: 18px;
+      padding-top: 15px;
+      border-top: 1px solid #edf1f7;
     }
 
     .status-row select {
@@ -237,17 +302,30 @@
       color: white;
     }
 
+    .call-btn {
+      background: #7c3aed;
+      color: white;
+    }
+
     .delete-btn {
       background: #d93025;
       color: white;
     }
 
+    .status-message {
+      width: 100%;
+      color: #15803d;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
     .empty {
       background: white;
-      padding: 25px;
+      padding: 30px 20px;
       border-radius: 18px;
       text-align: center;
       color: #666;
+      line-height: 1.6;
     }
 
     .hidden {
@@ -261,7 +339,7 @@
       padding: 25px 10px;
     }
 
-    @media (max-width: 550px) {
+    @media (max-width: 650px) {
       .header h1 {
         font-size: 23px;
       }
@@ -269,6 +347,23 @@
       .login-box,
       .admin-box {
         padding: 20px;
+      }
+
+      .top-actions {
+        width: 100%;
+      }
+
+      .top-actions button {
+        flex: 1;
+      }
+
+      .search-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-box {
+        width: 100%;
       }
 
       .status-row {
@@ -279,6 +374,10 @@
       .status-row select,
       .status-row button {
         width: 100%;
+      }
+
+      .customer-info {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -298,16 +397,22 @@
 
       <h2>Admin Login</h2>
 
+      <p class="subtitle">
+        केवल authorized Admin account से ही इस panel में login करें।
+      </p>
+
       <input
         type="email"
         id="adminEmail"
         placeholder="Admin Email"
+        autocomplete="email"
       >
 
       <input
         type="password"
         id="adminPassword"
         placeholder="Admin Password"
+        autocomplete="current-password"
       >
 
       <button class="primary-btn" id="loginBtn">
@@ -322,20 +427,30 @@
     <div class="admin-box hidden" id="adminSection">
 
       <div class="top-bar">
+
         <div>
           <h2>Customer Inquiries</h2>
-          <p>सभी customer inquiries यहाँ manage करें।</p>
+          <p class="subtitle">
+            सभी customer inquiries यहाँ manage करें।
+          </p>
         </div>
 
         <div class="top-actions">
+
           <button class="dashboard-btn" id="dashboardBtn">
             Dashboard
+          </button>
+
+          <button class="refresh-btn" id="refreshBtn">
+            Refresh
           </button>
 
           <button class="logout-btn" id="logoutBtn">
             Logout
           </button>
+
         </div>
+
       </div>
 
       <div class="count-grid">
@@ -362,12 +477,16 @@
 
       </div>
 
-      <input
-        class="search-box"
-        type="text"
-        id="searchInput"
-        placeholder="Name, mobile, plan या question से search करें..."
-      >
+      <div class="search-row">
+
+        <input
+          class="search-box"
+          type="text"
+          id="searchInput"
+          placeholder="Name, mobile, email, plan या question से search करें..."
+        >
+
+      </div>
 
       <div class="inquiry-list" id="inquiryList"></div>
 
@@ -425,14 +544,6 @@
 
     let allInquiries = [];
 
-    /*
-      SECURITY CHECK
-
-      अगर customer पहले से login है और Admin Panel खोलता है,
-      तो उसे Admin Panel access नहीं मिलेगा।
-      उसे logout करके Admin Login screen दिखाई जाएगी।
-    */
-
     onAuthStateChanged(auth, async (user) => {
 
       if (!user) {
@@ -447,7 +558,7 @@
         showLogin();
 
         loginMessage.textContent =
-          "यहाँ केवल Admin login कर सकता है। Customer account से access नहीं मिलेगा।";
+          "यह account Admin नहीं है। केवल Admin account से access मिलेगा।";
 
         return;
       }
@@ -493,7 +604,7 @@
           await signOut(auth);
 
           loginMessage.textContent =
-            "यह account Admin नहीं है। केवल Admin account से login करें।";
+            "यह account Admin नहीं है।";
 
           return;
         }
@@ -502,7 +613,7 @@
 
       } catch (error) {
 
-        console.error(error);
+        console.error("Login error:", error);
 
         loginMessage.textContent =
           "Admin login नहीं हुआ। Email या password check करें।";
@@ -513,7 +624,11 @@
 
     async function loadInquiries() {
 
-      inquiryList.innerHTML = "";
+      inquiryList.innerHTML = `
+        <div class="empty">
+          Inquiries load हो रही हैं...
+        </div>
+      `;
 
       try {
 
@@ -531,6 +646,15 @@
 
         });
 
+        allInquiries.sort((a, b) => {
+
+          const dateA = getDateValue(a);
+          const dateB = getDateValue(b);
+
+          return dateB - dateA;
+
+        });
+
         updateCounts();
         displayInquiries(allInquiries);
 
@@ -543,11 +667,29 @@
         const errorBox = document.createElement("div");
         errorBox.className = "empty";
         errorBox.textContent =
-          "Inquiries load नहीं हो पाईं। Firestore rules check करें।";
+          "Inquiries load नहीं हो पाईं। Firestore rules और Admin UID check करें।";
 
         inquiryList.appendChild(errorBox);
 
       }
+
+    }
+
+    function getDateValue(item) {
+
+      const value =
+        item.date ||
+        item.createdAt ||
+        item.timestamp ||
+        "";
+
+      const parsed = new Date(value).getTime();
+
+      if (Number.isNaN(parsed)) {
+        return 0;
+      }
+
+      return parsed;
 
     }
 
@@ -583,6 +725,24 @@
 
     }
 
+    function createInfoItem(label, value) {
+
+      const box = document.createElement("div");
+      box.className = "info-item";
+
+      const strong = document.createElement("strong");
+      strong.textContent = label;
+
+      const span = document.createElement("span");
+      span.textContent = value || "Not available";
+
+      box.appendChild(strong);
+      box.appendChild(span);
+
+      return box;
+
+    }
+
     function displayInquiries(inquiries) {
 
       inquiryList.innerHTML = "";
@@ -603,31 +763,73 @@
         const card = document.createElement("div");
         card.className = "inquiry-card";
 
+        const customerName =
+          item.name ||
+          item.customerName ||
+          "Unknown Customer";
+
+        const mobile =
+          item.mobile ||
+          item.phone ||
+          "";
+
+        const email =
+          item.email ||
+          item.customerEmail ||
+          "";
+
+        const plan =
+          item.plan ||
+          item.selectedPlan ||
+          "Not selected";
+
+        const question =
+          item.question ||
+          item.message ||
+          "No question";
+
+        const date =
+          item.date ||
+          item.createdAt ||
+          "Not available";
+
+        const statusText =
+          item.status ||
+          "Pending";
+
         const title = document.createElement("h3");
-        title.textContent =
-          item.name || item.customerName || "Unknown Customer";
+        title.textContent = "👤 " + customerName;
 
-        const mobile = document.createElement("p");
-        mobile.innerHTML =
-          "<strong>Mobile:</strong> " +
-          (item.mobile || item.phone || "Not available");
+        const customerInfo = document.createElement("div");
+        customerInfo.className = "customer-info";
 
-        const plan = document.createElement("p");
-        plan.innerHTML =
-          "<strong>Plan:</strong> " +
-          (item.plan || item.selectedPlan || "Not selected");
+        customerInfo.appendChild(
+          createInfoItem("📱 Mobile", mobile)
+        );
 
-        const question = document.createElement("p");
-        question.innerHTML =
-          "<strong>Question:</strong> " +
-          (item.question || item.message || "No question");
+        customerInfo.appendChild(
+          createInfoItem("📧 Email", email)
+        );
 
-        const date = document.createElement("p");
-        date.innerHTML =
-          "<strong>Date:</strong> " +
-          (item.date || item.createdAt || "Not available");
+        customerInfo.appendChild(
+          createInfoItem("📋 Plan", plan)
+        );
 
-        const statusText = item.status || "Pending";
+        customerInfo.appendChild(
+          createInfoItem("📅 Date", date)
+        );
+
+        const questionBox = document.createElement("div");
+        questionBox.className = "question-box";
+
+        const questionStrong = document.createElement("strong");
+        questionStrong.textContent = "Question: ";
+
+        const questionText = document.createElement("span");
+        questionText.textContent = question;
+
+        questionBox.appendChild(questionStrong);
+        questionBox.appendChild(questionText);
 
         const statusRow = document.createElement("div");
         statusRow.className = "status-row";
@@ -643,6 +845,7 @@
         statuses.forEach((status) => {
 
           const option = document.createElement("option");
+
           option.value = status;
           option.textContent = status;
 
@@ -658,7 +861,13 @@
         saveButton.className = "save-btn";
         saveButton.textContent = "Save Status";
 
+        const statusMessage = document.createElement("div");
+        statusMessage.className = "status-message";
+
         saveButton.addEventListener("click", async () => {
+
+          saveButton.disabled = true;
+          saveButton.textContent = "Saving...";
 
           try {
 
@@ -673,25 +882,31 @@
 
             updateCounts();
 
-            alert("Status saved successfully.");
+            statusMessage.textContent =
+              "Status successfully saved.";
 
           } catch (error) {
 
-            console.error(error);
-            alert("Status save नहीं हुआ।");
+            console.error("Status update error:", error);
+
+            statusMessage.textContent =
+              "Status save नहीं हुआ।";
 
           }
+
+          saveButton.disabled = false;
+          saveButton.textContent = "Save Status";
 
         });
 
         const whatsappButton = document.createElement("button");
         whatsappButton.className = "whatsapp-btn";
-        whatsappButton.textContent = "WhatsApp Customer";
+        whatsappButton.textContent = "WhatsApp";
 
         whatsappButton.addEventListener("click", () => {
 
           let mobileNumber =
-            String(item.mobile || item.phone || "").replace(/\D/g, "");
+            String(mobile).replace(/\D/g, "");
 
           if (mobileNumber.length === 10) {
             mobileNumber = "91" + mobileNumber;
@@ -701,9 +916,6 @@
             alert("Customer mobile number उपलब्ध नहीं है।");
             return;
           }
-
-          const customerName =
-            item.name || item.customerName || "Customer";
 
           const message =
             "नमस्ते " +
@@ -720,19 +932,41 @@
 
         });
 
+        const callButton = document.createElement("button");
+        callButton.className = "call-btn";
+        callButton.textContent = "Call";
+
+        callButton.addEventListener("click", () => {
+
+          const cleanMobile =
+            String(mobile).replace(/\D/g, "");
+
+          if (!cleanMobile) {
+            alert("Customer mobile number उपलब्ध नहीं है।");
+            return;
+          }
+
+          window.location.href =
+            "tel:" + cleanMobile;
+
+        });
+
         const deleteButton = document.createElement("button");
         deleteButton.className = "delete-btn";
-        deleteButton.textContent = "Delete Inquiry";
+        deleteButton.textContent = "Delete";
 
         deleteButton.addEventListener("click", async () => {
 
           const confirmDelete = confirm(
-            "क्या आप इस inquiry को delete करना चाहते हैं?"
+            "क्या आप इस inquiry को permanently delete करना चाहते हैं?"
           );
 
           if (!confirmDelete) {
             return;
           }
+
+          deleteButton.disabled = true;
+          deleteButton.textContent = "Deleting...";
 
           try {
 
@@ -744,8 +978,12 @@
 
           } catch (error) {
 
-            console.error(error);
+            console.error("Delete error:", error);
+
             alert("Inquiry delete नहीं हुई।");
+
+            deleteButton.disabled = false;
+            deleteButton.textContent = "Delete";
 
           }
 
@@ -754,13 +992,13 @@
         statusRow.appendChild(statusSelect);
         statusRow.appendChild(saveButton);
         statusRow.appendChild(whatsappButton);
+        statusRow.appendChild(callButton);
         statusRow.appendChild(deleteButton);
+        statusRow.appendChild(statusMessage);
 
         card.appendChild(title);
-        card.appendChild(mobile);
-        card.appendChild(plan);
-        card.appendChild(question);
-        card.appendChild(date);
+        card.appendChild(customerInfo);
+        card.appendChild(questionBox);
         card.appendChild(statusRow);
 
         inquiryList.appendChild(card);
@@ -782,11 +1020,15 @@
           item.customerName,
           item.mobile,
           item.phone,
+          item.email,
+          item.customerEmail,
           item.plan,
           item.selectedPlan,
           item.question,
           item.message,
-          item.status
+          item.status,
+          item.date,
+          item.createdAt
 
         ].join(" ").toLowerCase();
 
@@ -796,6 +1038,10 @@
 
       displayInquiries(filtered);
 
+    });
+
+    document.getElementById("refreshBtn").addEventListener("click", () => {
+      loadInquiries();
     });
 
     document.getElementById("dashboardBtn").addEventListener("click", () => {
