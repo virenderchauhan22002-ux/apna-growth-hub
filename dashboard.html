@@ -22,39 +22,44 @@
         header {
             background: linear-gradient(135deg, #082f63, #1261a0);
             color: white;
-            padding: 22px 18px;
+            padding: 22px 16px;
         }
 
         .header-top {
             max-width: 1150px;
             margin: auto;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            gap: 15px;
+            align-items: center;
+            gap: 12px;
         }
 
         header h1 {
             margin: 0;
-            font-size: 30px;
+            font-size: 28px;
         }
 
         header p {
-            margin: 8px 0 0;
-            font-size: 15px;
+            margin: 7px 0 0;
+            font-size: 14px;
+        }
+
+        button {
+            border: none;
+            border-radius: 12px;
+            padding: 12px;
+            background: #1261a0;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
         }
 
         .profile-button {
             width: auto;
             margin: 0;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 12px;
             background: white;
             color: #082f63;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
         }
 
         .profile-menu {
@@ -65,8 +70,7 @@
             background: white;
             color: #1d2939;
             border-radius: 16px;
-            text-align: left;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .18);
         }
 
         .profile-menu.show {
@@ -74,28 +78,27 @@
         }
 
         .profile-menu h3 {
-            margin: 8px 0 10px;
+            margin: 8px 0;
             color: #082f63;
             font-size: 17px;
         }
 
         .profile-menu p {
-            margin: 6px 0;
-            font-size: 13px;
             color: #667085;
+            font-size: 13px;
         }
 
         .profile-menu hr {
             border: none;
-            border-top: 1px solid #e5e7eb;
+            border-top: 1px solid #ddd;
             margin: 15px 0;
         }
 
         .profile-link {
             display: block;
             width: 100%;
-            padding: 10px;
             margin-top: 8px;
+            padding: 10px;
             border-radius: 10px;
             color: white;
             text-decoration: none;
@@ -116,21 +119,14 @@
             background: #7c3aed;
         }
 
-        .profile-logout {
+        .profile-logout,
+        .logout {
             width: 100%;
             background: #c62828;
             margin-top: 12px;
-            padding: 10px;
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-size: 13px;
-            font-weight: bold;
-            cursor: pointer;
         }
 
         .container {
-            width: 100%;
             max-width: 1150px;
             margin: auto;
             padding: 22px 16px 35px;
@@ -138,27 +134,24 @@
 
         .welcome-box {
             background: white;
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
             border-left: 6px solid #1261a0;
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
         }
 
         .welcome-box h2 {
             margin: 0 0 10px;
             color: #082f63;
-            font-size: 25px;
         }
 
         .welcome-box p {
-            margin: 9px 0;
             line-height: 1.6;
         }
 
         .age {
             color: #1261a0;
-            font-size: 18px;
             font-weight: bold;
         }
 
@@ -171,7 +164,6 @@
             text-align: center;
             color: #082f63;
             margin: 30px 0 20px;
-            font-size: 25px;
         }
 
         .cards {
@@ -183,50 +175,24 @@
         .card {
             background: white;
             border-radius: 20px;
-            padding: 24px 18px;
+            padding: 22px 18px;
             text-align: center;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-            transition: 0.2s;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
         }
 
         .icon {
-            font-size: 43px;
-            margin-bottom: 10px;
+            font-size: 42px;
         }
 
         .card h3 {
             color: #082f63;
-            margin: 8px 0;
-            font-size: 20px;
+            font-size: 19px;
         }
 
         .card p {
             color: #667085;
             min-height: 50px;
             line-height: 1.5;
-        }
-
-        button {
-            display: block;
-            width: 100%;
-            border: none;
-            border-radius: 12px;
-            padding: 13px 12px;
-            background: #1261a0;
-            color: white;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            opacity: 0.9;
         }
 
         .lic-button {
@@ -257,24 +223,15 @@
             background: #7b3fb6;
         }
 
-        .logout {
-            background: #c62828;
-            margin-top: 30px;
-        }
-
-        .logout:hover {
-            background: #8e1b1b;
-        }
-
         .notice {
             background: #fff8e6;
             color: #8a5a00;
             border: 1px solid #f1d58a;
             border-radius: 14px;
-            padding: 16px;
+            padding: 15px;
             margin-top: 28px;
-            line-height: 1.6;
             text-align: center;
+            line-height: 1.6;
         }
 
         .loading {
@@ -285,16 +242,8 @@
         }
 
         @media (max-width: 600px) {
-            header {
-                padding: 20px 12px;
-            }
-
             header h1 {
-                font-size: 23px;
-            }
-
-            header p {
-                font-size: 13px;
+                font-size: 22px;
             }
 
             .profile-button {
@@ -303,27 +252,7 @@
             }
 
             .container {
-                padding: 16px 12px 28px;
-            }
-
-            .welcome-box {
-                padding: 20px;
-            }
-
-            .welcome-box h2 {
-                font-size: 22px;
-            }
-
-            .section-title {
-                font-size: 22px;
-            }
-
-            .card {
-                padding: 21px 15px;
-            }
-
-            .card h3 {
-                font-size: 18px;
+                padding: 16px 12px;
             }
         }
     </style>
@@ -331,426 +260,317 @@
 
 <body>
 
-    <header>
+<header>
 
-        <div class="header-top">
+    <div class="header-top">
 
-            <div>
-                <h1>Apna Growth Hub</h1>
-                <p>Learn • Grow • Succeed</p>
-            </div>
-
-            <button class="profile-button" onclick="toggleProfile()">
-                👤 Profile
-            </button>
-
+        <div>
+            <h1>Apna Growth Hub</h1>
+            <p>Learn • Grow • Succeed</p>
         </div>
 
-        <div id="profileMenu" class="profile-menu">
-
-            <h3>👤 My Profile</h3>
-
-            <p id="profileName">
-                Name: Loading...
-            </p>
-
-            <p id="profileEmail">
-                Email: Loading...
-            </p>
-
-            <hr>
-
-            <h3>📞 Customer Support</h3>
-
-            <a href="tel:7876260435"
-               class="profile-link call-button">
-                📞 Call Support
-            </a>
-
-            <a href="https://wa.me/917876260435"
-               target="_blank"
-               class="profile-link whatsapp-button">
-                💬 WhatsApp Support
-            </a>
-
-            <a href="mailto:apnagrowthhub@gmail.com"
-               class="profile-link email-button">
-                📧 Email Support
-            </a>
-
-            <button class="profile-logout" onclick="logout()">
-                Logout
-            </button>
-
-        </div>
-
-    </header>
-
-    <div class="container">
-
-        <div id="loadingMessage" class="loading">
-            Dashboard load हो रहा है...
-        </div>
-
-        <div id="dashboardContent" style="display: none;">
-
-            <div class="welcome-box">
-
-                <h2 id="welcomeName">
-                    Welcome
-                </h2>
-
-                <p id="welcomeAge" class="age">
-                    आपकी उम्र load हो रही है...
-                </p>
-
-                <p id="welcomeEmail" class="email">
-                    Email load हो रहा है...
-                </p>
-
-                <p>
-                    अपनी पसंद की category चुनें और अपनी growth journey को आगे बढ़ाएँ।
-                </p>
-
-            </div>
-
-            <h2 class="section-title">
-                Explore Categories
-            </h2>
-
-            <div class="cards">
-
-                <!-- LIC PLANS -->
-                <div class="card">
-
-                    <div class="icon">🛡️</div>
-
-                    <h3>LIC Plans</h3>
-
-                    <p>
-                        LIC की अलग-अलग planning और insurance जानकारी प्राप्त करें।
-                    </p>
-
-                    <button class="lic-button" onclick="openLIC()">
-                        Open LIC Plans
-                    </button>
-
-                </div>
-
-                <!-- DIGITAL SKILLS -->
-                <div class="card">
-
-                    <div class="icon">💻</div>
-
-                    <h3>Digital Skills</h3>
-
-                    <p>
-                        Computer और digital काम step-by-step सीखें।
-                    </p>
-
-                    <button class="digital-button"
-                            onclick="openCategory('Digital Skills')">
-                        Open Digital Skills
-                    </button>
-
-                </div>
-
-                <!-- AI TOOLS -->
-                <div class="card">
-
-                    <div class="icon">🤖</div>
-
-                    <h3>AI Tools</h3>
-
-                    <p>
-                        AI tools और नई technology के बारे में सीखें।
-                    </p>
-
-                    <button class="ai-button"
-                            onclick="openCategory('AI Tools')">
-                        Open AI Tools
-                    </button>
-
-                </div>
-
-                <!-- SOCIAL MEDIA -->
-                <div class="card">
-
-                    <div class="icon">📱</div>
-
-                    <h3>Social Media Learning</h3>
-
-                    <p>
-                        Instagram, YouTube और Facebook सीखें।
-                    </p>
-
-                    <button class="social-button"
-                            onclick="openCategory('Social Media Learning')">
-                        Open Social Media
-                    </button>
-
-                </div>
-
-                <!-- BUSINESS GROWTH -->
-                <div class="card">
-
-                    <div class="icon">📈</div>
-
-                    <h3>Business Growth</h3>
-
-                    <p>
-                        Business और customer network बढ़ाने की जानकारी।
-                    </p>
-
-                    <button class="business-button"
-                            onclick="openCategory('Business Growth')">
-                        Open Business Growth
-                    </button>
-
-                </div>
-
-                <!-- CUSTOMER INQUIRY -->
-                <div class="card">
-
-                    <div class="icon">📝</div>
-
-                    <h3>Customer Inquiry</h3>
-
-                    <p>
-                        LIC से संबंधित सवाल या customer inquiry submit करें।
-                    </p>
-
-                    <button class="inquiry-button"
-                            onclick="openCustomerInquiry()">
-                        Open Inquiry
-                    </button>
-
-                </div>
-
-                <!-- ADMIN PANEL -->
-                <div class="card">
-
-                    <div class="icon">🔐</div>
-
-                    <h3>Admin Panel</h3>
-
-                    <p>
-                        केवल Admin account से customer inquiries manage करें।
-                    </p>
-
-                    <button class="admin-button"
-                            onclick="openAdmin()">
-                        Open Admin Panel
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div class="notice">
-                🔒 आपकी customer inquiries सुरक्षित रूप से Admin panel में manage की जाती हैं।
-            </div>
-
-            <button class="logout" onclick="logout()">
-                Logout
-            </button>
-
-        </div>
+        <button class="profile-button" onclick="toggleProfile()">
+            👤 Profile
+        </button>
 
     </div>
 
-    <script type="module">
+    <div id="profileMenu" class="profile-menu">
+
+        <h3>👤 My Profile</h3>
+
+        <p id="profileName">Name: Loading...</p>
+        <p id="profileEmail">Email: Loading...</p>
+
+        <hr>
+
+        <h3>📞 Customer Support</h3>
+
+        <a class="profile-link call-button"
+           href="tel:7876260435">
+            📞 Call Support
+        </a>
+
+        <a class="profile-link whatsapp-button"
+           href="https://wa.me/917876260435"
+           target="_blank">
+            💬 WhatsApp Support
+        </a>
+
+        <a class="profile-link email-button"
+           href="https://mail.google.com/mail/?view=cm&fs=1&to=apnagrowthhub@gmail.com"
+           target="_blank">
+            📧 Email Support
+        </a>
+
+        <button class="profile-logout" onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+<div class="container">
+
+    <div id="loadingMessage" class="loading">
+        Dashboard load हो रहा है...
+    </div>
+
+    <div id="dashboardContent" style="display:none;">
+
+        <div class="welcome-box">
+
+            <h2 id="welcomeName">Welcome</h2>
+
+            <p id="welcomeAge" class="age">
+                आपकी उम्र load हो रही है...
+            </p>
+
+            <p id="welcomeEmail" class="email">
+                Email load हो रहा है...
+            </p>
+
+            <p>
+                अपनी पसंद की category चुनें और अपनी growth journey को आगे बढ़ाएँ।
+            </p>
+
+        </div>
+
+        <h2 class="section-title">
+            Explore Categories
+        </h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="icon">🛡️</div>
+                <h3>LIC Plans</h3>
+                <p>LIC की अलग-अलग planning और insurance जानकारी प्राप्त करें।</p>
+                <button class="lic-button" onclick="openLIC()">
+                    Open LIC Plans
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="icon">💻</div>
+                <h3>Digital Skills</h3>
+                <p>Computer और digital काम step-by-step सीखें।</p>
+                <button class="digital-button"
+                        onclick="openCategory('Digital Skills')">
+                    Open Digital Skills
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="icon">🤖</div>
+                <h3>AI Tools</h3>
+                <p>AI tools और नई technology के बारे में सीखें।</p>
+                <button class="ai-button"
+                        onclick="openCategory('AI Tools')">
+                    Open AI Tools
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="icon">📱</div>
+                <h3>Social Media Learning</h3>
+                <p>Instagram, YouTube और Facebook सीखें।</p>
+                <button class="social-button"
+                        onclick="openCategory('Social Media Learning')">
+                    Open Social Media
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="icon">📈</div>
+                <h3>Business Growth</h3>
+                <p>Business और customer network बढ़ाने की जानकारी।</p>
+                <button class="business-button"
+                        onclick="openCategory('Business Growth')">
+                    Open Business Growth
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="icon">📝</div>
+                <h3>Customer Inquiry</h3>
+                <p>LIC से संबंधित सवाल या customer inquiry submit करें।</p>
+                <button class="inquiry-button"
+                        onclick="openCustomerInquiry()">
+                    Open Inquiry
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="icon">🔐</div>
+                <h3>Admin Panel</h3>
+                <p>केवल Admin account से customer inquiries manage करें।</p>
+                <button class="admin-button"
+                        onclick="openAdmin()">
+                    Open Admin Panel
+                </button>
+            </div>
+
+        </div>
+
+        <div class="notice">
+            🔒 आपकी customer inquiries सुरक्षित रूप से Admin panel में manage की जाती हैं।
+        </div>
+
+        <button class="logout" onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+</div>
+
+<script type="module">
+
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+    import {
+        getAuth,
+        onAuthStateChanged,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
+        authDomain: "apna-growth-hub.firebaseapp.com",
+        projectId: "apna-growth-hub",
+        storageBucket: "apna-growth-hub.firebasestorage.app",
+        messagingSenderId: "939001251123",
+        appId: "1:939001251123:web:f2966004acaa64186e2a46",
+        measurementId: "G-GZGCHL4XQ3"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const loadingMessage =
+        document.getElementById("loadingMessage");
+
+    const dashboardContent =
+        document.getElementById("dashboardContent");
+
+    const welcomeName =
+        document.getElementById("welcomeName");
+
+    const welcomeAge =
+        document.getElementById("welcomeAge");
 
-        import {
-            initializeApp
-        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    const welcomeEmail =
+        document.getElementById("welcomeEmail");
 
-        import {
-            getAuth,
-            onAuthStateChanged,
-            signOut
-        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    const profileName =
+        document.getElementById("profileName");
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
-            authDomain: "apna-growth-hub.firebaseapp.com",
-            projectId: "apna-growth-hub",
-            storageBucket: "apna-growth-hub.firebasestorage.app",
-            messagingSenderId: "939001251123",
-            appId: "1:939001251123:web:f2966004acaa64186e2a46",
-            measurementId: "G-GZGCHL4XQ3"
-        };
+    const profileEmail =
+        document.getElementById("profileEmail");
 
-        const app = initializeApp(firebaseConfig);
+    onAuthStateChanged(auth, (user) => {
 
-        const auth = getAuth(app);
+        if (!user) {
+            window.location.href = "index.html";
+            return;
+        }
 
-        const loadingMessage =
-            document.getElementById("loadingMessage");
+        const customerName =
+            localStorage.getItem("customerName");
 
-        const dashboardContent =
-            document.getElementById("dashboardContent");
+        const customerAge =
+            localStorage.getItem("customerAge");
 
-        const welcomeName =
-            document.getElementById("welcomeName");
+        welcomeName.innerText =
+            customerName
+                ? "Welcome, " + customerName + " ji"
+                : "Welcome";
 
-        const welcomeAge =
-            document.getElementById("welcomeAge");
+        profileName.innerText =
+            customerName
+                ? "Name: " + customerName
+                : "Name: Not available";
 
-        const welcomeEmail =
-            document.getElementById("welcomeEmail");
+        if (
+            customerAge &&
+            !isNaN(Number(customerAge))
+        ) {
+            welcomeAge.innerText =
+                "आपकी उम्र: " + customerAge + " साल";
+        } else {
+            welcomeAge.innerText =
+                "उम्र अभी Save नहीं हुई है";
+        }
 
-        const profileName =
-            document.getElementById("profileName");
+        welcomeEmail.innerText =
+            user.email
+                ? "Email: " + user.email
+                : "Email उपलब्ध नहीं है";
 
-        const profileEmail =
-            document.getElementById("profileEmail");
+        profileEmail.innerText =
+            user.email
+                ? "Email: " + user.email
+                : "Email: Not available";
 
+        loadingMessage.style.display = "none";
+        dashboardContent.style.display = "block";
 
-        onAuthStateChanged(auth, (user) => {
+    });
 
-            if (!user) {
+    window.toggleProfile = function () {
 
-                window.location.href = "index.html";
+        document
+            .getElementById("profileMenu")
+            .classList.toggle("show");
 
-                return;
+    };
 
-            }
+    window.openLIC = function () {
+        window.location.href = "lic.html";
+    };
 
-            const customerName =
-                localStorage.getItem("customerName");
+    window.openCategory = function (categoryName) {
 
-            const customerAge =
-                localStorage.getItem("customerAge");
+        alert(
+            categoryName +
+            " page हम अगले step में बनाएँगे।"
+        );
 
+    };
 
-            if (customerName && customerName.trim() !== "") {
+    window.openCustomerInquiry = function () {
+        window.location.href = "customer-inquiry.html";
+    };
 
-                welcomeName.innerText =
-                    "Welcome, " + customerName + " ji";
+    window.openAdmin = function () {
+        window.location.href = "admin.html";
+    };
 
-                profileName.innerText =
-                    "Name: " + customerName;
+    window.logout = async function () {
 
-            } else {
+        try {
 
-                welcomeName.innerText =
-                    "Welcome";
+            await signOut(auth);
 
-                profileName.innerText =
-                    "Name: Not available";
+            localStorage.removeItem("firebaseLoggedIn");
 
-            }
+            window.location.href = "index.html";
 
+        } catch (error) {
 
-            if (
-                customerAge !== null &&
-                customerAge !== "" &&
-                !isNaN(Number(customerAge))
-            ) {
+            alert("Logout नहीं हो पाया।");
 
-                welcomeAge.innerText =
-                    "आपकी उम्र: " + customerAge + " साल";
+            console.error(error);
 
-            } else {
+        }
 
-                welcomeAge.innerText =
-                    "उम्र अभी Save नहीं हुई है";
+    };
 
-            }
-
-
-            if (user.email) {
-
-                welcomeEmail.innerText =
-                    "Email: " + user.email;
-
-                profileEmail.innerText =
-                    "Email: " + user.email;
-
-            } else {
-
-                welcomeEmail.innerText =
-                    "Email उपलब्ध नहीं है";
-
-                profileEmail.innerText =
-                    "Email: Not available";
-
-            }
-
-
-            loadingMessage.style.display = "none";
-
-            dashboardContent.style.display = "block";
-
-        });
-
-
-        window.toggleProfile = function () {
-
-            const profileMenu =
-                document.getElementById("profileMenu");
-
-            profileMenu.classList.toggle("show");
-
-        };
-
-
-        window.openLIC = function () {
-
-            window.location.href = "lic.html";
-
-        };
-
-
-        window.openCategory = function (categoryName) {
-
-            alert(
-                categoryName +
-                " page हम अगले step में बनाएँगे।"
-            );
-
-        };
-
-
-        window.openCustomerInquiry = function () {
-
-            window.location.href =
-                "customer-inquiry.html";
-
-        };
-
-
-        window.openAdmin = function () {
-
-            window.location.href =
-                "admin.html";
-
-        };
-
-
-        window.logout = async function () {
-
-            try {
-
-                await signOut(auth);
-
-                localStorage.removeItem("firebaseLoggedIn");
-
-                window.location.href = "index.html";
-
-            } catch (error) {
-
-                alert("Logout नहीं हो पाया।");
-
-                console.error(error);
-
-            }
-
-        };
-
-    </script>
+</script>
 
 </body>
-
 </html>
