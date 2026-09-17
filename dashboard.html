@@ -118,7 +118,9 @@
             line-height: 1.5;
         }
 
-        button {
+        button,
+        .support-btn {
+            display: block;
             width: 100%;
             border: none;
             border-radius: 12px;
@@ -129,10 +131,13 @@
             font-weight: bold;
             cursor: pointer;
             margin-top: 10px;
+            text-decoration: none;
+            text-align: center;
         }
 
-        button:hover {
-            background: #082f63;
+        button:hover,
+        .support-btn:hover {
+            opacity: 0.9;
         }
 
         .lic-button {
@@ -161,6 +166,27 @@
 
         .admin-button {
             background: #7b3fb6;
+        }
+
+        .call-button {
+            background: #2563eb;
+        }
+
+        .whatsapp-button {
+            background: #16a34a;
+        }
+
+        .email-button {
+            background: #7c3aed;
+        }
+
+        .support-card {
+            border: 2px solid #2563eb;
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+        }
+
+        .support-card h3 {
+            color: #1d4ed8;
         }
 
         .logout {
@@ -267,6 +293,7 @@
 
             <div class="cards">
 
+                <!-- LIC PLANS -->
                 <div class="card">
                     <div class="icon">🛡️</div>
 
@@ -281,6 +308,7 @@
                     </button>
                 </div>
 
+                <!-- DIGITAL SKILLS -->
                 <div class="card">
                     <div class="icon">💻</div>
 
@@ -296,6 +324,7 @@
                     </button>
                 </div>
 
+                <!-- AI TOOLS -->
                 <div class="card">
                     <div class="icon">🤖</div>
 
@@ -311,6 +340,7 @@
                     </button>
                 </div>
 
+                <!-- SOCIAL MEDIA -->
                 <div class="card">
                     <div class="icon">📱</div>
 
@@ -326,6 +356,7 @@
                     </button>
                 </div>
 
+                <!-- BUSINESS GROWTH -->
                 <div class="card">
                     <div class="icon">📈</div>
 
@@ -341,6 +372,7 @@
                     </button>
                 </div>
 
+                <!-- CUSTOMER INQUIRY -->
                 <div class="card">
                     <div class="icon">📝</div>
 
@@ -356,6 +388,34 @@
                     </button>
                 </div>
 
+                <!-- CUSTOMER SUPPORT -->
+                <div class="card support-card">
+                    <div class="icon">📞</div>
+
+                    <h3>Customer Support</h3>
+
+                    <p>
+                        किसी भी सहायता के लिए हमसे संपर्क करें।
+                    </p>
+
+                    <a class="support-btn call-button"
+                        href="tel:7876260435">
+                        📞 Call Support
+                    </a>
+
+                    <a class="support-btn whatsapp-button"
+                        href="https://wa.me/917876260435"
+                        target="_blank">
+                        💬 WhatsApp Support
+                    </a>
+
+                    <a class="support-btn email-button"
+                        href="mailto:apnagrowthhub@gmail.com">
+                        📧 Email Support
+                    </a>
+                </div>
+
+                <!-- ADMIN PANEL -->
                 <div class="card">
                     <div class="icon">🔐</div>
 
@@ -532,12 +592,6 @@
             try {
 
                 await signOut(auth);
-
-                /*
-                 * ध्यान दें:
-                 * यहाँ localStorage.clear() नहीं लगाया गया है।
-                 * इससे customerName और customerAge सुरक्षित रहेंगे।
-                 */
 
                 localStorage.removeItem("firebaseLoggedIn");
 
