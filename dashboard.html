@@ -22,8 +22,16 @@
         header {
             background: linear-gradient(135deg, #082f63, #1261a0);
             color: white;
-            padding: 28px 18px;
-            text-align: center;
+            padding: 22px 18px;
+        }
+
+        .header-top {
+            max-width: 1150px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
         }
 
         header h1 {
@@ -34,6 +42,91 @@
         header p {
             margin: 8px 0 0;
             font-size: 15px;
+        }
+
+        .profile-button {
+            width: auto;
+            margin: 0;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 12px;
+            background: white;
+            color: #082f63;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .profile-menu {
+            display: none;
+            max-width: 340px;
+            margin: 18px auto 0;
+            padding: 18px;
+            background: white;
+            color: #1d2939;
+            border-radius: 16px;
+            text-align: left;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+        }
+
+        .profile-menu.show {
+            display: block;
+        }
+
+        .profile-menu h3 {
+            margin: 8px 0 10px;
+            color: #082f63;
+            font-size: 17px;
+        }
+
+        .profile-menu p {
+            margin: 6px 0;
+            font-size: 13px;
+            color: #667085;
+        }
+
+        .profile-menu hr {
+            border: none;
+            border-top: 1px solid #e5e7eb;
+            margin: 15px 0;
+        }
+
+        .profile-link {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .call-button {
+            background: #2563eb;
+        }
+
+        .whatsapp-button {
+            background: #16a34a;
+        }
+
+        .email-button {
+            background: #7c3aed;
+        }
+
+        .profile-logout {
+            width: 100%;
+            background: #c62828;
+            margin-top: 12px;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
         }
 
         .container {
@@ -118,8 +211,7 @@
             line-height: 1.5;
         }
 
-        button,
-        .support-btn {
+        button {
             display: block;
             width: 100%;
             border: none;
@@ -131,12 +223,9 @@
             font-weight: bold;
             cursor: pointer;
             margin-top: 10px;
-            text-decoration: none;
-            text-align: center;
         }
 
-        button:hover,
-        .support-btn:hover {
+        button:hover {
             opacity: 0.9;
         }
 
@@ -168,27 +257,6 @@
             background: #7b3fb6;
         }
 
-        .call-button {
-            background: #2563eb;
-        }
-
-        .whatsapp-button {
-            background: #16a34a;
-        }
-
-        .email-button {
-            background: #7c3aed;
-        }
-
-        .support-card {
-            border: 2px solid #2563eb;
-            background: linear-gradient(135deg, #eff6ff, #dbeafe);
-        }
-
-        .support-card h3 {
-            color: #1d4ed8;
-        }
-
         .logout {
             background: #c62828;
             margin-top: 30px;
@@ -218,11 +286,20 @@
 
         @media (max-width: 600px) {
             header {
-                padding: 24px 15px;
+                padding: 20px 12px;
             }
 
             header h1 {
-                font-size: 25px;
+                font-size: 23px;
+            }
+
+            header p {
+                font-size: 13px;
+            }
+
+            .profile-button {
+                padding: 9px 11px;
+                font-size: 13px;
             }
 
             .container {
@@ -255,8 +332,58 @@
 <body>
 
     <header>
-        <h1>Apna Growth Hub</h1>
-        <p>Learn • Grow • Succeed</p>
+
+        <div class="header-top">
+
+            <div>
+                <h1>Apna Growth Hub</h1>
+                <p>Learn • Grow • Succeed</p>
+            </div>
+
+            <button class="profile-button" onclick="toggleProfile()">
+                👤 Profile
+            </button>
+
+        </div>
+
+        <div id="profileMenu" class="profile-menu">
+
+            <h3>👤 My Profile</h3>
+
+            <p id="profileName">
+                Name: Loading...
+            </p>
+
+            <p id="profileEmail">
+                Email: Loading...
+            </p>
+
+            <hr>
+
+            <h3>📞 Customer Support</h3>
+
+            <a href="tel:7876260435"
+               class="profile-link call-button">
+                📞 Call Support
+            </a>
+
+            <a href="https://wa.me/917876260435"
+               target="_blank"
+               class="profile-link whatsapp-button">
+                💬 WhatsApp Support
+            </a>
+
+            <a href="mailto:apnagrowthhub@gmail.com"
+               class="profile-link email-button">
+                📧 Email Support
+            </a>
+
+            <button class="profile-logout" onclick="logout()">
+                Logout
+            </button>
+
+        </div>
+
     </header>
 
     <div class="container">
@@ -295,6 +422,7 @@
 
                 <!-- LIC PLANS -->
                 <div class="card">
+
                     <div class="icon">🛡️</div>
 
                     <h3>LIC Plans</h3>
@@ -306,10 +434,12 @@
                     <button class="lic-button" onclick="openLIC()">
                         Open LIC Plans
                     </button>
+
                 </div>
 
                 <!-- DIGITAL SKILLS -->
                 <div class="card">
+
                     <div class="icon">💻</div>
 
                     <h3>Digital Skills</h3>
@@ -319,13 +449,15 @@
                     </p>
 
                     <button class="digital-button"
-                        onclick="openCategory('Digital Skills')">
+                            onclick="openCategory('Digital Skills')">
                         Open Digital Skills
                     </button>
+
                 </div>
 
                 <!-- AI TOOLS -->
                 <div class="card">
+
                     <div class="icon">🤖</div>
 
                     <h3>AI Tools</h3>
@@ -335,13 +467,15 @@
                     </p>
 
                     <button class="ai-button"
-                        onclick="openCategory('AI Tools')">
+                            onclick="openCategory('AI Tools')">
                         Open AI Tools
                     </button>
+
                 </div>
 
                 <!-- SOCIAL MEDIA -->
                 <div class="card">
+
                     <div class="icon">📱</div>
 
                     <h3>Social Media Learning</h3>
@@ -351,13 +485,15 @@
                     </p>
 
                     <button class="social-button"
-                        onclick="openCategory('Social Media Learning')">
+                            onclick="openCategory('Social Media Learning')">
                         Open Social Media
                     </button>
+
                 </div>
 
                 <!-- BUSINESS GROWTH -->
                 <div class="card">
+
                     <div class="icon">📈</div>
 
                     <h3>Business Growth</h3>
@@ -367,13 +503,15 @@
                     </p>
 
                     <button class="business-button"
-                        onclick="openCategory('Business Growth')">
+                            onclick="openCategory('Business Growth')">
                         Open Business Growth
                     </button>
+
                 </div>
 
                 <!-- CUSTOMER INQUIRY -->
                 <div class="card">
+
                     <div class="icon">📝</div>
 
                     <h3>Customer Inquiry</h3>
@@ -383,40 +521,15 @@
                     </p>
 
                     <button class="inquiry-button"
-                        onclick="openCustomerInquiry()">
+                            onclick="openCustomerInquiry()">
                         Open Inquiry
                     </button>
-                </div>
 
-                <!-- CUSTOMER SUPPORT -->
-                <div class="card support-card">
-                    <div class="icon">📞</div>
-
-                    <h3>Customer Support</h3>
-
-                    <p>
-                        किसी भी सहायता के लिए हमसे संपर्क करें।
-                    </p>
-
-                    <a class="support-btn call-button"
-                        href="tel:7876260435">
-                        📞 Call Support
-                    </a>
-
-                    <a class="support-btn whatsapp-button"
-                        href="https://wa.me/917876260435"
-                        target="_blank">
-                        💬 WhatsApp Support
-                    </a>
-
-                    <a class="support-btn email-button"
-                        href="mailto:apnagrowthhub@gmail.com">
-                        📧 Email Support
-                    </a>
                 </div>
 
                 <!-- ADMIN PANEL -->
                 <div class="card">
+
                     <div class="icon">🔐</div>
 
                     <h3>Admin Panel</h3>
@@ -426,9 +539,10 @@
                     </p>
 
                     <button class="admin-button"
-                        onclick="openAdmin()">
+                            onclick="openAdmin()">
                         Open Admin Panel
                     </button>
+
                 </div>
 
             </div>
@@ -486,6 +600,12 @@
         const welcomeEmail =
             document.getElementById("welcomeEmail");
 
+        const profileName =
+            document.getElementById("profileName");
+
+        const profileEmail =
+            document.getElementById("profileEmail");
+
 
         onAuthStateChanged(auth, (user) => {
 
@@ -509,10 +629,16 @@
                 welcomeName.innerText =
                     "Welcome, " + customerName + " ji";
 
+                profileName.innerText =
+                    "Name: " + customerName;
+
             } else {
 
                 welcomeName.innerText =
                     "Welcome";
+
+                profileName.innerText =
+                    "Name: Not available";
 
             }
 
@@ -539,10 +665,16 @@
                 welcomeEmail.innerText =
                     "Email: " + user.email;
 
+                profileEmail.innerText =
+                    "Email: " + user.email;
+
             } else {
 
                 welcomeEmail.innerText =
                     "Email उपलब्ध नहीं है";
+
+                profileEmail.innerText =
+                    "Email: Not available";
 
             }
 
@@ -552,6 +684,16 @@
             dashboardContent.style.display = "block";
 
         });
+
+
+        window.toggleProfile = function () {
+
+            const profileMenu =
+                document.getElementById("profileMenu");
+
+            profileMenu.classList.toggle("show");
+
+        };
 
 
         window.openLIC = function () {
