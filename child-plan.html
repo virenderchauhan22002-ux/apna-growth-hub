@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Child Future Planning</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f6ff;
+            color: #222;
+        }
+
+        header {
+            background: #003b7a;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header p {
+            margin-top: 8px;
+            font-size: 16px;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .back-button {
+            background: #555;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 22px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .info-card h2 {
+            color: #003b7a;
+            margin-top: 0;
+        }
+
+        .info-card p {
+            line-height: 1.6;
+        }
+
+        .info-card li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .note {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Child Future Planning</h1>
+        <p>बच्चों के बेहतर भविष्य के लिए planning</p>
+    </header>
+
+    <div class="container">
+
+        <button class="back-button" onclick="goBack()">
+            ← LIC Plans पर वापस जाएँ
+        </button>
+
+        <div class="info-card">
+
+            <h2>बच्चों के Future की Planning</h2>
+            <p id="customerInfo"></p>
+
+            <p>
+                बच्चों की education, higher studies और future goals के लिए
+                समय रहते financial planning करना उपयोगी हो सकता है।
+            </p>
+
+            <ul>
+                <li>बच्चों की education के लिए planning</li>
+                <li>Higher studies और career goals की तैयारी</li>
+                <li>Future के लिए disciplined savings</li>
+                <li>परिवार की financial security पर ध्यान</li>
+                <li>लंबे समय के goals के अनुसार planning</li>
+            </ul>
+
+            <div class="note">
+                <strong>ध्यान दें:</strong><br>
+                यह केवल demo information है। सही LIC plan, eligibility,
+                premium और benefits के लिए official LIC policy details या
+                authorized LIC Advisor से verify करें।
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        function goBack() {
+            window.location.href = "lic.html";
+        }
+    </script>
+    <script>
+    const customerName = localStorage.getItem("customerName");
+    const customerAge = localStorage.getItem("customerAge");
+
+    document.getElementById("customerInfo").innerText =
+        "Customer: " + customerName + " | Age: " + customerAge;
+</script>
+
+</body>
+</html>

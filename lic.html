@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>LIC Plans - Apna Growth Hub</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: #f1f8ff;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1565c0;
+      margin-bottom: 20px;
+    }
+
+    .welcome {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.10);
+    }
+
+    .welcome h3 {
+      margin-top: 0;
+      color: #1565c0;
+    }
+
+    .welcome p {
+      margin-bottom: 0;
+      color: #444;
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(250px, 1fr)
+      );
+      gap: 18px;
+    }
+
+    .plan-card {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
+    }
+
+    .plan-card h2 {
+      color: #1565c0;
+      font-size: 21px;
+      margin-top: 0;
+    }
+
+    .plan-card p {
+      color: #444;
+      line-height: 1.6;
+      min-height: 75px;
+    }
+
+    .plan-card button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #1565c0;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    .plan-card button:hover {
+      background: #0d47a1;
+    }
+
+    .plan-card .inquiry-btn {
+      background: #ff6f00;
+    }
+
+    .plan-card .inquiry-btn:hover {
+      background: #e65100;
+    }
+
+    .message {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .back-button {
+      display: block;
+      max-width: 300px;
+      margin: 25px auto 0;
+      padding: 13px;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      background: #2e7d32;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .back-button:hover {
+      background: #1b5e20;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>LIC Plans</h1>
+
+    <div class="welcome">
+      <h3 id="welcomeText">
+        Welcome
+      </h3>
+
+      <p id="ageText"></p>
+    </div>
+
+    <div class="plans">
+
+      <!-- Child Plan -->
+      <div class="plan-card" id="childPlan">
+
+        <h2>👶 Child Future Planning</h2>
+
+        <p>
+          बच्चों की पढ़ाई, शादी और भविष्य के लिए
+          financial planning।
+        </p>
+
+        <button onclick="openPlan('child-plan.html')">
+          Plan Details
+        </button>
+
+        <button
+          class="inquiry-btn"
+          onclick="sendInquiry('Child Future Planning')"
+        >
+          📩 LIC Inquiry
+        </button>
+
+      </div>
+
+
+      <!-- Life Protection Plan -->
+      <div class="plan-card" id="lifePlan">
+
+        <h2>🛡️ Life Protection Plan</h2>
+
+        <p>
+          परिवार की financial security और
+          life protection के लिए planning।
+        </p>
+
+        <button onclick="openPlan('life-protection-plan.html')">
+          Plan Details
+        </button>
+
+        <button
+          class="inquiry-btn"
+          onclick="sendInquiry('Life Protection Plan')"
+        >
+          📩 LIC Inquiry
+        </button>
+
+      </div>
+
+
+      <!-- Retirement Plan -->
+      <div class="plan-card" id="retirementPlan">
+
+        <h2>👴 Retirement Planning</h2>
+
+        <p>
+          रिटायरमेंट के बाद नियमित income और
+          सुरक्षित भविष्य की planning।
+        </p>
+
+        <button onclick="openPlan('retirement-plan.html')">
+          Plan Details
+        </button>
+
+        <button
+          class="inquiry-btn"
+          onclick="sendInquiry('Retirement Planning')"
+        >
+          📩 LIC Inquiry
+        </button>
+
+      </div>
+
+
+      <!-- Saving Plan -->
+      <div class="plan-card" id="savingPlan">
+
+        <h2>💰 Saving Planning</h2>
+
+        <p>
+          भविष्य के goals के लिए बचत और
+          financial planning।
+        </p>
+
+        <button onclick="openPlan('saving-plan.html')">
+          Plan Details
+        </button>
+
+        <button
+          class="inquiry-btn"
+          onclick="sendInquiry('Saving Planning')"
+        >
+          📩 LIC Inquiry
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div id="messageBox"></div>
+
+
+    <a
+      href="dashboard.html"
+      class="back-button"
+    >
+      Dashboard पर वापस जाएँ
+    </a>
+
+  </div>
+
+
+  <script>
+
+    const customerName =
+      localStorage.getItem("customerName");
+
+    const customerAge =
+      localStorage.getItem("customerAge");
+
+    const age =
+      Number(customerAge);
+
+
+    const welcomeText =
+      document.getElementById("welcomeText");
+
+    const ageText =
+      document.getElementById("ageText");
+
+    const messageBox =
+      document.getElementById("messageBox");
+
+
+    const childPlan =
+      document.getElementById("childPlan");
+
+    const lifePlan =
+      document.getElementById("lifePlan");
+
+    const retirementPlan =
+      document.getElementById("retirementPlan");
+
+    const savingPlan =
+      document.getElementById("savingPlan");
+
+
+    if (
+      !customerName ||
+      customerAge === null ||
+      customerAge === "" ||
+      isNaN(age)
+    ) {
+
+      welcomeText.textContent =
+        "कृपया पहले अपनी जानकारी भरें।";
+
+      ageText.textContent = "";
+
+
+      childPlan.style.display =
+        "none";
+
+      lifePlan.style.display =
+        "none";
+
+      retirementPlan.style.display =
+        "none";
+
+      savingPlan.style.display =
+        "none";
+
+
+      messageBox.innerHTML = `
+        <div class="message">
+          पहले index.html पर Name और Date of Birth
+          भरकर Save करें।
+        </div>
+      `;
+
+    } else {
+
+      welcomeText.textContent =
+        "Welcome " + customerName + " ji";
+
+      ageText.textContent =
+        "आपकी उम्र: " + age + " साल";
+
+
+      if (age < 39) {
+
+        childPlan.style.display =
+          "block";
+
+        lifePlan.style.display =
+          "block";
+
+        retirementPlan.style.display =
+          "none";
+
+        savingPlan.style.display =
+          "block";
+
+      } else {
+
+        childPlan.style.display =
+          "none";
+
+        lifePlan.style.display =
+          "none";
+
+        retirementPlan.style.display =
+          "block";
+
+        savingPlan.style.display =
+          "block";
+
+      }
+
+    }
+
+
+    function openPlan(pageName) {
+
+      window.location.href =
+        pageName;
+
+    }
+
+
+    function sendInquiry(planName) {
+
+      localStorage.setItem(
+        "selectedPlan",
+        planName
+      );
+
+      window.location.href =
+        "customer-inquiry.html";
+
+    }
+
+  </script>
+
+</body>
+
+</html>

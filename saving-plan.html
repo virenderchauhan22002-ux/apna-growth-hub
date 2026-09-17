@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Saving Planning</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f6ff;
+            color: #222;
+        }
+
+        header {
+            background: #1769aa;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header p {
+            margin-top: 8px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .back-button {
+            background: #555;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 22px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .info-card h2 {
+            color: #1769aa;
+            margin-top: 0;
+        }
+
+        .info-card p,
+        .info-card li {
+            line-height: 1.6;
+        }
+
+        .info-card li {
+            margin-bottom: 12px;
+        }
+
+        .note {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Saving Planning</h1>
+        <p>भविष्य के लिए savings planning</p>
+    </header>
+
+    <div class="container">
+
+        <button class="back-button" onclick="goBack()">
+            ← LIC Plans पर वापस जाएँ
+        </button>
+
+        <div class="info-card">
+
+            <h2>Saving की Planning</h2>
+
+            <p>
+                भविष्य के goals और जरूरी खर्चों के लिए नियमित savings
+                करना financial planning का एक महत्वपूर्ण हिस्सा हो सकता है।
+            </p>
+
+            <ul>
+                <li>भविष्य के financial goals तय करना</li>
+                <li>नियमित savings की आदत बनाना</li>
+                <li>Emergency जरूरतों के लिए तैयारी</li>
+                <li>परिवार की financial security पर ध्यान</li>
+                <li>अपने budget के अनुसार planning करना</li>
+            </ul>
+
+            <div class="note">
+                <strong>ध्यान दें:</strong><br>
+                यह केवल demo information है। सही LIC plan, eligibility,
+                premium और benefits के लिए official LIC policy details या
+                authorized LIC Advisor से verify करें।
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        function goBack() {
+            window.location.href = "lic.html";
+        }
+    </script>
+
+</body>
+</html>

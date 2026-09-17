@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Apna Growth Hub - Login</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #e3f2fd, #ffffff);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 430px;
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 5px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1565c0;
+      margin: 5px 0;
+      font-size: 27px;
+    }
+
+    .tagline {
+      text-align: center;
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 7px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #bbb;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 18px;
+      border: none;
+      border-radius: 10px;
+      background: #1565c0;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0d47a1;
+    }
+
+    .save-button {
+      background: #2e7d32;
+    }
+
+    .save-button:hover {
+      background: #1b5e20;
+    }
+
+    .note {
+      margin-top: 18px;
+      padding: 12px;
+      background: #fff8e1;
+      border-radius: 10px;
+      color: #6d4c41;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    #recaptcha-container {
+      margin-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="logo">🚀</div>
+
+    <h1>Apna Growth Hub</h1>
+
+    <div class="tagline">
+      Learn • Grow • Succeed
+    </div>
+
+    <form id="customerForm">
+
+      <label for="customerName">पूरा नाम</label>
+
+      <input
+        type="text"
+        id="customerName"
+        placeholder="अपना नाम लिखें"
+        required
+      >
+
+      <label for="customerMobile">मोबाइल नंबर</label>
+
+      <input
+        type="tel"
+        id="customerMobile"
+        placeholder="10 अंकों का मोबाइल नंबर"
+        maxlength="10"
+        required
+      >
+
+      <label for="customerDob">Date of Birth</label>
+
+      <input
+        type="date"
+        id="customerDob"
+        required
+      >
+
+      <button type="submit" class="save-button">
+        जानकारी Save करें
+      </button>
+
+    </form>
+
+    <button id="sendOtpButton">
+      OTP भेजें
+    </button>
+
+    <div id="recaptcha-container"></div>
+
+    <div class="note">
+      पहले अपनी जानकारी Save करें।
+      उसके बाद LIC Plans page खोलें।
+    </div>
+
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
+      authDomain: "apna-growth-hub.firebaseapp.com",
+      projectId: "apna-growth-hub",
+      storageBucket: "apna-growth-hub.firebasestorage.app",
+      messagingSenderId: "939001251123",
+      appId: "1:939001251123:web:f2966004acaa64186e2a46",
+      measurementId: "G-GZGCHL4XQ3"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth();
+
+    let confirmationResult = null;
+
+    const customerForm =
+      document.getElementById("customerForm");
+
+    const sendOtpButton =
+      document.getElementById("sendOtpButton");
+
+    function calculateAge(dateOfBirth) {
+      const birthDate = new Date(dateOfBirth);
+      const today = new Date();
+
+      let age =
+        today.getFullYear() - birthDate.getFullYear();
+
+      const monthDifference =
+        today.getMonth() - birthDate.getMonth();
+
+      if (
+        monthDifference < 0 ||
+        (
+          monthDifference === 0 &&
+          today.getDate() < birthDate.getDate()
+        )
+      ) {
+        age--;
+      }
+
+      return age;
+    }
+
+    function saveCustomerDetails() {
+      const customerName =
+        document.getElementById("customerName").value.trim();
+
+      const customerMobile =
+        document.getElementById("customerMobile").value.trim();
+
+      const customerDob =
+        document.getElementById("customerDob").value;
+
+      if (customerName === "") {
+        alert("कृपया अपना नाम भरें।");
+        return false;
+      }
+
+      if (!/^[0-9]{10}$/.test(customerMobile)) {
+        alert("कृपया सही 10 अंकों का मोबाइल नंबर भरें।");
+        return false;
+      }
+
+      if (customerDob === "") {
+        alert("कृपया Date of Birth भरें।");
+        return false;
+      }
+
+      const customerAge =
+        calculateAge(customerDob);
+
+      if (customerAge < 0 || customerAge > 120) {
+        alert("कृपया सही Date of Birth भरें।");
+        return false;
+      }
+
+      localStorage.setItem(
+        "customerName",
+        customerName
+      );
+
+      localStorage.setItem(
+        "customerMobile",
+        customerMobile
+      );
+
+      localStorage.setItem(
+        "customerDob",
+        customerDob
+      );
+
+      localStorage.setItem(
+        "customerAge",
+        customerAge
+      );
+
+      return true;
+    }
+
+    customerForm.addEventListener(
+      "submit",
+      function(event) {
+        event.preventDefault();
+
+        const saved =
+          saveCustomerDetails();
+
+        if (saved) {
+          alert(
+            "जानकारी Save हो गई है। अब lic.html खोलें।"
+          );
+        }
+      }
+    );
+
+    let recaptchaVerifier;
+
+    try {
+      recaptchaVerifier =
+        new firebase.auth.RecaptchaVerifier(
+          "recaptcha-container",
+          {
+            size: "normal"
+          }
+        );
+
+      recaptchaVerifier.render();
+
+    } catch (error) {
+      console.log(
+        "Recaptcha Error:",
+        error
+      );
+    }
+
+    sendOtpButton.addEventListener(
+      "click",
+      function() {
+
+        const saved =
+          saveCustomerDetails();
+
+        if (!saved) {
+          return;
+        }
+
+        const mobile =
+          document.getElementById(
+            "customerMobile"
+          ).value.trim();
+
+        const phoneNumber =
+          "+91" + mobile;
+
+        if (!recaptchaVerifier) {
+          alert(
+            "Recaptcha तैयार नहीं हुआ। Page refresh करें।"
+          );
+          return;
+        }
+
+        auth.signInWithPhoneNumber(
+          phoneNumber,
+          recaptchaVerifier
+        )
+        .then(function(result) {
+
+          confirmationResult = result;
+
+          const otp =
+            prompt(
+              "अपने मोबाइल पर आया OTP डालें:"
+            );
+
+          if (!otp) {
+            alert("OTP नहीं डाला गया।");
+            return;
+          }
+
+          return confirmationResult.confirm(otp);
+
+        })
+        .then(function(result) {
+
+          if (result) {
+            alert(
+              "OTP Verification सफल हो गया।"
+            );
+
+            window.location.href =
+              "dashboard.html";
+          }
+
+        })
+        .catch(function(error) {
+
+          console.log(
+            "OTP Error:",
+            error
+          );
+
+          alert(
+            "OTP में समस्या आई। अभी बिना OTP के LIC Plans देख सकते हैं।"
+          );
+
+        });
+
+      }
+    );
+  </script>
+
+</body>
+</html>

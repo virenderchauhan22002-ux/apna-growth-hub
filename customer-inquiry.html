@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Customer Inquiry - Apna Growth Hub</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f1f5f9;
+      color: #1e293b;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      padding: 22px 15px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 25px;
+    }
+
+    header p {
+      margin: 7px 0 0;
+      font-size: 14px;
+    }
+
+    .container {
+      width: 94%;
+      max-width: 650px;
+      margin: 22px auto;
+    }
+
+    .box {
+      background: white;
+      padding: 22px;
+      border-radius: 16px;
+      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #1d4ed8;
+      font-size: 22px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #cbd5e1;
+      border-radius: 9px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #2563eb;
+    }
+
+    select:disabled {
+      background: #e2e8f0;
+      color: #1e293b;
+      cursor: not-allowed;
+      font-weight: bold;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .save-btn {
+      background: #16a34a;
+      color: white;
+    }
+
+    .dashboard-btn {
+      background: #2563eb;
+      color: white;
+    }
+
+    .clear-btn {
+      background: #dc2626;
+      color: white;
+    }
+
+    .success {
+      display: none;
+      background: #dcfce7;
+      color: #166534;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .error-message {
+      display: none;
+      background: #fee2e2;
+      color: #991b1b;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .inquiry-card {
+      background: #eff6ff;
+      border-left: 5px solid #2563eb;
+      padding: 15px;
+      border-radius: 10px;
+      line-height: 1.7;
+      word-break: break-word;
+    }
+
+    .empty {
+      color: #64748b;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .small {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 8px;
+    }
+
+    .selected-note {
+      background: #dbeafe;
+      color: #1e40af;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Apna Growth Hub</h1>
+    <p>Customer Inquiry Form</p>
+  </header>
+
+  <div class="container">
+
+    <div class="box">
+      <h2>LIC Customer Inquiry</h2>
+
+      <form id="inquiryForm">
+
+        <label for="customerName">Customer Name</label>
+
+        <input
+          type="text"
+          id="customerName"
+          placeholder="Customer ka naam likhein"
+          required
+        >
+
+        <label for="customerMobile">Mobile Number</label>
+
+        <input
+          type="tel"
+          id="customerMobile"
+          placeholder="10 digit mobile number"
+          maxlength="10"
+          required
+        >
+
+        <label for="planName">Selected LIC Plan</label>
+
+        <select id="planName" required>
+          <option value="">Plan select karein</option>
+          <option value="Child Future Planning">
+            Child Future Planning
+          </option>
+          <option value="Life Protection Plan">
+            Life Protection Plan
+          </option>
+          <option value="Saving Planning">
+            Saving Planning
+          </option>
+          <option value="Retirement Planning">
+            Retirement Planning
+          </option>
+          <option value="Jeevan Umang">
+            Jeevan Umang
+          </option>
+          <option value="Other LIC Plan">
+            Other LIC Plan
+          </option>
+        </select>
+
+        <div
+          class="selected-note"
+          id="selectedPlanNote"
+          style="display: none;">
+        </div>
+
+        <label for="customerQuestion">Customer ka Question</label>
+
+        <textarea
+          id="customerQuestion"
+          placeholder="Customer ki requirement ya question likhein"
+          required
+        ></textarea>
+
+        <button
+          type="submit"
+          class="save-btn"
+          id="saveButton">
+          Inquiry Firebase Mein Save Karein
+        </button>
+
+      </form>
+
+      <div class="success" id="successMessage">
+        Customer inquiry Firebase mein successfully save ho gayi ✅
+      </div>
+
+      <div class="error-message" id="errorMessage">
+        Inquiry save nahi ho saki. Please dobara try karein.
+      </div>
+    </div>
+
+    <div class="box">
+      <h2>Saved Inquiry</h2>
+
+      <div id="savedInquiry">
+        <div class="empty">
+          Abhi koi inquiry save nahi hai.
+        </div>
+      </div>
+
+      <button class="clear-btn" id="clearBtn">
+        Saved Inquiry Delete Karein
+      </button>
+    </div>
+
+    <div class="box">
+
+      <button
+        class="dashboard-btn"
+        onclick="window.location.href='dashboard.html'">
+        Dashboard Par Wapas Jayein
+      </button>
+
+      <p class="small">
+        Inquiry Firebase aur local backup dono mein save hogi.
+      </p>
+
+    </div>
+
+  </div>
+
+  <script type="module">
+
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+    // Firebase Configuration
+
+    const firebaseConfig = {
+
+      apiKey: "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
+
+      authDomain: "apna-growth-hub.firebaseapp.com",
+
+      projectId: "apna-growth-hub",
+
+      storageBucket: "apna-growth-hub.firebasestorage.app",
+
+      messagingSenderId: "939001251123",
+
+      appId: "1:939001251123:web:f2966004acaa64186e2a46",
+
+      measurementId: "G-GZGCHL4XQ3"
+
+    };
+
+
+    // Firebase Start
+
+    const app = initializeApp(firebaseConfig);
+
+    const db = getFirestore(app);
+
+
+    // HTML Elements
+
+    const inquiryForm =
+      document.getElementById("inquiryForm");
+
+    const successMessage =
+      document.getElementById("successMessage");
+
+    const errorMessage =
+      document.getElementById("errorMessage");
+
+    const savedInquiry =
+      document.getElementById("savedInquiry");
+
+    const clearBtn =
+      document.getElementById("clearBtn");
+
+    const saveButton =
+      document.getElementById("saveButton");
+
+    const planName =
+      document.getElementById("planName");
+
+    const selectedPlanNote =
+      document.getElementById("selectedPlanNote");
+
+
+    // LIC page se selected plan automatically lana
+
+    const selectedPlan =
+      localStorage.getItem("selectedPlan");
+
+
+    if (selectedPlan) {
+
+      planName.value = selectedPlan;
+
+      planName.disabled = true;
+
+      selectedPlanNote.style.display = "block";
+
+      selectedPlanNote.innerHTML =
+        "Selected Plan: " + selectedPlan + " ✅";
+
+    }
+
+
+    // Saved local inquiry show karna
+
+    function showSavedInquiry() {
+
+      const inquiry =
+        JSON.parse(
+          localStorage.getItem("customerInquiry")
+        );
+
+      if (!inquiry) {
+
+        savedInquiry.innerHTML = `
+          <div class="empty">
+            Abhi koi inquiry save nahi hai.
+          </div>
+        `;
+
+        return;
+      }
+
+      savedInquiry.innerHTML = `
+
+        <div class="inquiry-card">
+
+          <strong>Name:</strong>
+          ${inquiry.name || ""}
+
+          <br>
+
+          <strong>Mobile:</strong>
+          ${inquiry.mobile || ""}
+
+          <br>
+
+          <strong>Plan:</strong>
+          ${inquiry.plan || ""}
+
+          <br>
+
+          <strong>Question:</strong>
+          ${inquiry.question || ""}
+
+          <br>
+
+          <strong>Date:</strong>
+          ${inquiry.date || ""}
+
+        </div>
+
+      `;
+
+    }
+
+
+    // Inquiry Submit
+
+    inquiryForm.addEventListener(
+      "submit",
+      async function(event) {
+
+        event.preventDefault();
+
+        successMessage.style.display = "none";
+
+        errorMessage.style.display = "none";
+
+        saveButton.disabled = true;
+
+        saveButton.innerText =
+          "Firebase mein save ho raha hai...";
+
+
+        const name =
+          document
+            .getElementById("customerName")
+            .value
+            .trim();
+
+        const mobile =
+          document
+            .getElementById("customerMobile")
+            .value
+            .trim();
+
+        const plan =
+          planName.value;
+
+        const question =
+          document
+            .getElementById("customerQuestion")
+            .value
+            .trim();
+
+
+        if (mobile.length !== 10 || isNaN(mobile)) {
+
+          alert(
+            "Please 10 digit valid mobile number enter karein."
+          );
+
+          saveButton.disabled = false;
+
+          saveButton.innerText =
+            "Inquiry Firebase Mein Save Karein";
+
+          return;
+
+        }
+
+
+        if (!plan) {
+
+          alert(
+            "Please LIC plan select karein."
+          );
+
+          saveButton.disabled = false;
+
+          saveButton.innerText =
+            "Inquiry Firebase Mein Save Karein";
+
+          return;
+
+        }
+
+
+        const inquiry = {
+
+          name: name,
+
+          mobile: mobile,
+
+          plan: plan,
+
+          question: question,
+
+          date: new Date().toLocaleString("en-IN"),
+
+          createdAt: serverTimestamp()
+
+        };
+
+
+        try {
+
+          // Firebase Firestore mein save
+
+          await addDoc(
+            collection(db, "inquiries"),
+            inquiry
+          );
+
+
+          // LocalStorage backup
+
+          const localInquiry = {
+
+            name: name,
+
+            mobile: mobile,
+
+            plan: plan,
+
+            question: question,
+
+            date: new Date().toLocaleString("en-IN")
+
+          };
+
+          localStorage.setItem(
+            "customerInquiry",
+            JSON.stringify(localInquiry)
+          );
+
+
+          successMessage.style.display =
+            "block";
+
+          errorMessage.style.display =
+            "none";
+
+
+          inquiryForm.reset();
+
+
+          // Selected plan dobara show karna
+
+          if (selectedPlan) {
+
+            planName.value =
+              selectedPlan;
+
+            planName.disabled =
+              true;
+
+            selectedPlanNote.style.display =
+              "block";
+
+            selectedPlanNote.innerHTML =
+              "Selected Plan: " +
+              selectedPlan +
+              " ✅";
+
+          }
+
+
+          showSavedInquiry();
+
+          saveButton.innerText =
+            "Inquiry Firebase Mein Save Karein";
+
+          saveButton.disabled =
+            false;
+
+
+        } catch (error) {
+
+          console.error(
+            "Firebase inquiry save error:",
+            error
+          );
+
+          errorMessage.style.display =
+            "block";
+
+          errorMessage.innerText =
+            "Firebase error: " +
+            error.message;
+
+          saveButton.innerText =
+            "Dobara Save Karein";
+
+          saveButton.disabled =
+            false;
+
+        }
+
+      }
+    );
+
+
+    // Local saved inquiry delete
+
+    clearBtn.addEventListener(
+      "click",
+      function() {
+
+        const confirmDelete =
+          confirm(
+            "Kya aap saved inquiry delete karna chahte hain?"
+          );
+
+        if (confirmDelete) {
+
+          localStorage.removeItem(
+            "customerInquiry"
+          );
+
+          showSavedInquiry();
+
+          alert(
+            "Local saved inquiry delete ho gayi."
+          );
+
+        }
+
+      }
+    );
+
+
+    showSavedInquiry();
+
+  </script>
+
+</body>
+
+</html>

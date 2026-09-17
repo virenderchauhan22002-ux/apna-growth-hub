@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>LIC Inquiry - Apna Growth Hub</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: #f1f8ff;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1565c0;
+    }
+
+    .form-box {
+      background: white;
+      padding: 22px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #bbb;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background: #1565c0;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background: #999;
+      cursor: not-allowed;
+    }
+
+    .message {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      display: none;
+      line-height: 1.5;
+    }
+
+    .success {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .error {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .back-button {
+      display: block;
+      margin-top: 15px;
+      padding: 13px;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      background: #2e7d32;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>LIC Customer Inquiry</h1>
+
+    <div class="form-box">
+
+      <form id="inquiryForm">
+
+        <label for="customerName">
+          आपका नाम
+        </label>
+
+        <input
+          type="text"
+          id="customerName"
+          placeholder="अपना नाम लिखें"
+          required
+        >
+
+        <label for="mobile">
+          मोबाइल नंबर
+        </label>
+
+        <input
+          type="tel"
+          id="mobile"
+          placeholder="10 अंकों का मोबाइल नंबर"
+          maxlength="10"
+          pattern="[0-9]{10}"
+          required
+        >
+
+        <label for="plan">
+          किस LIC Plan में रुचि है?
+        </label>
+
+        <select id="plan" required>
+          <option value="">
+            Plan चुनें
+          </option>
+
+          <option value="Child Future Planning">
+            Child Future Planning
+          </option>
+
+          <option value="Life Protection Plan">
+            Life Protection Plan
+          </option>
+
+          <option value="Retirement Planning">
+            Retirement Planning
+          </option>
+
+          <option value="Saving Planning">
+            Saving Planning
+          </option>
+        </select>
+
+        <label for="question">
+          आपका सवाल
+        </label>
+
+        <textarea
+          id="question"
+          placeholder="अपना सवाल लिखें"
+          required
+        ></textarea>
+
+        <button type="submit" id="submitButton">
+          Inquiry Submit करें
+        </button>
+
+      </form>
+
+      <div id="successMessage" class="message success">
+        आपकी inquiry Firebase में save हो गई।
+      </div>
+
+      <div id="errorMessage" class="message error"></div>
+
+    </div>
+
+    <a
+      href="dashboard.html"
+      class="back-button"
+    >
+      Dashboard पर वापस जाएँ
+    </a>
+
+  </div>
+
+  <script type="module">
+
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+    import {
+      getFirestore,
+      collection,
+      addDoc
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+    const firebaseConfig = {
+
+      apiKey: "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
+
+      authDomain: "apna-growth-hub.firebaseapp.com",
+
+      projectId: "apna-growth-hub",
+
+      storageBucket: "apna-growth-hub.firebasestorage.app",
+
+      messagingSenderId: "939001251123",
+
+      appId: "1:939001251123:web:f2966004acaa64186e2a46",
+
+      measurementId: "G-GZGCHL4XQ3"
+
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+
+    const db = getFirestore(app);
+
+
+    const inquiryForm =
+      document.getElementById("inquiryForm");
+
+    const submitButton =
+      document.getElementById("submitButton");
+
+    const successMessage =
+      document.getElementById("successMessage");
+
+    const errorMessage =
+      document.getElementById("errorMessage");
+
+
+    inquiryForm.addEventListener("submit", async function(event) {
+
+      event.preventDefault();
+
+      successMessage.style.display = "none";
+      errorMessage.style.display = "none";
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Saving...";
+
+
+      const inquiry = {
+
+        name: document.getElementById("customerName").value.trim(),
+
+        mobile: document.getElementById("mobile").value.trim(),
+
+        plan: document.getElementById("plan").value,
+
+        question: document.getElementById("question").value.trim(),
+
+        date: new Date().toLocaleString("hi-IN")
+
+      };
+
+
+      try {
+
+        await addDoc(
+          collection(db, "inquiries"),
+          inquiry
+        );
+
+        successMessage.style.display = "block";
+
+        inquiryForm.reset();
+
+      } catch (error) {
+
+        console.error("Firebase Error:", error);
+
+        errorMessage.textContent =
+          "Inquiry save नहीं हुई: " + error.message;
+
+        errorMessage.style.display = "block";
+
+      }
+
+
+      submitButton.disabled = false;
+      submitButton.textContent = "Inquiry Submit करें";
+
+    });
+
+  </script>
+
+</body>
+
+</html>
