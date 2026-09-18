@@ -75,12 +75,14 @@
 
     .input-group input,
     .search-box input,
-    .status-select {
+    .status-select,
+    .filter-select {
       width: 100%;
       padding: 12px;
       border: 1px solid #cbd5e1;
       border-radius: 10px;
       outline: none;
+      background: white;
     }
 
     input:focus,
@@ -255,6 +257,9 @@
     }
 
     .search-box {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 12px;
       margin-bottom: 18px;
     }
 
@@ -360,7 +365,8 @@
       }
 
       .stats,
-      .feature-grid {
+      .feature-grid,
+      .search-box {
         grid-template-columns: 1fr;
       }
 
@@ -381,15 +387,27 @@
 
       <div class="input-group">
         <label for="adminEmail">Admin Email</label>
-        <input type="email" id="adminEmail" placeholder="Enter admin email" />
+        <input
+          type="email"
+          id="adminEmail"
+          placeholder="Enter admin email"
+        />
       </div>
 
       <div class="input-group">
         <label for="adminPassword">Password</label>
-        <input type="password" id="adminPassword" placeholder="Enter password" />
+        <input
+          type="password"
+          id="adminPassword"
+          placeholder="Enter password"
+        />
       </div>
 
-      <button class="btn btn-primary" style="width:100%;" id="loginBtn">
+      <button
+        class="btn btn-primary"
+        style="width:100%;"
+        id="loginBtn"
+      >
         Login to Admin Panel
       </button>
 
@@ -474,8 +492,8 @@
 
       <!-- OVERVIEW -->
       <section id="overview" class="section active">
-
         <div class="stats">
+
           <div class="stat-card">
             <h3>Total Inquiries</h3>
             <strong id="totalCount">0</strong>
@@ -495,39 +513,48 @@
             <h3>Completed</h3>
             <strong id="completedCount">0</strong>
           </div>
+
         </div>
 
         <div class="content-card">
           <h2>Admin Dashboard</h2>
+
           <p>
             Yahan se aap customer inquiries, LIC plans, courses aur app ke
             future sections manage kar sakte ho.
           </p>
 
           <div class="feature-grid" style="margin-top:20px;">
+
             <div class="feature-card">
               <h3>Customer Inquiries</h3>
-              <p>Customer ke questions, mobile number aur selected plan dekhein.</p>
+              <p>
+                Customer ke questions, mobile number, email aur selected plan dekhein.
+              </p>
             </div>
 
             <div class="feature-card">
               <h3>LIC Management</h3>
-              <p>Future mein LIC plans aur details yahan manage hongi.</p>
+              <p>
+                Future mein LIC plans aur details yahan manage hongi.
+              </p>
             </div>
 
             <div class="feature-card">
               <h3>Course Management</h3>
-              <p>Paid courses aur customer course access future mein yahan control hoga.</p>
+              <p>
+                Paid courses aur customer course access future mein yahan control hoga.
+              </p>
             </div>
+
           </div>
         </div>
-
       </section>
 
       <!-- INQUIRIES -->
       <section id="inquiries" class="section">
-
         <div class="content-card">
+
           <h2>Customer Inquiries</h2>
 
           <div class="search-box">
@@ -536,19 +563,28 @@
               id="searchInput"
               placeholder="Search name, mobile, email, plan..."
             />
+
+            <select id="statusFilter" class="filter-select">
+              <option value="All">All Status</option>
+              <option value="Pending">Pending</option>
+              <option value="Contacted">Contacted</option>
+              <option value="Completed">Completed</option>
+            </select>
           </div>
 
           <div id="inquiryList">
             <div class="empty">Loading inquiries...</div>
           </div>
-        </div>
 
+        </div>
       </section>
 
       <!-- CUSTOMERS -->
       <section id="customers" class="section">
         <div class="content-card">
+
           <h2>Customers</h2>
+
           <p>
             Customer management section ready hai. Customer profiles aur
             customer dashboard preview ko next Firebase phase mein connect kiya ja sakta hai.
@@ -558,16 +594,22 @@
             Abhi customer inquiries Firestore se load ho rahi hain.
             Full customer list ke liye customer registration data Firestore mein save karna hoga.
           </div>
+
         </div>
       </section>
 
       <!-- LIC -->
       <section id="lic" class="section">
         <div class="content-card">
+
           <h2>LIC Management</h2>
-          <p>Yahan future mein LIC plans, plan details, eligibility aur brochures manage honge.</p>
+
+          <p>
+            Yahan future mein LIC plans, plan details, eligibility aur brochures manage honge.
+          </p>
 
           <div class="feature-grid" style="margin-top:20px;">
+
             <div class="feature-card">
               <h3>Money Back Plans</h3>
               <p>Plan details add karne ke liye section.</p>
@@ -582,6 +624,7 @@
               <h3>Jeevan Labh</h3>
               <p>Plan information future mein yahan add hogi.</p>
             </div>
+
           </div>
         </div>
       </section>
@@ -590,7 +633,9 @@
       <section id="digital" class="section">
         <div class="content-card">
           <h2>Digital Skills Management</h2>
-          <p>Digital skills ke lessons, videos aur learning material future mein yahan manage honge.</p>
+          <p>
+            Digital skills ke lessons, videos aur learning material future mein yahan manage honge.
+          </p>
         </div>
       </section>
 
@@ -598,7 +643,9 @@
       <section id="ai" class="section">
         <div class="content-card">
           <h2>AI Tools Management</h2>
-          <p>AI tools, prompts, tutorials aur videos future mein yahan manage honge.</p>
+          <p>
+            AI tools, prompts, tutorials aur videos future mein yahan manage honge.
+          </p>
         </div>
       </section>
 
@@ -606,44 +653,56 @@
       <section id="social" class="section">
         <div class="content-card">
           <h2>Social Media Management</h2>
-          <p>Instagram, YouTube, Facebook aur social media earning content future mein yahan manage hoga.</p>
+          <p>
+            Instagram, YouTube, Facebook aur social media earning content future mein yahan manage hoga.
+          </p>
         </div>
       </section>
 
       <!-- COURSES -->
       <section id="courses" class="section">
         <div class="content-card">
+
           <h2>Course Management</h2>
-          <p>Paid courses, prices, payment approval aur course unlock system future mein yahan connect hoga.</p>
+
+          <p>
+            Paid courses, prices, payment approval aur course unlock system future mein yahan connect hoga.
+          </p>
 
           <div class="notice">
             Payment gateway connect hone ke baad customer payment details
             Admin Panel mein show ki ja sakti hain.
           </div>
+
         </div>
       </section>
 
       <!-- PRIVACY -->
       <section id="privacy" class="section">
         <div class="content-card">
+
           <h2>Privacy & Policies</h2>
 
           <h3 style="margin-top:15px;">Privacy Policy</h3>
+
           <p style="margin-top:8px;">
             Customer ki personal information sirf app services aur inquiry
             handling ke purpose se use ki jayegi.
           </p>
 
           <h3 style="margin-top:20px;">Security</h3>
+
           <p style="margin-top:8px;">
             Admin access Firebase Authentication aur Admin UID verification
             ke through protected hai.
           </p>
 
           <h3 style="margin-top:20px;">Password Safety</h3>
+
           <p style="margin-top:8px;">
             Customer passwords Admin Panel mein show nahi kiye jayenge.
           </p>
+
         </div>
       </section>
 
@@ -675,14 +734,14 @@
       "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
     const firebaseConfig = {
-      apiKey: "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
-      authDomain: "apna-growth-hub.firebaseapp.com",
-      projectId: "apna-growth-hub",
-      storageBucket: "apna-growth-hub.firebasestorage.app",
-      messagingSenderId: "939001251123",
-      appId: "1:939001251123:web:f2966004acaa64186e2a46",
-      measurementId: "G-GZGCHL4XQ3"
-    };
+  apiKey: "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
+  authDomain: "apna-growth-hub.firebaseapp.com",
+  projectId: "apna-growth-hub",
+  storageBucket: "apna-growth-hub.firebasestorage.app",
+  messagingSenderId: "939001251123",
+  appId: "1:939001251123:web:f2966004acaa64186e2a46",
+  measurementId: "G-GZGCHL4XQ3"
+};
 
     const ADMIN_UID = "bhpu24P8Ixfq0ZPSBsoLW3kd0dg1";
 
@@ -697,28 +756,44 @@
     const loginMessage = document.getElementById("loginMessage");
     const inquiryList = document.getElementById("inquiryList");
     const searchInput = document.getElementById("searchInput");
+    const statusFilter = document.getElementById("statusFilter");
 
     let allInquiries = [];
 
     loginBtn.addEventListener("click", async () => {
-      const email = document.getElementById("adminEmail").value.trim();
-      const password = document.getElementById("adminPassword").value;
+
+      const email = document
+        .getElementById("adminEmail")
+        .value
+        .trim();
+
+      const password = document
+        .getElementById("adminPassword")
+        .value;
 
       if (!email || !password) {
-        loginMessage.textContent = "Email aur password enter karo.";
+        loginMessage.textContent =
+          "Email aur password enter karo.";
         return;
       }
 
       loginMessage.textContent = "Logging in...";
 
       try {
-        await signInWithEmailAndPassword(auth, email, password);
+        await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
       } catch (error) {
-        loginMessage.textContent = "Login failed: " + error.message;
+        loginMessage.textContent =
+          "Login failed: " + error.message;
       }
+
     });
 
     onAuthStateChanged(auth, async (user) => {
+
       if (!user) {
         loginPage.classList.remove("hidden");
         adminApp.classList.add("hidden");
@@ -735,6 +810,7 @@
       adminApp.classList.remove("hidden");
 
       await loadInquiries();
+
     });
 
     logoutBtn.addEventListener("click", async () => {
@@ -742,240 +818,491 @@
     });
 
     async function loadInquiries() {
-      inquiryList.innerHTML = '<div class="empty">Loading inquiries...</div>';
+
+      inquiryList.innerHTML =
+        '<div class="empty">Loading inquiries...</div>';
 
       try {
-        const snapshot = await getDocs(collection(db, "inquiries"));
+
+        const snapshot = await getDocs(
+          collection(db, "inquiries")
+        );
 
         allInquiries = [];
 
         snapshot.forEach((item) => {
+
           allInquiries.push({
             id: item.id,
             ...item.data()
           });
+
         });
 
         allInquiries.sort((a, b) => {
+
           const dateA = a.createdAt || a.date || "";
           const dateB = b.createdAt || b.date || "";
-          return String(dateB).localeCompare(String(dateA));
+
+          return String(dateB).localeCompare(
+            String(dateA)
+          );
+
         });
 
         updateCounts();
-        displayInquiries(allInquiries);
+        applyInquiryFilters();
 
       } catch (error) {
+
         inquiryList.innerHTML =
           '<div class="empty">Error loading inquiries: ' +
-          error.message +
+          escapeHTML(error.message) +
           '</div>';
+
       }
+
     }
 
     function updateCounts() {
-      document.getElementById("totalCount").textContent = allInquiries.length;
+
+      document.getElementById("totalCount").textContent =
+        allInquiries.length;
 
       document.getElementById("pendingCount").textContent =
-        allInquiries.filter(item => (item.status || "Pending") === "Pending").length;
+        allInquiries.filter(
+          item => (item.status || "Pending") === "Pending"
+        ).length;
 
       document.getElementById("contactedCount").textContent =
-        allInquiries.filter(item => item.status === "Contacted").length;
+        allInquiries.filter(
+          item => item.status === "Contacted"
+        ).length;
 
       document.getElementById("completedCount").textContent =
-        allInquiries.filter(item => item.status === "Completed").length;
+        allInquiries.filter(
+          item => item.status === "Completed"
+        ).length;
+
+    }
+
+    function applyInquiryFilters() {
+
+      const searchText =
+        searchInput.value.toLowerCase().trim();
+
+      const selectedStatus =
+        statusFilter.value;
+
+      const filteredInquiries =
+        allInquiries.filter((item) => {
+
+          const name = String(
+            item.name || item.customerName || ""
+          ).toLowerCase();
+
+          const mobile = String(
+            item.mobile || item.phone || ""
+          ).toLowerCase();
+
+          const email = String(
+            item.email || ""
+          ).toLowerCase();
+
+          const plan = String(
+            item.plan || item.selectedPlan || ""
+          ).toLowerCase();
+
+          const question = String(
+            item.question || item.message || ""
+          ).toLowerCase();
+
+          const status =
+            item.status || "Pending";
+
+          const matchesSearch =
+            name.includes(searchText) ||
+            mobile.includes(searchText) ||
+            email.includes(searchText) ||
+            plan.includes(searchText) ||
+            question.includes(searchText);
+
+          const matchesStatus =
+            selectedStatus === "All" ||
+            status === selectedStatus;
+
+          return matchesSearch && matchesStatus;
+
+        });
+
+      displayInquiries(filteredInquiries);
+
     }
 
     function displayInquiries(list) {
+
       if (!list.length) {
+
         inquiryList.innerHTML =
           '<div class="empty">No inquiries found.</div>';
+
         return;
       }
 
       inquiryList.innerHTML = "";
 
       list.forEach((item) => {
-        const card = document.createElement("div");
+
+        const card =
+          document.createElement("div");
+
         card.className = "inquiry-card";
 
-        const name = item.name || item.customerName || "Not available";
-        const mobile = item.mobile || item.phone || "Not available";
-        const email = item.email || "Not available";
-        const plan = item.plan || item.selectedPlan || "Not selected";
-        const question = item.question || item.message || "No question";
-        const date = item.date || item.createdAt || "Not available";
-        const status = item.status || "Pending";
+        const name =
+          item.name ||
+          item.customerName ||
+          "Not available";
+
+        const mobile =
+          item.mobile ||
+          item.phone ||
+          "Not available";
+
+        const email =
+          item.email ||
+          "Not available";
+
+        const plan =
+          item.plan ||
+          item.selectedPlan ||
+          "Not selected";
+
+        const question =
+          item.question ||
+          item.message ||
+          "No question";
+
+        const date =
+          item.date ||
+          item.createdAt ||
+          "Not available";
+
+        const status =
+          item.status ||
+          "Pending";
 
         card.innerHTML = `
+
           <h3>${escapeHTML(name)}</h3>
 
-          <p><strong>📱 Mobile:</strong> ${escapeHTML(mobile)}</p>
-          <p><strong>📧 Email:</strong> ${escapeHTML(email)}</p>
-          <p><strong>🛡️ Plan:</strong> ${escapeHTML(plan)}</p>
-          <p><strong>❓ Question:</strong> ${escapeHTML(question)}</p>
-          <p><strong>📅 Date:</strong> ${escapeHTML(String(date))}</p>
+          <p>
+            <strong>📱 Mobile:</strong>
+            ${escapeHTML(mobile)}
+          </p>
+
+          <p>
+            <strong>📧 Email:</strong>
+            ${escapeHTML(email)}
+          </p>
+
+          <p>
+            <strong>🛡️ Plan:</strong>
+            ${escapeHTML(plan)}
+          </p>
+
+          <p>
+            <strong>❓ Question:</strong>
+            ${escapeHTML(question)}
+          </p>
+
+          <p>
+            <strong>📅 Date:</strong>
+            ${escapeHTML(String(date))}
+          </p>
 
           <div class="inquiry-actions">
-            <select class="status-select" id="status-${item.id}" style="max-width:180px;">
-              <option value="Pending" ${status === "Pending" ? "selected" : ""}>Pending</option>
-              <option value="Contacted" ${status === "Contacted" ? "selected" : ""}>Contacted</option>
-              <option value="Completed" ${status === "Completed" ? "selected" : ""}>Completed</option>
+
+            <select
+              class="status-select"
+              id="status-${escapeHTML(item.id)}"
+              style="max-width:180px;"
+            >
+
+              <option
+                value="Pending"
+                ${status === "Pending" ? "selected" : ""}
+              >
+                Pending
+              </option>
+
+              <option
+                value="Contacted"
+                ${status === "Contacted" ? "selected" : ""}
+              >
+                Contacted
+              </option>
+
+              <option
+                value="Completed"
+                ${status === "Completed" ? "selected" : ""}
+              >
+                Completed
+              </option>
+
             </select>
 
-            <button class="btn btn-success" data-save="${item.id}">
+            <button
+              class="btn btn-success"
+              data-save="${escapeHTML(item.id)}"
+            >
               Save Status
             </button>
 
-            <button class="btn btn-primary" data-whatsapp="${escapeHTML(mobile)}">
+            <button
+              class="btn btn-primary"
+              data-whatsapp="${escapeHTML(mobile)}"
+            >
               WhatsApp
             </button>
 
-            <button class="btn btn-dark" data-call="${escapeHTML(mobile)}">
+            <button
+              class="btn btn-dark"
+              data-call="${escapeHTML(mobile)}"
+            >
               Call
             </button>
 
-            <button class="btn btn-danger" data-delete="${item.id}">
+            <button
+              class="btn btn-danger"
+              data-delete="${escapeHTML(item.id)}"
+            >
               Delete
             </button>
+
           </div>
         `;
 
         inquiryList.appendChild(card);
+
       });
 
-      document.querySelectorAll("[data-save]").forEach(button => {
-        button.addEventListener("click", () => {
-          saveStatus(button.dataset.save);
-        });
-      });
+      document
+        .querySelectorAll("[data-save]")
+        .forEach(button => {
 
-      document.querySelectorAll("[data-whatsapp]").forEach(button => {
-        button.addEventListener("click", () => {
-          const number = button.dataset.whatsapp.replace(/\D/g, "");
-          window.open("https://wa.me/" + number, "_blank");
-        });
-      });
+          button.addEventListener("click", () => {
+            saveStatus(button.dataset.save);
+          });
 
-      document.querySelectorAll("[data-call]").forEach(button => {
-        button.addEventListener("click", () => {
-          window.location.href = "tel:" + button.dataset.call;
         });
-      });
 
-      document.querySelectorAll("[data-delete]").forEach(button => {
-        button.addEventListener("click", () => {
-          deleteInquiry(button.dataset.delete);
+      document
+        .querySelectorAll("[data-whatsapp]")
+        .forEach(button => {
+
+          button.addEventListener("click", () => {
+
+            const number =
+              button.dataset.whatsapp.replace(/\D/g, "");
+
+            if (!number) {
+              alert("Mobile number available nahi hai.");
+              return;
+            }
+
+            window.open(
+              "https://wa.me/" + number,
+              "_blank"
+            );
+
+          });
+
         });
-      });
+
+      document
+        .querySelectorAll("[data-call]")
+        .forEach(button => {
+
+          button.addEventListener("click", () => {
+
+            const number =
+              button.dataset.call.replace(/\D/g, "");
+
+            if (!number) {
+              alert("Mobile number available nahi hai.");
+              return;
+            }
+
+            window.location.href =
+              "tel:" + number;
+
+          });
+
+        });
+
+      document
+        .querySelectorAll("[data-delete]")
+        .forEach(button => {
+
+          button.addEventListener("click", () => {
+            deleteInquiry(button.dataset.delete);
+          });
+
+        });
+
     }
 
     async function saveStatus(id) {
-      const select = document.getElementById("status-" + id);
-      const newStatus = select.value;
+
+      const select =
+        document.getElementById("status-" + id);
+
+      if (!select) {
+        alert("Status dropdown nahi mila.");
+        return;
+      }
+
+      const newStatus =
+        select.value;
 
       try {
-        await updateDoc(doc(db, "inquiries", id), {
-          status: newStatus
-        });
+
+        await updateDoc(
+          doc(db, "inquiries", id),
+          {
+            status: newStatus
+          }
+        );
 
         alert("Status saved successfully.");
+
         await loadInquiries();
 
       } catch (error) {
-        alert("Status save failed: " + error.message);
+
+        alert(
+          "Status save failed: " +
+          error.message
+        );
+
       }
+
     }
 
     async function deleteInquiry(id) {
-      const confirmDelete = confirm(
-        "Kya aap is inquiry ko delete karna chahte ho?"
-      );
 
-      if (!confirmDelete) return;
+      const confirmDelete =
+        confirm(
+          "Kya aap is inquiry ko delete karna chahte ho?"
+        );
+
+      if (!confirmDelete) {
+        return;
+      }
 
       try {
-        await deleteDoc(doc(db, "inquiries", id));
+
+        await deleteDoc(
+          doc(db, "inquiries", id)
+        );
+
         alert("Inquiry deleted.");
+
         await loadInquiries();
 
       } catch (error) {
-        alert("Delete failed: " + error.message);
+
+        alert(
+          "Delete failed: " +
+          error.message
+        );
+
       }
+
     }
 
-    searchInput.addEventListener("input", () => {
-      const searchText = searchInput.value.toLowerCase().trim();
+    searchInput.addEventListener(
+      "input",
+      applyInquiryFilters
+    );
 
-      const filtered = allInquiries.filter(item => {
-        return JSON.stringify(item)
-          .toLowerCase()
-          .includes(searchText);
-      });
+    statusFilter.addEventListener(
+      "change",
+      applyInquiryFilters
+    );
 
-      displayInquiries(filtered);
-    });
+    document
+      .querySelectorAll(".menu-btn[data-section]")
+      .forEach(button => {
 
-    document.querySelectorAll(".menu-btn[data-section]").forEach(button => {
-      button.addEventListener("click", () => {
-        const sectionName = button.dataset.section;
+        button.addEventListener("click", () => {
 
-        document.querySelectorAll(".menu-btn").forEach(item => {
-          item.classList.remove("active");
+          const sectionName =
+            button.dataset.section;
+
+          showSection(sectionName);
+
         });
 
-        button.classList.add("active");
-
-        document.querySelectorAll(".section").forEach(section => {
-          section.classList.remove("active");
-        });
-
-        document.getElementById(sectionName).classList.add("active");
-
-        const titles = {
-          overview: "Admin Overview",
-          inquiries: "Customer Inquiries",
-          customers: "Customers",
-          lic: "LIC Management",
-          digital: "Digital Skills",
-          ai: "AI Tools",
-          social: "Social Media",
-          courses: "Course Management",
-          privacy: "Privacy & Policies"
-        };
-
-        document.getElementById("pageTitle").textContent =
-          titles[sectionName] || "Admin Panel";
       });
-    });
 
-    document.getElementById("refreshBtn").addEventListener("click", () => {
-      loadInquiries();
-    });
-
-    document.getElementById("homeBtn").addEventListener("click", () => {
-      showSection("overview");
-    });
-
-    document.getElementById("openCustomerDashboard")
+    document
+      .getElementById("refreshBtn")
       .addEventListener("click", () => {
-        window.open("dashboard.html?preview=admin", "_blank");
+
+        loadInquiries();
+
+      });
+
+    document
+      .getElementById("homeBtn")
+      .addEventListener("click", () => {
+
+        showSection("overview");
+
+      });
+
+    document
+      .getElementById("openCustomerDashboard")
+      .addEventListener("click", () => {
+
+        window.open(
+          "dashboard.html?preview=admin",
+          "_blank"
+        );
+
       });
 
     function showSection(sectionName) {
-      document.querySelectorAll(".section").forEach(section => {
-        section.classList.remove("active");
-      });
 
-      document.getElementById(sectionName).classList.add("active");
+      document
+        .querySelectorAll(".section")
+        .forEach(section => {
 
-      document.querySelectorAll(".menu-btn").forEach(button => {
-        button.classList.remove("active");
-      });
+          section.classList.remove("active");
+
+        });
+
+      const selectedSection =
+        document.getElementById(sectionName);
+
+      if (selectedSection) {
+        selectedSection.classList.add("active");
+      }
+
+      document
+        .querySelectorAll(".menu-btn")
+        .forEach(button => {
+
+          button.classList.remove("active");
+
+        });
 
       const selectedButton =
         document.querySelector(
-          '.menu-btn[data-section="' + sectionName + '"]'
+          '.menu-btn[data-section="' +
+          sectionName +
+          '"]'
         );
 
       if (selectedButton) {
@@ -983,6 +1310,7 @@
       }
 
       const titles = {
+
         overview: "Admin Overview",
         inquiries: "Customer Inquiries",
         customers: "Customers",
@@ -992,19 +1320,23 @@
         social: "Social Media",
         courses: "Course Management",
         privacy: "Privacy & Policies"
+
       };
 
       document.getElementById("pageTitle").textContent =
         titles[sectionName] || "Admin Panel";
+
     }
 
     function escapeHTML(value) {
+
       return String(value)
         .replaceAll("&", "&amp;")
         .replaceAll("<", "&lt;")
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
+
     }
 
   </script>
