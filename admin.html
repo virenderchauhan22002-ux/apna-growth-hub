@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Panel - Apna Growth Hub</title>
 
   <style>
@@ -15,369 +14,358 @@
     }
 
     body {
-      background: linear-gradient(135deg, #eef4ff, #f8fbff);
-      min-height: 100vh;
+      background: #f1f5f9;
       color: #172033;
     }
 
-    .header {
-      background: linear-gradient(135deg, #102d72, #1769e0);
-      color: white;
-      padding: 28px 18px;
-      text-align: center;
-      border-radius: 0 0 30px 30px;
-    }
-
-    .header h1 {
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
-
-    .header p {
-      font-size: 14px;
-      opacity: 0.92;
-    }
-
-    .container {
-      width: 94%;
-      max-width: 1150px;
-      margin: 25px auto;
-    }
-
-    .login-box,
-    .admin-box {
-      background: white;
-      padding: 25px;
-      border-radius: 22px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-    }
-
-    .login-box {
-      max-width: 430px;
-      margin: 45px auto;
-    }
-
-    h2 {
-      color: #123c91;
-      margin-bottom: 10px;
-    }
-
-    .subtitle {
-      color: #666;
-      font-size: 14px;
-      margin-bottom: 20px;
-      line-height: 1.5;
-    }
-
+    button,
     input,
     select {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #d9e1ef;
-      border-radius: 10px;
-      margin-bottom: 13px;
-      font-size: 15px;
-      outline: none;
-      background: white;
-    }
-
-    input:focus,
-    select:focus {
-      border-color: #1769e0;
-      box-shadow: 0 0 0 3px rgba(23, 105, 224, 0.10);
+      font: inherit;
     }
 
     button {
-      border: none;
-      border-radius: 10px;
-      padding: 12px 16px;
-      font-size: 14px;
-      font-weight: bold;
       cursor: pointer;
-      transition: 0.2s;
-    }
-
-    button:hover {
-      transform: translateY(-1px);
-      opacity: 0.92;
-    }
-
-    .primary-btn {
-      width: 100%;
-      background: #1769e0;
-      color: white;
-    }
-
-    .dashboard-btn {
-      background: #123c91;
-      color: white;
-    }
-
-    .refresh-btn {
-      background: #0f766e;
-      color: white;
-    }
-
-    .logout-btn {
-      background: #d93025;
-      color: white;
-    }
-
-    .message {
-      margin-top: 12px;
-      color: #d93025;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .success-message {
-      color: #15803d;
-      font-size: 14px;
-      margin-top: 10px;
-    }
-
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-bottom: 22px;
-    }
-
-    .top-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .count-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 15px;
-      margin-bottom: 25px;
-    }
-
-    .count-card {
-      background: white;
-      padding: 20px;
-      border-radius: 18px;
-      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
-      border-left: 5px solid #1769e0;
-    }
-
-    .count-card h3 {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 10px;
-    }
-
-    .count-number {
-      font-size: 32px;
-      font-weight: bold;
-      color: #123c91;
-    }
-
-    .pending {
-      border-left-color: #f59e0b;
-    }
-
-    .pending .count-number {
-      color: #d97706;
-    }
-
-    .contacted {
-      border-left-color: #2563eb;
-    }
-
-    .contacted .count-number {
-      color: #2563eb;
-    }
-
-    .completed {
-      border-left-color: #16a34a;
-    }
-
-    .completed .count-number {
-      color: #16a34a;
-    }
-
-    .search-row {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .search-box {
-      flex: 1;
-      margin-bottom: 0;
-    }
-
-    .inquiry-list {
-      display: grid;
-      gap: 18px;
-    }
-
-    .inquiry-card {
-      background: white;
-      border-radius: 18px;
-      padding: 20px;
-      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
-      border: 1px solid #e7edf7;
-    }
-
-    .inquiry-card h3 {
-      color: #123c91;
-      margin-bottom: 15px;
-      font-size: 20px;
-    }
-
-    .customer-info {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 10px;
-      margin-bottom: 15px;
-    }
-
-    .info-item {
-      background: #f7faff;
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid #edf2fa;
-      word-break: break-word;
-    }
-
-    .info-item strong {
-      display: block;
-      color: #123c91;
-      font-size: 13px;
-      margin-bottom: 5px;
-    }
-
-    .info-item span {
-      color: #333;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .question-box {
-      background: #fffaf0;
-      border-left: 4px solid #f59e0b;
-      padding: 13px;
-      border-radius: 8px;
-      margin-top: 12px;
-      line-height: 1.6;
-      font-size: 14px;
-      word-break: break-word;
-    }
-
-    .question-box strong {
-      color: #92400e;
-    }
-
-    .status-row {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-top: 18px;
-      padding-top: 15px;
-      border-top: 1px solid #edf1f7;
-    }
-
-    .status-row select {
-      width: auto;
-      min-width: 150px;
-      margin-bottom: 0;
-    }
-
-    .save-btn {
-      background: #1769e0;
-      color: white;
-    }
-
-    .whatsapp-btn {
-      background: #16a34a;
-      color: white;
-    }
-
-    .call-btn {
-      background: #7c3aed;
-      color: white;
-    }
-
-    .delete-btn {
-      background: #d93025;
-      color: white;
-    }
-
-    .status-message {
-      width: 100%;
-      color: #15803d;
-      font-size: 13px;
-      margin-top: 4px;
-    }
-
-    .empty {
-      background: white;
-      padding: 30px 20px;
-      border-radius: 18px;
-      text-align: center;
-      color: #666;
-      line-height: 1.6;
+      border: none;
     }
 
     .hidden {
       display: none !important;
     }
 
-    .footer {
-      text-align: center;
-      color: #777;
-      font-size: 13px;
-      padding: 25px 10px;
+    .login-page {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
     }
 
-    @media (max-width: 650px) {
-      .header h1 {
-        font-size: 23px;
+    .login-box {
+      width: 100%;
+      max-width: 420px;
+      background: white;
+      padding: 32px;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px #0003;
+    }
+
+    .login-box h1 {
+      text-align: center;
+      color: #2563eb;
+      margin-bottom: 8px;
+    }
+
+    .login-box p {
+      text-align: center;
+      color: #64748b;
+      margin-bottom: 25px;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    .input-group input,
+    .search-box input,
+    .status-select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #2563eb;
+    }
+
+    .btn {
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-weight: bold;
+      margin: 4px;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-success {
+      background: #16a34a;
+      color: white;
+    }
+
+    .btn-warning {
+      background: #f59e0b;
+      color: white;
+    }
+
+    .btn-danger {
+      background: #dc2626;
+      color: white;
+    }
+
+    .btn-dark {
+      background: #172033;
+      color: white;
+    }
+
+    .btn-light {
+      background: #e2e8f0;
+      color: #172033;
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #dc2626;
+    }
+
+    .app {
+      min-height: 100vh;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: #172033;
+      color: white;
+      min-height: 100vh;
+      padding: 22px 15px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .brand h2 {
+      color: #60a5fa;
+      font-size: 22px;
+    }
+
+    .brand p {
+      color: #cbd5e1;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .menu-btn {
+      width: 100%;
+      text-align: left;
+      padding: 13px;
+      margin-bottom: 8px;
+      border-radius: 10px;
+      background: transparent;
+      color: white;
+      font-weight: bold;
+    }
+
+    .menu-btn:hover,
+    .menu-btn.active {
+      background: #2563eb;
+    }
+
+    .main {
+      margin-left: 250px;
+      width: calc(100% - 250px);
+      padding: 25px;
+    }
+
+    .topbar {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+      box-shadow: 0 4px 15px #0000000a;
+    }
+
+    .topbar h1 {
+      font-size: 25px;
+    }
+
+    .topbar p {
+      color: #64748b;
+      margin-top: 5px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 22px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px #0000000a;
+    }
+
+    .stat-card h3 {
+      color: #64748b;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .stat-card strong {
+      font-size: 30px;
+      color: #2563eb;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .content-card {
+      background: white;
+      padding: 22px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px #0000000a;
+      margin-bottom: 20px;
+    }
+
+    .content-card h2 {
+      margin-bottom: 15px;
+    }
+
+    .search-box {
+      margin-bottom: 18px;
+    }
+
+    .inquiry-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 15px;
+      background: #f8fafc;
+    }
+
+    .inquiry-card h3 {
+      color: #2563eb;
+      margin-bottom: 10px;
+    }
+
+    .inquiry-card p {
+      margin: 6px 0;
+      word-break: break-word;
+    }
+
+    .inquiry-actions {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .empty {
+      text-align: center;
+      color: #64748b;
+      padding: 30px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card {
+      padding: 25px;
+      border-radius: 15px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+    }
+
+    .feature-card h3 {
+      color: #1d4ed8;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      color: #475569;
+      line-height: 1.5;
+    }
+
+    .notice {
+      padding: 15px;
+      border-radius: 10px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #9a3412;
+      margin-top: 15px;
+    }
+
+    @media (max-width: 1000px) {
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .login-box,
-      .admin-box {
-        padding: 20px;
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
+    }
 
-      .top-actions {
+    @media (max-width: 700px) {
+      .sidebar {
         width: 100%;
+        min-height: auto;
+        position: relative;
       }
 
-      .top-actions button {
-        flex: 1;
+      .app {
+        display: block;
       }
 
-      .search-row {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .search-box {
+      .main {
+        margin-left: 0;
         width: 100%;
+        padding: 15px;
       }
 
-      .status-row {
-        align-items: stretch;
-        flex-direction: column;
+      .sidebar {
+        padding: 15px;
       }
 
-      .status-row select,
-      .status-row button {
-        width: 100%;
+      .menu-btn {
+        width: auto;
+        display: inline-block;
+        margin: 3px;
       }
 
-      .customer-info {
+      .stats,
+      .feature-grid {
         grid-template-columns: 1fr;
+      }
+
+      .topbar h1 {
+        font-size: 21px;
       }
     }
   </style>
@@ -385,131 +373,296 @@
 
 <body>
 
-  <div class="header">
-    <h1>Apna Growth Hub 🔐</h1>
-    <p>Admin Panel | Virender Chauhan</p>
-  </div>
+  <!-- LOGIN PAGE -->
+  <div id="loginPage" class="login-page">
+    <div class="login-box">
+      <h1>Apna Growth Hub</h1>
+      <p>Admin Panel Login</p>
 
-  <div class="container">
+      <div class="input-group">
+        <label for="adminEmail">Admin Email</label>
+        <input type="email" id="adminEmail" placeholder="Enter admin email" />
+      </div>
 
-    <!-- ADMIN LOGIN -->
-    <div class="login-box" id="loginSection">
+      <div class="input-group">
+        <label for="adminPassword">Password</label>
+        <input type="password" id="adminPassword" placeholder="Enter password" />
+      </div>
 
-      <h2>Admin Login</h2>
-
-      <p class="subtitle">
-        केवल authorized Admin account से ही इस panel में login करें।
-      </p>
-
-      <input
-        type="email"
-        id="adminEmail"
-        placeholder="Admin Email"
-        autocomplete="email"
-      >
-
-      <input
-        type="password"
-        id="adminPassword"
-        placeholder="Admin Password"
-        autocomplete="current-password"
-      >
-
-      <button class="primary-btn" id="loginBtn">
+      <button class="btn btn-primary" style="width:100%;" id="loginBtn">
         Login to Admin Panel
       </button>
 
-      <p class="message" id="loginMessage"></p>
-
+      <div id="loginMessage" class="message"></div>
     </div>
+  </div>
 
-    <!-- ADMIN PANEL -->
-    <div class="admin-box hidden" id="adminSection">
+  <!-- ADMIN APP -->
+  <div id="adminApp" class="app hidden">
 
-      <div class="top-bar">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="brand">
+        <h2>Apna Growth Hub</h2>
+        <p>Admin Control Center</p>
+      </div>
+
+      <button class="menu-btn active" data-section="overview">
+        🏠 Overview
+      </button>
+
+      <button class="menu-btn" data-section="inquiries">
+        📩 Customer Inquiries
+      </button>
+
+      <button class="menu-btn" data-section="customers">
+        👥 Customers
+      </button>
+
+      <button class="menu-btn" data-section="lic">
+        🛡️ LIC Management
+      </button>
+
+      <button class="menu-btn" data-section="digital">
+        💻 Digital Skills
+      </button>
+
+      <button class="menu-btn" data-section="ai">
+        🤖 AI Tools
+      </button>
+
+      <button class="menu-btn" data-section="social">
+        📱 Social Media
+      </button>
+
+      <button class="menu-btn" data-section="courses">
+        🎓 Courses
+      </button>
+
+      <button class="menu-btn" data-section="privacy">
+        🔐 Privacy & Policies
+      </button>
+
+      <button class="menu-btn" id="openCustomerDashboard">
+        👤 Customer Dashboard
+      </button>
+
+      <button class="menu-btn" id="logoutBtn">
+        🚪 Logout
+      </button>
+    </aside>
+
+    <!-- MAIN AREA -->
+    <main class="main">
+
+      <div class="topbar">
+        <div>
+          <h1 id="pageTitle">Admin Overview</h1>
+          <p>Welcome, Virender Chauhan</p>
+        </div>
 
         <div>
+          <button class="btn btn-primary" id="refreshBtn">
+            🔄 Refresh
+          </button>
+
+          <button class="btn btn-dark" id="homeBtn">
+            🏠 Home
+          </button>
+        </div>
+      </div>
+
+      <!-- OVERVIEW -->
+      <section id="overview" class="section active">
+
+        <div class="stats">
+          <div class="stat-card">
+            <h3>Total Inquiries</h3>
+            <strong id="totalCount">0</strong>
+          </div>
+
+          <div class="stat-card">
+            <h3>Pending</h3>
+            <strong id="pendingCount">0</strong>
+          </div>
+
+          <div class="stat-card">
+            <h3>Contacted</h3>
+            <strong id="contactedCount">0</strong>
+          </div>
+
+          <div class="stat-card">
+            <h3>Completed</h3>
+            <strong id="completedCount">0</strong>
+          </div>
+        </div>
+
+        <div class="content-card">
+          <h2>Admin Dashboard</h2>
+          <p>
+            Yahan se aap customer inquiries, LIC plans, courses aur app ke
+            future sections manage kar sakte ho.
+          </p>
+
+          <div class="feature-grid" style="margin-top:20px;">
+            <div class="feature-card">
+              <h3>Customer Inquiries</h3>
+              <p>Customer ke questions, mobile number aur selected plan dekhein.</p>
+            </div>
+
+            <div class="feature-card">
+              <h3>LIC Management</h3>
+              <p>Future mein LIC plans aur details yahan manage hongi.</p>
+            </div>
+
+            <div class="feature-card">
+              <h3>Course Management</h3>
+              <p>Paid courses aur customer course access future mein yahan control hoga.</p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- INQUIRIES -->
+      <section id="inquiries" class="section">
+
+        <div class="content-card">
           <h2>Customer Inquiries</h2>
-          <p class="subtitle">
-            सभी customer inquiries यहाँ manage करें।
+
+          <div class="search-box">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search name, mobile, email, plan..."
+            />
+          </div>
+
+          <div id="inquiryList">
+            <div class="empty">Loading inquiries...</div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- CUSTOMERS -->
+      <section id="customers" class="section">
+        <div class="content-card">
+          <h2>Customers</h2>
+          <p>
+            Customer management section ready hai. Customer profiles aur
+            customer dashboard preview ko next Firebase phase mein connect kiya ja sakta hai.
+          </p>
+
+          <div class="notice">
+            Abhi customer inquiries Firestore se load ho rahi hain.
+            Full customer list ke liye customer registration data Firestore mein save karna hoga.
+          </div>
+        </div>
+      </section>
+
+      <!-- LIC -->
+      <section id="lic" class="section">
+        <div class="content-card">
+          <h2>LIC Management</h2>
+          <p>Yahan future mein LIC plans, plan details, eligibility aur brochures manage honge.</p>
+
+          <div class="feature-grid" style="margin-top:20px;">
+            <div class="feature-card">
+              <h3>Money Back Plans</h3>
+              <p>Plan details add karne ke liye section.</p>
+            </div>
+
+            <div class="feature-card">
+              <h3>Jeevan Umang</h3>
+              <p>Eligibility aur benefits manage karne ke liye section.</p>
+            </div>
+
+            <div class="feature-card">
+              <h3>Jeevan Labh</h3>
+              <p>Plan information future mein yahan add hogi.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIGITAL SKILLS -->
+      <section id="digital" class="section">
+        <div class="content-card">
+          <h2>Digital Skills Management</h2>
+          <p>Digital skills ke lessons, videos aur learning material future mein yahan manage honge.</p>
+        </div>
+      </section>
+
+      <!-- AI TOOLS -->
+      <section id="ai" class="section">
+        <div class="content-card">
+          <h2>AI Tools Management</h2>
+          <p>AI tools, prompts, tutorials aur videos future mein yahan manage honge.</p>
+        </div>
+      </section>
+
+      <!-- SOCIAL MEDIA -->
+      <section id="social" class="section">
+        <div class="content-card">
+          <h2>Social Media Management</h2>
+          <p>Instagram, YouTube, Facebook aur social media earning content future mein yahan manage hoga.</p>
+        </div>
+      </section>
+
+      <!-- COURSES -->
+      <section id="courses" class="section">
+        <div class="content-card">
+          <h2>Course Management</h2>
+          <p>Paid courses, prices, payment approval aur course unlock system future mein yahan connect hoga.</p>
+
+          <div class="notice">
+            Payment gateway connect hone ke baad customer payment details
+            Admin Panel mein show ki ja sakti hain.
+          </div>
+        </div>
+      </section>
+
+      <!-- PRIVACY -->
+      <section id="privacy" class="section">
+        <div class="content-card">
+          <h2>Privacy & Policies</h2>
+
+          <h3 style="margin-top:15px;">Privacy Policy</h3>
+          <p style="margin-top:8px;">
+            Customer ki personal information sirf app services aur inquiry
+            handling ke purpose se use ki jayegi.
+          </p>
+
+          <h3 style="margin-top:20px;">Security</h3>
+          <p style="margin-top:8px;">
+            Admin access Firebase Authentication aur Admin UID verification
+            ke through protected hai.
+          </p>
+
+          <h3 style="margin-top:20px;">Password Safety</h3>
+          <p style="margin-top:8px;">
+            Customer passwords Admin Panel mein show nahi kiye jayenge.
           </p>
         </div>
+      </section>
 
-        <div class="top-actions">
-
-          <button class="dashboard-btn" id="dashboardBtn">
-            Dashboard
-          </button>
-
-          <button class="refresh-btn" id="refreshBtn">
-            Refresh
-          </button>
-
-          <button class="logout-btn" id="logoutBtn">
-            Logout
-          </button>
-
-        </div>
-
-      </div>
-
-      <div class="count-grid">
-
-        <div class="count-card">
-          <h3>Total Inquiries</h3>
-          <div class="count-number" id="totalCount">0</div>
-        </div>
-
-        <div class="count-card pending">
-          <h3>Pending</h3>
-          <div class="count-number" id="pendingCount">0</div>
-        </div>
-
-        <div class="count-card contacted">
-          <h3>Contacted</h3>
-          <div class="count-number" id="contactedCount">0</div>
-        </div>
-
-        <div class="count-card completed">
-          <h3>Completed</h3>
-          <div class="count-number" id="completedCount">0</div>
-        </div>
-
-      </div>
-
-      <div class="search-row">
-
-        <input
-          class="search-box"
-          type="text"
-          id="searchInput"
-          placeholder="Name, mobile, email, plan या question से search करें..."
-        >
-
-      </div>
-
-      <div class="inquiry-list" id="inquiryList"></div>
-
-    </div>
-
+    </main>
   </div>
 
-  <div class="footer">
-    © 2026 Apna Growth Hub | Virender Chauhan
-  </div>
-
+  <!-- FIREBASE -->
   <script type="module">
 
-    import {
-      initializeApp
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
     import {
       getAuth,
       onAuthStateChanged,
       signInWithEmailAndPassword,
       signOut
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    } from
+      "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
     import {
       getFirestore,
@@ -518,7 +671,8 @@
       updateDoc,
       deleteDoc,
       doc
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    } from
+      "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
@@ -536,524 +690,322 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    const loginSection = document.getElementById("loginSection");
-    const adminSection = document.getElementById("adminSection");
+    const loginPage = document.getElementById("loginPage");
+    const adminApp = document.getElementById("adminApp");
+    const loginBtn = document.getElementById("loginBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
     const loginMessage = document.getElementById("loginMessage");
     const inquiryList = document.getElementById("inquiryList");
     const searchInput = document.getElementById("searchInput");
 
     let allInquiries = [];
 
-    onAuthStateChanged(auth, async (user) => {
+    loginBtn.addEventListener("click", async () => {
+      const email = document.getElementById("adminEmail").value.trim();
+      const password = document.getElementById("adminPassword").value;
 
+      if (!email || !password) {
+        loginMessage.textContent = "Email aur password enter karo.";
+        return;
+      }
+
+      loginMessage.textContent = "Logging in...";
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+      } catch (error) {
+        loginMessage.textContent = "Login failed: " + error.message;
+      }
+    });
+
+    onAuthStateChanged(auth, async (user) => {
       if (!user) {
-        showLogin();
+        loginPage.classList.remove("hidden");
+        adminApp.classList.add("hidden");
         return;
       }
 
       if (user.uid !== ADMIN_UID) {
-
+        alert("Aapko Admin Panel ki permission nahi hai.");
         await signOut(auth);
-
-        showLogin();
-
-        loginMessage.textContent =
-          "यह account Admin नहीं है। केवल Admin account से access मिलेगा।";
-
         return;
       }
 
-      showAdmin();
-      await loadInquiries();
+      loginPage.classList.add("hidden");
+      adminApp.classList.remove("hidden");
 
+      await loadInquiries();
     });
 
-    function showLogin() {
-      loginSection.classList.remove("hidden");
-      adminSection.classList.add("hidden");
-    }
-
-    function showAdmin() {
-      loginSection.classList.add("hidden");
-      adminSection.classList.remove("hidden");
-    }
-
-    document.getElementById("loginBtn").addEventListener("click", async () => {
-
-      const email = document.getElementById("adminEmail").value.trim();
-      const password = document.getElementById("adminPassword").value;
-
-      loginMessage.textContent = "";
-
-      if (!email || !password) {
-        loginMessage.textContent =
-          "Email और password दोनों भरें।";
-        return;
-      }
-
-      try {
-
-        const result = await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-
-        if (result.user.uid !== ADMIN_UID) {
-
-          await signOut(auth);
-
-          loginMessage.textContent =
-            "यह account Admin नहीं है।";
-
-          return;
-        }
-
-        loginMessage.textContent = "";
-
-      } catch (error) {
-
-        console.error("Login error:", error);
-
-        loginMessage.textContent =
-          "Admin login नहीं हुआ। Email या password check करें।";
-
-      }
-
+    logoutBtn.addEventListener("click", async () => {
+      await signOut(auth);
     });
 
     async function loadInquiries() {
-
-      inquiryList.innerHTML = `
-        <div class="empty">
-          Inquiries load हो रही हैं...
-        </div>
-      `;
+      inquiryList.innerHTML = '<div class="empty">Loading inquiries...</div>';
 
       try {
-
-        const snapshot =
-          await getDocs(collection(db, "inquiries"));
+        const snapshot = await getDocs(collection(db, "inquiries"));
 
         allInquiries = [];
 
         snapshot.forEach((item) => {
-
           allInquiries.push({
             id: item.id,
             ...item.data()
           });
-
         });
 
         allInquiries.sort((a, b) => {
-
-          const dateA = getDateValue(a);
-          const dateB = getDateValue(b);
-
-          return dateB - dateA;
-
+          const dateA = a.createdAt || a.date || "";
+          const dateB = b.createdAt || b.date || "";
+          return String(dateB).localeCompare(String(dateA));
         });
 
         updateCounts();
         displayInquiries(allInquiries);
 
       } catch (error) {
-
-        console.error("Load inquiries error:", error);
-
-        inquiryList.innerHTML = "";
-
-        const errorBox = document.createElement("div");
-        errorBox.className = "empty";
-        errorBox.textContent =
-          "Inquiries load नहीं हो पाईं। Firestore rules और Admin UID check करें।";
-
-        inquiryList.appendChild(errorBox);
-
+        inquiryList.innerHTML =
+          '<div class="empty">Error loading inquiries: ' +
+          error.message +
+          '</div>';
       }
-
-    }
-
-    function getDateValue(item) {
-
-      const value =
-        item.date ||
-        item.createdAt ||
-        item.timestamp ||
-        "";
-
-      const parsed = new Date(value).getTime();
-
-      if (Number.isNaN(parsed)) {
-        return 0;
-      }
-
-      return parsed;
-
     }
 
     function updateCounts() {
+      document.getElementById("totalCount").textContent = allInquiries.length;
 
-      let total = allInquiries.length;
-      let pending = 0;
-      let contacted = 0;
-      let completed = 0;
+      document.getElementById("pendingCount").textContent =
+        allInquiries.filter(item => (item.status || "Pending") === "Pending").length;
 
-      allInquiries.forEach((item) => {
+      document.getElementById("contactedCount").textContent =
+        allInquiries.filter(item => item.status === "Contacted").length;
 
-        const status = item.status || "Pending";
-
-        if (status === "Pending") {
-          pending++;
-        }
-
-        if (status === "Contacted") {
-          contacted++;
-        }
-
-        if (status === "Completed") {
-          completed++;
-        }
-
-      });
-
-      document.getElementById("totalCount").textContent = total;
-      document.getElementById("pendingCount").textContent = pending;
-      document.getElementById("contactedCount").textContent = contacted;
-      document.getElementById("completedCount").textContent = completed;
-
+      document.getElementById("completedCount").textContent =
+        allInquiries.filter(item => item.status === "Completed").length;
     }
 
-    function createInfoItem(label, value) {
-
-      const box = document.createElement("div");
-      box.className = "info-item";
-
-      const strong = document.createElement("strong");
-      strong.textContent = label;
-
-      const span = document.createElement("span");
-      span.textContent = value || "Not available";
-
-      box.appendChild(strong);
-      box.appendChild(span);
-
-      return box;
-
-    }
-
-    function displayInquiries(inquiries) {
+    function displayInquiries(list) {
+      if (!list.length) {
+        inquiryList.innerHTML =
+          '<div class="empty">No inquiries found.</div>';
+        return;
+      }
 
       inquiryList.innerHTML = "";
 
-      if (inquiries.length === 0) {
-
-        const emptyBox = document.createElement("div");
-        emptyBox.className = "empty";
-        emptyBox.textContent = "कोई inquiry नहीं मिली।";
-
-        inquiryList.appendChild(emptyBox);
-        return;
-
-      }
-
-      inquiries.forEach((item) => {
-
+      list.forEach((item) => {
         const card = document.createElement("div");
         card.className = "inquiry-card";
 
-        const customerName =
-          item.name ||
-          item.customerName ||
-          "Unknown Customer";
-
-        const mobile =
-          item.mobile ||
-          item.phone ||
-          "";
-
-        const email =
-          item.email ||
-          item.customerEmail ||
-          "";
-
-        const plan =
-          item.plan ||
-          item.selectedPlan ||
-          "Not selected";
-
-        const question =
-          item.question ||
-          item.message ||
-          "No question";
-
-        const date =
-          item.date ||
-          item.createdAt ||
-          "Not available";
-
-        const statusText =
-          item.status ||
-          "Pending";
-
-        const title = document.createElement("h3");
-        title.textContent = "👤 " + customerName;
-
-        const customerInfo = document.createElement("div");
-        customerInfo.className = "customer-info";
-
-        customerInfo.appendChild(
-          createInfoItem("📱 Mobile", mobile)
-        );
-
-        customerInfo.appendChild(
-          createInfoItem("📧 Email", email)
-        );
-
-        customerInfo.appendChild(
-          createInfoItem("📋 Plan", plan)
-        );
-
-        customerInfo.appendChild(
-          createInfoItem("📅 Date", date)
-        );
-
-        const questionBox = document.createElement("div");
-        questionBox.className = "question-box";
-
-        const questionStrong = document.createElement("strong");
-        questionStrong.textContent = "Question: ";
-
-        const questionText = document.createElement("span");
-        questionText.textContent = question;
-
-        questionBox.appendChild(questionStrong);
-        questionBox.appendChild(questionText);
-
-        const statusRow = document.createElement("div");
-        statusRow.className = "status-row";
-
-        const statusSelect = document.createElement("select");
-
-        const statuses = [
-          "Pending",
-          "Contacted",
-          "Completed"
-        ];
-
-        statuses.forEach((status) => {
-
-          const option = document.createElement("option");
-
-          option.value = status;
-          option.textContent = status;
-
-          if (status === statusText) {
-            option.selected = true;
-          }
-
-          statusSelect.appendChild(option);
-
-        });
-
-        const saveButton = document.createElement("button");
-        saveButton.className = "save-btn";
-        saveButton.textContent = "Save Status";
-
-        const statusMessage = document.createElement("div");
-        statusMessage.className = "status-message";
-
-        saveButton.addEventListener("click", async () => {
-
-          saveButton.disabled = true;
-          saveButton.textContent = "Saving...";
-
-          try {
-
-            await updateDoc(
-              doc(db, "inquiries", item.id),
-              {
-                status: statusSelect.value
-              }
-            );
-
-            item.status = statusSelect.value;
-
-            updateCounts();
-
-            statusMessage.textContent =
-              "Status successfully saved.";
-
-          } catch (error) {
-
-            console.error("Status update error:", error);
-
-            statusMessage.textContent =
-              "Status save नहीं हुआ।";
-
-          }
-
-          saveButton.disabled = false;
-          saveButton.textContent = "Save Status";
-
-        });
-
-        const whatsappButton = document.createElement("button");
-        whatsappButton.className = "whatsapp-btn";
-        whatsappButton.textContent = "WhatsApp";
-
-        whatsappButton.addEventListener("click", () => {
-
-          let mobileNumber =
-            String(mobile).replace(/\D/g, "");
-
-          if (mobileNumber.length === 10) {
-            mobileNumber = "91" + mobileNumber;
-          }
-
-          if (!mobileNumber) {
-            alert("Customer mobile number उपलब्ध नहीं है।");
-            return;
-          }
-
-          const message =
-            "नमस्ते " +
-            customerName +
-            " जी, Apna Growth Hub से आपकी LIC inquiry के संबंध में संपर्क कर रहा हूँ।";
-
-          const whatsappUrl =
-            "https://wa.me/" +
-            mobileNumber +
-            "?text=" +
-            encodeURIComponent(message);
-
-          window.open(whatsappUrl, "_blank");
-
-        });
-
-        const callButton = document.createElement("button");
-        callButton.className = "call-btn";
-        callButton.textContent = "Call";
-
-        callButton.addEventListener("click", () => {
-
-          const cleanMobile =
-            String(mobile).replace(/\D/g, "");
-
-          if (!cleanMobile) {
-            alert("Customer mobile number उपलब्ध नहीं है।");
-            return;
-          }
-
-          window.location.href =
-            "tel:" + cleanMobile;
-
-        });
-
-        const deleteButton = document.createElement("button");
-        deleteButton.className = "delete-btn";
-        deleteButton.textContent = "Delete";
-
-        deleteButton.addEventListener("click", async () => {
-
-          const confirmDelete = confirm(
-            "क्या आप इस inquiry को permanently delete करना चाहते हैं?"
-          );
-
-          if (!confirmDelete) {
-            return;
-          }
-
-          deleteButton.disabled = true;
-          deleteButton.textContent = "Deleting...";
-
-          try {
-
-            await deleteDoc(
-              doc(db, "inquiries", item.id)
-            );
-
-            await loadInquiries();
-
-          } catch (error) {
-
-            console.error("Delete error:", error);
-
-            alert("Inquiry delete नहीं हुई।");
-
-            deleteButton.disabled = false;
-            deleteButton.textContent = "Delete";
-
-          }
-
-        });
-
-        statusRow.appendChild(statusSelect);
-        statusRow.appendChild(saveButton);
-        statusRow.appendChild(whatsappButton);
-        statusRow.appendChild(callButton);
-        statusRow.appendChild(deleteButton);
-        statusRow.appendChild(statusMessage);
-
-        card.appendChild(title);
-        card.appendChild(customerInfo);
-        card.appendChild(questionBox);
-        card.appendChild(statusRow);
+        const name = item.name || item.customerName || "Not available";
+        const mobile = item.mobile || item.phone || "Not available";
+        const email = item.email || "Not available";
+        const plan = item.plan || item.selectedPlan || "Not selected";
+        const question = item.question || item.message || "No question";
+        const date = item.date || item.createdAt || "Not available";
+        const status = item.status || "Pending";
+
+        card.innerHTML = `
+          <h3>${escapeHTML(name)}</h3>
+
+          <p><strong>📱 Mobile:</strong> ${escapeHTML(mobile)}</p>
+          <p><strong>📧 Email:</strong> ${escapeHTML(email)}</p>
+          <p><strong>🛡️ Plan:</strong> ${escapeHTML(plan)}</p>
+          <p><strong>❓ Question:</strong> ${escapeHTML(question)}</p>
+          <p><strong>📅 Date:</strong> ${escapeHTML(String(date))}</p>
+
+          <div class="inquiry-actions">
+            <select class="status-select" id="status-${item.id}" style="max-width:180px;">
+              <option value="Pending" ${status === "Pending" ? "selected" : ""}>Pending</option>
+              <option value="Contacted" ${status === "Contacted" ? "selected" : ""}>Contacted</option>
+              <option value="Completed" ${status === "Completed" ? "selected" : ""}>Completed</option>
+            </select>
+
+            <button class="btn btn-success" data-save="${item.id}">
+              Save Status
+            </button>
+
+            <button class="btn btn-primary" data-whatsapp="${escapeHTML(mobile)}">
+              WhatsApp
+            </button>
+
+            <button class="btn btn-dark" data-call="${escapeHTML(mobile)}">
+              Call
+            </button>
+
+            <button class="btn btn-danger" data-delete="${item.id}">
+              Delete
+            </button>
+          </div>
+        `;
 
         inquiryList.appendChild(card);
-
       });
 
+      document.querySelectorAll("[data-save]").forEach(button => {
+        button.addEventListener("click", () => {
+          saveStatus(button.dataset.save);
+        });
+      });
+
+      document.querySelectorAll("[data-whatsapp]").forEach(button => {
+        button.addEventListener("click", () => {
+          const number = button.dataset.whatsapp.replace(/\D/g, "");
+          window.open("https://wa.me/" + number, "_blank");
+        });
+      });
+
+      document.querySelectorAll("[data-call]").forEach(button => {
+        button.addEventListener("click", () => {
+          window.location.href = "tel:" + button.dataset.call;
+        });
+      });
+
+      document.querySelectorAll("[data-delete]").forEach(button => {
+        button.addEventListener("click", () => {
+          deleteInquiry(button.dataset.delete);
+        });
+      });
+    }
+
+    async function saveStatus(id) {
+      const select = document.getElementById("status-" + id);
+      const newStatus = select.value;
+
+      try {
+        await updateDoc(doc(db, "inquiries", id), {
+          status: newStatus
+        });
+
+        alert("Status saved successfully.");
+        await loadInquiries();
+
+      } catch (error) {
+        alert("Status save failed: " + error.message);
+      }
+    }
+
+    async function deleteInquiry(id) {
+      const confirmDelete = confirm(
+        "Kya aap is inquiry ko delete karna chahte ho?"
+      );
+
+      if (!confirmDelete) return;
+
+      try {
+        await deleteDoc(doc(db, "inquiries", id));
+        alert("Inquiry deleted.");
+        await loadInquiries();
+
+      } catch (error) {
+        alert("Delete failed: " + error.message);
+      }
     }
 
     searchInput.addEventListener("input", () => {
+      const searchText = searchInput.value.toLowerCase().trim();
 
-      const searchText =
-        searchInput.value.toLowerCase().trim();
-
-      const filtered = allInquiries.filter((item) => {
-
-        const searchableText = [
-
-          item.name,
-          item.customerName,
-          item.mobile,
-          item.phone,
-          item.email,
-          item.customerEmail,
-          item.plan,
-          item.selectedPlan,
-          item.question,
-          item.message,
-          item.status,
-          item.date,
-          item.createdAt
-
-        ].join(" ").toLowerCase();
-
-        return searchableText.includes(searchText);
-
+      const filtered = allInquiries.filter(item => {
+        return JSON.stringify(item)
+          .toLowerCase()
+          .includes(searchText);
       });
 
       displayInquiries(filtered);
+    });
 
+    document.querySelectorAll(".menu-btn[data-section]").forEach(button => {
+      button.addEventListener("click", () => {
+        const sectionName = button.dataset.section;
+
+        document.querySelectorAll(".menu-btn").forEach(item => {
+          item.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        document.querySelectorAll(".section").forEach(section => {
+          section.classList.remove("active");
+        });
+
+        document.getElementById(sectionName).classList.add("active");
+
+        const titles = {
+          overview: "Admin Overview",
+          inquiries: "Customer Inquiries",
+          customers: "Customers",
+          lic: "LIC Management",
+          digital: "Digital Skills",
+          ai: "AI Tools",
+          social: "Social Media",
+          courses: "Course Management",
+          privacy: "Privacy & Policies"
+        };
+
+        document.getElementById("pageTitle").textContent =
+          titles[sectionName] || "Admin Panel";
+      });
     });
 
     document.getElementById("refreshBtn").addEventListener("click", () => {
       loadInquiries();
     });
 
-    document.getElementById("dashboardBtn").addEventListener("click", () => {
-      window.location.href = "dashboard.html";
+    document.getElementById("homeBtn").addEventListener("click", () => {
+      showSection("overview");
     });
 
-    document.getElementById("logoutBtn").addEventListener("click", async () => {
+    document.getElementById("openCustomerDashboard")
+      .addEventListener("click", () => {
+        window.open("dashboard.html?preview=admin", "_blank");
+      });
 
-      await signOut(auth);
-      showLogin();
+    function showSection(sectionName) {
+      document.querySelectorAll(".section").forEach(section => {
+        section.classList.remove("active");
+      });
 
-    });
+      document.getElementById(sectionName).classList.add("active");
+
+      document.querySelectorAll(".menu-btn").forEach(button => {
+        button.classList.remove("active");
+      });
+
+      const selectedButton =
+        document.querySelector(
+          '.menu-btn[data-section="' + sectionName + '"]'
+        );
+
+      if (selectedButton) {
+        selectedButton.classList.add("active");
+      }
+
+      const titles = {
+        overview: "Admin Overview",
+        inquiries: "Customer Inquiries",
+        customers: "Customers",
+        lic: "LIC Management",
+        digital: "Digital Skills",
+        ai: "AI Tools",
+        social: "Social Media",
+        courses: "Course Management",
+        privacy: "Privacy & Policies"
+      };
+
+      document.getElementById("pageTitle").textContent =
+        titles[sectionName] || "Admin Panel";
+    }
+
+    function escapeHTML(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
 
   </script>
 
