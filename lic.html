@@ -51,10 +51,7 @@
 
     .plans {
       display: grid;
-      grid-template-columns: repeat(
-        auto-fit,
-        minmax(250px, 1fr)
-      );
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 18px;
     }
 
@@ -71,10 +68,25 @@
       margin-top: 0;
     }
 
+    .category {
+      display: inline-block;
+      background: #e3f2fd;
+      color: #1565c0;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
     .plan-card p {
       color: #444;
       line-height: 1.6;
-      min-height: 75px;
+    }
+
+    .age-range {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 12px;
     }
 
     .plan-card button {
@@ -110,6 +122,17 @@
       color: #856404;
     }
 
+    .details-box {
+      display: none;
+      margin-top: 12px;
+      padding: 12px;
+      background: #f5f9ff;
+      border-radius: 8px;
+      color: #333;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+
     .back-button {
       display: block;
       max-width: 300px;
@@ -126,6 +149,13 @@
     .back-button:hover {
       background: #1b5e20;
     }
+
+    .loading {
+      text-align: center;
+      padding: 20px;
+      color: #1565c0;
+      font-weight: bold;
+    }
   </style>
 </head>
 
@@ -136,128 +166,55 @@
     <h1>LIC Plans</h1>
 
     <div class="welcome">
-      <h3 id="welcomeText">
-        Welcome
-      </h3>
-
+      <h3 id="welcomeText">Welcome</h3>
       <p id="ageText"></p>
     </div>
 
-    <div class="plans">
-
-      <!-- Child Plan -->
-      <div class="plan-card" id="childPlan">
-
-        <h2>👶 Child Future Planning</h2>
-
-        <p>
-          बच्चों की पढ़ाई, शादी और भविष्य के लिए
-          financial planning।
-        </p>
-
-        <button onclick="openPlan('child-plan.html')">
-          Plan Details
-        </button>
-
-        <button
-          class="inquiry-btn"
-          onclick="sendInquiry('Child Future Planning')"
-        >
-          📩 LIC Inquiry
-        </button>
-
-      </div>
-
-
-      <!-- Life Protection Plan -->
-      <div class="plan-card" id="lifePlan">
-
-        <h2>🛡️ Life Protection Plan</h2>
-
-        <p>
-          परिवार की financial security और
-          life protection के लिए planning।
-        </p>
-
-        <button onclick="openPlan('life-protection-plan.html')">
-          Plan Details
-        </button>
-
-        <button
-          class="inquiry-btn"
-          onclick="sendInquiry('Life Protection Plan')"
-        >
-          📩 LIC Inquiry
-        </button>
-
-      </div>
-
-
-      <!-- Retirement Plan -->
-      <div class="plan-card" id="retirementPlan">
-
-        <h2>👴 Retirement Planning</h2>
-
-        <p>
-          रिटायरमेंट के बाद नियमित income और
-          सुरक्षित भविष्य की planning।
-        </p>
-
-        <button onclick="openPlan('retirement-plan.html')">
-          Plan Details
-        </button>
-
-        <button
-          class="inquiry-btn"
-          onclick="sendInquiry('Retirement Planning')"
-        >
-          📩 LIC Inquiry
-        </button>
-
-      </div>
-
-
-      <!-- Saving Plan -->
-      <div class="plan-card" id="savingPlan">
-
-        <h2>💰 Saving Planning</h2>
-
-        <p>
-          भविष्य के goals के लिए बचत और
-          financial planning।
-        </p>
-
-        <button onclick="openPlan('saving-plan.html')">
-          Plan Details
-        </button>
-
-        <button
-          class="inquiry-btn"
-          onclick="sendInquiry('Saving Planning')"
-        >
-          📩 LIC Inquiry
-        </button>
-
-      </div>
-
+    <div id="loadingBox" class="loading">
+      LIC Plans load हो रहे हैं...
     </div>
 
+    <div class="plans" id="plansContainer"></div>
 
     <div id="messageBox"></div>
 
-
-    <a
-      href="dashboard.html"
-      class="back-button"
-    >
+    <a href="dashboard.html" class="back-button">
       Dashboard पर वापस जाएँ
     </a>
 
   </div>
 
 
-  <script>
+  <script type="module">
 
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+    import {
+      getFirestore,
+      collection,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
+      authDomain: "apna-growth-hub.firebaseapp.com",
+      projectId: "apna-growth-hub",
+      storageBucket: "apna-growth-hub.firebasestorage.app",
+      messagingSenderId: "939001251123",
+      appId: "1:939001251123:web:f2966004acaa64186e2a46",
+      measurementId: "G-GZGCHL4XQ3"
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+
+    // Customer Information
     const customerName =
       localStorage.getItem("customerName");
 
@@ -277,20 +234,14 @@
     const messageBox =
       document.getElementById("messageBox");
 
+    const plansContainer =
+      document.getElementById("plansContainer");
 
-    const childPlan =
-      document.getElementById("childPlan");
-
-    const lifePlan =
-      document.getElementById("lifePlan");
-
-    const retirementPlan =
-      document.getElementById("retirementPlan");
-
-    const savingPlan =
-      document.getElementById("savingPlan");
+    const loadingBox =
+      document.getElementById("loadingBox");
 
 
+    // Customer information check
     if (
       !customerName ||
       customerAge === null ||
@@ -298,24 +249,12 @@
       isNaN(age)
     ) {
 
+      loadingBox.style.display = "none";
+
       welcomeText.textContent =
         "कृपया पहले अपनी जानकारी भरें।";
 
       ageText.textContent = "";
-
-
-      childPlan.style.display =
-        "none";
-
-      lifePlan.style.display =
-        "none";
-
-      retirementPlan.style.display =
-        "none";
-
-      savingPlan.style.display =
-        "none";
-
 
       messageBox.innerHTML = `
         <div class="message">
@@ -332,57 +271,216 @@
       ageText.textContent =
         "आपकी उम्र: " + age + " साल";
 
+      loadLicPlans();
 
-      if (age < 39) {
+    }
 
-        childPlan.style.display =
-          "block";
 
-        lifePlan.style.display =
-          "block";
+    // Firebase से LIC Plans लाना
+    async function loadLicPlans() {
 
-        retirementPlan.style.display =
-          "none";
+      try {
 
-        savingPlan.style.display =
-          "block";
+        const snapshot =
+          await getDocs(collection(db, "licPlans"));
 
-      } else {
+        loadingBox.style.display = "none";
 
-        childPlan.style.display =
-          "none";
+        let visiblePlans = 0;
 
-        lifePlan.style.display =
-          "none";
+        snapshot.forEach((docSnapshot) => {
 
-        retirementPlan.style.display =
-          "block";
+          const plan =
+            docSnapshot.data();
 
-        savingPlan.style.display =
-          "block";
+          const minAge =
+            Number(plan.minAge);
+
+          const maxAge =
+            Number(plan.maxAge);
+
+
+          // Age filtering
+          if (
+            !isNaN(minAge) &&
+            !isNaN(maxAge) &&
+            age >= minAge &&
+            age <= maxAge
+          ) {
+
+            visiblePlans++;
+
+            createPlanCard(
+              docSnapshot.id,
+              plan
+            );
+
+          }
+
+        });
+
+
+        // कोई plan available नहीं
+        if (visiblePlans === 0) {
+
+          messageBox.innerHTML = `
+            <div class="message">
+              आपकी उम्र के लिए अभी कोई LIC Plan उपलब्ध नहीं है।
+            </div>
+          `;
+
+        }
+
+      } catch (error) {
+
+        loadingBox.style.display = "none";
+
+        messageBox.innerHTML = `
+          <div class="message">
+            LIC Plans load नहीं हो पाए।
+            <br><br>
+            ${escapeHTML(error.message)}
+          </div>
+        `;
 
       }
 
     }
 
 
-    function openPlan(pageName) {
+    // Plan Card बनाना
+    function createPlanCard(planId, plan) {
 
-      window.location.href =
-        pageName;
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "plan-card";
+
+
+      const name =
+        plan.name || "LIC Plan";
+
+      const category =
+        plan.category || "LIC Plan";
+
+      const benefits =
+        plan.benefits || "इस plan की जानकारी जल्द उपलब्ध होगी।";
+
+      const details =
+        plan.details || "इस plan की विस्तृत जानकारी उपलब्ध नहीं है।";
+
+      const minAge =
+        plan.minAge ?? "-";
+
+      const maxAge =
+        plan.maxAge ?? "-";
+
+
+      card.innerHTML = `
+
+        <h2>
+          ${escapeHTML(name)}
+        </h2>
+
+        <span class="category">
+          ${escapeHTML(category)}
+        </span>
+
+        <div class="age-range">
+          Eligible Age: ${escapeHTML(String(minAge))}
+          - ${escapeHTML(String(maxAge))} Years
+        </div>
+
+        <p>
+          ${escapeHTML(benefits)}
+        </p>
+
+        <button class="details-btn">
+          📋 Plan Details
+        </button>
+
+        <div class="details-box">
+          ${escapeHTML(details)}
+        </div>
+
+        <button class="inquiry-btn">
+          📩 LIC Inquiry
+        </button>
+      `;
+
+
+      // Plan Details button
+      const detailsButton =
+        card.querySelector(".details-btn");
+
+      const detailsBox =
+        card.querySelector(".details-box");
+
+
+      detailsButton.addEventListener(
+        "click",
+        function () {
+
+          if (
+            detailsBox.style.display === "block"
+          ) {
+
+            detailsBox.style.display =
+              "none";
+
+            detailsButton.textContent =
+              "📋 Plan Details";
+
+          } else {
+
+            detailsBox.style.display =
+              "block";
+
+            detailsButton.textContent =
+              "📋 Hide Details";
+
+          }
+
+        }
+      );
+
+
+      // Inquiry button
+      const inquiryButton =
+        card.querySelector(".inquiry-btn");
+
+
+      inquiryButton.addEventListener(
+        "click",
+        function () {
+
+          localStorage.setItem(
+            "selectedPlan",
+            name
+          );
+
+          window.location.href =
+            "customer-inquiry.html";
+
+        }
+      );
+
+
+      plansContainer.appendChild(card);
 
     }
 
 
-    function sendInquiry(planName) {
+    // Security: HTML escape
+    function escapeHTML(value) {
 
-      localStorage.setItem(
-        "selectedPlan",
-        planName
-      );
-
-      window.location.href =
-        "customer-inquiry.html";
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
     }
 

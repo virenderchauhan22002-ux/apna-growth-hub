@@ -294,6 +294,42 @@
       line-height: 1.5;
     }
 
+    .stat-number {
+      font-size: 30px !important;
+      font-weight: bold;
+      color: #172033 !important;
+      margin-top: 8px;
+    }
+
+    .recent-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 12px;
+      background: #f8fafc;
+    }
+
+    .recent-card h3 {
+      color: #2563eb;
+      margin-bottom: 8px;
+    }
+
+    .recent-card p {
+      margin: 5px 0;
+      line-height: 1.5;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 20px;
+      background: #fef3c7;
+      color: #92400e;
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
     @media (max-width: 1000px) {
       .feature-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -378,6 +414,7 @@
 
   </div>
 
+
   <!-- ADMIN APP -->
   <div id="adminApp" class="app hidden">
 
@@ -435,6 +472,7 @@
 
     </aside>
 
+
     <!-- MAIN -->
     <main class="main">
 
@@ -457,6 +495,7 @@
 
       </div>
 
+
       <!-- OVERVIEW -->
       <section id="overview" class="section active">
 
@@ -465,30 +504,44 @@
           <h2>Admin Dashboard</h2>
 
           <p>
-            Yahan se aap customer inquiries, LIC plans, courses aur app ke
-            future sections manage kar sakte ho.
+            Apna Growth Hub ka overall control aur important activity yahan dekhein.
           </p>
 
+          <!-- LIVE STATS -->
           <div class="feature-grid" style="margin-top:20px;">
 
             <div class="feature-card">
-              <h3>Customer Inquiries</h3>
-              <p>
-                Customer questions aur selected plans dekhein.
+              <h3>📩 Total Inquiries</h3>
+
+              <p
+                id="totalInquiriesCount"
+                class="stat-number"
+              >
+                0
               </p>
             </div>
 
+
             <div class="feature-card">
-              <h3>LIC Management</h3>
-              <p>
-                LIC plans Firebase mein add, edit aur delete karein.
+              <h3>⏳ Pending Inquiries</h3>
+
+              <p
+                id="pendingInquiriesCount"
+                class="stat-number"
+              >
+                0
               </p>
             </div>
 
+
             <div class="feature-card">
-              <h3>Course Management</h3>
-              <p>
-                Paid courses future mein yahan manage honge.
+              <h3>🛡️ Total LIC Plans</h3>
+
+              <p
+                id="totalLicPlansCount"
+                class="stat-number"
+              >
+                0
               </p>
             </div>
 
@@ -496,7 +549,24 @@
 
         </div>
 
+
+        <!-- RECENT INQUIRIES -->
+        <div class="content-card">
+
+          <h2>📋 Recent Inquiries</h2>
+
+          <div id="recentInquiriesList">
+
+            <div class="empty">
+              Recent inquiries loading...
+            </div>
+
+          </div>
+
+        </div>
+
       </section>
+
 
       <!-- INQUIRIES -->
       <section id="inquiries" class="section">
@@ -514,23 +584,39 @@
             >
 
             <select id="statusFilter" class="filter-select">
-              <option value="All">All Status</option>
-              <option value="Pending">Pending</option>
-              <option value="Contacted">Contacted</option>
-              <option value="Completed">Completed</option>
+
+              <option value="All">
+                All Status
+              </option>
+
+              <option value="Pending">
+                Pending
+              </option>
+
+              <option value="Contacted">
+                Contacted
+              </option>
+
+              <option value="Completed">
+                Completed
+              </option>
+
             </select>
 
           </div>
 
           <div id="inquiryList">
+
             <div class="empty">
               Loading inquiries...
             </div>
+
           </div>
 
         </div>
 
       </section>
+
 
       <!-- CUSTOMERS -->
       <section id="customers" class="section">
@@ -547,6 +633,7 @@
 
       </section>
 
+
       <!-- LIC MANAGEMENT -->
       <section id="lic" class="section">
 
@@ -562,6 +649,7 @@
             ➕ Add New LIC Plan
           </button>
 
+
           <!-- PLAN FORM -->
           <div
             id="licPlanForm"
@@ -573,17 +661,24 @@
               Add New LIC Plan
             </h2>
 
+
             <div class="input-group">
-              <label for="licPlanName">Plan Name</label>
+
+              <label for="licPlanName">
+                Plan Name
+              </label>
 
               <input
                 type="text"
                 id="licPlanName"
                 placeholder="Example: Jeevan Umang"
               >
+
             </div>
 
+
             <div class="input-group">
+
               <label for="licPlanCategory">
                 Plan Category
               </label>
@@ -611,9 +706,12 @@
                 </option>
 
               </select>
+
             </div>
 
+
             <div class="input-group">
+
               <label for="licMinAge">
                 Minimum Age
               </label>
@@ -623,9 +721,12 @@
                 id="licMinAge"
                 placeholder="Example: 18"
               >
+
             </div>
 
+
             <div class="input-group">
+
               <label for="licMaxAge">
                 Maximum Age
               </label>
@@ -635,9 +736,12 @@
                 id="licMaxAge"
                 placeholder="Example: 55"
               >
+
             </div>
 
+
             <div class="input-group">
+
               <label for="licBenefits">
                 Benefits
               </label>
@@ -647,9 +751,12 @@
                 id="licBenefits"
                 placeholder="Life cover, bonus, maturity benefit"
               >
+
             </div>
 
+
             <div class="input-group">
+
               <label for="licDetails">
                 Plan Details
               </label>
@@ -659,7 +766,9 @@
                 rows="4"
                 placeholder="Plan ki complete details yahan likhein"
               ></textarea>
+
             </div>
+
 
             <button
               class="btn btn-success"
@@ -668,6 +777,7 @@
               💾 Save LIC Plan
             </button>
 
+
             <button
               class="btn btn-light"
               id="cancelLicPlanBtn"
@@ -675,76 +785,104 @@
               Cancel
             </button>
 
+
             <div id="licPlanMessage" class="message"></div>
 
           </div>
+
 
           <!-- PLANS LIST -->
           <div
             id="licPlansList"
             style="margin-top:20px;"
           >
+
             <div class="empty">
               LIC Plans loading...
             </div>
+
           </div>
 
         </div>
 
       </section>
 
-      <!-- OTHER SECTIONS -->
+
+      <!-- DIGITAL -->
       <section id="digital" class="section">
 
         <div class="content-card">
+
           <h2>Digital Skills Management</h2>
+
           <p>
             Digital skills lessons future mein yahan manage honge.
           </p>
+
         </div>
 
       </section>
 
+
+      <!-- AI -->
       <section id="ai" class="section">
 
         <div class="content-card">
+
           <h2>AI Tools Management</h2>
+
           <p>
             AI tools aur prompts future mein yahan manage honge.
           </p>
+
         </div>
 
       </section>
 
+
+      <!-- SOCIAL -->
       <section id="social" class="section">
 
         <div class="content-card">
+
           <h2>Social Media Management</h2>
+
           <p>
-            Instagram, YouTube aur Facebook content future mein yahan manage hoga.
+            Instagram, YouTube aur Facebook content future mein manage hoga.
           </p>
+
         </div>
 
       </section>
 
+
+      <!-- COURSES -->
       <section id="courses" class="section">
 
         <div class="content-card">
+
           <h2>Course Management</h2>
+
           <p>
             Paid courses future mein yahan manage honge.
           </p>
+
         </div>
 
       </section>
 
+
+      <!-- PRIVACY -->
       <section id="privacy" class="section">
 
         <div class="content-card">
+
           <h2>Privacy & Policies</h2>
+
           <p>
             Customer passwords Admin Panel mein show nahi honge.
           </p>
+
         </div>
 
       </section>
@@ -752,6 +890,7 @@
     </main>
 
   </div>
+
 
   <!-- FIREBASE -->
   <script type="module">
@@ -779,29 +918,39 @@
       "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
+    // FIREBASE CONFIG
     const firebaseConfig = {
 
-      apiKey: "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
+      apiKey:
+        "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
 
-      authDomain: "apna-growth-hub.firebaseapp.com",
+      authDomain:
+        "apna-growth-hub.firebaseapp.com",
 
-      projectId: "apna-growth-hub",
+      projectId:
+        "apna-growth-hub",
 
-      storageBucket: "apna-growth-hub.firebasestorage.app",
+      storageBucket:
+        "apna-growth-hub.firebasestorage.app",
 
-      messagingSenderId: "939001251123",
+      messagingSenderId:
+        "939001251123",
 
-      appId: "1:939001251123:web:f2966004acaa64186e2a46",
+      appId:
+        "1:939001251123:web:f2966004acaa64186e2a46",
 
-      measurementId: "G-GZGCHL4XQ3"
+      measurementId:
+        "G-GZGCHL4XQ3"
 
     };
 
 
+    // ADMIN UID
     const ADMIN_UID =
       "bhpu24P8Ixfq0ZPSBsoLW3kd0dg1";
 
 
+    // FIREBASE START
     const app =
       initializeApp(firebaseConfig);
 
@@ -812,6 +961,7 @@
       getFirestore(app);
 
 
+    // ELEMENTS
     const loginPage =
       document.getElementById("loginPage");
 
@@ -860,6 +1010,21 @@
       document.getElementById("licFormTitle");
 
 
+    // OVERVIEW ELEMENTS
+    const totalInquiriesCount =
+      document.getElementById("totalInquiriesCount");
+
+    const pendingInquiriesCount =
+      document.getElementById("pendingInquiriesCount");
+
+    const totalLicPlansCount =
+      document.getElementById("totalLicPlansCount");
+
+    const recentInquiriesList =
+      document.getElementById("recentInquiriesList");
+
+
+    // VARIABLES
     let allInquiries = [];
 
     let editingPlanId = null;
@@ -869,15 +1034,21 @@
     loginBtn.addEventListener("click", async () => {
 
       const email =
-        document.getElementById("adminEmail").value.trim();
+        document
+          .getElementById("adminEmail")
+          .value
+          .trim();
 
       const password =
-        document.getElementById("adminPassword").value;
+        document
+          .getElementById("adminPassword")
+          .value;
 
 
       if (!email || !password) {
 
-        loginMessage.style.color = "#dc2626";
+        loginMessage.style.color =
+          "#dc2626";
 
         loginMessage.textContent =
           "Email aur password enter karo.";
@@ -887,7 +1058,8 @@
       }
 
 
-      loginMessage.style.color = "#2563eb";
+      loginMessage.style.color =
+        "#2563eb";
 
       loginMessage.textContent =
         "Logging in...";
@@ -903,10 +1075,12 @@
 
       } catch (error) {
 
-        loginMessage.style.color = "#dc2626";
+        loginMessage.style.color =
+          "#dc2626";
 
         loginMessage.textContent =
-          "Login failed: " + error.message;
+          "Login failed: " +
+          error.message;
 
       }
 
@@ -993,6 +1167,7 @@
 
         applyInquiryFilters();
 
+        updateOverview();
 
       } catch (error) {
 
@@ -1005,11 +1180,137 @@
     }
 
 
+    // UPDATE OVERVIEW
+    async function updateOverview() {
+
+      // TOTAL INQUIRIES
+      totalInquiriesCount.textContent =
+        allInquiries.length;
+
+
+      // PENDING INQUIRIES
+      const pendingCount =
+        allInquiries.filter((item) => {
+
+          const status =
+            item.status || "Pending";
+
+          return status === "Pending";
+
+        }).length;
+
+
+      pendingInquiriesCount.textContent =
+        pendingCount;
+
+
+      // RECENT INQUIRIES
+      displayRecentInquiries();
+
+    }
+
+
+    // RECENT INQUIRIES
+    function displayRecentInquiries() {
+
+      if (!allInquiries.length) {
+
+        recentInquiriesList.innerHTML =
+          '<div class="empty">Abhi koi inquiry nahi hai.</div>';
+
+        return;
+
+      }
+
+
+      const recent =
+        [...allInquiries].slice(0, 5);
+
+
+      recentInquiriesList.innerHTML = "";
+
+
+      recent.forEach((item) => {
+
+        const card =
+          document.createElement("div");
+
+        card.className =
+          "recent-card";
+
+
+        const name =
+          item.name ||
+          item.customerName ||
+          "Not available";
+
+
+        const mobile =
+          item.mobile ||
+          item.phone ||
+          "Not available";
+
+
+        const plan =
+          item.plan ||
+          item.selectedPlan ||
+          "Not selected";
+
+
+        const question =
+          item.question ||
+          item.message ||
+          "No question";
+
+
+        const status =
+          item.status ||
+          "Pending";
+
+
+        card.innerHTML = `
+
+          <h3>
+            ${escapeHTML(name)}
+          </h3>
+
+          <p>
+            <strong>📱 Mobile:</strong>
+            ${escapeHTML(mobile)}
+          </p>
+
+          <p>
+            <strong>🛡️ Plan:</strong>
+            ${escapeHTML(plan)}
+          </p>
+
+          <p>
+            <strong>❓ Question:</strong>
+            ${escapeHTML(question)}
+          </p>
+
+          <span class="status-badge">
+            ${escapeHTML(status)}
+          </span>
+
+        `;
+
+
+        recentInquiriesList.appendChild(card);
+
+      });
+
+    }
+
+
     // FILTER INQUIRIES
     function applyInquiryFilters() {
 
       const searchText =
-        searchInput.value.toLowerCase().trim();
+        searchInput.value
+          .toLowerCase()
+          .trim();
+
 
       const selectedStatus =
         statusFilter.value;
@@ -1050,7 +1351,8 @@
 
 
           const status =
-            item.status || "Pending";
+            item.status ||
+            "Pending";
 
 
           const matchesSearch =
@@ -1065,12 +1367,17 @@
             status === selectedStatus;
 
 
-          return matchesSearch && matchesStatus;
+          return (
+            matchesSearch &&
+            matchesStatus
+          );
 
         });
 
 
-      displayInquiries(filteredInquiries);
+      displayInquiries(
+        filteredInquiries
+      );
 
     }
 
@@ -1096,8 +1403,14 @@
         const card =
           document.createElement("div");
 
+
         card.className =
           "inquiry-card";
+
+
+        const status =
+          item.status ||
+          "Pending";
 
 
         card.innerHTML = `
@@ -1145,6 +1458,11 @@
             )}
           </p>
 
+          <p>
+            <strong>📌 Status:</strong>
+            ${escapeHTML(status)}
+          </p>
+
         `;
 
 
@@ -1160,6 +1478,7 @@
       applyInquiryFilters
     );
 
+
     statusFilter.addEventListener(
       "change",
       applyInquiryFilters
@@ -1167,204 +1486,80 @@
 
 
     // OPEN LIC FORM FOR NEW PLAN
-    addLicPlanBtn.addEventListener("click", () => {
-
-      editingPlanId = null;
-
-      licFormTitle.textContent =
-        "Add New LIC Plan";
-
-      saveLicPlanBtn.textContent =
-        "💾 Save LIC Plan";
-
-
-      document.getElementById("licPlanName").value = "";
-
-      document.getElementById("licPlanCategory").value =
-        "Money Back";
-
-      document.getElementById("licMinAge").value = "";
-
-      document.getElementById("licMaxAge").value = "";
-
-      document.getElementById("licBenefits").value = "";
-
-      document.getElementById("licDetails").value = "";
-
-
-      licPlanMessage.textContent = "";
-
-      licPlanForm.classList.remove("hidden");
-
-      licPlanForm.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-
-    });
-
-
-    // CANCEL FORM
-    cancelLicPlanBtn.addEventListener("click", () => {
-
-      editingPlanId = null;
-
-      licPlanForm.classList.add("hidden");
-
-      licPlanMessage.textContent = "";
-
-      licFormTitle.textContent =
-        "Add New LIC Plan";
-
-      saveLicPlanBtn.textContent =
-        "💾 Save LIC Plan";
-
-    });
-
-
-    // SAVE OR UPDATE LIC PLAN
-    saveLicPlanBtn.addEventListener("click", async () => {
-
-      const planName =
-        document.getElementById("licPlanName").value.trim();
-
-      const category =
-        document.getElementById("licPlanCategory").value;
-
-      const minAge =
-        document.getElementById("licMinAge").value;
-
-      const maxAge =
-        document.getElementById("licMaxAge").value;
-
-      const benefits =
-        document.getElementById("licBenefits").value.trim();
-
-      const details =
-        document.getElementById("licDetails").value.trim();
-
-
-      if (
-        !planName ||
-        minAge === "" ||
-        maxAge === "" ||
-        !benefits ||
-        !details
-      ) {
-
-        licPlanMessage.style.color =
-          "#dc2626";
-
-        licPlanMessage.textContent =
-          "Please sabhi details fill karo.";
-
-        return;
-
-      }
-
-
-      if (Number(minAge) > Number(maxAge)) {
-
-        licPlanMessage.style.color =
-          "#dc2626";
-
-        licPlanMessage.textContent =
-          "Minimum age maximum age se kam honi chahiye.";
-
-        return;
-
-      }
-
-
-      licPlanMessage.style.color =
-        "#2563eb";
-
-      licPlanMessage.textContent =
-        "Saving plan...";
-
-
-      const planData = {
-
-        name: planName,
-
-        category: category,
-
-        minAge: Number(minAge),
-
-        maxAge: Number(maxAge),
-
-        benefits: benefits,
-
-        details: details,
-
-        updatedAt: new Date().toISOString()
-
-      };
-
-
-      try {
-
-        if (editingPlanId) {
-
-          await updateDoc(
-
-            doc(
-              db,
-              "licPlans",
-              editingPlanId
-            ),
-
-            planData
-
-          );
-
-
-          alert(
-            "LIC Plan successfully update ho gaya."
-          );
-
-        } else {
-
-          await addDoc(
-
-            collection(
-              db,
-              "licPlans"
-            ),
-
-            {
-              ...planData,
-
-              createdAt:
-                new Date().toISOString()
-            }
-
-          );
-
-
-          alert(
-            "New LIC Plan save ho gaya."
-          );
-
-        }
-
+    addLicPlanBtn.addEventListener(
+      "click",
+      () => {
 
         editingPlanId = null;
 
 
-        document.getElementById("licPlanName").value = "";
+        licFormTitle.textContent =
+          "Add New LIC Plan";
 
-        document.getElementById("licPlanCategory").value =
-          "Money Back";
 
-        document.getElementById("licMinAge").value = "";
+        saveLicPlanBtn.textContent =
+          "💾 Save LIC Plan";
 
-        document.getElementById("licMaxAge").value = "";
 
-        document.getElementById("licBenefits").value = "";
+        document
+          .getElementById("licPlanName")
+          .value = "";
 
-        document.getElementById("licDetails").value = "";
 
+        document
+          .getElementById("licPlanCategory")
+          .value = "Money Back";
+
+
+        document
+          .getElementById("licMinAge")
+          .value = "";
+
+
+        document
+          .getElementById("licMaxAge")
+          .value = "";
+
+
+        document
+          .getElementById("licBenefits")
+          .value = "";
+
+
+        document
+          .getElementById("licDetails")
+          .value = "";
+
+
+        licPlanMessage.textContent = "";
+
+
+        licPlanForm.classList.remove(
+          "hidden"
+        );
+
+
+        licPlanForm.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+      }
+    );
+
+
+    // CANCEL FORM
+    cancelLicPlanBtn.addEventListener(
+      "click",
+      () => {
+
+        editingPlanId = null;
+
+        licPlanForm.classList.add(
+          "hidden"
+        );
+
+        licPlanMessage.textContent = "";
 
         licFormTitle.textContent =
           "Add New LIC Plan";
@@ -1372,26 +1567,230 @@
         saveLicPlanBtn.textContent =
           "💾 Save LIC Plan";
 
-        licPlanMessage.textContent = "";
-
-        licPlanForm.classList.add("hidden");
-
-
-        await showLicPlans();
+      }
+    );
 
 
-      } catch (error) {
+    // SAVE OR UPDATE LIC PLAN
+    saveLicPlanBtn.addEventListener(
+      "click",
+      async () => {
+
+        const planName =
+          document
+            .getElementById("licPlanName")
+            .value
+            .trim();
+
+
+        const category =
+          document
+            .getElementById("licPlanCategory")
+            .value;
+
+
+        const minAge =
+          document
+            .getElementById("licMinAge")
+            .value;
+
+
+        const maxAge =
+          document
+            .getElementById("licMaxAge")
+            .value;
+
+
+        const benefits =
+          document
+            .getElementById("licBenefits")
+            .value
+            .trim();
+
+
+        const details =
+          document
+            .getElementById("licDetails")
+            .value
+            .trim();
+
+
+        if (
+          !planName ||
+          minAge === "" ||
+          maxAge === "" ||
+          !benefits ||
+          !details
+        ) {
+
+          licPlanMessage.style.color =
+            "#dc2626";
+
+          licPlanMessage.textContent =
+            "Please sabhi details fill karo.";
+
+          return;
+
+        }
+
+
+        if (
+          Number(minAge) >
+          Number(maxAge)
+        ) {
+
+          licPlanMessage.style.color =
+            "#dc2626";
+
+          licPlanMessage.textContent =
+            "Minimum age maximum age se kam honi chahiye.";
+
+          return;
+
+        }
+
 
         licPlanMessage.style.color =
-          "#dc2626";
+          "#2563eb";
 
         licPlanMessage.textContent =
-          "Firebase save failed: " +
-          error.message;
+          "Saving plan...";
+
+
+        const planData = {
+
+          name: planName,
+
+          category: category,
+
+          minAge: Number(minAge),
+
+          maxAge: Number(maxAge),
+
+          benefits: benefits,
+
+          details: details,
+
+          updatedAt:
+            new Date().toISOString()
+
+        };
+
+
+        try {
+
+          if (editingPlanId) {
+
+            await updateDoc(
+
+              doc(
+                db,
+                "licPlans",
+                editingPlanId
+              ),
+
+              planData
+
+            );
+
+
+            alert(
+              "LIC Plan successfully update ho gaya."
+            );
+
+          } else {
+
+            await addDoc(
+
+              collection(
+                db,
+                "licPlans"
+              ),
+
+              {
+                ...planData,
+
+                createdAt:
+                  new Date().toISOString()
+              }
+
+            );
+
+
+            alert(
+              "New LIC Plan save ho gaya."
+            );
+
+          }
+
+
+          editingPlanId = null;
+
+
+          document
+            .getElementById("licPlanName")
+            .value = "";
+
+
+          document
+            .getElementById("licPlanCategory")
+            .value = "Money Back";
+
+
+          document
+            .getElementById("licMinAge")
+            .value = "";
+
+
+          document
+            .getElementById("licMaxAge")
+            .value = "";
+
+
+          document
+            .getElementById("licBenefits")
+            .value = "";
+
+
+          document
+            .getElementById("licDetails")
+            .value = "";
+
+
+          licFormTitle.textContent =
+            "Add New LIC Plan";
+
+
+          saveLicPlanBtn.textContent =
+            "💾 Save LIC Plan";
+
+
+          licPlanMessage.textContent = "";
+
+
+          licPlanForm.classList.add(
+            "hidden"
+          );
+
+
+          await showLicPlans();
+
+
+          updateOverview();
+
+        } catch (error) {
+
+          licPlanMessage.style.color =
+            "#dc2626";
+
+          licPlanMessage.textContent =
+            "Firebase save failed: " +
+            error.message;
+
+        }
 
       }
-
-    });
+    );
 
 
     // SHOW LIC PLANS
@@ -1412,6 +1811,10 @@
         licPlansList.innerHTML = "";
 
 
+        totalLicPlansCount.textContent =
+          querySnapshot.size;
+
+
         if (querySnapshot.empty) {
 
           licPlansList.innerHTML =
@@ -1422,116 +1825,125 @@
         }
 
 
-        querySnapshot.forEach((docSnap) => {
+        querySnapshot.forEach(
+          (docSnap) => {
 
-          const plan =
-            docSnap.data();
-
-          const planId =
-            docSnap.id;
+            const plan =
+              docSnap.data();
 
 
-          const card =
-            document.createElement("div");
-
-          card.className =
-            "plan-card";
+            const planId =
+              docSnap.id;
 
 
-          card.innerHTML = `
-
-            <h3>
-              ${escapeHTML(
-                plan.name || ""
-              )}
-            </h3>
-
-            <p>
-              <strong>Category:</strong>
-              ${escapeHTML(
-                plan.category || ""
-              )}
-            </p>
-
-            <p>
-              <strong>Age:</strong>
-              ${plan.minAge} - ${plan.maxAge} years
-            </p>
-
-            <p>
-              <strong>Benefits:</strong>
-              ${escapeHTML(
-                plan.benefits || ""
-              )}
-            </p>
-
-            <p>
-              <strong>Details:</strong>
-              ${escapeHTML(
-                plan.details || ""
-              )}
-            </p>
-
-            <div class="plan-actions">
-
-              <button
-                class="btn btn-primary edit-plan-btn"
-              >
-                ✏️ Edit Plan
-              </button>
-
-              <button
-                class="btn btn-danger delete-plan-btn"
-              >
-                🗑️ Delete Plan
-              </button>
-
-            </div>
-
-          `;
+            const card =
+              document.createElement("div");
 
 
-          const editButton =
-            card.querySelector(
-              ".edit-plan-btn"
+            card.className =
+              "plan-card";
+
+
+            card.innerHTML = `
+
+              <h3>
+                ${escapeHTML(
+                  plan.name || ""
+                )}
+              </h3>
+
+              <p>
+                <strong>Category:</strong>
+                ${escapeHTML(
+                  plan.category || ""
+                )}
+              </p>
+
+              <p>
+                <strong>Age:</strong>
+                ${plan.minAge} -
+                ${plan.maxAge}
+                years
+              </p>
+
+              <p>
+                <strong>Benefits:</strong>
+                ${escapeHTML(
+                  plan.benefits || ""
+                )}
+              </p>
+
+              <p>
+                <strong>Details:</strong>
+                ${escapeHTML(
+                  plan.details || ""
+                )}
+              </p>
+
+              <div class="plan-actions">
+
+                <button
+                  class="btn btn-primary edit-plan-btn"
+                >
+                  ✏️ Edit Plan
+                </button>
+
+                <button
+                  class="btn btn-danger delete-plan-btn"
+                >
+                  🗑️ Delete Plan
+                </button>
+
+              </div>
+
+            `;
+
+
+            const editButton =
+              card.querySelector(
+                ".edit-plan-btn"
+              );
+
+
+            editButton.addEventListener(
+              "click",
+              () => {
+
+                editLicPlan(
+                  planId,
+                  plan
+                );
+
+              }
             );
 
 
-          editButton.addEventListener(
-            "click",
-            () => {
-
-              editLicPlan(
-                planId,
-                plan
+            const deleteButton =
+              card.querySelector(
+                ".delete-plan-btn"
               );
 
-            }
-          );
 
+            deleteButton.addEventListener(
+              "click",
+              async () => {
 
-          const deleteButton =
-            card.querySelector(
-              ".delete-plan-btn"
+                await deleteLicPlan(
+                  planId,
+                  plan.name ||
+                  "this plan"
+                );
+
+              }
             );
 
 
-          deleteButton.addEventListener(
-            "click",
-            async () => {
+            licPlansList.appendChild(
+              card
+            );
 
-              await deleteLicPlan(
-                planId,
-                plan.name || "this plan"
-              );
-
-            }
-          );
-
-
-          licPlansList.appendChild(card);
-
-        });
+          }
+        );
 
 
       } catch (error) {
@@ -1547,34 +1959,50 @@
 
 
     // EDIT LIC PLAN
-    function editLicPlan(planId, plan) {
+    function editLicPlan(
+      planId,
+      plan
+    ) {
 
       editingPlanId =
         planId;
 
 
-      document.getElementById("licPlanName").value =
-        plan.name || "";
+      document
+        .getElementById("licPlanName")
+        .value =
+          plan.name || "";
 
 
-      document.getElementById("licPlanCategory").value =
-        plan.category || "Money Back";
+      document
+        .getElementById("licPlanCategory")
+        .value =
+          plan.category ||
+          "Money Back";
 
 
-      document.getElementById("licMinAge").value =
-        plan.minAge ?? "";
+      document
+        .getElementById("licMinAge")
+        .value =
+          plan.minAge ?? "";
 
 
-      document.getElementById("licMaxAge").value =
-        plan.maxAge ?? "";
+      document
+        .getElementById("licMaxAge")
+        .value =
+          plan.maxAge ?? "";
 
 
-      document.getElementById("licBenefits").value =
-        plan.benefits || "";
+      document
+        .getElementById("licBenefits")
+        .value =
+          plan.benefits || "";
 
 
-      document.getElementById("licDetails").value =
-        plan.details || "";
+      document
+        .getElementById("licDetails")
+        .value =
+          plan.details || "";
 
 
       licFormTitle.textContent =
@@ -1588,11 +2016,14 @@
       licPlanMessage.style.color =
         "#2563eb";
 
+
       licPlanMessage.textContent =
         "Aap plan edit kar rahe ho.";
 
 
-      licPlanForm.classList.remove("hidden");
+      licPlanForm.classList.remove(
+        "hidden"
+      );
 
 
       licPlanForm.scrollIntoView({
@@ -1648,6 +2079,9 @@
         await showLicPlans();
 
 
+        updateOverview();
+
+
       } catch (error) {
 
         alert(
@@ -1682,7 +2116,9 @@
 
 
     // SHOW SECTION
-    function showSection(sectionName) {
+    function showSection(
+      sectionName
+    ) {
 
       document
         .querySelectorAll(".section")
@@ -1740,23 +2176,32 @@
 
       const titles = {
 
-        overview: "Admin Overview",
+        overview:
+          "Admin Overview",
 
-        inquiries: "Customer Inquiries",
+        inquiries:
+          "Customer Inquiries",
 
-        customers: "Customers",
+        customers:
+          "Customers",
 
-        lic: "LIC Management",
+        lic:
+          "LIC Management",
 
-        digital: "Digital Skills",
+        digital:
+          "Digital Skills",
 
-        ai: "AI Tools",
+        ai:
+          "AI Tools",
 
-        social: "Social Media",
+        social:
+          "Social Media",
 
-        courses: "Course Management",
+        courses:
+          "Course Management",
 
-        privacy: "Privacy & Policies"
+        privacy:
+          "Privacy & Policies"
 
       };
 
