@@ -890,7 +890,7 @@
           <div class="input-group"><label for="courseDetails">Course Details</label><textarea id="courseDetails" rows="6" placeholder="Course mein kya-kya sikhaya jayega"></textarea></div>
           <div class="input-group">
             <label for="courseThumbnail">Course Thumbnail (optional)</label>
-            <input id="courseThumbnail" type="file" accept="image/*">
+            <input id="courseThumbnail" type="file" accept="image/*"><small style="display:block;color:#b45309;margin-top:6px;">File upload abhi disabled hai — Firebase Storage enable hone ke baad use karenge.</small>
             <small style="display:block;color:#64748b;margin-top:6px;">Jab thumbnail ready ho tab yahan select karke upload kar sakte ho.</small>
           </div>
           <div id="courseMessage" class="message"></div>
@@ -915,8 +915,8 @@
             </div>
             <div class="input-group"><label for="lessonContent">Lesson Content</label><textarea id="lessonContent" rows="7" placeholder="Lesson ka text/content yahan likh sakte ho."></textarea></div>
             <div class="feature-grid">
-              <div class="input-group"><label for="lessonPdf">PDF / Study Material</label><input id="lessonPdf" type="file" accept="application/pdf,.pdf"></div>
-              <div class="input-group"><label for="lessonVideo">Video</label><input id="lessonVideo" type="file" accept="video/*"></div>
+              <div class="input-group"><label for="lessonPdf">PDF / Study Material</label><input id="lessonPdf" type="file" accept="application/pdf,.pdf"><small style="display:block;color:#b45309;margin-top:6px;">PDF upload abhi disabled hai.</small></div>
+              <div class="input-group"><label for="lessonVideo">Video</label><input id="lessonVideo" type="file" accept="video/*"><small style="display:block;color:#b45309;margin-top:6px;">Video upload abhi disabled hai.</small></div>
             </div>
             <div id="lessonMessage" class="message"></div>
             <div style="display:flex;gap:10px;flex-wrap:wrap;"><button class="btn btn-primary" id="saveLessonBtn">💾 Save Lesson</button><button class="btn btn-light" id="cancelLessonBtn">Cancel</button></div>
@@ -981,16 +981,6 @@
     } from
       "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    import {
-      getStorage,
-      ref,
-      uploadBytes,
-      getDownloadURL,
-      deleteObject
-    } from
-      "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
-
-
     // FIREBASE CONFIG
     const firebaseConfig = {
 
@@ -1032,10 +1022,6 @@
 
     const db =
       getFirestore(app);
-
-    const storage =
-      getStorage(app);
-
 
     // ELEMENTS
     const loginPage =
@@ -1104,7 +1090,7 @@
     let allInquiries = [];
 
     let editingPlanId = null;
-    let editingCourseId = null;
+    
 
 
     // LOGIN
@@ -1851,11 +1837,10 @@
     });
 
     async function uploadCourseFile(file, path) {
-      if (!file) return null;
-      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-      const fileRef = ref(storage, `${path}/${Date.now()}_${safeName}`);
-      await uploadBytes(fileRef, file);
-      return await getDownloadURL(fileRef);
+      if (file) {
+        throw new Error("Firebase Storage abhi enabled nahi hai. File upload baad mein enable karenge.");
+      }
+      return null;
     }
 
     saveCourseBtn.addEventListener("click", async () => {
@@ -1903,11 +1888,7 @@
         } else {
           data.createdAt = new Date().toISOString();
           data.createdBy = ADMIN_UID;
-          const created = await addDoc(collection(db, "courses"), data);
-          if (thumbnailUrl) {
-            const properRef = ref(storage, `courses/${created.id}/thumbnail/${Date.now()}_${thumbnailFile.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`);
-            // Move is not available in Storage; keep the uploaded URL as-is for now.
-          }
+          await addDoc(collection(db, "courses"), data);
           alert("Course successfully saved.");
         }
 
@@ -1991,12 +1972,6 @@
       try {
         const lessonSnap = await getDocs(collection(db, "courses", courseId, "lessons"));
         for (const lesson of lessonSnap.docs) {
-          const d = lesson.data();
-          for (const urlField of ["pdfUrl","videoUrl"]) {
-            if (d[urlField]) {
-              try { await deleteObject(ref(storage, d[urlField])); } catch(e) { console.warn("Storage file delete skipped", e); }
-            }
-          }
           await deleteDoc(doc(db, "courses", courseId, "lessons", lesson.id));
         }
         await deleteDoc(doc(db,"courses",courseId));
@@ -2066,11 +2041,10 @@
     }
 
     async function replaceStorageFile(oldUrl, file, folder) {
-      if (!file) return oldUrl || null;
-      if (oldUrl) {
-        try { await deleteObject(ref(storage, oldUrl)); } catch(e) { console.warn("Old file delete skipped", e); }
+      if (file) {
+        throw new Error("Firebase Storage abhi enabled nahi hai. PDF/video upload baad mein enable karenge.");
       }
-      return await uploadCourseFile(file, folder);
+      return oldUrl || null;
     }
 
     saveLessonBtn.addEventListener("click", async () => {
@@ -2160,11 +2134,6 @@
       if (!selectedCourseForLessons) return;
       if (!confirm(`Kya aap "${lesson.title}" lesson delete karna chahte ho?`)) return;
       try {
-        for (const urlField of ["pdfUrl","videoUrl"]) {
-          if (lesson[urlField]) {
-            try { await deleteObject(ref(storage, lesson[urlField])); } catch(e) { console.warn("Storage file delete skipped", e); }
-          }
-        }
         await deleteDoc(doc(db,"courses",selectedCourseForLessons.id,"lessons",lesson.id));
         alert("Lesson delete ho gaya.");
         await loadLessons();

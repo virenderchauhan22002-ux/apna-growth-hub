@@ -2,32 +2,39 @@
 <html lang="hi">
 
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
   <title>Apna Growth Hub - Dashboard</title>
 
   <style>
+
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background: #f1f8ff;
+      background: #f4f7fb;
       color: #222;
     }
 
     .topbar {
-      background: #1565c0;
+      background: #0d47a1;
       color: white;
-      padding: 15px 20px;
+      padding: 18px 20px;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
+
+      gap: 15px;
     }
 
     .brand {
@@ -35,220 +42,256 @@
       font-weight: bold;
     }
 
-    .top-buttons {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
+    .tagline {
+      font-size: 12px;
+      margin-top: 4px;
+      opacity: 0.9;
     }
 
-    .top-buttons button {
+    .logout-btn {
+      background: white;
+      color: #0d47a1;
       border: none;
-      padding: 9px 14px;
+      padding: 9px 15px;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
     }
 
-    .logout-btn {
-      background: #d32f2f;
-      color: white;
-    }
-
     .container {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: auto;
-      padding: 20px;
-    }
-
-    .preview-banner {
-      display: none;
-      background: #fff3cd;
-      color: #856404;
-      padding: 12px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      text-align: center;
-      font-weight: bold;
+      padding: 25px 15px 40px;
     }
 
     .welcome-card {
       background: white;
-      padding: 22px;
       border-radius: 16px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
-      margin-bottom: 20px;
+      padding: 25px;
+      margin-bottom: 25px;
+
+      box-shadow:
+        0 4px 15px rgba(0,0,0,0.08);
+
+      border-left: 5px solid #0d47a1;
     }
 
     .welcome-card h1 {
-      margin: 0 0 8px;
-      color: #1565c0;
-      font-size: 25px;
+      color: #0d47a1;
+      font-size: 27px;
+      margin-bottom: 8px;
     }
 
-    .customer-info {
-      color: #555;
-      line-height: 1.8;
+    .welcome-card p {
+      color: #666;
+      line-height: 1.6;
     }
 
-    .age-box {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 8px 14px;
-      background: #e3f2fd;
-      color: #1565c0;
-      border-radius: 20px;
-      font-weight: bold;
+    .profile-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .profile-box {
+      background: #f3f7ff;
+      border: 1px solid #dce7f7;
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #333;
+      font-size: 14px;
     }
 
     .section-title {
-      color: #1565c0;
-      margin: 25px 0 15px;
+      color: #0d47a1;
+      font-size: 24px;
+      margin-bottom: 18px;
     }
 
-    .categories {
+    .category-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+      grid-template-columns:
+        repeat(auto-fit, minmax(240px, 1fr));
+
       gap: 18px;
     }
 
     .category-card {
       background: white;
-      padding: 22px;
       border-radius: 16px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
+      padding: 22px;
+
+      box-shadow:
+        0 4px 15px rgba(0,0,0,0.08);
+
+      border: 1px solid #e5ebf5;
+
       cursor: pointer;
+
       transition: 0.2s;
     }
 
     .category-card:hover {
       transform: translateY(-3px);
+
+      box-shadow:
+        0 7px 20px rgba(0,0,0,0.12);
     }
 
     .category-icon {
-      font-size: 38px;
-      margin-bottom: 10px;
+      width: 58px;
+      height: 58px;
+
+      border-radius: 14px;
+
+      background: #e8f0ff;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 30px;
+
+      margin-bottom: 15px;
     }
 
     .category-card h2 {
-      margin: 5px 0 8px;
-      color: #1565c0;
+      color: #0d47a1;
       font-size: 20px;
+      margin-bottom: 8px;
     }
 
     .category-card p {
-      margin: 0;
-      color: #555;
+      color: #666;
       line-height: 1.5;
-    }
-
-    .coming {
-      margin-top: 10px;
-      font-size: 13px;
-      color: #777;
+      font-size: 14px;
     }
 
     .footer {
       text-align: center;
-      margin-top: 35px;
-      padding: 20px;
-      color: #666;
+      padding: 25px 15px;
+
+      color: #777;
       font-size: 13px;
     }
 
-    .message {
-      background: #fff3cd;
-      color: #856404;
-      padding: 12px;
-      border-radius: 10px;
-      margin-top: 15px;
-      display: none;
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #666;
     }
+
+    @media (max-width: 600px) {
+
+      .topbar {
+        padding: 14px 12px;
+      }
+
+      .brand {
+        font-size: 18px;
+      }
+
+      .logout-btn {
+        padding: 8px 11px;
+        font-size: 12px;
+      }
+
+      .container {
+        padding:
+          20px 12px 30px;
+      }
+
+      .welcome-card {
+        padding: 20px;
+      }
+
+      .welcome-card h1 {
+        font-size: 23px;
+      }
+
+      .section-title {
+        font-size: 21px;
+      }
+
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
   </style>
+
 </head>
+
 
 <body>
 
+
   <!-- TOP BAR -->
+
   <div class="topbar">
 
-    <div class="brand">
-      Apna Growth Hub
-    </div>
+    <div>
 
-    <div class="top-buttons">
+      <div class="brand">
+        Apna Growth Hub
+      </div>
 
-      <button
-        class="logout-btn"
-        onclick="logout()">
-        Logout
-      </button>
+      <div class="tagline">
+        Learn • Grow • Succeed
+      </div>
 
     </div>
+
+
+    <button
+      class="logout-btn"
+      onclick="logout()">
+
+      Logout
+
+    </button>
 
   </div>
 
 
+
+  <!-- MAIN -->
+
   <div class="container">
-
-    <!-- ADMIN PREVIEW -->
-    <div
-      id="previewBanner"
-      class="preview-banner">
-
-      👁️ Admin Preview Mode —
-      आप Customer Dashboard देख रहे हैं।
-
-    </div>
 
 
     <!-- WELCOME -->
-    <div class="welcome-card">
 
-      <h1 id="welcomeTitle">
-        Welcome 👋
-      </h1>
+    <div
+      id="welcomeCard"
+      class="welcome-card">
 
-      <div class="customer-info">
-
-        <div>
-          <strong>Name:</strong>
-          <span id="customerName">Not Available</span>
-        </div>
-
-        <div>
-          <strong>Mobile:</strong>
-          <span id="customerMobile">Not Available</span>
-        </div>
-
-        <div>
-          <strong>Email:</strong>
-          <span id="customerEmail">Not Available</span>
-        </div>
-
-        <div class="age-box">
-          Age:
-          <span id="customerAge">Not Available</span>
-        </div>
-
+      <div class="loading">
+        Dashboard load हो रहा है...
       </div>
-
-      <div id="messageBox" class="message"></div>
 
     </div>
 
 
+
     <!-- CATEGORIES -->
+
     <h2 class="section-title">
       Explore Categories
     </h2>
 
 
-    <div class="categories">
+    <div class="category-grid">
+
 
       <!-- LIC -->
+
       <div
         class="category-card"
-        onclick="openCategory('lic.html')">
+        onclick="openPage('lic.html')">
 
         <div class="category-icon">
           🛡️
@@ -259,17 +302,42 @@
         </h2>
 
         <p>
-          अपनी उम्र के अनुसार उपलब्ध LIC Plans
-          और उनकी details देखें।
+          अपनी age के अनुसार उपलब्ध
+          LIC plans और उनकी जानकारी देखें।
         </p>
 
       </div>
 
 
-      <!-- DIGITAL SKILLS -->
+
+      <!-- COURSES -->
+
       <div
         class="category-card"
-        onclick="comingSoon('Digital Skills')">
+        onclick="openPage('courses.html')">
+
+        <div class="category-icon">
+          📚
+        </div>
+
+        <h2>
+          Courses
+        </h2>
+
+        <p>
+          Useful courses सीखें और अपनी
+          knowledge और skills बढ़ाएँ।
+        </p>
+
+      </div>
+
+
+
+      <!-- DIGITAL SKILLS -->
+
+      <div
+        class="category-card"
+        onclick="digitalSkills()">
 
         <div class="category-icon">
           💻
@@ -280,21 +348,19 @@
         </h2>
 
         <p>
-          Digital skills सीखें और अपने knowledge
-          को बढ़ाएँ।
+          Digital skills सीखने के लिए
+          useful learning content।
         </p>
-
-        <div class="coming">
-          Coming Soon
-        </div>
 
       </div>
 
 
+
       <!-- AI TOOLS -->
+
       <div
         class="category-card"
-        onclick="comingSoon('AI Tools')">
+        onclick="aiTools()">
 
         <div class="category-icon">
           🤖
@@ -305,21 +371,19 @@
         </h2>
 
         <p>
-          Useful AI tools और practical AI skills
-          सीखें।
+          AI tools और technology से जुड़ी
+          useful information।
         </p>
-
-        <div class="coming">
-          Coming Soon
-        </div>
 
       </div>
 
 
+
       <!-- CUSTOMER INQUIRY -->
+
       <div
         class="category-card"
-        onclick="openCategory('customer-inquiry.html')">
+        onclick="openPage('customer-inquiry.html')">
 
         <div class="category-icon">
           📩
@@ -330,63 +394,79 @@
         </h2>
 
         <p>
-          LIC plan या किसी अन्य जानकारी के लिए
-          अपनी inquiry भेजें।
+          LIC या अन्य जानकारी के लिए
+          अपनी enquiry भेजें।
         </p>
 
       </div>
 
 
+
       <!-- SOCIAL MEDIA -->
+
       <div
         class="category-card"
-        onclick="comingSoon('Social Media Earning')">
+        onclick="socialMedia()">
 
         <div class="category-icon">
           📱
         </div>
 
         <h2>
-          Social Media Earning
+          Social Media
         </h2>
 
         <p>
-          Social media से earning के तरीके
-          सीखें।
+          Social media और online growth
+          से जुड़ी useful learning।
         </p>
-
-        <div class="coming">
-          Coming Soon
-        </div>
 
       </div>
 
-    </div>
 
-
-    <div class="footer">
-      Apna Growth Hub — Learn • Grow • Succeed
     </div>
 
   </div>
 
 
-  <!-- FIREBASE + DASHBOARD SCRIPT -->
+
+  <!-- FOOTER -->
+
+  <div class="footer">
+
+    Apna Growth Hub — Learn • Grow • Succeed
+
+  </div>
+
+
+
+  <!-- FIREBASE -->
+
   <script type="module">
+
 
     import {
       initializeApp
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    } from
+    "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 
     import {
       getAuth,
-      onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+      onAuthStateChanged,
+      signOut
+    } from
+    "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
-    // ================================
-    // FIREBASE CONFIG
-    // ================================
+    import {
+      getFirestore,
+      doc,
+      getDoc
+    } from
+    "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
 
     const firebaseConfig = {
 
@@ -410,394 +490,284 @@
 
       measurementId:
         "G-GZGCHL4XQ3"
+
     };
 
 
-    // ================================
-    // FIREBASE INITIALIZE
-    // ================================
 
     const app =
       initializeApp(firebaseConfig);
+
 
     const auth =
       getAuth(app);
 
 
-    // ================================
-    // ADMIN UID
-    // ================================
-
-    const ADMIN_UID =
-      "bhpu24P8Ixfq0ZPSBsoLW3kd0dg1";
+    const db =
+      getFirestore(app);
 
 
-    // ================================
-    // ADMIN PREVIEW CHECK
-    // ================================
 
-    const urlParams =
-      new URLSearchParams(
-        window.location.search
-      );
-
-    const isAdminPreview =
-      urlParams.get("preview") === "admin";
-
-
-    const previewBanner =
+    const welcomeCard =
       document.getElementById(
-        "previewBanner"
+        "welcomeCard"
       );
 
 
-    if (isAdminPreview) {
 
-      onAuthStateChanged(
-        auth,
-        (user) => {
+    onAuthStateChanged(
+      auth,
+      async (user) => {
 
-          if (
-            !user ||
-            user.uid !== ADMIN_UID
-          ) {
 
-            window.location.replace(
-              "index.html"
-            );
+        if (!user) {
 
-            return;
-          }
+          window.location.href =
+            "index.html";
 
-          previewBanner.style.display =
-            "block";
+          return;
 
         }
-      );
-
-    }
 
 
-    // ================================
-    // CUSTOMER DATA
-    // ================================
-
-    const customerName =
-      localStorage.getItem(
-        "customerName"
-      ) || "";
+        try {
 
 
-    const customerMobile =
-      localStorage.getItem(
-        "customerMobile"
-      ) || "";
+          const customerRef =
+            doc(
+              db,
+              "customers",
+              user.uid
+            );
 
 
-    const customerEmail =
-      localStorage.getItem(
-        "customerEmail"
-      ) || "";
+          const customerSnap =
+            await getDoc(
+              customerRef
+            );
 
 
-    // ================================
-    // CUSTOMER DOB
-    // ================================
-
-    const customerDOB =
-      localStorage.getItem(
-        "customerDOB"
-      ) ||
-
-      localStorage.getItem(
-        "customerDob"
-      ) ||
-
-      localStorage.getItem(
-        "dob"
-      ) ||
-
-      "";
+          let customerName =
+            user.displayName ||
+            "Customer";
 
 
-    // ================================
-    // AGE CALCULATION
-    // ================================
+          let age = "";
 
-    function calculateAge(
-      dateOfBirth
-    ) {
 
-      if (!dateOfBirth) {
-        return null;
+          let dob = "";
+
+
+
+          if (customerSnap.exists()) {
+
+            const data =
+              customerSnap.data();
+
+
+            customerName =
+              data.name ||
+              data.fullName ||
+              customerName;
+
+
+            age =
+              data.age ||
+              "";
+
+
+            dob =
+              data.dob ||
+              "";
+
+          }
+
+
+
+          welcomeCard.innerHTML = `
+
+            <h1>
+              Welcome, ${escapeHTML(customerName)} 👋
+            </h1>
+
+            <p>
+              Apna Growth Hub में आपका स्वागत है।
+              यहाँ आप LIC, Courses, Digital Skills
+              और AI Tools से जुड़ी जानकारी explore कर सकते हैं।
+            </p>
+
+            <div class="profile-info">
+
+              ${
+                age
+                  ? `
+                    <div class="profile-box">
+                      🎂 Age: ${escapeHTML(age)}
+                    </div>
+                  `
+                  : ""
+              }
+
+              ${
+                dob
+                  ? `
+                    <div class="profile-box">
+                      📅 DOB: ${escapeHTML(dob)}
+                    </div>
+                  `
+                  : ""
+              }
+
+              <div class="profile-box">
+                📧 ${escapeHTML(user.email || "")}
+              </div>
+
+            </div>
+
+          `;
+
+
+        } catch (error) {
+
+          console.error(
+            "Profile load error:",
+            error
+          );
+
+
+          welcomeCard.innerHTML = `
+
+            <h1>
+              Welcome 👋
+            </h1>
+
+            <p>
+              Apna Growth Hub में आपका स्वागत है।
+            </p>
+
+          `;
+
+        }
+
+      }
+    );
+
+
+
+    function escapeHTML(value) {
+
+      if (
+        value === null ||
+        value === undefined
+      ) {
+
+        return "";
+
       }
 
 
-      const birthDate =
-        new Date(dateOfBirth);
+      return String(value)
 
-
-      if (
-        isNaN(
-          birthDate.getTime()
+        .replace(
+          /&/g,
+          "&amp;"
         )
-      ) {
 
-        return null;
-
-      }
-
-
-      const today =
-        new Date();
-
-
-      let age =
-        today.getFullYear() -
-        birthDate.getFullYear();
-
-
-      const monthDifference =
-        today.getMonth() -
-        birthDate.getMonth();
-
-
-      if (
-        monthDifference < 0 ||
-        (
-          monthDifference === 0 &&
-          today.getDate() <
-          birthDate.getDate()
+        .replace(
+          /</g,
+          "&lt;"
         )
-      ) {
 
-        age--;
+        .replace(
+          />/g,
+          "&gt;"
+        )
 
-      }
+        .replace(
+          /"/g,
+          "&quot;"
+        )
 
-
-      if (
-        age < 0 ||
-        age > 120
-      ) {
-
-        return null;
-
-      }
-
-
-      return age;
-
-    }
-
-
-    // ================================
-    // GET AGE
-    // ================================
-
-    let calculatedAge =
-      calculateAge(
-        customerDOB
-      );
-
-
-    // ================================
-    // FALLBACK SAVED AGE
-    // ================================
-
-    if (
-      calculatedAge === null
-    ) {
-
-      const savedAge =
-        localStorage.getItem(
-          "customerAge"
+        .replace(
+          /'/g,
+          "&#039;"
         );
 
-
-      if (
-        savedAge !== null &&
-        savedAge !== "" &&
-        !isNaN(
-          Number(savedAge)
-        )
-      ) {
-
-        calculatedAge =
-          Number(savedAge);
-
-      }
-
     }
 
 
-    // ================================
-    // DISPLAY CUSTOMER NAME
-    // ================================
 
-    document.getElementById(
-      "customerName"
-    ).textContent =
-      customerName ||
-      "Not Available";
+    window.openPage =
+      function(page) {
 
+        window.location.href =
+          page;
 
-    // ================================
-    // DISPLAY MOBILE
-    // ================================
-
-    document.getElementById(
-      "customerMobile"
-    ).textContent =
-      customerMobile ||
-      "Not Available";
+      };
 
 
-    // ================================
-    // DISPLAY EMAIL
-    // ================================
 
-    document.getElementById(
-      "customerEmail"
-    ).textContent =
-      customerEmail ||
-      "Not Available";
+    window.digitalSkills =
+      function() {
 
+        alert(
+          "Digital Skills section जल्द उपलब्ध होगा।"
+        );
 
-    // ================================
-    // DISPLAY AGE
-    // ================================
-
-    if (
-      calculatedAge !== null
-    ) {
-
-      document.getElementById(
-        "customerAge"
-      ).textContent =
-        calculatedAge +
-        " Years";
+      };
 
 
-      localStorage.setItem(
-        "customerAge",
-        calculatedAge
-      );
 
-    } else {
+    window.aiTools =
+      function() {
 
-      document.getElementById(
-        "customerAge"
-      ).textContent =
-        "Not Available";
+        alert(
+          "AI Tools section जल्द उपलब्ध होगा।"
+        );
 
-    }
+      };
 
 
-    // ================================
-    // WELCOME MESSAGE
-    // ================================
 
-    if (customerName) {
+    window.socialMedia =
+      function() {
 
-      document.getElementById(
-        "welcomeTitle"
-      ).textContent =
-        "Welcome, " +
-        customerName +
-        " 👋";
+        alert(
+          "Social Media section जल्द उपलब्ध होगा।"
+        );
 
-    }
+      };
 
 
-    // ================================
-    // OPEN CATEGORY
-    // ================================
-
-    function openCategory(
-      page
-    ) {
-
-      window.location.href =
-        page;
-
-    }
-
-
-    // ================================
-    // COMING SOON
-    // ================================
-
-    function comingSoon(
-      categoryName
-    ) {
-
-      alert(
-        categoryName +
-        " section अभी Coming Soon है।"
-      );
-
-    }
-
-
-    // ================================
-    // LOGOUT
-    // ================================
-
-    function logout() {
-
-      localStorage.removeItem(
-        "customerName"
-      );
-
-      localStorage.removeItem(
-        "customerMobile"
-      );
-
-      localStorage.removeItem(
-        "customerDOB"
-      );
-
-      localStorage.removeItem(
-        "customerDob"
-      );
-
-      localStorage.removeItem(
-        "customerAge"
-      );
-
-      localStorage.removeItem(
-        "customerEmail"
-      );
-
-      localStorage.removeItem(
-        "firebaseLoggedIn"
-      );
-
-
-      window.location.href =
-        "index.html";
-
-    }
-
-
-    // =================================================
-    // IMPORTANT:
-    // MODULE FUNCTIONS KO HTML onclick KE LIYE GLOBAL
-    // BANANA
-    // =================================================
-
-    window.openCategory =
-      openCategory;
-
-    window.comingSoon =
-      comingSoon;
 
     window.logout =
-      logout;
+      async function() {
+
+        try {
+
+          await signOut(auth);
+
+          window.location.href =
+            "index.html";
+
+        } catch (error) {
+
+          console.error(
+            "Logout error:",
+            error
+          );
+
+          alert(
+            "Logout में समस्या आई।"
+          );
+
+        }
+
+      };
 
 
   </script>
+
 
 </body>
 

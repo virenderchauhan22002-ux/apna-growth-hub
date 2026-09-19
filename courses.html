@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>Apna Growth Hub - Courses</title>
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #222;
+    }
+
+
+    .topbar {
+      background: #0d47a1;
+      color: white;
+      padding: 15px 20px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 10px;
+    }
+
+
+    .brand {
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+
+    .tagline {
+      font-size: 12px;
+      margin-top: 3px;
+      opacity: 0.9;
+    }
+
+
+    .back-btn {
+      background: white;
+      color: #0d47a1;
+
+      border: none;
+
+      padding: 9px 15px;
+
+      border-radius: 7px;
+
+      cursor: pointer;
+
+      font-weight: bold;
+    }
+
+
+    .container {
+      max-width: 1100px;
+
+      margin: auto;
+
+      padding: 25px 15px 40px;
+    }
+
+
+    .page-title {
+      color: #0d47a1;
+
+      font-size: 28px;
+
+      margin-bottom: 8px;
+    }
+
+
+    .page-subtitle {
+      color: #666;
+
+      margin-bottom: 25px;
+
+      line-height: 1.5;
+    }
+
+
+    .course-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(auto-fit, minmax(260px, 1fr));
+
+      gap: 20px;
+    }
+
+
+    .course-card {
+      background: white;
+
+      border-radius: 15px;
+
+      padding: 22px;
+
+      box-shadow:
+        0 4px 15px rgba(0,0,0,0.08);
+
+      border: 1px solid #e8edf5;
+
+      transition: 0.2s;
+    }
+
+
+    .course-card:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 7px 20px rgba(0,0,0,0.12);
+    }
+
+
+    .course-icon {
+      font-size: 42px;
+
+      margin-bottom: 12px;
+    }
+
+
+    .course-card h2 {
+      color: #0d47a1;
+
+      font-size: 21px;
+
+      margin-bottom: 10px;
+    }
+
+
+    .course-category {
+      display: inline-block;
+
+      background: #e8f0ff;
+
+      color: #0d47a1;
+
+      padding: 5px 9px;
+
+      border-radius: 6px;
+
+      font-size: 12px;
+
+      margin-bottom: 12px;
+    }
+
+
+    .course-description {
+      color: #555;
+
+      line-height: 1.5;
+
+      font-size: 14px;
+
+      margin-bottom: 15px;
+    }
+
+
+    .course-info {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      margin-bottom: 18px;
+    }
+
+
+    .info-item {
+      background: #f5f7fa;
+
+      padding: 7px 9px;
+
+      border-radius: 6px;
+
+      font-size: 12px;
+
+      color: #555;
+    }
+
+
+    .price {
+      font-weight: bold;
+
+      color: #198754;
+
+      margin-bottom: 15px;
+    }
+
+
+    .start-btn {
+      width: 100%;
+
+      background: #0d47a1;
+
+      color: white;
+
+      border: none;
+
+      padding: 11px;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      font-size: 15px;
+
+      font-weight: bold;
+    }
+
+
+    .start-btn:hover {
+      background: #083b88;
+    }
+
+
+    .message {
+      background: white;
+
+      padding: 25px;
+
+      border-radius: 12px;
+
+      text-align: center;
+
+      color: #666;
+
+      box-shadow:
+        0 4px 15px rgba(0,0,0,0.06);
+    }
+
+
+    .lesson-section {
+      display: none;
+    }
+
+
+    .course-detail-card {
+      background: white;
+
+      padding: 25px;
+
+      border-radius: 15px;
+
+      box-shadow:
+        0 4px 15px rgba(0,0,0,0.08);
+
+      margin-bottom: 20px;
+    }
+
+
+    .course-detail-card h1 {
+      color: #0d47a1;
+
+      margin-bottom: 10px;
+    }
+
+
+    .details-text {
+      color: #555;
+
+      line-height: 1.7;
+
+      white-space: pre-line;
+
+      margin-top: 15px;
+    }
+
+
+    .lesson-list {
+      display: grid;
+
+      gap: 10px;
+
+      margin-top: 20px;
+    }
+
+
+    .lesson-item {
+      background: #f5f8ff;
+
+      border: 1px solid #dfe8f7;
+
+      padding: 14px;
+
+      border-radius: 9px;
+
+      cursor: pointer;
+
+      font-weight: bold;
+
+      color: #0d47a1;
+    }
+
+
+    .lesson-item:hover {
+      background: #eaf1ff;
+    }
+
+
+    .lesson-content {
+      background: white;
+
+      padding: 25px;
+
+      border-radius: 15px;
+
+      box-shadow:
+        0 4px 15px rgba(0,0,0,0.08);
+    }
+
+
+    .lesson-content h2 {
+      color: #0d47a1;
+
+      margin-bottom: 15px;
+    }
+
+
+    .lesson-text {
+      color: #444;
+
+      line-height: 1.8;
+
+      white-space: pre-line;
+    }
+
+
+    .lesson-navigation {
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 10px;
+
+      margin-top: 20px;
+    }
+
+
+    .nav-btn {
+      background: #0d47a1;
+
+      color: white;
+
+      border: none;
+
+      padding: 10px 16px;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      font-weight: bold;
+    }
+
+
+    .nav-btn:disabled {
+      background: #aaa;
+
+      cursor: not-allowed;
+    }
+
+
+    .back-courses-btn {
+      background: #555;
+
+      color: white;
+
+      border: none;
+
+      padding: 10px 16px;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      font-weight: bold;
+
+      margin-bottom: 20px;
+    }
+
+
+    .footer {
+      text-align: center;
+
+      padding: 25px 15px;
+
+      color: #777;
+
+      font-size: 13px;
+    }
+
+
+    @media (max-width: 600px) {
+
+      .topbar {
+        padding: 13px 12px;
+      }
+
+
+      .brand {
+        font-size: 18px;
+      }
+
+
+      .back-btn {
+        padding: 8px 11px;
+
+        font-size: 12px;
+      }
+
+
+      .container {
+        padding:
+          20px 12px 30px;
+      }
+
+
+      .page-title {
+        font-size: 24px;
+      }
+
+
+      .course-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .course-detail-card,
+      .lesson-content {
+        padding: 18px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- TOP BAR -->
+
+  <div class="topbar">
+
+    <div>
+
+      <div class="brand">
+        Apna Growth Hub
+      </div>
+
+      <div class="tagline">
+        Learn • Grow • Succeed
+      </div>
+
+    </div>
+
+
+    <button
+      class="back-btn"
+      onclick="goDashboard()">
+
+      Dashboard
+
+    </button>
+
+  </div>
+
+
+
+  <!-- MAIN -->
+
+  <div class="container">
+
+
+    <!-- COURSE LIST -->
+
+    <div id="courseListSection">
+
+      <h1 class="page-title">
+        📚 Courses
+      </h1>
+
+
+      <p class="page-subtitle">
+        Useful courses सीखें और अपनी knowledge
+        और skills को बढ़ाएँ।
+      </p>
+
+
+      <div
+        id="courseGrid"
+        class="course-grid">
+
+        <div class="message">
+          Courses load हो रहे हैं...
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- COURSE DETAIL -->
+
+    <div
+      id="courseDetailSection"
+      class="lesson-section">
+
+
+      <button
+        class="back-courses-btn"
+        onclick="showCourses()">
+
+        ← सभी Courses
+
+      </button>
+
+
+      <div
+        id="courseDetailCard"
+        class="course-detail-card">
+      </div>
+
+
+      <div
+        id="lessonList"
+        class="lesson-list">
+      </div>
+
+    </div>
+
+
+
+    <!-- LESSON -->
+
+    <div
+      id="lessonSection"
+      class="lesson-section">
+
+
+      <button
+        class="back-courses-btn"
+        onclick="backToCourseDetail()">
+
+        ← Course पर वापस जाएँ
+
+      </button>
+
+
+      <div class="lesson-content">
+
+
+        <h2 id="lessonTitle">
+          Lesson
+        </h2>
+
+
+        <div
+          id="lessonText"
+          class="lesson-text">
+        </div>
+
+
+        <div class="lesson-navigation">
+
+
+          <button
+            id="previousBtn"
+            class="nav-btn"
+            onclick="previousLesson()">
+
+            ← Previous
+
+          </button>
+
+
+          <button
+            id="nextBtn"
+            class="nav-btn"
+            onclick="nextLesson()">
+
+            Next →
+
+          </button>
+
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- FOOTER -->
+
+  <div class="footer">
+
+    Apna Growth Hub — Learn • Grow • Succeed
+
+  </div>
+
+
+
+  <!-- FIREBASE -->
+
+  <script type="module">
+
+
+    import {
+      initializeApp
+    } from
+    "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+    import {
+      getFirestore,
+      collection,
+      getDocs,
+      query,
+      where,
+      orderBy
+    } from
+    "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+    const firebaseConfig = {
+
+      apiKey:
+        "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
+
+      authDomain:
+        "apna-growth-hub.firebaseapp.com",
+
+      projectId:
+        "apna-growth-hub",
+
+      storageBucket:
+        "apna-growth-hub.firebasestorage.app",
+
+      messagingSenderId:
+        "939001251123",
+
+      appId:
+        "1:939001251123:web:f2966004acaa64186e2a46",
+
+      measurementId:
+        "G-GZGCHL4XQ3"
+
+    };
+
+
+
+    const app =
+      initializeApp(firebaseConfig);
+
+
+    const db =
+      getFirestore(app);
+
+
+
+    let courses = [];
+
+    let selectedCourse = null;
+
+    let lessons = [];
+
+    let currentLessonIndex = 0;
+
+
+
+    function escapeHTML(value) {
+
+      if (value === null ||
+          value === undefined) {
+
+        return "";
+
+      }
+
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+
+    async function loadCourses() {
+
+      const courseGrid =
+        document.getElementById(
+          "courseGrid"
+        );
+
+
+      try {
+
+        const coursesRef =
+          collection(
+            db,
+            "courses"
+          );
+
+
+        const coursesQuery =
+          query(
+            coursesRef,
+            where(
+              "status",
+              "==",
+              "Active"
+            )
+          );
+
+
+        const snapshot =
+          await getDocs(
+            coursesQuery
+          );
+
+
+        courses = [];
+
+
+        snapshot.forEach(
+          (docSnap) => {
+
+            courses.push({
+
+              id: docSnap.id,
+
+              ...docSnap.data()
+
+            });
+
+          }
+        );
+
+
+        if (courses.length === 0) {
+
+          courseGrid.innerHTML = `
+
+            <div class="message">
+
+              अभी कोई active course
+              उपलब्ध नहीं है।
+
+            </div>
+
+          `;
+
+          return;
+
+        }
+
+
+        renderCourses();
+
+
+      } catch (error) {
+
+        console.error(
+          "Courses load error:",
+          error
+        );
+
+
+        courseGrid.innerHTML = `
+
+          <div class="message">
+
+            Courses load नहीं हो पाए।
+
+            <br><br>
+
+            कृपया थोड़ी देर बाद
+            फिर कोशिश करें।
+
+          </div>
+
+        `;
+
+      }
+
+    }
+
+
+
+    function renderCourses() {
+
+      const courseGrid =
+        document.getElementById(
+          "courseGrid"
+        );
+
+
+      courseGrid.innerHTML = "";
+
+
+      courses.forEach(
+        (course) => {
+
+
+          const card =
+            document.createElement(
+              "div"
+            );
+
+
+          card.className =
+            "course-card";
+
+
+          const access =
+            course.access || "Free";
+
+
+          const price =
+            course.price !== undefined
+              ? course.price
+              : 0;
+
+
+          card.innerHTML = `
+
+          <div class="course-icon">
+  📖
+</div>
+
+
+            <span class="course-category">
+
+              ${escapeHTML(
+                course.category ||
+                "General"
+              )}
+
+            </span>
+
+
+            <h2>
+
+              ${escapeHTML(
+                course.name ||
+                "Course"
+              )}
+
+            </h2>
+
+
+            <div class="course-description">
+
+              ${escapeHTML(
+                course.shortDescription ||
+                "इस course में useful knowledge और skills सीखें।"
+              )}
+
+            </div>
+
+
+            <div class="course-info">
+
+              <div class="info-item">
+
+                ⏱️
+                ${escapeHTML(
+                  course.duration ||
+                  "-"
+                )}
+
+              </div>
+
+
+              <div class="info-item">
+
+                📖
+                ${escapeHTML(
+                  course.lessons ||
+                  "0"
+                )}
+                Lessons
+
+              </div>
+
+
+              <div class="info-item">
+
+                🔓
+                ${escapeHTML(
+                  access
+                )}
+
+              </div>
+
+            </div>
+
+
+            <div class="price">
+
+              ${
+                access === "Free"
+                  ? "Free"
+                  : "₹" + price
+              }
+
+            </div>
+
+
+            <button
+              class="start-btn"
+              onclick="openCourse('${course.id}')">
+
+              Start Course
+
+            </button>
+
+          `;
+
+
+          courseGrid.appendChild(
+            card
+          );
+
+        }
+      );
+
+    }
+
+
+
+    window.openCourse =
+      async function(courseId) {
+
+        selectedCourse =
+          courses.find(
+            course =>
+              course.id === courseId
+          );
+
+
+        if (!selectedCourse) {
+
+          return;
+
+        }
+
+
+        document.getElementById(
+          "courseListSection"
+        ).style.display = "none";
+
+
+        document.getElementById(
+          "lessonSection"
+        ).style.display = "none";
+
+
+        document.getElementById(
+          "courseDetailSection"
+        ).style.display = "block";
+
+
+        const detailCard =
+          document.getElementById(
+            "courseDetailCard"
+          );
+
+
+        detailCard.innerHTML = `
+
+          <h1>
+
+            ${escapeHTML(
+              selectedCourse.name
+            )}
+
+          </h1>
+
+
+          <p class="details-text">
+
+            ${escapeHTML(
+              selectedCourse.details ||
+              selectedCourse.shortDescription ||
+              "Course details उपलब्ध नहीं हैं।"
+            )}
+
+          </p>
+
+        `;
+
+
+        await loadLessons(
+          selectedCourse.id
+        );
+
+      };
+
+
+
+    async function loadLessons(courseId) {
+
+      const lessonList =
+        document.getElementById(
+          "lessonList"
+        );
+
+
+      lessonList.innerHTML = `
+
+        <div class="message">
+
+          Lessons load हो रहे हैं...
+
+        </div>
+
+      `;
+
+
+      try {
+
+        const lessonsRef =
+          collection(
+            db,
+            "courses",
+            courseId,
+            "lessons"
+          );
+
+
+        const lessonsQuery =
+          query(
+            lessonsRef,
+            orderBy(
+              "order",
+              "asc"
+            )
+          );
+
+
+        const snapshot =
+          await getDocs(
+            lessonsQuery
+          );
+
+
+        lessons = [];
+
+
+        snapshot.forEach(
+          (docSnap) => {
+
+            lessons.push({
+
+              id: docSnap.id,
+
+              ...docSnap.data()
+
+            });
+
+          }
+        );
+
+
+        lessonList.innerHTML = "";
+
+
+        if (lessons.length === 0) {
+
+          lessonList.innerHTML = `
+
+            <div class="message">
+
+              इस course में अभी
+              कोई lesson उपलब्ध नहीं है।
+
+            </div>
+
+          `;
+
+          return;
+
+        }
+
+
+        lessons.forEach(
+          (lesson, index) => {
+
+
+            const item =
+              document.createElement(
+                "div"
+              );
+
+
+            item.className =
+              "lesson-item";
+
+
+            item.textContent =
+              (index + 1) +
+              ". " +
+              (
+                lesson.title ||
+                "Lesson " +
+                (index + 1)
+              );
+
+
+            item.onclick =
+              function() {
+
+                openLesson(index);
+
+              };
+
+
+            lessonList.appendChild(
+              item
+            );
+
+          }
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "Lessons load error:",
+          error
+        );
+
+
+        lessonList.innerHTML = `
+
+          <div class="message">
+
+            Lessons load नहीं हो पाए।
+
+            <br><br>
+
+            कृपया फिर कोशिश करें।
+
+          </div>
+
+        `;
+
+      }
+
+    }
+
+
+
+    function openLesson(index) {
+
+      if (
+        index < 0 ||
+        index >= lessons.length
+      ) {
+
+        return;
+
+      }
+
+
+      currentLessonIndex =
+        index;
+
+
+      const lesson =
+        lessons[index];
+
+
+      document.getElementById(
+        "courseDetailSection"
+      ).style.display = "none";
+
+
+      document.getElementById(
+        "lessonSection"
+      ).style.display = "block";
+
+
+      document.getElementById(
+        "lessonTitle"
+      ).textContent =
+        lesson.title ||
+        "Lesson";
+
+
+      document.getElementById(
+        "lessonText"
+      ).textContent =
+        lesson.content ||
+        lesson.description ||
+        "इस lesson की content उपलब्ध नहीं है।";
+
+
+      updateLessonButtons();
+
+    }
+
+
+
+    function updateLessonButtons() {
+
+      document.getElementById(
+        "previousBtn"
+      ).disabled =
+        currentLessonIndex === 0;
+
+
+      document.getElementById(
+        "nextBtn"
+      ).disabled =
+        currentLessonIndex ===
+        lessons.length - 1;
+
+    }
+
+
+
+    window.previousLesson =
+      function() {
+
+        if (
+          currentLessonIndex > 0
+        ) {
+
+          openLesson(
+            currentLessonIndex - 1
+          );
+
+        }
+
+      };
+
+
+
+    window.nextLesson =
+      function() {
+
+        if (
+          currentLessonIndex <
+          lessons.length - 1
+        ) {
+
+          openLesson(
+            currentLessonIndex + 1
+          );
+
+        }
+
+      };
+
+
+
+    window.showCourses =
+      function() {
+
+        document.getElementById(
+          "courseDetailSection"
+        ).style.display = "none";
+
+
+        document.getElementById(
+          "lessonSection"
+        ).style.display = "none";
+
+
+        document.getElementById(
+          "courseListSection"
+        ).style.display = "block";
+
+      };
+
+
+
+    window.backToCourseDetail =
+      function() {
+
+        document.getElementById(
+          "lessonSection"
+        ).style.display = "none";
+
+
+        document.getElementById(
+          "courseDetailSection"
+        ).style.display = "block";
+
+      };
+
+
+
+    window.goDashboard =
+      function() {
+
+        window.location.href =
+          "dashboard.html";
+
+      };
+
+
+
+    loadCourses();
+
+
+  </script>
+
+
+</body>
+
+</html>
