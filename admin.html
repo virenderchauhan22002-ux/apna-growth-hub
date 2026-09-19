@@ -570,69 +570,32 @@
 
       <!-- INQUIRIES -->
       <section id="inquiries" class="section">
-
         <div class="content-card">
-
           <h2>Customer Inquiries</h2>
-
           <div class="search-box">
-
-            <input
-              type="text"
-              id="searchInput"
-              placeholder="Search name, mobile, email, plan..."
-            >
-
+            <input type="text" id="searchInput" placeholder="Search name, mobile, email, plan...">
             <select id="statusFilter" class="filter-select">
-
-              <option value="All">
-                All Status
-              </option>
-
-              <option value="Pending">
-                Pending
-              </option>
-
-              <option value="Contacted">
-                Contacted
-              </option>
-
-              <option value="Completed">
-                Completed
-              </option>
-
+              <option value="All">All Status</option>
+              <option value="Pending">Pending</option>
+              <option value="Contacted">Contacted</option>
+              <option value="Completed">Completed</option>
             </select>
-
           </div>
-
-          <div id="inquiryList">
-
-            <div class="empty">
-              Loading inquiries...
-            </div>
-
-          </div>
-
+          <div id="inquiryList"><div class="empty">Loading inquiries...</div></div>
         </div>
-
       </section>
-
 
       <!-- CUSTOMERS -->
       <section id="customers" class="section">
-
         <div class="content-card">
-
           <h2>Customers</h2>
-
-          <p>
-            Customer management section future Firebase phase mein connect hoga.
-          </p>
-
+          <div class="search-box">
+            <input type="text" id="customerSearchInput" placeholder="Search customer name, mobile, email...">
+            <button class="btn btn-light" id="refreshCustomersBtn">🔄 Refresh</button>
+          </div>
+          <div id="customerList"><div class="empty">Customers loading...</div></div>
         </div>
-
       </section>
-
 
       <!-- LIC MANAGEMENT -->
       <section id="lic" class="section">
@@ -699,6 +662,10 @@
 
                 <option value="Retirement">
                   Retirement
+                </option>
+
+                <option value="Whole Life">
+                  Whole Life
                 </option>
 
                 <option value="Other">
@@ -769,6 +736,29 @@
 
             </div>
 
+            <div class="input-group">
+              <label for="licPlanNumber">Plan Number</label>
+              <input type="text" id="licPlanNumber" placeholder="Example: 745">
+            </div>
+
+            <div class="input-group">
+              <label for="licUin">UIN</label>
+              <input type="text" id="licUin" placeholder="Example: 512N312V03">
+            </div>
+
+            <div class="input-group">
+              <label for="licOfficialLink">Official LIC Source Link</label>
+              <input type="url" id="licOfficialLink" placeholder="https://licindia.in/...">
+            </div>
+
+            <div class="input-group">
+              <label for="licActive">Plan Status</label>
+              <select id="licActive">
+                <option value="true">Active — Customer ko show hoga</option>
+                <option value="false">Hidden — Customer ko show nahi hoga</option>
+              </select>
+            </div>
+
 
             <button
               class="btn btn-success"
@@ -792,10 +782,25 @@
 
 
           <!-- PLANS LIST -->
-          <div
-            id="licPlansList"
-            style="margin-top:20px;"
-          >
+          <div class="search-box" style="margin-top:20px;">
+            <input type="text" id="licSearchInput" placeholder="Search LIC plan...">
+            <select id="licCategoryFilter" class="filter-select">
+              <option value="All">All Categories</option>
+              <option value="Money Back">Money Back</option>
+              <option value="Protection">Protection</option>
+              <option value="Child Future">Child Future</option>
+              <option value="Retirement">Retirement</option>
+              <option value="Whole Life">Whole Life</option>
+              <option value="Other">Other</option>
+            </select>
+            <select id="licStatusFilter" class="filter-select">
+              <option value="All">All Status</option>
+              <option value="Active">Active</option>
+              <option value="Hidden">Hidden</option>
+            </select>
+          </div>
+
+          <div id="licPlansList" style="margin-top:20px;">
 
             <div class="empty">
               LIC Plans loading...
@@ -860,13 +865,72 @@
       <section id="courses" class="section">
 
         <div class="content-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+            <div>
+              <h2>Course Management</h2>
+              <p>Course, lessons aur study files yahan manage karo.</p>
+            </div>
+            <button class="btn btn-primary" id="addCourseBtn">➕ Add Course</button>
+          </div>
+        </div>
 
-          <h2>Course Management</h2>
+        <div id="courseForm" class="content-card hidden" style="margin-top:16px;">
+          <h2 id="courseFormTitle">Add New Course</h2>
+          <div class="feature-grid" style="margin-top:15px;">
+            <div class="input-group"><label for="courseName">Course Name *</label><input id="courseName" type="text" placeholder="e.g. LIC Life Insurance Basics"></div>
+            <div class="input-group"><label for="courseCategory">Category *</label><select id="courseCategory"><option value="LIC">LIC</option><option value="Digital Skills">Digital Skills</option><option value="AI Tools">AI Tools</option><option value="Social Media">Social Media</option><option value="Other">Other</option></select></div>
+            <div class="input-group"><label for="courseInstructor">Instructor Name</label><input id="courseInstructor" type="text" placeholder="Instructor name"></div>
+            <div class="input-group"><label for="courseDuration">Course Duration</label><input id="courseDuration" type="text" placeholder="e.g. 60 Minutes"></div>
+            <div class="input-group"><label for="courseLessons">Number of Lessons</label><input id="courseLessons" type="number" min="0" placeholder="e.g. 5"></div>
+            <div class="input-group"><label for="courseAccess">Access</label><select id="courseAccess"><option value="Free">Free</option><option value="Paid">Paid</option></select></div>
+            <div class="input-group"><label for="coursePrice">Price (₹)</label><input id="coursePrice" type="number" min="0" value="0" placeholder="0"></div>
+            <div class="input-group"><label for="courseStatus">Status</label><select id="courseStatus"><option value="Active">Active</option><option value="Hidden">Hidden</option></select></div>
+          </div>
+          <div class="input-group"><label for="courseShortDescription">Short Description *</label><textarea id="courseShortDescription" rows="3" placeholder="Course ka short description"></textarea></div>
+          <div class="input-group"><label for="courseDetails">Course Details</label><textarea id="courseDetails" rows="6" placeholder="Course mein kya-kya sikhaya jayega"></textarea></div>
+          <div class="input-group">
+            <label for="courseThumbnail">Course Thumbnail (optional)</label>
+            <input id="courseThumbnail" type="file" accept="image/*">
+            <small style="display:block;color:#64748b;margin-top:6px;">Jab thumbnail ready ho tab yahan select karke upload kar sakte ho.</small>
+          </div>
+          <div id="courseMessage" class="message"></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;"><button class="btn btn-primary" id="saveCourseBtn">💾 Save Course</button><button class="btn btn-light" id="cancelCourseBtn">Cancel</button></div>
+        </div>
 
-          <p>
-            Paid courses future mein yahan manage honge.
-          </p>
+        <div id="lessonManager" class="content-card hidden" style="margin-top:16px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+            <div>
+              <h2 id="lessonManagerTitle">Lesson Management</h2>
+              <p id="lessonManagerCourseName" style="margin-top:4px;color:#64748b;"></p>
+            </div>
+            <button class="btn btn-light" id="closeLessonManagerBtn">✖ Close</button>
+          </div>
 
+          <div class="content-card" style="margin-top:16px;background:#f8fafc;">
+            <h3 id="lessonFormTitle">Add New Lesson</h3>
+            <div class="feature-grid" style="margin-top:15px;">
+              <div class="input-group"><label for="lessonTitle">Lesson Title *</label><input id="lessonTitle" type="text" placeholder="e.g. Life Insurance kya hai?"></div>
+              <div class="input-group"><label for="lessonOrder">Lesson Number</label><input id="lessonOrder" type="number" min="1" value="1"></div>
+              <div class="input-group"><label for="lessonStatus">Status</label><select id="lessonStatus"><option value="Active">Active</option><option value="Hidden">Hidden</option></select></div>
+            </div>
+            <div class="input-group"><label for="lessonContent">Lesson Content</label><textarea id="lessonContent" rows="7" placeholder="Lesson ka text/content yahan likh sakte ho."></textarea></div>
+            <div class="feature-grid">
+              <div class="input-group"><label for="lessonPdf">PDF / Study Material</label><input id="lessonPdf" type="file" accept="application/pdf,.pdf"></div>
+              <div class="input-group"><label for="lessonVideo">Video</label><input id="lessonVideo" type="file" accept="video/*"></div>
+            </div>
+            <div id="lessonMessage" class="message"></div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;"><button class="btn btn-primary" id="saveLessonBtn">💾 Save Lesson</button><button class="btn btn-light" id="cancelLessonBtn">Cancel</button></div>
+          </div>
+
+          <div style="margin-top:18px;">
+            <h3>Saved Lessons</h3>
+            <div id="lessonsList" style="margin-top:12px;"><div class="empty">Lessons loading...</div></div>
+          </div>
+        </div>
+
+        <div class="content-card" style="margin-top:16px;">
+          <h2>Saved Courses</h2>
+          <div id="coursesList" style="margin-top:15px;"><div class="empty">Courses loading...</div></div>
         </div>
 
       </section>
@@ -917,6 +981,15 @@
     } from
       "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+    import {
+      getStorage,
+      ref,
+      uploadBytes,
+      getDownloadURL,
+      deleteObject
+    } from
+      "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
 
     // FIREBASE CONFIG
     const firebaseConfig = {
@@ -959,6 +1032,9 @@
 
     const db =
       getFirestore(app);
+
+    const storage =
+      getStorage(app);
 
 
     // ELEMENTS
@@ -1028,6 +1104,7 @@
     let allInquiries = [];
 
     let editingPlanId = null;
+    let editingCourseId = null;
 
 
     // LOGIN
@@ -1384,94 +1461,88 @@
 
     // DISPLAY INQUIRIES
     function displayInquiries(list) {
-
       if (!list.length) {
-
-        inquiryList.innerHTML =
-          '<div class="empty">No inquiries found.</div>';
-
+        inquiryList.innerHTML = '<div class="empty">No inquiries found.</div>';
         return;
-
       }
-
 
       inquiryList.innerHTML = "";
 
-
       list.forEach((item) => {
+        const card = document.createElement("div");
+        card.className = "inquiry-card";
 
-        const card =
-          document.createElement("div");
+        const status = item.status || "Pending";
+        const mobile = item.mobile || item.phone || "";
+        const email = item.email || "";
+        const name = item.name || item.customerName || "Not available";
+        const plan = item.plan || item.selectedPlan || "Not selected";
+        const question = item.question || item.message || "No question";
 
-
-        card.className =
-          "inquiry-card";
-
-
-        const status =
-          item.status ||
-          "Pending";
-
+        const waText = encodeURIComponent(
+          `Namaste ${name}, Apna Growth Hub se aapki LIC inquiry ke regarding contact kar rahe hain.`
+        );
+        const waLink = mobile ? `https://wa.me/${String(mobile).replace(/\D/g, '')}?text=${waText}` : "";
+        const callLink = mobile ? `tel:${String(mobile).replace(/[^0-9+]/g, '')}` : "";
 
         card.innerHTML = `
-
-          <h3>
-            ${escapeHTML(
-              item.name ||
-              item.customerName ||
-              "Not available"
-            )}
-          </h3>
-
-          <p>
-            <strong>📱 Mobile:</strong>
-            ${escapeHTML(
-              item.mobile ||
-              item.phone ||
-              "Not available"
-            )}
-          </p>
-
-          <p>
-            <strong>📧 Email:</strong>
-            ${escapeHTML(
-              item.email ||
-              "Not available"
-            )}
-          </p>
-
-          <p>
-            <strong>🛡️ Plan:</strong>
-            ${escapeHTML(
-              item.plan ||
-              item.selectedPlan ||
-              "Not selected"
-            )}
-          </p>
-
-          <p>
-            <strong>❓ Question:</strong>
-            ${escapeHTML(
-              item.question ||
-              item.message ||
-              "No question"
-            )}
-          </p>
-
-          <p>
-            <strong>📌 Status:</strong>
-            ${escapeHTML(status)}
-          </p>
-
+          <h3>${escapeHTML(name)}</h3>
+          <p><strong>📱 Mobile:</strong> ${escapeHTML(mobile || "Not available")}</p>
+          <p><strong>📧 Email:</strong> ${escapeHTML(email || "Not available")}</p>
+          <p><strong>🛡️ Plan:</strong> ${escapeHTML(plan)}</p>
+          <p><strong>❓ Question:</strong> ${escapeHTML(question)}</p>
+          <p><strong>📅 Date:</strong> ${escapeHTML(item.createdAt || item.date || "Not available")}</p>
+          <p><strong>📌 Status:</strong></p>
+          <select class="filter-select inquiry-status" style="margin-bottom:10px;">
+            <option value="Pending" ${status === "Pending" ? "selected" : ""}>Pending</option>
+            <option value="Contacted" ${status === "Contacted" ? "selected" : ""}>Contacted</option>
+            <option value="Completed" ${status === "Completed" ? "selected" : ""}>Completed</option>
+          </select>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-primary save-inquiry-status">💾 Save Status</button>
+            ${callLink ? `<a class="btn btn-light" href="${callLink}">📞 Call</a>` : ""}
+            ${waLink ? `<a class="btn btn-success" href="${waLink}" target="_blank" rel="noopener">💬 WhatsApp</a>` : ""}
+            <button class="btn btn-danger delete-inquiry-btn">🗑️ Delete</button>
+          </div>
         `;
 
+        const statusSelect = card.querySelector(".inquiry-status");
+        card.querySelector(".save-inquiry-status").addEventListener("click", async () => {
+          await updateInquiryStatus(item.id, statusSelect.value);
+        });
+        card.querySelector(".delete-inquiry-btn").addEventListener("click", async () => {
+          await deleteInquiry(item.id, name);
+        });
 
         inquiryList.appendChild(card);
-
       });
-
     }
 
+    async function updateInquiryStatus(inquiryId, newStatus) {
+      try {
+        await updateDoc(doc(db, "inquiries", inquiryId), {
+          status: newStatus,
+          updatedAt: new Date().toISOString()
+        });
+        await loadInquiries();
+        alert("Inquiry status updated successfully.");
+      } catch (error) {
+        console.error(error);
+        alert("Status update failed: " + error.message);
+      }
+    }
+
+    async function deleteInquiry(inquiryId, customerName) {
+      if (!confirm(`Kya aap ${customerName} ki inquiry delete karna chahte ho?`)) return;
+      try {
+        await deleteDoc(doc(db, "inquiries", inquiryId));
+        await loadInquiries();
+        alert("Inquiry delete ho gayi.");
+      } catch (error) {
+        console.error(error);
+        alert("Inquiry delete failed: " + error.message);
+      }
+    }
 
     searchInput.addEventListener(
       "input",
@@ -1486,613 +1557,624 @@
 
 
     // OPEN LIC FORM FOR NEW PLAN
-    addLicPlanBtn.addEventListener(
-      "click",
-      () => {
+    addLicPlanBtn.addEventListener("click", () => {
+      editingPlanId = null;
+      licFormTitle.textContent = "Add New LIC Plan";
+      saveLicPlanBtn.textContent = "💾 Save LIC Plan";
+      ["licPlanName","licMinAge","licMaxAge","licBenefits","licDetails","licPlanNumber","licUin","licOfficialLink"].forEach(id => document.getElementById(id).value = "");
+      document.getElementById("licPlanCategory").value = "Money Back";
+      document.getElementById("licActive").value = "true";
+      licPlanMessage.textContent = "";
+      licPlanForm.classList.remove("hidden");
+      licPlanForm.scrollIntoView({behavior:"smooth", block:"start"});
+    });
 
-        editingPlanId = null;
+    cancelLicPlanBtn.addEventListener("click", () => {
+      editingPlanId = null;
+      licPlanForm.classList.add("hidden");
+      licPlanMessage.textContent = "";
+      licFormTitle.textContent = "Add New LIC Plan";
+      saveLicPlanBtn.textContent = "💾 Save LIC Plan";
+    });
 
+    saveLicPlanBtn.addEventListener("click", async () => {
+      const planName = document.getElementById("licPlanName").value.trim();
+      const category = document.getElementById("licPlanCategory").value;
+      const minAge = document.getElementById("licMinAge").value;
+      const maxAge = document.getElementById("licMaxAge").value;
+      const benefits = document.getElementById("licBenefits").value.trim();
+      const details = document.getElementById("licDetails").value.trim();
+      const planNumber = document.getElementById("licPlanNumber").value.trim();
+      const uin = document.getElementById("licUin").value.trim();
+      const officialLink = document.getElementById("licOfficialLink").value.trim();
+      const active = document.getElementById("licActive").value === "true";
 
-        licFormTitle.textContent =
-          "Add New LIC Plan";
-
-
-        saveLicPlanBtn.textContent =
-          "💾 Save LIC Plan";
-
-
-        document
-          .getElementById("licPlanName")
-          .value = "";
-
-
-        document
-          .getElementById("licPlanCategory")
-          .value = "Money Back";
-
-
-        document
-          .getElementById("licMinAge")
-          .value = "";
-
-
-        document
-          .getElementById("licMaxAge")
-          .value = "";
-
-
-        document
-          .getElementById("licBenefits")
-          .value = "";
-
-
-        document
-          .getElementById("licDetails")
-          .value = "";
-
-
-        licPlanMessage.textContent = "";
-
-
-        licPlanForm.classList.remove(
-          "hidden"
-        );
-
-
-        licPlanForm.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-
+      if (!planName || minAge === "" || maxAge === "" || !benefits || !details) {
+        licPlanMessage.style.color = "#dc2626";
+        licPlanMessage.textContent = "Please sabhi required details fill karo.";
+        return;
       }
-    );
-
-
-    // CANCEL FORM
-    cancelLicPlanBtn.addEventListener(
-      "click",
-      () => {
-
-        editingPlanId = null;
-
-        licPlanForm.classList.add(
-          "hidden"
-        );
-
-        licPlanMessage.textContent = "";
-
-        licFormTitle.textContent =
-          "Add New LIC Plan";
-
-        saveLicPlanBtn.textContent =
-          "💾 Save LIC Plan";
-
+      if (Number(minAge) > Number(maxAge)) {
+        licPlanMessage.style.color = "#dc2626";
+        licPlanMessage.textContent = "Minimum age maximum age se kam honi chahiye.";
+        return;
       }
-    );
-
-
-    // SAVE OR UPDATE LIC PLAN
-    saveLicPlanBtn.addEventListener(
-      "click",
-      async () => {
-
-        const planName =
-          document
-            .getElementById("licPlanName")
-            .value
-            .trim();
-
-
-        const category =
-          document
-            .getElementById("licPlanCategory")
-            .value;
-
-
-        const minAge =
-          document
-            .getElementById("licMinAge")
-            .value;
-
-
-        const maxAge =
-          document
-            .getElementById("licMaxAge")
-            .value;
-
-
-        const benefits =
-          document
-            .getElementById("licBenefits")
-            .value
-            .trim();
-
-
-        const details =
-          document
-            .getElementById("licDetails")
-            .value
-            .trim();
-
-
-        if (
-          !planName ||
-          minAge === "" ||
-          maxAge === "" ||
-          !benefits ||
-          !details
-        ) {
-
-          licPlanMessage.style.color =
-            "#dc2626";
-
-          licPlanMessage.textContent =
-            "Please sabhi details fill karo.";
-
-          return;
-
-        }
-
-
-        if (
-          Number(minAge) >
-          Number(maxAge)
-        ) {
-
-          licPlanMessage.style.color =
-            "#dc2626";
-
-          licPlanMessage.textContent =
-            "Minimum age maximum age se kam honi chahiye.";
-
-          return;
-
-        }
-
-
-        licPlanMessage.style.color =
-          "#2563eb";
-
-        licPlanMessage.textContent =
-          "Saving plan...";
-
-
-        const planData = {
-
-          name: planName,
-
-          category: category,
-
-          minAge: Number(minAge),
-
-          maxAge: Number(maxAge),
-
-          benefits: benefits,
-
-          details: details,
-
-          updatedAt:
-            new Date().toISOString()
-
-        };
-
-
-        try {
-
-          if (editingPlanId) {
-
-            await updateDoc(
-
-              doc(
-                db,
-                "licPlans",
-                editingPlanId
-              ),
-
-              planData
-
-            );
-
-
-            alert(
-              "LIC Plan successfully update ho gaya."
-            );
-
-          } else {
-
-            await addDoc(
-
-              collection(
-                db,
-                "licPlans"
-              ),
-
-              {
-                ...planData,
-
-                createdAt:
-                  new Date().toISOString()
-              }
-
-            );
-
-
-            alert(
-              "New LIC Plan save ho gaya."
-            );
-
-          }
-
-
-          editingPlanId = null;
-
-
-          document
-            .getElementById("licPlanName")
-            .value = "";
-
-
-          document
-            .getElementById("licPlanCategory")
-            .value = "Money Back";
-
-
-          document
-            .getElementById("licMinAge")
-            .value = "";
-
-
-          document
-            .getElementById("licMaxAge")
-            .value = "";
-
-
-          document
-            .getElementById("licBenefits")
-            .value = "";
-
-
-          document
-            .getElementById("licDetails")
-            .value = "";
-
-
-          licFormTitle.textContent =
-            "Add New LIC Plan";
-
-
-          saveLicPlanBtn.textContent =
-            "💾 Save LIC Plan";
-
-
-          licPlanMessage.textContent = "";
-
-
-          licPlanForm.classList.add(
-            "hidden"
-          );
-
-
-          await showLicPlans();
-
-
-          updateOverview();
-
-        } catch (error) {
-
-          licPlanMessage.style.color =
-            "#dc2626";
-
-          licPlanMessage.textContent =
-            "Firebase save failed: " +
-            error.message;
-
-        }
-
+      if (officialLink && !/^https?:\/\//i.test(officialLink)) {
+        licPlanMessage.style.color = "#dc2626";
+        licPlanMessage.textContent = "Official link https:// se start hona chahiye.";
+        return;
       }
-    );
 
+      licPlanMessage.style.color = "#2563eb";
+      licPlanMessage.textContent = "Saving plan...";
 
-    // SHOW LIC PLANS
-    async function showLicPlans() {
-
-      licPlansList.innerHTML =
-        '<div class="empty">LIC Plans loading...</div>';
-
+      const planData = {
+        name: planName, category, minAge:Number(minAge), maxAge:Number(maxAge), benefits, details,
+        planNumber, uin, officialLink, active,
+        updatedAt: new Date().toISOString()
+      };
 
       try {
-
-        const querySnapshot =
-          await getDocs(
-            collection(db, "licPlans")
-          );
-
-
-        licPlansList.innerHTML = "";
-
-
-        totalLicPlansCount.textContent =
-          querySnapshot.size;
-
-
-        if (querySnapshot.empty) {
-
-          licPlansList.innerHTML =
-            '<div class="empty">Abhi koi LIC Plan saved nahi hai.</div>';
-
-          return;
-
+        if (editingPlanId) {
+          await updateDoc(doc(db, "licPlans", editingPlanId), planData);
+          alert("LIC Plan successfully update ho gaya.");
+        } else {
+          await addDoc(collection(db, "licPlans"), {...planData, createdAt:new Date().toISOString()});
+          alert("New LIC Plan save ho gaya.");
         }
 
-
-        querySnapshot.forEach(
-          (docSnap) => {
-
-            const plan =
-              docSnap.data();
-
-
-            const planId =
-              docSnap.id;
-
-
-            const card =
-              document.createElement("div");
-
-
-            card.className =
-              "plan-card";
-
-
-            card.innerHTML = `
-
-              <h3>
-                ${escapeHTML(
-                  plan.name || ""
-                )}
-              </h3>
-
-              <p>
-                <strong>Category:</strong>
-                ${escapeHTML(
-                  plan.category || ""
-                )}
-              </p>
-
-              <p>
-                <strong>Age:</strong>
-                ${plan.minAge} -
-                ${plan.maxAge}
-                years
-              </p>
-
-              <p>
-                <strong>Benefits:</strong>
-                ${escapeHTML(
-                  plan.benefits || ""
-                )}
-              </p>
-
-              <p>
-                <strong>Details:</strong>
-                ${escapeHTML(
-                  plan.details || ""
-                )}
-              </p>
-
-              <div class="plan-actions">
-
-                <button
-                  class="btn btn-primary edit-plan-btn"
-                >
-                  ✏️ Edit Plan
-                </button>
-
-                <button
-                  class="btn btn-danger delete-plan-btn"
-                >
-                  🗑️ Delete Plan
-                </button>
-
-              </div>
-
-            `;
-
-
-            const editButton =
-              card.querySelector(
-                ".edit-plan-btn"
-              );
-
-
-            editButton.addEventListener(
-              "click",
-              () => {
-
-                editLicPlan(
-                  planId,
-                  plan
-                );
-
-              }
-            );
-
-
-            const deleteButton =
-              card.querySelector(
-                ".delete-plan-btn"
-              );
-
-
-            deleteButton.addEventListener(
-              "click",
-              async () => {
-
-                await deleteLicPlan(
-                  planId,
-                  plan.name ||
-                  "this plan"
-                );
-
-              }
-            );
-
-
-            licPlansList.appendChild(
-              card
-            );
-
-          }
-        );
-
-
+        editingPlanId = null;
+        ["licPlanName","licMinAge","licMaxAge","licBenefits","licDetails","licPlanNumber","licUin","licOfficialLink"].forEach(id => document.getElementById(id).value = "");
+        document.getElementById("licPlanCategory").value = "Money Back";
+        document.getElementById("licActive").value = "true";
+        licFormTitle.textContent = "Add New LIC Plan";
+        saveLicPlanBtn.textContent = "💾 Save LIC Plan";
+        licPlanMessage.textContent = "";
+        licPlanForm.classList.add("hidden");
+        await showLicPlans();
+        updateOverview();
       } catch (error) {
-
-        licPlansList.innerHTML =
-          '<div class="empty">Plans load nahi ho rahe: ' +
-          escapeHTML(error.message) +
-          '</div>';
-
+        licPlanMessage.style.color = "#dc2626";
+        licPlanMessage.textContent = "Firebase save failed: " + error.message;
       }
+    });
 
+    let allLicPlans = [];
+
+    async function showLicPlans() {
+      licPlansList.innerHTML = '<div class="empty">LIC Plans loading...</div>';
+      try {
+        const querySnapshot = await getDocs(collection(db, "licPlans"));
+        allLicPlans = [];
+        querySnapshot.forEach(docSnap => allLicPlans.push({id:docSnap.id, ...docSnap.data()}));
+        totalLicPlansCount.textContent = allLicPlans.length;
+        renderLicPlans();
+      } catch (error) {
+        licPlansList.innerHTML = '<div class="empty">Plans load nahi ho rahe: ' + escapeHTML(error.message) + '</div>';
+      }
     }
 
+    function renderLicPlans() {
+      const search = (document.getElementById("licSearchInput")?.value || "").trim().toLowerCase();
+      const category = document.getElementById("licCategoryFilter")?.value || "All";
+      const status = document.getElementById("licStatusFilter")?.value || "All";
 
-    // EDIT LIC PLAN
-    function editLicPlan(
-      planId,
-      plan
-    ) {
-
-      editingPlanId =
-        planId;
-
-
-      document
-        .getElementById("licPlanName")
-        .value =
-          plan.name || "";
-
-
-      document
-        .getElementById("licPlanCategory")
-        .value =
-          plan.category ||
-          "Money Back";
-
-
-      document
-        .getElementById("licMinAge")
-        .value =
-          plan.minAge ?? "";
-
-
-      document
-        .getElementById("licMaxAge")
-        .value =
-          plan.maxAge ?? "";
-
-
-      document
-        .getElementById("licBenefits")
-        .value =
-          plan.benefits || "";
-
-
-      document
-        .getElementById("licDetails")
-        .value =
-          plan.details || "";
-
-
-      licFormTitle.textContent =
-        "Edit LIC Plan";
-
-
-      saveLicPlanBtn.textContent =
-        "✏️ Update LIC Plan";
-
-
-      licPlanMessage.style.color =
-        "#2563eb";
-
-
-      licPlanMessage.textContent =
-        "Aap plan edit kar rahe ho.";
-
-
-      licPlanForm.classList.remove(
-        "hidden"
-      );
-
-
-      licPlanForm.scrollIntoView({
-
-        behavior: "smooth",
-
-        block: "start"
-
+      const filtered = allLicPlans.filter(plan => {
+        const text = `${plan.name||""} ${plan.category||""} ${plan.planNumber||""} ${plan.uin||""}`.toLowerCase();
+        const active = plan.active !== false;
+        return (!search || text.includes(search)) &&
+          (category === "All" || plan.category === category) &&
+          (status === "All" || (status === "Active" ? active : !active));
       });
 
-    }
-
-
-    // DELETE LIC PLAN
-    async function deleteLicPlan(
-      planId,
-      planName
-    ) {
-
-      const confirmDelete =
-        confirm(
-          "Kya aap '" +
-          planName +
-          "' ko delete karna chahte ho?"
-        );
-
-
-      if (!confirmDelete) {
-
+      if (!filtered.length) {
+        licPlansList.innerHTML = '<div class="empty">No LIC plans found.</div>';
         return;
-
       }
 
+      licPlansList.innerHTML = "";
+      filtered.forEach(plan => {
+        const card = document.createElement("div");
+        card.className = "plan-card";
+        const active = plan.active !== false;
+        const updated = plan.updatedAt ? new Date(plan.updatedAt).toLocaleString("en-IN") : "Not available";
+        const official = plan.officialLink ? `<a href="${escapeHTML(plan.officialLink)}" target="_blank" rel="noopener" class="btn btn-light">🔗 Official LIC</a>` : "";
+
+        card.innerHTML = `
+          <h3>${escapeHTML(plan.name || "")}</h3>
+          <p><strong>Category:</strong> ${escapeHTML(plan.category || "")}</p>
+          <p><strong>Age:</strong> ${escapeHTML(String(plan.minAge ?? ""))} - ${escapeHTML(String(plan.maxAge ?? ""))} years</p>
+          <p><strong>Plan No.:</strong> ${escapeHTML(plan.planNumber || "Not added")}</p>
+          <p><strong>UIN:</strong> ${escapeHTML(plan.uin || "Not added")}</p>
+          <p><strong>Status:</strong> ${active ? "🟢 Active" : "⚪ Hidden"}</p>
+          <p><strong>Benefits:</strong> ${escapeHTML(plan.benefits || "")}</p>
+          <p><strong>Details:</strong> ${escapeHTML(plan.details || "")}</p>
+          <p><strong>Last Updated:</strong> ${escapeHTML(updated)}</p>
+          <div class="plan-actions" style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-primary edit-plan-btn">✏️ Edit Plan</button>
+            <button class="btn btn-danger delete-plan-btn">🗑️ Delete Plan</button>
+            ${official}
+          </div>
+        `;
+        card.querySelector(".edit-plan-btn").addEventListener("click", () => editLicPlan(plan.id, plan));
+        card.querySelector(".delete-plan-btn").addEventListener("click", () => deleteLicPlan(plan.id, plan.name || "this plan"));
+        licPlansList.appendChild(card);
+      });
+    }
+
+    ["licSearchInput","licCategoryFilter","licStatusFilter"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("input", renderLicPlans);
+      if (el) el.addEventListener("change", renderLicPlans);
+    });
+
+    function editLicPlan(planId, plan) {
+      editingPlanId = planId;
+      document.getElementById("licPlanName").value = plan.name || "";
+      document.getElementById("licPlanCategory").value = plan.category || "Money Back";
+      document.getElementById("licMinAge").value = plan.minAge ?? "";
+      document.getElementById("licMaxAge").value = plan.maxAge ?? "";
+      document.getElementById("licBenefits").value = plan.benefits || "";
+      document.getElementById("licDetails").value = plan.details || "";
+      document.getElementById("licPlanNumber").value = plan.planNumber || "";
+      document.getElementById("licUin").value = plan.uin || "";
+      document.getElementById("licOfficialLink").value = plan.officialLink || "";
+      document.getElementById("licActive").value = plan.active === false ? "false" : "true";
+      licFormTitle.textContent = "Edit LIC Plan";
+      saveLicPlanBtn.textContent = "✏️ Update LIC Plan";
+      licPlanMessage.style.color = "#2563eb";
+      licPlanMessage.textContent = "Aap plan edit kar rahe ho.";
+      licPlanForm.classList.remove("hidden");
+      licPlanForm.scrollIntoView({behavior:"smooth",block:"start"});
+    }
+
+    async function deleteLicPlan(planId, planName) {
+      if (!confirm("Kya aap '" + planName + "' ko delete karna chahte ho?")) return;
+      try {
+        await deleteDoc(doc(db, "licPlans", planId));
+        await showLicPlans();
+        updateOverview();
+        alert("LIC Plan delete ho gaya.");
+      } catch (error) {
+        alert("Plan delete nahi ho paya: " + error.message);
+      }
+    }
+
+    // CUSTOMERS
+    let allCustomers = [];
+    async function loadCustomers() {
+      const list = document.getElementById("customerList");
+      if (!list) return;
+      list.innerHTML = '<div class="empty">Customers loading...</div>';
+      try {
+        const snap = await getDocs(collection(db, "customers"));
+        allCustomers = [];
+        snap.forEach(d => allCustomers.push({id:d.id, ...d.data()}));
+        renderCustomers();
+      } catch (error) {
+        list.innerHTML = '<div class="empty">Customers load nahi ho rahe: ' + escapeHTML(error.message) + '</div>';
+      }
+    }
+
+    function renderCustomers() {
+      const list = document.getElementById("customerList");
+      const q = (document.getElementById("customerSearchInput")?.value || "").toLowerCase().trim();
+      const filtered = allCustomers.filter(c => {
+        const text = `${c.name||c.customerName||""} ${c.mobile||c.phone||""} ${c.email||""}`.toLowerCase();
+        return !q || text.includes(q);
+      });
+      if (!filtered.length) { list.innerHTML = '<div class="empty">No customers found.</div>'; return; }
+      list.innerHTML = "";
+      filtered.forEach(c => {
+        const card = document.createElement("div");
+        card.className = "inquiry-card";
+        card.innerHTML = `
+          <h3>${escapeHTML(c.name || c.customerName || "Not available")}</h3>
+          <p><strong>📱 Mobile:</strong> ${escapeHTML(c.mobile || c.phone || "Not available")}</p>
+          <p><strong>📧 Email:</strong> ${escapeHTML(c.email || "Not available")}</p>
+          <p><strong>🎂 DOB:</strong> ${escapeHTML(c.dob || c.dateOfBirth || "Not available")}</p>
+          <p><strong>🔢 UID:</strong> ${escapeHTML(c.uid || c.userId || c.id || "Not available")}</p>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    document.getElementById("customerSearchInput")?.addEventListener("input", renderCustomers);
+    document.getElementById("refreshCustomersBtn")?.addEventListener("click", loadCustomers);
+
+    // Initial admin data load
+    loadCustomers();
+
+    // COURSE + LESSON MANAGEMENT
+    let editingCourseId = null;
+    let editingLessonId = null;
+    let selectedCourseForLessons = null;
+
+    const addCourseBtn = document.getElementById("addCourseBtn");
+    const courseForm = document.getElementById("courseForm");
+    const courseFormTitle = document.getElementById("courseFormTitle");
+    const saveCourseBtn = document.getElementById("saveCourseBtn");
+    const cancelCourseBtn = document.getElementById("cancelCourseBtn");
+    const courseMessage = document.getElementById("courseMessage");
+    const coursesList = document.getElementById("coursesList");
+    const lessonManager = document.getElementById("lessonManager");
+    const lessonManagerTitle = document.getElementById("lessonManagerTitle");
+    const lessonManagerCourseName = document.getElementById("lessonManagerCourseName");
+    const closeLessonManagerBtn = document.getElementById("closeLessonManagerBtn");
+    const lessonFormTitle = document.getElementById("lessonFormTitle");
+    const saveLessonBtn = document.getElementById("saveLessonBtn");
+    const cancelLessonBtn = document.getElementById("cancelLessonBtn");
+    const lessonMessage = document.getElementById("lessonMessage");
+    const lessonsList = document.getElementById("lessonsList");
+
+    function resetCourseForm() {
+      editingCourseId = null;
+      courseFormTitle.textContent = "Add New Course";
+      saveCourseBtn.textContent = "💾 Save Course";
+      ["courseName","courseInstructor","courseDuration","courseLessons","courseShortDescription","courseDetails"].forEach(id => document.getElementById(id).value = "");
+      document.getElementById("courseCategory").value = "LIC";
+      document.getElementById("courseAccess").value = "Free";
+      document.getElementById("coursePrice").value = "0";
+      document.getElementById("courseStatus").value = "Active";
+      document.getElementById("courseThumbnail").value = "";
+      courseMessage.textContent = "";
+    }
+
+    function resetLessonForm() {
+      editingLessonId = null;
+      lessonFormTitle.textContent = "Add New Lesson";
+      saveLessonBtn.textContent = "💾 Save Lesson";
+      document.getElementById("lessonTitle").value = "";
+      document.getElementById("lessonOrder").value = "1";
+      document.getElementById("lessonStatus").value = "Active";
+      document.getElementById("lessonContent").value = "";
+      document.getElementById("lessonPdf").value = "";
+      document.getElementById("lessonVideo").value = "";
+      lessonMessage.textContent = "";
+    }
+
+    addCourseBtn.addEventListener("click", () => {
+      resetCourseForm();
+      courseForm.classList.remove("hidden");
+      courseForm.scrollIntoView({behavior:"smooth",block:"start"});
+    });
+
+    cancelCourseBtn.addEventListener("click", () => {
+      resetCourseForm();
+      courseForm.classList.add("hidden");
+    });
+
+    document.getElementById("courseAccess").addEventListener("change", () => {
+      if (document.getElementById("courseAccess").value === "Free") {
+        document.getElementById("coursePrice").value = "0";
+      }
+    });
+
+    async function uploadCourseFile(file, path) {
+      if (!file) return null;
+      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+      const fileRef = ref(storage, `${path}/${Date.now()}_${safeName}`);
+      await uploadBytes(fileRef, file);
+      return await getDownloadURL(fileRef);
+    }
+
+    saveCourseBtn.addEventListener("click", async () => {
+      const name = document.getElementById("courseName").value.trim();
+      const category = document.getElementById("courseCategory").value;
+      const instructor = document.getElementById("courseInstructor").value.trim();
+      const duration = document.getElementById("courseDuration").value.trim();
+      const lessons = Number(document.getElementById("courseLessons").value || 0);
+      const access = document.getElementById("courseAccess").value;
+      const price = Number(document.getElementById("coursePrice").value || 0);
+      const status = document.getElementById("courseStatus").value;
+      const shortDescription = document.getElementById("courseShortDescription").value.trim();
+      const details = document.getElementById("courseDetails").value.trim();
+      const thumbnailFile = document.getElementById("courseThumbnail").files[0];
+
+      if (!name || !shortDescription) {
+        courseMessage.style.color = "#dc2626";
+        courseMessage.textContent = "Course Name aur Short Description zaroor bharo.";
+        return;
+      }
+
+      courseMessage.style.color = "#2563eb";
+      courseMessage.textContent = thumbnailFile ? "Course save aur thumbnail upload ho raha hai..." : "Saving course...";
 
       try {
+        let thumbnailUrl = null;
+        if (thumbnailFile) {
+          thumbnailUrl = await uploadCourseFile(thumbnailFile, "courses/temp/thumbnails");
+        }
 
-        await deleteDoc(
+        const data = {
+          name, category, instructor, duration, lessons,
+          access,
+          price: access === "Free" ? 0 : price,
+          status,
+          shortDescription,
+          details,
+          updatedAt: new Date().toISOString()
+        };
+        if (thumbnailUrl) data.thumbnailUrl = thumbnailUrl;
 
-          doc(
-            db,
-            "licPlans",
-            planId
-          )
+        if (editingCourseId) {
+          await updateDoc(doc(db, "courses", editingCourseId), data);
+          alert("Course successfully updated.");
+        } else {
+          data.createdAt = new Date().toISOString();
+          data.createdBy = ADMIN_UID;
+          const created = await addDoc(collection(db, "courses"), data);
+          if (thumbnailUrl) {
+            const properRef = ref(storage, `courses/${created.id}/thumbnail/${Date.now()}_${thumbnailFile.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`);
+            // Move is not available in Storage; keep the uploaded URL as-is for now.
+          }
+          alert("Course successfully saved.");
+        }
 
-        );
-
-
-        alert(
-          "LIC Plan delete ho gaya."
-        );
-
-
-        await showLicPlans();
-
-
-        updateOverview();
-
-
+        resetCourseForm();
+        courseForm.classList.add("hidden");
+        await loadCourses();
       } catch (error) {
-
-        alert(
-          "Plan delete nahi ho paya: " +
-          error.message
-        );
-
+        console.error(error);
+        courseMessage.style.color = "#dc2626";
+        courseMessage.textContent = "Course save failed: " + error.message;
       }
+    });
 
+    async function loadCourses() {
+      if (!coursesList) return;
+      coursesList.innerHTML = '<div class="empty">Courses loading...</div>';
+      try {
+        const snap = await getDocs(collection(db, "courses"));
+        if (snap.empty) {
+          coursesList.innerHTML = '<div class="empty">Abhi koi course add nahi hua.</div>';
+          return;
+        }
+        const courses = [];
+        snap.forEach(x => courses.push({id:x.id,...x.data()}));
+        courses.sort((a,b) => String(b.createdAt||"").localeCompare(String(a.createdAt||"")));
+        coursesList.innerHTML = "";
+
+        courses.forEach(course => {
+          const card = document.createElement("div");
+          card.className = "recent-card";
+          const priceText = course.access === "Paid" ? `₹${Number(course.price||0)}` : "Free";
+          const thumb = course.thumbnailUrl ? `<img src="${escapeHTML(course.thumbnailUrl)}" alt="Course thumbnail" style="width:100%;max-width:180px;height:100px;object-fit:cover;border-radius:10px;margin:8px 0;">` : "";
+          card.innerHTML = `
+            ${thumb}
+            <h3>${escapeHTML(course.name||"Untitled Course")}</h3>
+            <p><strong>📂 Category:</strong> ${escapeHTML(course.category||"Other")}</p>
+            <p><strong>👨‍🏫 Instructor:</strong> ${escapeHTML(course.instructor||"Not added")}</p>
+            <p><strong>⏱️ Duration:</strong> ${escapeHTML(course.duration||"Not added")}</p>
+            <p><strong>📚 Lessons:</strong> ${escapeHTML(course.lessons??0)}</p>
+            <p><strong>💰 Access:</strong> ${escapeHTML(course.access||"Free")} — ${escapeHTML(priceText)}</p>
+            <p><strong>📌 Status:</strong> ${escapeHTML(course.status||"Active")}</p>
+            <p><strong>📝 Description:</strong> ${escapeHTML(course.shortDescription||"")}</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+              <button class="btn btn-primary edit-course-btn">✏️ Edit</button>
+              <button class="btn btn-primary manage-lessons-btn">📚 Lessons</button>
+              <button class="btn btn-danger delete-course-btn">🗑️ Delete</button>
+            </div>`;
+          card.querySelector(".edit-course-btn").addEventListener("click",() => editCourse(course));
+          card.querySelector(".manage-lessons-btn").addEventListener("click",() => openLessonManager(course));
+          card.querySelector(".delete-course-btn").addEventListener("click",() => deleteCourse(course.id,course.name));
+          coursesList.appendChild(card);
+        });
+      } catch(error) {
+        console.error(error);
+        coursesList.innerHTML = '<div class="empty">Courses load nahi ho paye: '+escapeHTML(error.message)+'</div>';
+      }
     }
 
+    function editCourse(course) {
+      editingCourseId = course.id;
+      courseFormTitle.textContent = "Edit Course";
+      saveCourseBtn.textContent = "💾 Update Course";
+      document.getElementById("courseName").value = course.name||"";
+      document.getElementById("courseCategory").value = course.category||"LIC";
+      document.getElementById("courseInstructor").value = course.instructor||"";
+      document.getElementById("courseDuration").value = course.duration||"";
+      document.getElementById("courseLessons").value = course.lessons??0;
+      document.getElementById("courseAccess").value = course.access||"Free";
+      document.getElementById("coursePrice").value = course.price??0;
+      document.getElementById("courseStatus").value = course.status||"Active";
+      document.getElementById("courseShortDescription").value = course.shortDescription||"";
+      document.getElementById("courseDetails").value = course.details||"";
+      document.getElementById("courseThumbnail").value = "";
+      courseMessage.textContent = "Existing thumbnail ko replace karna ho to nayi image select karo.";
+      courseForm.classList.remove("hidden");
+      courseForm.scrollIntoView({behavior:"smooth",block:"start"});
+    }
+
+    async function deleteCourse(courseId, courseName) {
+      if(!confirm(`Kya aap "${courseName}" course delete karna chahte ho?`)) return;
+      try {
+        const lessonSnap = await getDocs(collection(db, "courses", courseId, "lessons"));
+        for (const lesson of lessonSnap.docs) {
+          const d = lesson.data();
+          for (const urlField of ["pdfUrl","videoUrl"]) {
+            if (d[urlField]) {
+              try { await deleteObject(ref(storage, d[urlField])); } catch(e) { console.warn("Storage file delete skipped", e); }
+            }
+          }
+          await deleteDoc(doc(db, "courses", courseId, "lessons", lesson.id));
+        }
+        await deleteDoc(doc(db,"courses",courseId));
+        alert("Course delete ho gaya.");
+        lessonManager.classList.add("hidden");
+        await loadCourses();
+      } catch(error) {
+        console.error(error);
+        alert("Course delete failed: "+error.message);
+      }
+    }
+
+    function openLessonManager(course) {
+      selectedCourseForLessons = course;
+      lessonManagerTitle.textContent = "Lesson Management";
+      lessonManagerCourseName.textContent = `Course: ${course.name}`;
+      resetLessonForm();
+      lessonManager.classList.remove("hidden");
+      lessonManager.scrollIntoView({behavior:"smooth",block:"start"});
+      loadLessons();
+    }
+
+    closeLessonManagerBtn.addEventListener("click", () => {
+      lessonManager.classList.add("hidden");
+      selectedCourseForLessons = null;
+      resetLessonForm();
+    });
+
+    cancelLessonBtn.addEventListener("click", resetLessonForm);
+
+    async function loadLessons() {
+      if (!selectedCourseForLessons) return;
+      lessonsList.innerHTML = '<div class="empty">Lessons loading...</div>';
+      try {
+        const snap = await getDocs(collection(db,"courses",selectedCourseForLessons.id,"lessons"));
+        if (snap.empty) {
+          lessonsList.innerHTML = '<div class="empty">Abhi koi lesson add nahi hua.</div>';
+          return;
+        }
+        const lessons = [];
+        snap.forEach(x => lessons.push({id:x.id,...x.data()}));
+        lessons.sort((a,b) => Number(a.order||0)-Number(b.order||0));
+        lessonsList.innerHTML = "";
+        lessons.forEach(lesson => {
+          const card = document.createElement("div");
+          card.className = "recent-card";
+          const files = `${lesson.pdfUrl ? "📄 PDF  " : ""}${lesson.videoUrl ? "🎥 Video" : ""}` || "No file";
+          card.innerHTML = `
+            <h3>Lesson ${escapeHTML(lesson.order||"")}: ${escapeHTML(lesson.title||"Untitled")}</h3>
+            <p><strong>📌 Status:</strong> ${escapeHTML(lesson.status||"Active")}</p>
+            <p><strong>📎 Files:</strong> ${files}</p>
+            <p style="white-space:pre-wrap;"><strong>📝 Content:</strong> ${escapeHTML(lesson.content||"Not added")}</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+              ${lesson.pdfUrl ? `<a class="btn btn-light" href="${escapeHTML(lesson.pdfUrl)}" target="_blank" rel="noopener">📄 Open PDF</a>` : ""}
+              ${lesson.videoUrl ? `<a class="btn btn-light" href="${escapeHTML(lesson.videoUrl)}" target="_blank" rel="noopener">🎥 Open Video</a>` : ""}
+              <button class="btn btn-primary edit-lesson-btn">✏️ Edit</button>
+              <button class="btn btn-danger delete-lesson-btn">🗑️ Delete</button>
+            </div>`;
+          card.querySelector(".edit-lesson-btn").addEventListener("click",() => editLesson(lesson));
+          card.querySelector(".delete-lesson-btn").addEventListener("click",() => deleteLesson(lesson));
+          lessonsList.appendChild(card);
+        });
+      } catch(error) {
+        console.error(error);
+        lessonsList.innerHTML = '<div class="empty">Lessons load nahi ho paye: '+escapeHTML(error.message)+'</div>';
+      }
+    }
+
+    async function replaceStorageFile(oldUrl, file, folder) {
+      if (!file) return oldUrl || null;
+      if (oldUrl) {
+        try { await deleteObject(ref(storage, oldUrl)); } catch(e) { console.warn("Old file delete skipped", e); }
+      }
+      return await uploadCourseFile(file, folder);
+    }
+
+    saveLessonBtn.addEventListener("click", async () => {
+      if (!selectedCourseForLessons) return;
+      const title = document.getElementById("lessonTitle").value.trim();
+      const order = Number(document.getElementById("lessonOrder").value || 1);
+      const status = document.getElementById("lessonStatus").value;
+      const content = document.getElementById("lessonContent").value.trim();
+      const pdfFile = document.getElementById("lessonPdf").files[0];
+      const videoFile = document.getElementById("lessonVideo").files[0];
+
+      if (!title) {
+        lessonMessage.style.color = "#dc2626";
+        lessonMessage.textContent = "Lesson Title zaroor bharo.";
+        return;
+      }
+
+      if (pdfFile && pdfFile.size > 50 * 1024 * 1024) {
+        lessonMessage.style.color = "#dc2626";
+        lessonMessage.textContent = "PDF 50 MB se chhoti rakho.";
+        return;
+      }
+      if (videoFile && videoFile.size > 500 * 1024 * 1024) {
+        lessonMessage.style.color = "#dc2626";
+        lessonMessage.textContent = "Video 500 MB se chhoti rakho.";
+        return;
+      }
+
+      lessonMessage.style.color = "#2563eb";
+      lessonMessage.textContent = "Lesson save/upload ho raha hai...";
+
+      try {
+        let old = {};
+        if (editingLessonId) {
+          const oldSnap = await getDocs(collection(db,"courses",selectedCourseForLessons.id,"lessons"));
+          oldSnap.forEach(d => { if (d.id === editingLessonId) old = d.data(); });
+        }
+
+        const pdfUrl = await replaceStorageFile(old.pdfUrl, pdfFile, `courses/${selectedCourseForLessons.id}/lessons/${editingLessonId || "new"}/pdf`);
+        const videoUrl = await replaceStorageFile(old.videoUrl, videoFile, `courses/${selectedCourseForLessons.id}/lessons/${editingLessonId || "new"}/video`);
+
+        const data = {
+          title,
+          order,
+          status,
+          content,
+          pdfUrl: pdfUrl || null,
+          videoUrl: videoUrl || null,
+          updatedAt: new Date().toISOString()
+        };
+
+        if (editingLessonId) {
+          await updateDoc(doc(db,"courses",selectedCourseForLessons.id,"lessons",editingLessonId), data);
+          alert("Lesson successfully updated.");
+        } else {
+          data.createdAt = new Date().toISOString();
+          data.createdBy = ADMIN_UID;
+          await addDoc(collection(db,"courses",selectedCourseForLessons.id,"lessons"), data);
+          alert("Lesson successfully saved.");
+        }
+
+        resetLessonForm();
+        await loadLessons();
+      } catch(error) {
+        console.error(error);
+        lessonMessage.style.color = "#dc2626";
+        lessonMessage.textContent = "Lesson save failed: " + error.message;
+      }
+    });
+
+    function editLesson(lesson) {
+      editingLessonId = lesson.id;
+      lessonFormTitle.textContent = "Edit Lesson";
+      saveLessonBtn.textContent = "💾 Update Lesson";
+      document.getElementById("lessonTitle").value = lesson.title || "";
+      document.getElementById("lessonOrder").value = lesson.order || 1;
+      document.getElementById("lessonStatus").value = lesson.status || "Active";
+      document.getElementById("lessonContent").value = lesson.content || "";
+      document.getElementById("lessonPdf").value = "";
+      document.getElementById("lessonVideo").value = "";
+      lessonMessage.style.color = "#64748b";
+      lessonMessage.textContent = "Nayi PDF/video select karoge to purani file replace ho jayegi.";
+      lessonFormTitle.scrollIntoView({behavior:"smooth",block:"start"});
+    }
+
+    async function deleteLesson(lesson) {
+      if (!selectedCourseForLessons) return;
+      if (!confirm(`Kya aap "${lesson.title}" lesson delete karna chahte ho?`)) return;
+      try {
+        for (const urlField of ["pdfUrl","videoUrl"]) {
+          if (lesson[urlField]) {
+            try { await deleteObject(ref(storage, lesson[urlField])); } catch(e) { console.warn("Storage file delete skipped", e); }
+          }
+        }
+        await deleteDoc(doc(db,"courses",selectedCourseForLessons.id,"lessons",lesson.id));
+        alert("Lesson delete ho gaya.");
+        await loadLessons();
+      } catch(error) {
+        console.error(error);
+        alert("Lesson delete failed: "+error.message);
+      }
+    }
+
+    loadCourses();
 
     // MENU
     document
