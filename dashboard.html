@@ -49,11 +49,6 @@
       font-weight: bold;
     }
 
-    .admin-btn {
-      background: #ff9800;
-      color: white;
-    }
-
     .logout-btn {
       background: #d32f2f;
       color: white;
@@ -181,13 +176,6 @@
     </div>
 
     <div class="top-buttons">
-
-      <button
-        id="adminButton"
-        class="admin-btn"
-        onclick="openAdminPanel()">
-        ⚙️ Admin Panel
-      </button>
 
       <button
         class="logout-btn"
@@ -383,30 +371,109 @@
   </div>
 
 
-  <script>
+  <!-- FIREBASE + DASHBOARD SCRIPT -->
+  <script type="module">
+
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+    import {
+      getAuth,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+    // ================================
+    // FIREBASE CONFIG
+    // ================================
+
+    const firebaseConfig = {
+
+      apiKey:
+        "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
+
+      authDomain:
+        "apna-growth-hub.firebaseapp.com",
+
+      projectId:
+        "apna-growth-hub",
+
+      storageBucket:
+        "apna-growth-hub.firebasestorage.app",
+
+      messagingSenderId:
+        "939001251123",
+
+      appId:
+        "1:939001251123:web:f2966004acaa64186e2a46",
+
+      measurementId:
+        "G-GZGCHL4XQ3"
+    };
+
+
+    // ================================
+    // FIREBASE INITIALIZE
+    // ================================
+
+    const app =
+      initializeApp(firebaseConfig);
+
+    const auth =
+      getAuth(app);
+
+
+    // ================================
+    // ADMIN UID
+    // ================================
+
+    const ADMIN_UID =
+      "bhpu24P8Ixfq0ZPSBsoLW3kd0dg1";
+
 
     // ================================
     // ADMIN PREVIEW CHECK
     // ================================
 
     const urlParams =
-      new URLSearchParams(window.location.search);
+      new URLSearchParams(
+        window.location.search
+      );
 
     const isAdminPreview =
       urlParams.get("preview") === "admin";
 
 
     const previewBanner =
-      document.getElementById("previewBanner");
-
-    const adminButton =
-      document.getElementById("adminButton");
+      document.getElementById(
+        "previewBanner"
+      );
 
 
     if (isAdminPreview) {
 
-      previewBanner.style.display =
-        "block";
+      onAuthStateChanged(
+        auth,
+        (user) => {
+
+          if (
+            !user ||
+            user.uid !== ADMIN_UID
+          ) {
+
+            window.location.replace(
+              "index.html"
+            );
+
+            return;
+          }
+
+          previewBanner.style.display =
+            "block";
+
+        }
+      );
 
     }
 
@@ -416,23 +483,40 @@
     // ================================
 
     const customerName =
-      localStorage.getItem("customerName") || "";
+      localStorage.getItem(
+        "customerName"
+      ) || "";
 
 
     const customerMobile =
-      localStorage.getItem("customerMobile") || "";
+      localStorage.getItem(
+        "customerMobile"
+      ) || "";
 
 
     const customerEmail =
-      localStorage.getItem("customerEmail") || "";
+      localStorage.getItem(
+        "customerEmail"
+      ) || "";
 
 
-    // IMPORTANT:
-    // Same DOB key used by index.html
+    // ================================
+    // CUSTOMER DOB
+    // ================================
+
     const customerDOB =
-      localStorage.getItem("customerDOB") ||
-      localStorage.getItem("customerDob") ||
-      localStorage.getItem("dob") ||
+      localStorage.getItem(
+        "customerDOB"
+      ) ||
+
+      localStorage.getItem(
+        "customerDob"
+      ) ||
+
+      localStorage.getItem(
+        "dob"
+      ) ||
+
       "";
 
 
@@ -440,21 +524,33 @@
     // AGE CALCULATION
     // ================================
 
-    function calculateAge(dateOfBirth) {
+    function calculateAge(
+      dateOfBirth
+    ) {
 
       if (!dateOfBirth) {
         return null;
       }
 
+
       const birthDate =
         new Date(dateOfBirth);
 
-      if (isNaN(birthDate.getTime())) {
+
+      if (
+        isNaN(
+          birthDate.getTime()
+        )
+      ) {
+
         return null;
+
       }
+
 
       const today =
         new Date();
+
 
       let age =
         today.getFullYear() -
@@ -470,7 +566,8 @@
         monthDifference < 0 ||
         (
           monthDifference === 0 &&
-          today.getDate() < birthDate.getDate()
+          today.getDate() <
+          birthDate.getDate()
         )
       ) {
 
@@ -479,9 +576,15 @@
       }
 
 
-      if (age < 0 || age > 120) {
+      if (
+        age < 0 ||
+        age > 120
+      ) {
+
         return null;
+
       }
+
 
       return age;
 
@@ -493,19 +596,31 @@
     // ================================
 
     let calculatedAge =
-      calculateAge(customerDOB);
+      calculateAge(
+        customerDOB
+      );
 
 
-    // Fallback: saved customerAge
-    if (calculatedAge === null) {
+    // ================================
+    // FALLBACK SAVED AGE
+    // ================================
+
+    if (
+      calculatedAge === null
+    ) {
 
       const savedAge =
-        localStorage.getItem("customerAge");
+        localStorage.getItem(
+          "customerAge"
+        );
+
 
       if (
         savedAge !== null &&
         savedAge !== "" &&
-        !isNaN(Number(savedAge))
+        !isNaN(
+          Number(savedAge)
+        )
       ) {
 
         calculatedAge =
@@ -517,36 +632,53 @@
 
 
     // ================================
-    // DISPLAY CUSTOMER INFORMATION
+    // DISPLAY CUSTOMER NAME
     // ================================
 
     document.getElementById(
       "customerName"
     ).textContent =
-      customerName || "Not Available";
+      customerName ||
+      "Not Available";
 
+
+    // ================================
+    // DISPLAY MOBILE
+    // ================================
 
     document.getElementById(
       "customerMobile"
     ).textContent =
-      customerMobile || "Not Available";
+      customerMobile ||
+      "Not Available";
 
+
+    // ================================
+    // DISPLAY EMAIL
+    // ================================
 
     document.getElementById(
       "customerEmail"
     ).textContent =
-      customerEmail || "Not Available";
+      customerEmail ||
+      "Not Available";
 
 
-    if (calculatedAge !== null) {
+    // ================================
+    // DISPLAY AGE
+    // ================================
+
+    if (
+      calculatedAge !== null
+    ) {
 
       document.getElementById(
         "customerAge"
       ).textContent =
-        calculatedAge + " Years";
+        calculatedAge +
+        " Years";
 
 
-      // Keep age updated
       localStorage.setItem(
         "customerAge",
         calculatedAge
@@ -563,7 +695,7 @@
 
 
     // ================================
-    // WELCOME
+    // WELCOME MESSAGE
     // ================================
 
     if (customerName) {
@@ -571,7 +703,9 @@
       document.getElementById(
         "welcomeTitle"
       ).textContent =
-        "Welcome, " + customerName + " 👋";
+        "Welcome, " +
+        customerName +
+        " 👋";
 
     }
 
@@ -580,7 +714,9 @@
     // OPEN CATEGORY
     // ================================
 
-    function openCategory(page) {
+    function openCategory(
+      page
+    ) {
 
       window.location.href =
         page;
@@ -592,24 +728,14 @@
     // COMING SOON
     // ================================
 
-    function comingSoon(categoryName) {
+    function comingSoon(
+      categoryName
+    ) {
 
       alert(
         categoryName +
         " section अभी Coming Soon है।"
       );
-
-    }
-
-
-    // ================================
-    // ADMIN PANEL
-    // ================================
-
-    function openAdminPanel() {
-
-      window.location.href =
-        "admin.html";
 
     }
 
@@ -648,10 +774,28 @@
         "firebaseLoggedIn"
       );
 
+
       window.location.href =
         "index.html";
 
     }
+
+
+    // =================================================
+    // IMPORTANT:
+    // MODULE FUNCTIONS KO HTML onclick KE LIYE GLOBAL
+    // BANANA
+    // =================================================
+
+    window.openCategory =
+      openCategory;
+
+    window.comingSoon =
+      comingSoon;
+
+    window.logout =
+      logout;
+
 
   </script>
 
