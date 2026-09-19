@@ -1,371 +1,470 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="hi">
 
-  <title>Apna Growth Hub - Customer Dashboard</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Apna Growth Hub - Dashboard</title>
 
   <style>
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
     }
 
     body {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #eef4ff, #f8fbff);
-      color: #172033;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f1f8ff;
+      color: #222;
     }
 
     .topbar {
-      background: linear-gradient(135deg, #123c88, #1769d2);
+      background: #1565c0;
       color: white;
-      padding: 18px 25px;
+      padding: 15px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
-    }
-
-    .brand h1 {
-      font-size: 25px;
-      margin-bottom: 5px;
-    }
-
-    .brand p {
-      font-size: 13px;
-      opacity: 0.9;
-    }
-
-    .top-actions {
-      display: flex;
       gap: 10px;
       flex-wrap: wrap;
     }
 
-    button {
+    .brand {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .top-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .top-buttons button {
       border: none;
+      padding: 9px 14px;
       border-radius: 8px;
-      padding: 11px 15px;
       cursor: pointer;
       font-weight: bold;
-      transition: 0.2s;
     }
 
-    button:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-light {
-      background: white;
-      color: #1554a5;
-    }
-
-    .btn-danger {
-      background: #dc3545;
+    .admin-btn {
+      background: #ff9800;
       color: white;
+    }
+
+    .logout-btn {
+      background: #d32f2f;
+      color: white;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
     }
 
     .preview-banner {
       display: none;
       background: #fff3cd;
-      color: #664d03;
-      border: 1px solid #ffecb5;
-      padding: 15px 20px;
+      color: #856404;
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 15px;
       text-align: center;
       font-weight: bold;
-    }
-
-    .container {
-      width: 94%;
-      max-width: 1200px;
-      margin: 25px auto;
     }
 
     .welcome-card {
       background: white;
-      border-radius: 18px;
-      padding: 25px;
-      box-shadow: 0 5px 20px rgba(24, 63, 120, 0.08);
-      margin-bottom: 25px;
-      border-left: 6px solid #1769d2;
+      padding: 22px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
+      margin-bottom: 20px;
     }
 
-    .welcome-card h2 {
-      color: #123c88;
-      margin-bottom: 8px;
+    .welcome-card h1 {
+      margin: 0 0 8px;
+      color: #1565c0;
+      font-size: 25px;
     }
 
-    .welcome-card p {
-      color: #667085;
-      line-height: 1.6;
+    .customer-info {
+      color: #555;
+      line-height: 1.8;
     }
 
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 18px;
-      margin-bottom: 28px;
-    }
-
-    .info-card {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 5px 18px rgba(24, 63, 120, 0.07);
-    }
-
-    .info-card h3 {
-      color: #667085;
-      font-size: 14px;
-      margin-bottom: 9px;
-    }
-
-    .info-card p {
-      color: #123c88;
-      font-size: 20px;
+    .age-box {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 8px 14px;
+      background: #e3f2fd;
+      color: #1565c0;
+      border-radius: 20px;
       font-weight: bold;
-      word-break: break-word;
     }
 
     .section-title {
-      color: #123c88;
-      margin-bottom: 15px;
-      font-size: 23px;
+      color: #1565c0;
+      margin: 25px 0 15px;
     }
 
-    .category-grid {
+    .categories {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
+      gap: 18px;
     }
 
     .category-card {
       background: white;
-      border-radius: 18px;
-      padding: 25px;
-      text-align: center;
-      box-shadow: 0 5px 20px rgba(24, 63, 120, 0.08);
-      border-top: 5px solid #1769d2;
+      padding: 22px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
+      cursor: pointer;
       transition: 0.2s;
     }
 
     .category-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-3px);
     }
 
     .category-icon {
-      font-size: 45px;
-      margin-bottom: 12px;
-    }
-
-    .category-card h3 {
-      color: #123c88;
+      font-size: 38px;
       margin-bottom: 10px;
     }
 
-    .category-card p {
-      color: #667085;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 18px;
+    .category-card h2 {
+      margin: 5px 0 8px;
+      color: #1565c0;
+      font-size: 20px;
     }
 
-    .category-card button {
-      background: #1769d2;
-      color: white;
-      width: 100%;
+    .category-card p {
+      margin: 0;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .coming {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #777;
     }
 
     .footer {
       text-align: center;
-      color: #667085;
-      padding: 30px 15px;
+      margin-top: 35px;
+      padding: 20px;
+      color: #666;
       font-size: 13px;
     }
 
-    .empty-message {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      color: #667085;
-      text-align: center;
-    }
-
-    @media (max-width: 600px) {
-      .topbar {
-        padding: 16px;
-      }
-
-      .brand h1 {
-        font-size: 21px;
-      }
-
-      .container {
-        width: 92%;
-        margin: 18px auto;
-      }
-
-      .welcome-card {
-        padding: 20px;
-      }
-
-      .info-card p {
-        font-size: 18px;
-      }
+    .message {
+      background: #fff3cd;
+      color: #856404;
+      padding: 12px;
+      border-radius: 10px;
+      margin-top: 15px;
+      display: none;
     }
   </style>
 </head>
 
 <body>
 
-  <header class="topbar">
+  <!-- TOP BAR -->
+  <div class="topbar">
+
     <div class="brand">
-      <h1>Apna Growth Hub</h1>
-      <p>Learn • Grow • Succeed</p>
+      Apna Growth Hub
     </div>
 
-    <div class="top-actions">
-      <button class="btn-light" id="backAdminBtn">
-        Admin Panel
+    <div class="top-buttons">
+
+      <button
+        id="adminButton"
+        class="admin-btn"
+        onclick="openAdminPanel()">
+        ⚙️ Admin Panel
       </button>
 
-      <button class="btn-danger" id="logoutBtn">
+      <button
+        class="logout-btn"
+        onclick="logout()">
         Logout
       </button>
-    </div>
-  </header>
 
-  <div class="preview-banner" id="previewBanner">
-    👁️ Customer Dashboard Preview Mode —
-    This is a preview for Admin.
+    </div>
+
   </div>
 
-  <main class="container">
 
-    <section class="welcome-card">
-      <h2 id="welcomeTitle">Welcome to Apna Growth Hub</h2>
-      <p>
-        Your personal growth dashboard is ready.
-        Explore LIC Plans, Digital Skills, AI Tools and Customer Support.
-      </p>
-    </section>
+  <div class="container">
 
-    <section class="info-grid">
+    <!-- ADMIN PREVIEW -->
+    <div
+      id="previewBanner"
+      class="preview-banner">
 
-      <div class="info-card">
-        <h3>Customer Name</h3>
-        <p id="customerName">Not Available</p>
+      👁️ Admin Preview Mode —
+      आप Customer Dashboard देख रहे हैं।
+
+    </div>
+
+
+    <!-- WELCOME -->
+    <div class="welcome-card">
+
+      <h1 id="welcomeTitle">
+        Welcome 👋
+      </h1>
+
+      <div class="customer-info">
+
+        <div>
+          <strong>Name:</strong>
+          <span id="customerName">Not Available</span>
+        </div>
+
+        <div>
+          <strong>Mobile:</strong>
+          <span id="customerMobile">Not Available</span>
+        </div>
+
+        <div>
+          <strong>Email:</strong>
+          <span id="customerEmail">Not Available</span>
+        </div>
+
+        <div class="age-box">
+          Age:
+          <span id="customerAge">Not Available</span>
+        </div>
+
       </div>
 
-      <div class="info-card">
-        <h3>Age</h3>
-        <p id="customerAge">Not Available</p>
-      </div>
+      <div id="messageBox" class="message"></div>
 
-      <div class="info-card">
-        <h3>Mobile Number</h3>
-        <p id="customerMobile">Not Available</p>
-      </div>
+    </div>
 
-      <div class="info-card">
-        <h3>Email Address</h3>
-        <p id="customerEmail">Not Available</p>
-      </div>
 
-    </section>
+    <!-- CATEGORIES -->
+    <h2 class="section-title">
+      Explore Categories
+    </h2>
 
-    <h2 class="section-title">Explore Categories</h2>
 
-    <section class="category-grid">
+    <div class="categories">
 
-      <div class="category-card">
-        <div class="category-icon">🛡️</div>
-        <h3>LIC Plans</h3>
+      <!-- LIC -->
+      <div
+        class="category-card"
+        onclick="openCategory('lic.html')">
+
+        <div class="category-icon">
+          🛡️
+        </div>
+
+        <h2>
+          LIC Plans
+        </h2>
+
         <p>
-          Explore LIC plans according to your age and future goals.
+          अपनी उम्र के अनुसार उपलब्ध LIC Plans
+          और उनकी details देखें।
         </p>
-        <button onclick="openPage('lic.html')">
-          View LIC Plans
-        </button>
+
       </div>
 
-      <div class="category-card">
-        <div class="category-icon">💻</div>
-        <h3>Digital Skills</h3>
+
+      <!-- DIGITAL SKILLS -->
+      <div
+        class="category-card"
+        onclick="comingSoon('Digital Skills')">
+
+        <div class="category-icon">
+          💻
+        </div>
+
+        <h2>
+          Digital Skills
+        </h2>
+
         <p>
-          Learn useful digital skills step by step.
+          Digital skills सीखें और अपने knowledge
+          को बढ़ाएँ।
         </p>
-        <button onclick="comingSoon('Digital Skills')">
-          Explore Skills
-        </button>
+
+        <div class="coming">
+          Coming Soon
+        </div>
+
       </div>
 
-      <div class="category-card">
-        <div class="category-icon">🤖</div>
-        <h3>AI Tools</h3>
+
+      <!-- AI TOOLS -->
+      <div
+        class="category-card"
+        onclick="comingSoon('AI Tools')">
+
+        <div class="category-icon">
+          🤖
+        </div>
+
+        <h2>
+          AI Tools
+        </h2>
+
         <p>
-          Learn how to use AI tools for work and growth.
+          Useful AI tools और practical AI skills
+          सीखें।
         </p>
-        <button onclick="comingSoon('AI Tools')">
-          Explore AI Tools
-        </button>
+
+        <div class="coming">
+          Coming Soon
+        </div>
+
       </div>
 
-      <div class="category-card">
-        <div class="category-icon">📩</div>
-        <h3>Customer Inquiry</h3>
+
+      <!-- CUSTOMER INQUIRY -->
+      <div
+        class="category-card"
+        onclick="openCategory('customer-inquiry.html')">
+
+        <div class="category-icon">
+          📩
+        </div>
+
+        <h2>
+          Customer Inquiry
+        </h2>
+
         <p>
-          Contact our advisor for LIC-related questions.
+          LIC plan या किसी अन्य जानकारी के लिए
+          अपनी inquiry भेजें।
         </p>
-        <button onclick="openPage('inquiry.html')">
-          Send Inquiry
-        </button>
+
       </div>
 
-    </section>
 
-  </main>
+      <!-- SOCIAL MEDIA -->
+      <div
+        class="category-card"
+        onclick="comingSoon('Social Media Earning')">
 
-  <footer class="footer">
-    © 2026 Apna Growth Hub. All Rights Reserved.
-  </footer>
+        <div class="category-icon">
+          📱
+        </div>
+
+        <h2>
+          Social Media Earning
+        </h2>
+
+        <p>
+          Social media से earning के तरीके
+          सीखें।
+        </p>
+
+        <div class="coming">
+          Coming Soon
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer">
+      Apna Growth Hub — Learn • Grow • Succeed
+    </div>
+
+  </div>
+
 
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const isAdminPreview = urlParams.get("preview") === "admin";
+
+    // ================================
+    // ADMIN PREVIEW CHECK
+    // ================================
+
+    const urlParams =
+      new URLSearchParams(window.location.search);
+
+    const isAdminPreview =
+      urlParams.get("preview") === "admin";
+
+
+    const previewBanner =
+      document.getElementById("previewBanner");
+
+    const adminButton =
+      document.getElementById("adminButton");
+
+
+    if (isAdminPreview) {
+
+      previewBanner.style.display =
+        "block";
+
+    }
+
+
+    // ================================
+    // CUSTOMER DATA
+    // ================================
 
     const customerName =
-      localStorage.getItem("customerName") || "Demo Customer";
+      localStorage.getItem("customerName") || "";
+
 
     const customerMobile =
-      localStorage.getItem("customerMobile") || "Not Available";
+      localStorage.getItem("customerMobile") || "";
+
 
     const customerEmail =
-      localStorage.getItem("customerEmail") || "Not Available";
+      localStorage.getItem("customerEmail") || "";
 
+
+    // IMPORTANT:
+    // Same DOB key used by index.html
     const customerDOB =
       localStorage.getItem("customerDOB") ||
+      localStorage.getItem("customerDob") ||
       localStorage.getItem("dob") ||
       "";
 
+
+    // ================================
+    // AGE CALCULATION
+    // ================================
+
     function calculateAge(dateOfBirth) {
+
       if (!dateOfBirth) {
-        return "Not Available";
+        return null;
       }
 
-      const birthDate = new Date(dateOfBirth);
-      const today = new Date();
+      const birthDate =
+        new Date(dateOfBirth);
 
-      let age = today.getFullYear() - birthDate.getFullYear();
+      if (isNaN(birthDate.getTime())) {
+        return null;
+      }
+
+      const today =
+        new Date();
+
+      let age =
+        today.getFullYear() -
+        birthDate.getFullYear();
+
 
       const monthDifference =
-        today.getMonth() - birthDate.getMonth();
+        today.getMonth() -
+        birthDate.getMonth();
+
 
       if (
         monthDifference < 0 ||
@@ -374,74 +473,188 @@
           today.getDate() < birthDate.getDate()
         )
       ) {
+
         age--;
+
       }
+
 
       if (age < 0 || age > 120) {
-        return "Not Available";
+        return null;
       }
 
-      return age + " Years";
+      return age;
+
     }
 
-    document.getElementById("customerName").textContent =
-      customerName;
 
-    document.getElementById("customerMobile").textContent =
-      customerMobile;
+    // ================================
+    // GET AGE
+    // ================================
 
-    document.getElementById("customerEmail").textContent =
-      customerEmail;
-
-    document.getElementById("customerAge").textContent =
+    let calculatedAge =
       calculateAge(customerDOB);
 
-    document.getElementById("welcomeTitle").textContent =
-      "Welcome, " + customerName + " 👋";
 
-    if (isAdminPreview) {
-      document.getElementById("previewBanner").style.display =
-        "block";
+    // Fallback: saved customerAge
+    if (calculatedAge === null) {
 
-      document.getElementById("backAdminBtn").style.display =
-        "inline-block";
-    } else {
-      document.getElementById("backAdminBtn").style.display =
-        "none";
+      const savedAge =
+        localStorage.getItem("customerAge");
+
+      if (
+        savedAge !== null &&
+        savedAge !== "" &&
+        !isNaN(Number(savedAge))
+      ) {
+
+        calculatedAge =
+          Number(savedAge);
+
+      }
+
     }
 
-    document.getElementById("backAdminBtn").addEventListener(
-      "click",
-      function () {
-        window.location.href = "admin.html";
-      }
-    );
 
-    document.getElementById("logoutBtn").addEventListener(
-      "click",
-      function () {
-        const confirmLogout = confirm(
-          "Are you sure you want to logout?"
-        );
+    // ================================
+    // DISPLAY CUSTOMER INFORMATION
+    // ================================
 
-        if (confirmLogout) {
-          localStorage.clear();
-          window.location.href = "index.html";
-        }
-      }
-    );
+    document.getElementById(
+      "customerName"
+    ).textContent =
+      customerName || "Not Available";
 
-    function openPage(pageName) {
-      window.location.href = pageName;
-    }
 
-    function comingSoon(sectionName) {
-      alert(
-        sectionName +
-        " section will be available soon."
+    document.getElementById(
+      "customerMobile"
+    ).textContent =
+      customerMobile || "Not Available";
+
+
+    document.getElementById(
+      "customerEmail"
+    ).textContent =
+      customerEmail || "Not Available";
+
+
+    if (calculatedAge !== null) {
+
+      document.getElementById(
+        "customerAge"
+      ).textContent =
+        calculatedAge + " Years";
+
+
+      // Keep age updated
+      localStorage.setItem(
+        "customerAge",
+        calculatedAge
       );
+
+    } else {
+
+      document.getElementById(
+        "customerAge"
+      ).textContent =
+        "Not Available";
+
     }
+
+
+    // ================================
+    // WELCOME
+    // ================================
+
+    if (customerName) {
+
+      document.getElementById(
+        "welcomeTitle"
+      ).textContent =
+        "Welcome, " + customerName + " 👋";
+
+    }
+
+
+    // ================================
+    // OPEN CATEGORY
+    // ================================
+
+    function openCategory(page) {
+
+      window.location.href =
+        page;
+
+    }
+
+
+    // ================================
+    // COMING SOON
+    // ================================
+
+    function comingSoon(categoryName) {
+
+      alert(
+        categoryName +
+        " section अभी Coming Soon है।"
+      );
+
+    }
+
+
+    // ================================
+    // ADMIN PANEL
+    // ================================
+
+    function openAdminPanel() {
+
+      window.location.href =
+        "admin.html";
+
+    }
+
+
+    // ================================
+    // LOGOUT
+    // ================================
+
+    function logout() {
+
+      localStorage.removeItem(
+        "customerName"
+      );
+
+      localStorage.removeItem(
+        "customerMobile"
+      );
+
+      localStorage.removeItem(
+        "customerDOB"
+      );
+
+      localStorage.removeItem(
+        "customerDob"
+      );
+
+      localStorage.removeItem(
+        "customerAge"
+      );
+
+      localStorage.removeItem(
+        "customerEmail"
+      );
+
+      localStorage.removeItem(
+        "firebaseLoggedIn"
+      );
+
+      window.location.href =
+        "index.html";
+
+    }
+
   </script>
 
 </body>
+
 </html>
