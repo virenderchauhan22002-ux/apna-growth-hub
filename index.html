@@ -107,175 +107,498 @@
 <body>
 
   <div class="box">
+
     <h1>Apna Growth Hub</h1>
-    <div class="tagline">Learn • Grow • Succeed</div>
+
+    <div class="tagline">
+      Learn • Grow • Succeed
+    </div>
 
     <!-- SIGNUP FORM -->
     <div id="signupBox">
+
       <h2>Create New Account</h2>
 
       <label>Full Name</label>
-      <input type="text" id="name" placeholder="Enter your full name" />
+      <input
+        type="text"
+        id="name"
+        placeholder="Enter your full name"
+      />
 
       <label>Mobile Number</label>
-      <input type="tel" id="mobile" placeholder="Enter mobile number" />
+      <input
+        type="tel"
+        id="mobile"
+        placeholder="Enter mobile number"
+      />
 
       <label>Date of Birth</label>
-      <input type="date" id="dob" />
+      <input
+        type="date"
+        id="dob"
+      />
 
       <label>Email</label>
-      <input type="email" id="signupEmail" placeholder="Enter email" />
+      <input
+        type="email"
+        id="signupEmail"
+        placeholder="Enter email"
+      />
 
       <label>Password</label>
-      <input type="password" id="signupPassword" placeholder="Create password" />
+      <input
+        type="password"
+        id="signupPassword"
+        placeholder="Create password"
+      />
 
-      <button onclick="createAccount()">Create Account</button>
+      <button onclick="createAccount()">
+        Create Account
+      </button>
 
       <div class="switch" onclick="showLogin()">
         Already have an account? Login
       </div>
+
     </div>
+
 
     <!-- LOGIN FORM -->
     <div id="loginBox" class="hidden">
+
       <h2>Login</h2>
 
       <label>Email</label>
-      <input type="email" id="loginEmail" placeholder="Enter email" />
+      <input
+        type="email"
+        id="loginEmail"
+        placeholder="Enter email"
+      />
 
       <label>Password</label>
-      <input type="password" id="loginPassword" placeholder="Enter password" />
+      <input
+        type="password"
+        id="loginPassword"
+        placeholder="Enter password"
+      />
 
-      <button class="secondary" onclick="loginAccount()">Login</button>
+      <button
+        class="secondary"
+        onclick="loginAccount()"
+      >
+        Login
+      </button>
 
       <div class="switch" onclick="showSignup()">
         Create New Account
       </div>
+
     </div>
 
     <div id="message" class="message"></div>
+
   </div>
+
 
   <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+
   <script>
+
     const firebaseConfig = {
+
       apiKey: "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
+
       authDomain: "apna-growth-hub.firebaseapp.com",
+
       projectId: "apna-growth-hub",
+
       storageBucket: "apna-growth-hub.firebasestorage.app",
+
       messagingSenderId: "939001251123",
+
       appId: "1:939001251123:web:f2966004acaa64186e2a46",
+
       measurementId: "G-GZGCHL4XQ3"
+
     };
+
 
     firebase.initializeApp(firebaseConfig);
 
+
     const auth = firebase.auth();
 
+    const db = firebase.firestore();
+
+
     function showMessage(text, color = "#dc2626") {
+
       const message = document.getElementById("message");
+
       message.innerText = text;
+
       message.style.color = color;
+
     }
+
 
     function showLogin() {
-      document.getElementById("signupBox").classList.add("hidden");
-      document.getElementById("loginBox").classList.remove("hidden");
+
+      document
+        .getElementById("signupBox")
+        .classList.add("hidden");
+
+      document
+        .getElementById("loginBox")
+        .classList.remove("hidden");
+
       showMessage("");
+
     }
+
 
     function showSignup() {
-      document.getElementById("loginBox").classList.add("hidden");
-      document.getElementById("signupBox").classList.remove("hidden");
+
+      document
+        .getElementById("loginBox")
+        .classList.add("hidden");
+
+      document
+        .getElementById("signupBox")
+        .classList.remove("hidden");
+
       showMessage("");
+
     }
 
+
     function calculateAge(dob) {
+
       const birthDate = new Date(dob);
+
       const today = new Date();
 
-      let age = today.getFullYear() - birthDate.getFullYear();
-      const monthDifference = today.getMonth() - birthDate.getMonth();
+      let age =
+        today.getFullYear() -
+        birthDate.getFullYear();
+
+      const monthDifference =
+        today.getMonth() -
+        birthDate.getMonth();
 
       if (
         monthDifference < 0 ||
-        (monthDifference === 0 &&
-          today.getDate() < birthDate.getDate())
+        (
+          monthDifference === 0 &&
+          today.getDate() < birthDate.getDate()
+        )
       ) {
+
         age--;
+
       }
 
       return age;
+
     }
 
-    async function createAccount() {
-      const name = document.getElementById("name").value.trim();
-      const mobile = document.getElementById("mobile").value.trim();
-      const dob = document.getElementById("dob").value;
-      const email = document.getElementById("signupEmail").value.trim();
-      const password = document.getElementById("signupPassword").value;
 
-      if (!name || !mobile || !dob || !email || !password) {
-        showMessage("कृपया सभी details भरें।");
+    // =========================
+    // CREATE ACCOUNT
+    // =========================
+
+    async function createAccount() {
+
+      const name =
+        document.getElementById("name")
+          .value.trim();
+
+      const mobile =
+        document.getElementById("mobile")
+          .value.trim();
+
+      const dob =
+        document.getElementById("dob")
+          .value;
+
+      const email =
+        document.getElementById("signupEmail")
+          .value.trim();
+
+      const password =
+        document.getElementById("signupPassword")
+          .value;
+
+
+      if (
+        !name ||
+        !mobile ||
+        !dob ||
+        !email ||
+        !password
+      ) {
+
+        showMessage(
+          "कृपया सभी details भरें।"
+        );
+
         return;
+
       }
+
 
       if (password.length < 6) {
-        showMessage("Password कम से कम 6 characters का होना चाहिए।");
+
+        showMessage(
+          "Password कम से कम 6 characters का होना चाहिए।"
+        );
+
         return;
+
       }
+
 
       const age = calculateAge(dob);
 
+
+      if (age < 0 || age > 120) {
+
+        showMessage(
+          "कृपया सही Date of Birth डालें।"
+        );
+
+        return;
+
+      }
+
+
       try {
-        await auth.createUserWithEmailAndPassword(email, password);
 
-        localStorage.setItem("customerName", name);
-        localStorage.setItem("customerMobile", mobile);
-        localStorage.setItem("customerDob", dob);
-        localStorage.setItem("customerAge", age);
-        localStorage.setItem("customerEmail", email);
-        localStorage.setItem("firebaseLoggedIn", "true");
+        // Firebase Authentication account
+        const userCredential =
+          await auth.createUserWithEmailAndPassword(
+            email,
+            password
+          );
 
-        showMessage("Account बन गया। Dashboard खुल रहा है।", "#16a34a");
+
+        const user =
+          userCredential.user;
+
+
+        // Customer profile Firebase Firestore में save
+        await db
+          .collection("customers")
+          .doc(user.uid)
+          .set({
+
+            name: name,
+
+            mobile: mobile,
+
+            dob: dob,
+
+            age: age,
+
+            email: email,
+
+            uid: user.uid,
+
+            createdAt:
+              firebase.firestore.FieldValue.serverTimestamp()
+
+          });
+
+
+        // Local storage
+        localStorage.setItem(
+          "customerName",
+          name
+        );
+
+        localStorage.setItem(
+          "customerMobile",
+          mobile
+        );
+
+        localStorage.setItem(
+          "customerDOB",
+          dob
+        );
+
+        localStorage.setItem(
+          "customerAge",
+          age
+        );
+
+        localStorage.setItem(
+          "customerEmail",
+          email
+        );
+
+        localStorage.setItem(
+          "firebaseLoggedIn",
+          "true"
+        );
+
+
+        showMessage(
+          "Account बन गया। Dashboard खुल रहा है।",
+          "#16a34a"
+        );
+
 
         setTimeout(() => {
-          window.location.href = "dashboard.html";
+
+          window.location.href =
+            "dashboard.html";
+
         }, 1000);
 
+
       } catch (error) {
-        showMessage(error.message);
+
+        console.error(error);
+
+        showMessage(
+          error.message
+        );
+
       }
+
     }
+
+
+    // =========================
+    // LOGIN
+    // =========================
 
     async function loginAccount() {
-      const email = document.getElementById("loginEmail").value.trim();
-      const password = document.getElementById("loginPassword").value;
+
+      const email =
+        document.getElementById("loginEmail")
+          .value.trim();
+
+      const password =
+        document.getElementById("loginPassword")
+          .value;
+
 
       if (!email || !password) {
-        showMessage("Email और Password भरें।");
+
+        showMessage(
+          "Email और Password भरें।"
+        );
+
         return;
+
       }
+
 
       try {
-        await auth.signInWithEmailAndPassword(email, password);
 
-        localStorage.setItem("customerEmail", email);
-        localStorage.setItem("firebaseLoggedIn", "true");
+        // Firebase Login
+        const userCredential =
+          await auth.signInWithEmailAndPassword(
+            email,
+            password
+          );
 
-        showMessage("Login successful। Dashboard खुल रहा है।", "#16a34a");
+
+        const user =
+          userCredential.user;
+
+
+        // Firestore से customer profile निकालना
+        const customerDoc =
+          await db
+            .collection("customers")
+            .doc(user.uid)
+            .get();
+
+
+        if (customerDoc.exists) {
+
+          const customer =
+            customerDoc.data();
+
+
+          // Customer details localStorage में save
+          localStorage.setItem(
+            "customerName",
+            customer.name || ""
+          );
+
+          localStorage.setItem(
+            "customerMobile",
+            customer.mobile || ""
+          );
+
+          localStorage.setItem(
+            "customerDOB",
+            customer.dob || ""
+          );
+
+          localStorage.setItem(
+            "customerAge",
+            customer.age ?? ""
+          );
+
+          localStorage.setItem(
+            "customerEmail",
+            customer.email || email
+          );
+
+        } else {
+
+          // पुराने account के लिए
+          localStorage.setItem(
+            "customerEmail",
+            email
+          );
+
+        }
+
+
+        localStorage.setItem(
+          "firebaseLoggedIn",
+          "true"
+        );
+
+
+        showMessage(
+          "Login successful। Dashboard खुल रहा है।",
+          "#16a34a"
+        );
+
 
         setTimeout(() => {
-          window.location.href = "dashboard.html";
+
+          window.location.href =
+            "dashboard.html";
+
         }, 1000);
 
+
       } catch (error) {
-        showMessage("Email या Password गलत है।");
+
+        console.error(error);
+
+        showMessage(
+          "Email या Password गलत है।"
+        );
+
       }
+
     }
+
   </script>
 
 </body>
