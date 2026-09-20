@@ -116,6 +116,7 @@ body {
   border: 1px solid #e5ebf5;
   cursor: pointer;
   transition: 0.2s;
+  position: relative;
 }
 
 .category-card:hover {
@@ -145,6 +146,31 @@ body {
   color: #666;
   line-height: 1.5;
   font-size: 14px;
+}
+
+.coming-soon-card {
+  cursor: default;
+  background: linear-gradient(135deg, #ffffff, #f8fbff);
+}
+
+.coming-soon-card:hover {
+  transform: none;
+}
+
+.coming-soon-badge {
+  display: inline-block;
+  margin-top: 12px;
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffe69c;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.package-icon {
+  background: #eef5ff;
 }
 
 .customer-options {
@@ -425,6 +451,28 @@ body {
   margin-top: 8px;
 }
 
+.delete-status-box {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  color: #9a3412;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+.delete-status-approved {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #166534;
+}
+
+.delete-status-rejected {
+  background: #fff1f2;
+  border-color: #fecdd3;
+  color: #991b1b;
+}
+
 @media (max-width: 600px) {
 
   .topbar {
@@ -528,7 +576,11 @@ body {
     Explore Categories
   </h2>
 
+
   <div class="category-grid">
+
+
+    <!-- LIC -->
 
     <div
       class="category-card"
@@ -550,65 +602,111 @@ body {
     </div>
 
 
-    <div
-      class="category-card"
-      onclick="openPage('courses.html')">
+    <!-- STARTER -->
 
-      <div class="category-icon">
-        📚
+    <div
+      class="category-card coming-soon-card">
+
+      <div class="category-icon package-icon">
+        🌱
       </div>
 
       <h2>
-        Courses
+        Starter
       </h2>
 
       <p>
-        Useful courses सीखें और अपनी
-        knowledge और skills बढ़ाएँ।
+        Digital skills, AI tools और
+        practical learning की शुरुआत
+        करने वाला learning package।
       </p>
+
+      <span class="coming-soon-badge">
+        🚧 Coming Soon
+      </span>
 
     </div>
 
 
-    <div
-      class="category-card"
-      onclick="digitalSkills()">
+    <!-- GROWTH -->
 
-      <div class="category-icon">
-        💻
+    <div
+      class="category-card coming-soon-card">
+
+      <div class="category-icon package-icon">
+        🚀
       </div>
 
       <h2>
-        Digital Skills
+        Growth
       </h2>
 
       <p>
-        Digital skills सीखने के लिए
-        useful learning content।
+        Skills को आगे बढ़ाने और
+        content तथा social media
+        growth के लिए advanced package।
       </p>
+
+      <span class="coming-soon-badge">
+        🚧 Coming Soon
+      </span>
 
     </div>
 
 
-    <div
-      class="category-card"
-      onclick="aiTools()">
+    <!-- PRO -->
 
-      <div class="category-icon">
-        🤖
+    <div
+      class="category-card coming-soon-card">
+
+      <div class="category-icon package-icon">
+        💼
       </div>
 
       <h2>
-        AI Tools
+        Pro
       </h2>
 
       <p>
-        AI tools और technology से जुड़ी
-        useful information।
+        Advanced skills, communication,
+        Facebook और practical learning
+        के लिए professional package।
       </p>
+
+      <span class="coming-soon-badge">
+        🚧 Coming Soon
+      </span>
 
     </div>
 
+
+    <!-- ELITE -->
+
+    <div
+      class="category-card coming-soon-card">
+
+      <div class="category-icon package-icon">
+        👑
+      </div>
+
+      <h2>
+        Elite
+      </h2>
+
+      <p>
+        Advanced AI, automation,
+        freelancing और digital business
+        learning के लिए future package।
+      </p>
+
+      <span class="coming-soon-badge">
+        🚧 Coming Soon
+      </span>
+
+    </div>
+
+
+    <!-- CUSTOMER INQUIRY -->
 
     <div
       class="category-card"
@@ -630,25 +728,6 @@ body {
     </div>
 
 
-    <div
-      class="category-card"
-      onclick="socialMedia()">
-
-      <div class="category-icon">
-        📱
-      </div>
-
-      <h2>
-        Social Media
-      </h2>
-
-      <p>
-        Social media और online growth
-        से जुड़ी useful learning।
-      </p>
-
-    </div>
-
   </div>
 
 
@@ -659,6 +738,7 @@ body {
     </h2>
 
     <div class="option-grid">
+
 
       <div
         class="option-card"
@@ -733,11 +813,12 @@ body {
         </h3>
 
         <p>
-          अपना Apna Growth Hub account
-          permanently delete करें।
+          Account delete करने के लिए
+          deletion request भेजें।
         </p>
 
       </div>
+
 
     </div>
 
@@ -1459,8 +1540,8 @@ body {
     </h2>
 
     <p>
-      क्या आप अपना Apna Growth Hub account
-      permanently delete करना चाहते हैं?
+      Account permanently delete करने के लिए
+      पहले deletion request भेजनी होगी।
     </p>
 
 
@@ -1473,19 +1554,19 @@ body {
       <ul>
 
         <li>
-          आपका customer profile delete हो जाएगा।
+          Request भेजने के बाद account तुरंत delete नहीं होगा।
         </li>
 
         <li>
-          आपका Firebase login account delete हो जाएगा।
+          आपकी request Admin Panel में जाएगी।
         </li>
 
         <li>
-          Account delete होने के बाद वापस login नहीं किया जा सकेगा।
+          Admin request को Approve या Reject कर सकता है।
         </li>
 
         <li>
-          यह action वापस undo नहीं किया जा सकेगा।
+          Approval मिलने के बाद account deletion process आगे बढ़ेगी।
         </li>
 
       </ul>
@@ -1493,11 +1574,20 @@ body {
     </div>
 
 
+    <div
+      id="deleteStatusBox"
+      class="delete-status-box"
+      style="display:none;">
+
+    </div>
+
+
     <button
+      id="deleteRequestBtn"
       class="danger-btn"
       onclick="deleteAccount()">
 
-      Yes, Delete My Account
+      🗑️ Send Delete Request
 
     </button>
 
@@ -1535,8 +1625,7 @@ import {
   getAuth,
   onAuthStateChanged,
   signOut,
-  updatePassword,
-  deleteUser
+  updatePassword
 } from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
@@ -1545,11 +1634,12 @@ import {
   doc,
   getDoc,
   setDoc,
-  updateDoc,
-  deleteDoc,
   collection,
   addDoc,
-  serverTimestamp
+  serverTimestamp,
+  query,
+  where,
+  getDocs
 } from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -1781,7 +1871,6 @@ async function createOrRepairCustomer(user) {
         ...repairedData
       };
 
-    /* LocalStorage भी update */
 
     localStorage.setItem(
       "customerName",
@@ -1812,9 +1901,6 @@ async function createOrRepairCustomer(user) {
 
   }
 
-
-  /* PROFILE MISSING है
-     इसलिए नया profile बनाओ */
 
   const newCustomerData = {
 
@@ -1871,6 +1957,206 @@ async function createOrRepairCustomer(user) {
 
 
 /* ========================= */
+/* CHECK DELETE REQUEST */
+/* ========================= */
+
+async function checkDeleteRequest(user) {
+
+  try {
+
+    const requestQuery =
+      query(
+        collection(
+          db,
+          "accountDeletionRequests"
+        ),
+        where(
+          "uid",
+          "==",
+          user.uid
+        )
+      );
+
+    const snapshot =
+      await getDocs(
+        requestQuery
+      );
+
+    if (snapshot.empty) {
+
+      return null;
+
+    }
+
+
+    let latestRequest = null;
+
+    snapshot.forEach(
+      function(docSnap) {
+
+        const data =
+          docSnap.data();
+
+        if (
+          !latestRequest ||
+          (
+            data.createdAt &&
+            latestRequest.createdAt &&
+            data.createdAt.seconds >
+            latestRequest.createdAt.seconds
+          )
+        ) {
+
+          latestRequest = {
+
+            id:
+              docSnap.id,
+
+            ...data
+
+          };
+
+        }
+
+      }
+    );
+
+
+    return latestRequest;
+
+  } catch (error) {
+
+    console.error(
+      "Delete request check error:",
+      error
+    );
+
+    return null;
+
+  }
+
+}
+
+
+/* ========================= */
+/* SHOW DELETE REQUEST STATUS */
+/* ========================= */
+
+function showDeleteRequestStatus(request) {
+
+  const statusBox =
+    document.getElementById(
+      "deleteStatusBox"
+    );
+
+  const requestBtn =
+    document.getElementById(
+      "deleteRequestBtn"
+    );
+
+
+  if (!request) {
+
+    statusBox.style.display =
+      "none";
+
+    requestBtn.disabled =
+      false;
+
+    requestBtn.style.opacity =
+      "1";
+
+    requestBtn.textContent =
+      "🗑️ Send Delete Request";
+
+    return;
+
+  }
+
+
+  const status =
+    String(
+      request.status || "pending"
+    ).toLowerCase();
+
+
+  statusBox.style.display =
+    "block";
+
+
+  if (status === "pending") {
+
+    statusBox.className =
+      "delete-status-box";
+
+    statusBox.innerHTML = `
+      <strong>⏳ Delete Request Pending</strong>
+      <br>
+      आपकी deletion request Admin Panel में भेज दी गई है।
+      कृपया Admin के response का इंतजार करें।
+    `;
+
+    requestBtn.disabled =
+      true;
+
+    requestBtn.style.opacity =
+      "0.6";
+
+    requestBtn.textContent =
+      "⏳ Request Pending";
+
+  }
+
+  else if (status === "rejected") {
+
+    statusBox.className =
+      "delete-status-box delete-status-rejected";
+
+    statusBox.innerHTML = `
+      <strong>❌ Delete Request Rejected</strong>
+      <br>
+      आपकी previous deletion request reject कर दी गई है।
+      आप चाहें तो नई request भेज सकते हैं।
+    `;
+
+    requestBtn.disabled =
+      false;
+
+    requestBtn.style.opacity =
+      "1";
+
+    requestBtn.textContent =
+      "🗑️ Send New Delete Request";
+
+  }
+
+  else if (status === "approved") {
+
+    statusBox.className =
+      "delete-status-box delete-status-approved";
+
+    statusBox.innerHTML = `
+      <strong>✅ Delete Request Approved</strong>
+      <br>
+      आपकी deletion request Admin द्वारा approve कर दी गई है।
+      Account deletion process पूरा किया जाएगा।
+    `;
+
+    requestBtn.disabled =
+      true;
+
+    requestBtn.style.opacity =
+      "0.6";
+
+    requestBtn.textContent =
+      "✅ Request Approved";
+
+  }
+
+}
+
+
+/* ========================= */
 /* AUTH + DASHBOARD LOAD */
 /* ========================= */
 
@@ -1888,9 +2174,6 @@ onAuthStateChanged(
     }
 
     try {
-
-      /* सबसे पहले profile
-         create / repair */
 
       const customerData =
         await createOrRepairCustomer(
@@ -1916,8 +2199,6 @@ onAuthStateChanged(
         "";
 
 
-      /* अगर age missing है */
-
       if (
         age === "" ||
         age === null ||
@@ -1940,8 +2221,8 @@ onAuthStateChanged(
 
         <p>
           Apna Growth Hub में आपका स्वागत है।
-          यहाँ आप LIC, Courses, Digital Skills
-          और AI Tools से जुड़ी जानकारी explore कर सकते हैं।
+          यहाँ आप LIC और आने वाले Learning
+          Packages से जुड़ी जानकारी explore कर सकते हैं।
         </p>
 
         <div class="profile-info">
@@ -2056,36 +2337,6 @@ function(page) {
 };
 
 
-window.digitalSkills =
-function() {
-
-  alert(
-    "Digital Skills section जल्द उपलब्ध होगा।"
-  );
-
-};
-
-
-window.aiTools =
-function() {
-
-  alert(
-    "AI Tools section जल्द उपलब्ध होगा।"
-  );
-
-};
-
-
-window.socialMedia =
-function() {
-
-  alert(
-    "Social Media section जल्द उपलब्ध होगा।"
-  );
-
-};
-
-
 /* ========================= */
 /* MY PROFILE */
 /* ========================= */
@@ -2107,16 +2358,11 @@ async function() {
 
   try {
 
-    /* अब profile missing होने पर
-       alert नहीं आएगा */
-
     const data =
       await createOrRepairCustomer(
         user
       );
 
-
-    /* NAME */
 
     document.getElementById(
       "profileName"
@@ -2127,8 +2373,6 @@ async function() {
       "";
 
 
-    /* EMAIL */
-
     document.getElementById(
       "profileEmail"
     ).value =
@@ -2136,8 +2380,6 @@ async function() {
       data.email ||
       "";
 
-
-    /* DOB */
 
     const customerDOB =
       data.dob ||
@@ -2154,8 +2396,6 @@ async function() {
     ).value =
       customerDOB;
 
-
-    /* AGE */
 
     let customerAge =
       data.age;
@@ -2196,8 +2436,6 @@ async function() {
       customerAge;
 
 
-    /* MOBILE */
-
     document.getElementById(
       "profileMobile"
     ).value =
@@ -2209,15 +2447,11 @@ async function() {
       "";
 
 
-    /* CLEAR MESSAGE */
-
     document.getElementById(
       "profileMessage"
     ).textContent =
       "";
 
-
-    /* OPEN MODAL */
 
     document.getElementById(
       "profileModal"
@@ -2296,10 +2530,6 @@ async function() {
         user.uid
       );
 
-
-    /* updateDoc की जगह setDoc
-       ताकि missing profile में भी
-       save हो सके */
 
     await setDoc(
       customerRef,
@@ -2778,11 +3008,48 @@ function() {
 /* ========================= */
 
 window.openDeleteAccount =
-function() {
+async function() {
 
-  document.getElementById(
-    "deleteMessage"
-  ).textContent = "";
+  const message =
+    document.getElementById(
+      "deleteMessage"
+    );
+
+  const statusBox =
+    document.getElementById(
+      "deleteStatusBox"
+    );
+
+  message.textContent =
+    "";
+
+  statusBox.style.display =
+    "none";
+
+
+  const user =
+    auth.currentUser;
+
+
+  if (!user) {
+
+    window.location.href =
+      "index.html";
+
+    return;
+
+  }
+
+
+  const existingRequest =
+    await checkDeleteRequest(
+      user
+    );
+
+
+  showDeleteRequestStatus(
+    existingRequest
+  );
 
 
   document.getElementById(
@@ -2792,6 +3059,10 @@ function() {
 
 };
 
+
+/* ========================= */
+/* SEND DELETE REQUEST */
+/* ========================= */
 
 window.deleteAccount =
 async function() {
@@ -2806,6 +3077,12 @@ async function() {
     );
 
 
+  const requestBtn =
+    document.getElementById(
+      "deleteRequestBtn"
+    );
+
+
   if (!user) {
 
     window.location.href =
@@ -2816,104 +3093,179 @@ async function() {
   }
 
 
-  const confirmed =
-    confirm(
-      "क्या आप सच में अपना account permanently delete करना चाहते हैं?"
-    );
-
-
-  if (!confirmed) {
-    return;
-  }
-
-
   try {
+
+    const existingRequest =
+      await checkDeleteRequest(
+        user
+      );
+
+
+    if (
+      existingRequest &&
+      String(
+        existingRequest.status
+      ).toLowerCase() === "pending"
+    ) {
+
+      message.style.color =
+        "#dc2626";
+
+      message.textContent =
+        "आपकी deletion request पहले से pending है।";
+
+      showDeleteRequestStatus(
+        existingRequest
+      );
+
+      return;
+
+    }
+
+
+    if (
+      existingRequest &&
+      String(
+        existingRequest.status
+      ).toLowerCase() === "approved"
+    ) {
+
+      message.style.color =
+        "#16a34a";
+
+      message.textContent =
+        "आपकी deletion request पहले ही approve हो चुकी है।";
+
+      return;
+
+    }
+
+
+    const confirmed =
+      confirm(
+        "क्या आप अपना account delete करने की request भेजना चाहते हैं?"
+      );
+
+
+    if (!confirmed) {
+
+      return;
+
+    }
+
+
+    requestBtn.disabled =
+      true;
+
+    requestBtn.style.opacity =
+      "0.6";
+
 
     message.style.color =
       "#555";
 
     message.textContent =
-      "Account delete किया जा रहा है...";
+      "Delete request भेजी जा रही है...";
 
 
-    const customerRef =
-      doc(
-        db,
-        "customers",
-        user.uid
+    const customerData =
+      await createOrRepairCustomer(
+        user
       );
 
 
-    await deleteDoc(
-      customerRef
+    await addDoc(
+      collection(
+        db,
+        "accountDeletionRequests"
+      ),
+      {
+
+        uid:
+          user.uid,
+
+        name:
+          customerData.name ||
+          user.displayName ||
+          "Customer",
+
+        email:
+          user.email ||
+          customerData.email ||
+          "",
+
+        mobile:
+          customerData.mobile ||
+          "",
+
+        reason:
+          "Customer requested account deletion",
+
+        status:
+          "pending",
+
+        createdAt:
+          serverTimestamp(),
+
+        updatedAt:
+          serverTimestamp()
+
+      }
     );
 
 
-    await deleteUser(
-      user
+    message.style.color =
+      "#16a34a";
+
+    message.textContent =
+      "✅ Delete request successfully भेज दी गई है।";
+
+
+    const newRequest = {
+
+      status:
+        "pending"
+
+    };
+
+
+    showDeleteRequestStatus(
+      newRequest
     );
 
 
-    localStorage.removeItem(
-      "customerName"
+    setTimeout(
+      function() {
+
+        closeModal(
+          "deleteAccountModal"
+        );
+
+      },
+      1800
     );
-
-    localStorage.removeItem(
-      "customerMobile"
-    );
-
-    localStorage.removeItem(
-      "customerDOB"
-    );
-
-    localStorage.removeItem(
-      "customerAge"
-    );
-
-    localStorage.removeItem(
-      "customerEmail"
-    );
-
-    localStorage.removeItem(
-      "firebaseLoggedIn"
-    );
-
-
-    alert(
-      "आपका account successfully delete हो गया है।"
-    );
-
-
-    window.location.href =
-      "index.html";
 
 
   } catch (error) {
 
     console.error(
-      "Delete account error:",
+      "Delete request error:",
       error
     );
+
+
+    requestBtn.disabled =
+      false;
+
+    requestBtn.style.opacity =
+      "1";
 
 
     message.style.color =
       "#dc2626";
 
-
-    if (
-      error.code ===
-      "auth/requires-recent-login"
-    ) {
-
-      message.textContent =
-        "Security के कारण account delete करने के लिए पहले logout करके दोबारा login करें, फिर Delete Account करें।";
-
-    } else {
-
-      message.textContent =
-        "Account delete करने में समस्या आई। कृपया Customer Support से संपर्क करें।";
-
-    }
+    message.textContent =
+      "Delete request भेजने में समस्या आई। कृपया Customer Support से संपर्क करें।";
 
   }
 
