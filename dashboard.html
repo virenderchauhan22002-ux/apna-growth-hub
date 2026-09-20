@@ -3,771 +3,3002 @@
 
 <head>
 
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Apna Growth Hub - Dashboard</title>
+<title>Apna Growth Hub - Dashboard</title>
 
-  <style>
+<style>
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f7fb;
-      color: #222;
-    }
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  color: #222;
+}
 
-    .topbar {
-      background: #0d47a1;
-      color: white;
-      padding: 18px 20px;
+.topbar {
+  background: #0d47a1;
+  color: white;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
 
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+.brand {
+  font-size: 22px;
+  font-weight: bold;
+}
 
-      gap: 15px;
-    }
+.tagline {
+  font-size: 12px;
+  margin-top: 4px;
+  opacity: 0.9;
+}
 
-    .brand {
-      font-size: 22px;
-      font-weight: bold;
-    }
+.logout-btn {
+  background: white;
+  color: #0d47a1;
+  border: none;
+  padding: 9px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
 
-    .tagline {
-      font-size: 12px;
-      margin-top: 4px;
-      opacity: 0.9;
-    }
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 25px 15px 40px;
+}
 
-    .logout-btn {
-      background: white;
-      color: #0d47a1;
-      border: none;
-      padding: 9px 15px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+.welcome-card {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  border-left: 5px solid #0d47a1;
+}
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 25px 15px 40px;
-    }
+.welcome-card h1 {
+  color: #0d47a1;
+  font-size: 27px;
+  margin-bottom: 8px;
+}
 
-    .welcome-card {
-      background: white;
-      border-radius: 16px;
-      padding: 25px;
-      margin-bottom: 25px;
+.welcome-card p {
+  color: #666;
+  line-height: 1.6;
+}
 
-      box-shadow:
-        0 4px 15px rgba(0,0,0,0.08);
+.profile-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
 
-      border-left: 5px solid #0d47a1;
-    }
+.profile-box {
+  background: #f3f7ff;
+  border: 1px solid #dce7f7;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: #333;
+  font-size: 14px;
+}
 
-    .welcome-card h1 {
-      color: #0d47a1;
-      font-size: 27px;
-      margin-bottom: 8px;
-    }
+.section-title {
+  color: #0d47a1;
+  font-size: 24px;
+  margin-bottom: 18px;
+}
 
-    .welcome-card p {
-      color: #666;
-      line-height: 1.6;
-    }
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
 
-    .profile-info {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
+.category-card {
+  background: white;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  border: 1px solid #e5ebf5;
+  cursor: pointer;
+  transition: 0.2s;
+}
 
-    .profile-box {
-      background: #f3f7ff;
-      border: 1px solid #dce7f7;
-      padding: 10px 14px;
-      border-radius: 8px;
-      color: #333;
-      font-size: 14px;
-    }
+.category-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(0,0,0,0.12);
+}
 
-    .section-title {
-      color: #0d47a1;
-      font-size: 24px;
-      margin-bottom: 18px;
-    }
+.category-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  background: #e8f0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin-bottom: 15px;
+}
 
-    .category-grid {
-      display: grid;
+.category-card h2 {
+  color: #0d47a1;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
 
-      grid-template-columns:
-        repeat(auto-fit, minmax(240px, 1fr));
+.category-card p {
+  color: #666;
+  line-height: 1.5;
+  font-size: 14px;
+}
 
-      gap: 18px;
-    }
+.customer-options {
+  margin-top: 30px;
+}
 
-    .category-card {
-      background: white;
-      border-radius: 16px;
-      padding: 22px;
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+}
 
-      box-shadow:
-        0 4px 15px rgba(0,0,0,0.08);
+.option-card {
+  background: white;
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid #e5ebf5;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  cursor: pointer;
+  transition: 0.2s;
+}
 
-      border: 1px solid #e5ebf5;
+.option-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.10);
+}
 
-      cursor: pointer;
+.option-icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
 
-      transition: 0.2s;
-    }
+.option-card h3 {
+  color: #0d47a1;
+  margin-bottom: 6px;
+  font-size: 17px;
+}
 
-    .category-card:hover {
-      transform: translateY(-3px);
+.option-card p {
+  color: #666;
+  font-size: 13px;
+  line-height: 1.5;
+}
 
-      box-shadow:
-        0 7px 20px rgba(0,0,0,0.12);
-    }
+.delete-card {
+  border: 1px solid #fecaca;
+  background: #fffafa;
+}
 
-    .category-icon {
-      width: 58px;
-      height: 58px;
+.delete-card h3 {
+  color: #dc2626;
+}
 
-      border-radius: 14px;
+.delete-card .option-icon {
+  color: #dc2626;
+}
 
-      background: #e8f0ff;
+.footer {
+  text-align: center;
+  padding: 30px 15px;
+  color: #777;
+  font-size: 13px;
+  background: white;
+  margin-top: 20px;
+  border-top: 1px solid #e5ebf5;
+}
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 18px;
+  margin-bottom: 15px;
+}
 
-      font-size: 30px;
+.footer-links span {
+  color: #0d47a1;
+  cursor: pointer;
+  font-weight: bold;
+}
 
-      margin-bottom: 15px;
-    }
+.footer-links span:hover {
+  text-decoration: underline;
+}
 
-    .category-card h2 {
-      color: #0d47a1;
-      font-size: 20px;
-      margin-bottom: 8px;
-    }
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.55);
+  padding: 20px;
+  overflow-y: auto;
+}
 
-    .category-card p {
-      color: #666;
-      line-height: 1.5;
-      font-size: 14px;
-    }
+.modal-content {
+  background: white;
+  max-width: 650px;
+  margin: 40px auto;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.20);
+  position: relative;
+}
 
-    .footer {
-      text-align: center;
-      padding: 25px 15px;
+.modal-content h2 {
+  color: #0d47a1;
+  margin-bottom: 15px;
+}
 
-      color: #777;
-      font-size: 13px;
-    }
+.modal-content h3 {
+  color: #0d47a1;
+  margin-top: 18px;
+  margin-bottom: 7px;
+}
 
-    .loading {
-      text-align: center;
-      padding: 40px;
-      color: #666;
-    }
+.modal-content p,
+.modal-content li {
+  color: #555;
+  line-height: 1.7;
+  font-size: 14px;
+}
 
-    @media (max-width: 600px) {
+.modal-content ul {
+  padding-left: 20px;
+}
 
-      .topbar {
-        padding: 14px 12px;
-      }
+.close-btn {
+  position: absolute;
+  right: 18px;
+  top: 15px;
+  background: #f1f1f1;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+}
 
-      .brand {
-        font-size: 18px;
-      }
+.close-btn:hover {
+  background: #ddd;
+}
 
-      .logout-btn {
-        padding: 8px 11px;
-        font-size: 12px;
-      }
+.profile-field {
+  margin-bottom: 15px;
+}
 
-      .container {
-        padding:
-          20px 12px 30px;
-      }
+.profile-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #333;
+  font-size: 14px;
+}
 
-      .welcome-card {
-        padding: 20px;
-      }
+.profile-field input,
+.profile-field textarea,
+.profile-field select {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #ccd6e5;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  font-family: Arial, sans-serif;
+}
 
-      .welcome-card h1 {
-        font-size: 23px;
-      }
+.profile-field textarea {
+  min-height: 110px;
+  resize: vertical;
+}
 
-      .section-title {
-        font-size: 21px;
-      }
+.profile-field input:focus,
+.profile-field textarea:focus,
+.profile-field select:focus {
+  border-color: #0d47a1;
+}
 
-      .category-grid {
-        grid-template-columns: 1fr;
-      }
+.profile-field input:disabled {
+  background: #f3f4f6;
+  color: #666;
+}
 
-    }
+.primary-btn {
+  background: #0d47a1;
+  color: white;
+  border: none;
+  padding: 11px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 5px;
+}
 
-  </style>
+.primary-btn:hover {
+  background: #083b89;
+}
+
+.secondary-btn {
+  background: #eef3fb;
+  color: #0d47a1;
+  border: 1px solid #d5e0f0;
+  padding: 11px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.danger-btn {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 11px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.danger-btn:hover {
+  background: #b91c1c;
+}
+
+.message {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.support-box {
+  background: #f3f7ff;
+  border: 1px solid #dce7f7;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.support-box strong {
+  color: #0d47a1;
+}
+
+.support-action {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  background: #0d47a1;
+  color: white;
+  padding: 9px 14px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.whatsapp-action {
+  background: #16a34a;
+}
+
+.email-action {
+  background: #0d47a1;
+}
+
+.delete-warning {
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 15px 0;
+  color: #991b1b;
+}
+
+.delete-warning ul {
+  padding-left: 20px;
+  margin-top: 8px;
+}
+
+@media (max-width: 600px) {
+
+  .topbar {
+    padding: 14px 12px;
+  }
+
+  .brand {
+    font-size: 18px;
+  }
+
+  .logout-btn {
+    padding: 8px 11px;
+    font-size: 12px;
+  }
+
+  .container {
+    padding: 20px 12px 30px;
+  }
+
+  .welcome-card {
+    padding: 20px;
+  }
+
+  .welcome-card h1 {
+    font-size: 23px;
+  }
+
+  .section-title {
+    font-size: 21px;
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .option-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal {
+    padding: 10px;
+  }
+
+  .modal-content {
+    margin: 20px auto;
+    padding: 20px;
+  }
+
+  .secondary-btn {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+
+}
+
+</style>
 
 </head>
 
-
 <body>
 
+<div class="topbar">
 
-  <!-- TOP BAR -->
+  <div>
 
-  <div class="topbar">
+    <div class="brand">
+      Apna Growth Hub
+    </div>
+
+    <div class="tagline">
+      Learn • Grow • Succeed
+    </div>
+
+  </div>
+
+  <button
+    class="logout-btn"
+    onclick="logout()">
+
+    Logout
+
+  </button>
+
+</div>
+
+
+<div class="container">
+
+  <div
+    id="welcomeCard"
+    class="welcome-card">
 
     <div>
+      Dashboard load हो रहा है...
+    </div>
 
-      <div class="brand">
-        Apna Growth Hub
+  </div>
+
+
+  <h2 class="section-title">
+    Explore Categories
+  </h2>
+
+  <div class="category-grid">
+
+    <div
+      class="category-card"
+      onclick="openPage('lic.html')">
+
+      <div class="category-icon">
+        🛡️
       </div>
 
-      <div class="tagline">
-        Learn • Grow • Succeed
+      <h2>
+        LIC Plans
+      </h2>
+
+      <p>
+        अपनी age के अनुसार उपलब्ध
+        LIC plans और उनकी जानकारी देखें।
+      </p>
+
+    </div>
+
+
+    <div
+      class="category-card"
+      onclick="openPage('courses.html')">
+
+      <div class="category-icon">
+        📚
       </div>
+
+      <h2>
+        Courses
+      </h2>
+
+      <p>
+        Useful courses सीखें और अपनी
+        knowledge और skills बढ़ाएँ।
+      </p>
+
+    </div>
+
+
+    <div
+      class="category-card"
+      onclick="digitalSkills()">
+
+      <div class="category-icon">
+        💻
+      </div>
+
+      <h2>
+        Digital Skills
+      </h2>
+
+      <p>
+        Digital skills सीखने के लिए
+        useful learning content।
+      </p>
+
+    </div>
+
+
+    <div
+      class="category-card"
+      onclick="aiTools()">
+
+      <div class="category-icon">
+        🤖
+      </div>
+
+      <h2>
+        AI Tools
+      </h2>
+
+      <p>
+        AI tools और technology से जुड़ी
+        useful information।
+      </p>
+
+    </div>
+
+
+    <div
+      class="category-card"
+      onclick="openPage('customer-inquiry.html')">
+
+      <div class="category-icon">
+        📩
+      </div>
+
+      <h2>
+        Customer Inquiry
+      </h2>
+
+      <p>
+        LIC या अन्य जानकारी के लिए
+        अपनी enquiry भेजें।
+      </p>
+
+    </div>
+
+
+    <div
+      class="category-card"
+      onclick="socialMedia()">
+
+      <div class="category-icon">
+        📱
+      </div>
+
+      <h2>
+        Social Media
+      </h2>
+
+      <p>
+        Social media और online growth
+        से जुड़ी useful learning।
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="customer-options">
+
+    <h2 class="section-title">
+      My Account & Support
+    </h2>
+
+    <div class="option-grid">
+
+      <div
+        class="option-card"
+        onclick="openProfile()">
+
+        <div class="option-icon">
+          👤
+        </div>
+
+        <h3>
+          My Profile
+        </h3>
+
+        <p>
+          अपनी account details देखें और
+          profile information update करें।
+        </p>
+
+      </div>
+
+
+      <div
+        class="option-card"
+        onclick="openChangePassword()">
+
+        <div class="option-icon">
+          🔐
+        </div>
+
+        <h3>
+          Change Password
+        </h3>
+
+        <p>
+          अपने account का password
+          सुरक्षित तरीके से बदलें।
+        </p>
+
+      </div>
+
+
+      <div
+        class="option-card"
+        onclick="openSupport()">
+
+        <div class="option-icon">
+          📞
+        </div>
+
+        <h3>
+          Customer Support
+        </h3>
+
+        <p>
+          किसी भी सहायता के लिए
+          हमसे संपर्क करें।
+        </p>
+
+      </div>
+
+
+      <div
+        class="option-card delete-card"
+        onclick="openDeleteAccount()">
+
+        <div class="option-icon">
+          🗑️
+        </div>
+
+        <h3>
+          Delete Account
+        </h3>
+
+        <p>
+          अपना Apna Growth Hub account
+          permanently delete करें।
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="footer">
+
+  <div class="footer-links">
+
+    <span onclick="openPrivacy()">
+      Privacy Policy
+    </span>
+
+    <span onclick="openTerms()">
+      Terms & Conditions
+    </span>
+
+    <span onclick="openDisclaimer()">
+      Disclaimer
+    </span>
+
+    <span onclick="openSupport()">
+      Customer Support
+    </span>
+
+    <span onclick="openContact()">
+      Contact Us
+    </span>
+
+  </div>
+
+  © 2026 Apna Growth Hub —
+  Learn • Grow • Succeed
+
+</div>
+
+
+<!-- PROFILE MODAL -->
+
+<div id="profileModal" class="modal">
+
+  <div class="modal-content">
+
+    <button
+      class="close-btn"
+      onclick="closeModal('profileModal')">
+
+      ×
+
+    </button>
+
+    <h2>
+      👤 My Profile
+    </h2>
+
+    <div class="profile-field">
+
+      <label>Name</label>
+
+      <input
+        id="profileName"
+        type="text"
+        placeholder="Your Name">
+
+    </div>
+
+
+    <div class="profile-field">
+
+      <label>Email</label>
+
+      <input
+        id="profileEmail"
+        type="email"
+        disabled>
+
+    </div>
+
+
+    <div class="profile-field">
+
+      <label>Date of Birth</label>
+
+      <input
+        id="profileDOB"
+        type="text"
+        disabled>
+
+    </div>
+
+
+    <div class="profile-field">
+
+      <label>Age</label>
+
+      <input
+        id="profileAge"
+        type="text"
+        disabled>
+
+    </div>
+
+
+    <div class="profile-field">
+
+      <label>Mobile Number</label>
+
+      <input
+        id="profileMobile"
+        type="tel"
+        placeholder="Mobile Number">
 
     </div>
 
 
     <button
-      class="logout-btn"
-      onclick="logout()">
+      class="primary-btn"
+      onclick="saveProfile()">
 
-      Logout
+      Save Profile
 
     </button>
 
-  </div>
-
-
-
-  <!-- MAIN -->
-
-  <div class="container">
-
-
-    <!-- WELCOME -->
 
     <div
-      id="welcomeCard"
-      class="welcome-card">
-
-      <div class="loading">
-        Dashboard load हो रहा है...
-      </div>
+      id="profileMessage"
+      class="message">
 
     </div>
 
+  </div>
+
+</div>
 
 
-    <!-- CATEGORIES -->
+<!-- PASSWORD -->
 
-    <h2 class="section-title">
-      Explore Categories
+<div id="passwordModal" class="modal">
+
+  <div class="modal-content">
+
+    <button
+      class="close-btn"
+      onclick="closeModal('passwordModal')">
+
+      ×
+
+    </button>
+
+    <h2>
+      🔐 Change Password
     </h2>
 
+    <p>
+      नया password कम से कम 6 characters का रखें।
+    </p>
 
-    <div class="category-grid">
+    <div class="profile-field">
 
+      <label>New Password</label>
 
-      <!-- LIC -->
+      <input
+        id="newPassword"
+        type="password"
+        placeholder="New Password">
 
-      <div
-        class="category-card"
-        onclick="openPage('lic.html')">
-
-        <div class="category-icon">
-          🛡️
-        </div>
-
-        <h2>
-          LIC Plans
-        </h2>
-
-        <p>
-          अपनी age के अनुसार उपलब्ध
-          LIC plans और उनकी जानकारी देखें।
-        </p>
-
-      </div>
+    </div>
 
 
+    <div class="profile-field">
 
-      <!-- COURSES -->
+      <label>Confirm New Password</label>
 
-      <div
-        class="category-card"
-        onclick="openPage('courses.html')">
+      <input
+        id="confirmPassword"
+        type="password"
+        placeholder="Confirm Password">
 
-        <div class="category-icon">
-          📚
-        </div>
-
-        <h2>
-          Courses
-        </h2>
-
-        <p>
-          Useful courses सीखें और अपनी
-          knowledge और skills बढ़ाएँ।
-        </p>
-
-      </div>
+    </div>
 
 
+    <button
+      class="primary-btn"
+      onclick="changePassword()">
 
-      <!-- DIGITAL SKILLS -->
+      Change Password
 
-      <div
-        class="category-card"
-        onclick="digitalSkills()">
-
-        <div class="category-icon">
-          💻
-        </div>
-
-        <h2>
-          Digital Skills
-        </h2>
-
-        <p>
-          Digital skills सीखने के लिए
-          useful learning content।
-        </p>
-
-      </div>
+    </button>
 
 
-
-      <!-- AI TOOLS -->
-
-      <div
-        class="category-card"
-        onclick="aiTools()">
-
-        <div class="category-icon">
-          🤖
-        </div>
-
-        <h2>
-          AI Tools
-        </h2>
-
-        <p>
-          AI tools और technology से जुड़ी
-          useful information।
-        </p>
-
-      </div>
-
-
-
-      <!-- CUSTOMER INQUIRY -->
-
-      <div
-        class="category-card"
-        onclick="openPage('customer-inquiry.html')">
-
-        <div class="category-icon">
-          📩
-        </div>
-
-        <h2>
-          Customer Inquiry
-        </h2>
-
-        <p>
-          LIC या अन्य जानकारी के लिए
-          अपनी enquiry भेजें।
-        </p>
-
-      </div>
-
-
-
-      <!-- SOCIAL MEDIA -->
-
-      <div
-        class="category-card"
-        onclick="socialMedia()">
-
-        <div class="category-icon">
-          📱
-        </div>
-
-        <h2>
-          Social Media
-        </h2>
-
-        <p>
-          Social media और online growth
-          से जुड़ी useful learning।
-        </p>
-
-      </div>
-
+    <div
+      id="passwordMessage"
+      class="message">
 
     </div>
 
   </div>
 
+</div>
 
 
-  <!-- FOOTER -->
+<!-- PRIVACY -->
 
-  <div class="footer">
+<div id="privacyModal" class="modal">
 
-    Apna Growth Hub — Learn • Grow • Succeed
+  <div class="modal-content">
+
+    <button
+      class="close-btn"
+      onclick="closeModal('privacyModal')">
+
+      ×
+
+    </button>
+
+    <h2>
+      🛡️ Privacy Policy
+    </h2>
+
+    <p>
+      Apna Growth Hub आपकी privacy को महत्व देता है।
+    </p>
+
+    <h3>1. हम कौन-सी जानकारी लेते हैं?</h3>
+
+    <p>
+      Account बनाने के दौरान Name, Email, Date of Birth,
+      Age और आवश्यकता के अनुसार अन्य जानकारी ली जा सकती है।
+    </p>
+
+    <h3>2. जानकारी का उपयोग</h3>
+
+    <p>
+      आपकी जानकारी का उपयोग account management,
+      dashboard personalization, LIC information,
+      courses और customer support के लिए किया जा सकता है।
+    </p>
+
+    <h3>3. Data Security</h3>
+
+    <p>
+      Account और customer data को Firebase जैसे
+      secure cloud services के माध्यम से manage किया जाता है।
+    </p>
+
+    <h3>4. Customer Privacy</h3>
+
+    <p>
+      आपकी personal information को बिना उचित आवश्यकता
+      या कानूनी आवश्यकता के सार्वजनिक रूप से प्रदर्शित
+      नहीं किया जाएगा।
+    </p>
+
+    <h3>5. Policy Updates</h3>
+
+    <p>
+      आवश्यकता के अनुसार इस Privacy Policy को future में
+      update किया जा सकता है।
+    </p>
 
   </div>
 
+</div>
 
 
-  <!-- FIREBASE -->
+<!-- TERMS -->
 
-  <script type="module">
+<div id="termsModal" class="modal">
+
+  <div class="modal-content">
+
+    <button
+      class="close-btn"
+      onclick="closeModal('termsModal')">
+
+      ×
+
+    </button>
+
+    <h2>
+      📄 Terms & Conditions
+    </h2>
+
+    <p>
+      Apna Growth Hub का उपयोग करके आप इन
+      Terms & Conditions को स्वीकार करते हैं।
+    </p>
+
+    <h3>1. Account</h3>
+
+    <p>
+      Customer अपने account की login information
+      को सुरक्षित रखने के लिए स्वयं जिम्मेदार है।
+    </p>
+
+    <h3>2. Information</h3>
+
+    <p>
+      App में दी गई information educational और
+      informational purpose के लिए हो सकती है।
+    </p>
+
+    <h3>3. LIC Information</h3>
+
+    <p>
+      LIC plans से संबंधित final eligibility,
+      terms, conditions और policy details के लिए
+      official LIC information को प्राथमिकता दी जानी चाहिए।
+    </p>
+
+    <h3>4. Account Misuse</h3>
+
+    <p>
+      App का उपयोग गलत, अवैध या किसी अन्य व्यक्ति
+      को नुकसान पहुँचाने वाले उद्देश्य से नहीं किया जाना चाहिए।
+    </p>
+
+    <h3>5. Updates</h3>
+
+    <p>
+      App के features और content future में बदले या
+      update किए जा सकते हैं।
+    </p>
+
+  </div>
+
+</div>
 
 
-    import {
-      initializeApp
-    } from
-    "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+<!-- DISCLAIMER -->
+
+<div id="disclaimerModal" class="modal">
+
+  <div class="modal-content">
+
+    <button
+      class="close-btn"
+      onclick="closeModal('disclaimerModal')">
+
+      ×
+
+    </button>
+
+    <h2>
+      ⚠️ Disclaimer
+    </h2>
+
+    <p>
+      Apna Growth Hub पर उपलब्ध information
+      general educational और informational purposes
+      के लिए प्रदान की जाती है।
+    </p>
+
+    <h3>LIC Information</h3>
+
+    <p>
+      LIC policy खरीदने या किसी financial decision
+      से पहले official LIC documents, policy conditions
+      और latest information को verify करें।
+    </p>
+
+    <h3>No Guarantee</h3>
+
+    <p>
+      App पर उपलब्ध educational information से किसी
+      specific financial result या earning की guarantee
+      नहीं दी जाती।
+    </p>
+
+    <h3>External Information</h3>
+
+    <p>
+      Third-party websites, tools या services की
+      information उनके respective providers की
+      responsibility हो सकती है।
+    </p>
+
+    <h3>Final Decision</h3>
+
+    <p>
+      किसी भी financial, insurance या business decision
+      से पहले उचित जानकारी और आवश्यकता होने पर
+      qualified professional की सलाह लें।
+    </p>
+
+  </div>
+
+</div>
 
 
-    import {
-      getAuth,
-      onAuthStateChanged,
-      signOut
-    } from
-    "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+<!-- SUPPORT -->
+
+<div id="supportModal" class="modal">
+
+  <div class="modal-content">
+
+    <button
+      class="close-btn"
+      onclick="closeModal('supportModal')">
+
+      ×
+
+    </button>
+
+    <h2>
+      📞 Customer Support
+    </h2>
+
+    <p>
+      Apna Growth Hub से संबंधित किसी भी सहायता के
+      लिए नीचे दिए गए options का उपयोग करें।
+    </p>
 
 
-    import {
-      getFirestore,
-      doc,
-      getDoc
-    } from
-    "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    <div class="support-box">
+
+      <strong>📧 Email Support</strong>
+
+      <p>
+        apnagrowthhub@gmail.com
+      </p>
+
+      <a
+        class="support-action email-action"
+        href="mailto:apnagrowthhub@gmail.com">
+
+        Email करें
+
+      </a>
+
+    </div>
 
 
+    <div class="support-box">
 
-    const firebaseConfig = {
+      <strong>💬 WhatsApp Support</strong>
 
-      apiKey:
-        "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
+      <p>
+        7876260435
+      </p>
 
-      authDomain:
-        "apna-growth-hub.firebaseapp.com",
+      <a
+        class="support-action whatsapp-action"
+        href="https://wa.me/917876260435"
+        target="_blank">
 
-      projectId:
-        "apna-growth-hub",
+        WhatsApp करें
 
-      storageBucket:
-        "apna-growth-hub.firebasestorage.app",
+      </a>
 
-      messagingSenderId:
-        "939001251123",
+    </div>
 
-      appId:
-        "1:939001251123:web:f2966004acaa64186e2a46",
 
-      measurementId:
-        "G-GZGCHL4XQ3"
+    <div class="support-box">
+
+      <strong>📞 Call Support</strong>
+
+      <p>
+        7876260435
+      </p>
+
+      <a
+        class="support-action"
+        href="tel:+917876260435">
+
+        Call करें
+
+      </a>
+
+    </div>
+
+
+    <div class="support-box">
+
+      <strong>🆘 Support</strong>
+
+      <p>
+        अगर आपको app, login, course या किसी अन्य
+        समस्या में सहायता चाहिए तो Support Request भेजें।
+      </p>
+
+      <button
+        class="primary-btn"
+        onclick="openSupportRequest()">
+
+        Support Request भेजें
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- SUPPORT REQUEST -->
+
+<div id="supportRequestModal" class="modal">
+
+  <div class="modal-content">
+
+    <button
+      class="close-btn"
+      onclick="closeModal('supportRequestModal')">
+
+      ×
+
+    </button>
+
+    <h2>
+      🆘 Support Request
+    </h2>
+
+    <p>
+      अपनी समस्या नीचे लिखें। आपकी request support
+      team तक भेज दी जाएगी।
+    </p>
+
+
+    <div class="profile-field">
+
+      <label>
+        Problem / Subject
+      </label>
+
+      <select id="supportSubject">
+
+        <option value="">
+          Select Problem
+        </option>
+
+        <option value="Login Problem">
+          Login Problem
+        </option>
+
+        <option value="Account Problem">
+          Account Problem
+        </option>
+
+        <option value="Course Problem">
+          Course Problem
+        </option>
+
+        <option value="LIC Query">
+          LIC Query
+        </option>
+
+        <option value="Technical Problem">
+          Technical Problem
+        </option>
+
+        <option value="Other">
+          Other
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="profile-field">
+
+      <label>
+        Your Message
+      </label>
+
+      <textarea
+        id="supportMessage"
+        placeholder="अपनी समस्या यहाँ लिखें..."></textarea>
+
+    </div>
+
+
+    <button
+      class="primary-btn"
+      onclick="sendSupportRequest()">
+
+      Send Support Request
+
+    </button>
+
+
+    <div
+      id="supportRequestMessage"
+      class="message">
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- CONTACT -->
+
+<div id="contactModal" class="modal">
+
+  <div class="modal-content">
+
+    <button
+      class="close-btn"
+      onclick="closeModal('contactModal')">
+
+      ×
+
+    </button>
+
+    <h2>
+      📧 Contact Us
+    </h2>
+
+    <p>
+      Apna Growth Hub से संपर्क करने के लिए
+      नीचे दिए गए options का उपयोग करें।
+    </p>
+
+
+    <div class="support-box">
+
+      <strong>
+        Apna Growth Hub
+      </strong>
+
+      <p>
+        Learn • Grow • Succeed
+      </p>
+
+    </div>
+
+
+    <div class="support-box">
+
+      <strong>
+        📞 Mobile
+      </strong>
+
+      <p>
+        7876260435
+      </p>
+
+      <a
+        class="support-action"
+        href="tel:+917876260435">
+
+        Call करें
+
+      </a>
+
+    </div>
+
+
+    <div class="support-box">
+
+      <strong>
+        💬 WhatsApp
+      </strong>
+
+      <p>
+        7876260435
+      </p>
+
+      <a
+        class="support-action whatsapp-action"
+        href="https://wa.me/917876260435"
+        target="_blank">
+
+        WhatsApp करें
+
+      </a>
+
+    </div>
+
+
+    <div class="support-box">
+
+      <strong>
+        📧 Email
+      </strong>
+
+      <p>
+        apnagrowthhub@gmail.com
+      </p>
+
+      <a
+        class="support-action email-action"
+        href="mailto:apnagrowthhub@gmail.com">
+
+        Email करें
+
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- DELETE ACCOUNT -->
+
+<div id="deleteAccountModal" class="modal">
+
+  <div class="modal-content">
+
+    <button
+      class="close-btn"
+      onclick="closeModal('deleteAccountModal')">
+
+      ×
+
+    </button>
+
+    <h2 style="color:#dc2626;">
+      🗑️ Delete Account
+    </h2>
+
+    <p>
+      क्या आप अपना Apna Growth Hub account
+      permanently delete करना चाहते हैं?
+    </p>
+
+
+    <div class="delete-warning">
+
+      <strong>
+        ⚠️ ध्यान दें:
+      </strong>
+
+      <ul>
+
+        <li>
+          आपका customer profile delete हो जाएगा।
+        </li>
+
+        <li>
+          आपका Firebase login account delete हो जाएगा।
+        </li>
+
+        <li>
+          Account delete होने के बाद वापस login नहीं किया जा सकेगा।
+        </li>
+
+        <li>
+          यह action वापस undo नहीं किया जा सकेगा।
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    <button
+      class="danger-btn"
+      onclick="deleteAccount()">
+
+      Yes, Delete My Account
+
+    </button>
+
+
+    <button
+      class="secondary-btn"
+      onclick="closeModal('deleteAccountModal')">
+
+      Cancel
+
+    </button>
+
+
+    <div
+      id="deleteMessage"
+      class="message">
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- FIREBASE -->
+
+<script type="module">
+
+import {
+  initializeApp
+} from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+  updatePassword,
+  deleteUser
+} from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+  collection,
+  addDoc,
+  serverTimestamp
+} from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
+
+  authDomain:
+    "apna-growth-hub.firebaseapp.com",
+
+  projectId:
+    "apna-growth-hub",
+
+  storageBucket:
+    "apna-growth-hub.firebasestorage.app",
+
+  messagingSenderId:
+    "939001251123",
+
+  appId:
+    "1:939001251123:web:f2966004acaa64186e2a46",
+
+  measurementId:
+    "G-GZGCHL4XQ3"
+
+};
+
+
+const app =
+  initializeApp(firebaseConfig);
+
+const auth =
+  getAuth(app);
+
+const db =
+  getFirestore(app);
+
+const welcomeCard =
+  document.getElementById("welcomeCard");
+
+let currentCustomerData = {};
+
+
+/* ========================= */
+/* CALCULATE AGE */
+/* ========================= */
+
+function calculateAgeFromDOB(dob) {
+
+  if (!dob) {
+    return "";
+  }
+
+  const birthDate = new Date(dob);
+
+  if (isNaN(birthDate.getTime())) {
+    return "";
+  }
+
+  const today = new Date();
+
+  let age =
+    today.getFullYear() -
+    birthDate.getFullYear();
+
+  const monthDifference =
+    today.getMonth() -
+    birthDate.getMonth();
+
+  if (
+    monthDifference < 0 ||
+    (
+      monthDifference === 0 &&
+      today.getDate() < birthDate.getDate()
+    )
+  ) {
+
+    age--;
+
+  }
+
+  return age;
+
+}
+
+
+/* ========================= */
+/* LOCAL CUSTOMER DATA */
+/* ========================= */
+
+function getLocalCustomerData(user) {
+
+  const localDOB =
+    localStorage.getItem("customerDOB") || "";
+
+  let localAge =
+    localStorage.getItem("customerAge") || "";
+
+  if (
+    (!localAge || localAge === "null") &&
+    localDOB
+  ) {
+
+    localAge =
+      calculateAgeFromDOB(localDOB);
+
+  }
+
+  return {
+
+    name:
+      localStorage.getItem("customerName") || "",
+
+    mobile:
+      localStorage.getItem("customerMobile") || "",
+
+    dob:
+      localDOB,
+
+    age:
+      localAge,
+
+    email:
+      localStorage.getItem("customerEmail") ||
+      user.email ||
+      "",
+
+    uid:
+      user.uid
+
+  };
+
+}
+
+
+/* ========================= */
+/* CREATE / REPAIR PROFILE */
+/* ========================= */
+
+async function createOrRepairCustomer(user) {
+
+  const customerRef =
+    doc(
+      db,
+      "customers",
+      user.uid
+    );
+
+  const customerSnap =
+    await getDoc(customerRef);
+
+  const localData =
+    getLocalCustomerData(user);
+
+  if (customerSnap.exists()) {
+
+    const existingData =
+      customerSnap.data();
+
+    let dob =
+      existingData.dob ||
+      existingData.dateOfBirth ||
+      existingData.DOB ||
+      localData.dob ||
+      "";
+
+    let age =
+      existingData.age;
+
+    if (
+      age === undefined ||
+      age === null ||
+      age === ""
+    ) {
+
+      age =
+        calculateAgeFromDOB(dob);
+
+    }
+
+    const repairedData = {
+
+      name:
+        existingData.name ||
+        existingData.fullName ||
+        localData.name ||
+        user.displayName ||
+        "Customer",
+
+      mobile:
+        existingData.mobile ||
+        existingData.phone ||
+        localData.mobile ||
+        "",
+
+      dob:
+        dob,
+
+      age:
+        age,
+
+      email:
+        existingData.email ||
+        localData.email ||
+        user.email ||
+        "",
+
+      uid:
+        user.uid
 
     };
 
+    await setDoc(
+      customerRef,
+      {
+        ...repairedData,
+        updatedAt: serverTimestamp()
+      },
+      {
+        merge: true
+      }
+    );
+
+    currentCustomerData =
+      {
+        ...existingData,
+        ...repairedData
+      };
+
+    /* LocalStorage भी update */
+
+    localStorage.setItem(
+      "customerName",
+      repairedData.name || ""
+    );
+
+    localStorage.setItem(
+      "customerMobile",
+      repairedData.mobile || ""
+    );
+
+    localStorage.setItem(
+      "customerDOB",
+      repairedData.dob || ""
+    );
+
+    localStorage.setItem(
+      "customerAge",
+      repairedData.age ?? ""
+    );
+
+    localStorage.setItem(
+      "customerEmail",
+      repairedData.email || ""
+    );
+
+    return currentCustomerData;
+
+  }
 
 
-    const app =
-      initializeApp(firebaseConfig);
+  /* PROFILE MISSING है
+     इसलिए नया profile बनाओ */
+
+  const newCustomerData = {
+
+    name:
+      localData.name ||
+      user.displayName ||
+      "Customer",
+
+    mobile:
+      localData.mobile ||
+      "",
+
+    dob:
+      localData.dob ||
+      "",
+
+    age:
+      localData.age ||
+      "",
+
+    email:
+      localData.email ||
+      user.email ||
+      "",
+
+    uid:
+      user.uid,
+
+    createdAt:
+      serverTimestamp(),
+
+    updatedAt:
+      serverTimestamp()
+
+  };
 
 
-    const auth =
-      getAuth(app);
+  await setDoc(
+    customerRef,
+    newCustomerData,
+    {
+      merge: true
+    }
+  );
 
 
-    const db =
-      getFirestore(app);
+  currentCustomerData =
+    newCustomerData;
 
 
+  return newCustomerData;
 
-    const welcomeCard =
-      document.getElementById(
-        "welcomeCard"
+}
+
+
+/* ========================= */
+/* AUTH + DASHBOARD LOAD */
+/* ========================= */
+
+onAuthStateChanged(
+  auth,
+  async (user) => {
+
+    if (!user) {
+
+      window.location.href =
+        "index.html";
+
+      return;
+
+    }
+
+    try {
+
+      /* सबसे पहले profile
+         create / repair */
+
+      const customerData =
+        await createOrRepairCustomer(
+          user
+        );
+
+
+      let customerName =
+        customerData.name ||
+        user.displayName ||
+        "Customer";
+
+      let age =
+        customerData.age ??
+        "";
+
+      let dob =
+        customerData.dob ||
+        "";
+
+      let mobile =
+        customerData.mobile ||
+        "";
+
+
+      /* अगर age missing है */
+
+      if (
+        age === "" ||
+        age === null ||
+        age === undefined
+      ) {
+
+        age =
+          calculateAgeFromDOB(
+            dob
+          );
+
+      }
+
+
+      welcomeCard.innerHTML = `
+
+        <h1>
+          Welcome, ${escapeHTML(customerName)} 👋
+        </h1>
+
+        <p>
+          Apna Growth Hub में आपका स्वागत है।
+          यहाँ आप LIC, Courses, Digital Skills
+          और AI Tools से जुड़ी जानकारी explore कर सकते हैं।
+        </p>
+
+        <div class="profile-info">
+
+          ${
+            age !== "" &&
+            age !== null &&
+            age !== undefined
+              ? `
+                <div class="profile-box">
+                  🎂 Age: ${escapeHTML(age)}
+                </div>
+              `
+              : ""
+          }
+
+          ${
+            dob
+              ? `
+                <div class="profile-box">
+                  📅 DOB: ${escapeHTML(dob)}
+                </div>
+              `
+              : ""
+          }
+
+          <div class="profile-box">
+            📧 ${escapeHTML(
+              customerData.email ||
+              user.email ||
+              ""
+            )}
+          </div>
+
+          ${
+            mobile
+              ? `
+                <div class="profile-box">
+                  📱 ${escapeHTML(mobile)}
+                </div>
+              `
+              : ""
+          }
+
+        </div>
+
+      `;
+
+
+    } catch (error) {
+
+      console.error(
+        "Profile load error:",
+        error
       );
 
 
+      welcomeCard.innerHTML = `
 
-    onAuthStateChanged(
-      auth,
-      async (user) => {
+        <h1>
+          Welcome 👋
+        </h1>
 
+        <p>
+          Apna Growth Hub में आपका स्वागत है।
+        </p>
 
-        if (!user) {
+      `;
 
-          window.location.href =
-            "index.html";
+    }
 
-          return;
-
-        }
-
-
-        try {
-
-
-          const customerRef =
-            doc(
-              db,
-              "customers",
-              user.uid
-            );
+  }
+);
 
 
-          const customerSnap =
-            await getDoc(
-              customerRef
-            );
+/* ========================= */
+/* ESCAPE HTML */
+/* ========================= */
+
+function escapeHTML(value) {
+
+  if (
+    value === null ||
+    value === undefined
+  ) {
+
+    return "";
+
+  }
+
+  return String(value)
+
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
 
 
-          let customerName =
-            user.displayName ||
-            "Customer";
+/* ========================= */
+/* PAGE FUNCTIONS */
+/* ========================= */
+
+window.openPage =
+function(page) {
+
+  window.location.href =
+    page;
+
+};
 
 
-          let age = "";
+window.digitalSkills =
+function() {
+
+  alert(
+    "Digital Skills section जल्द उपलब्ध होगा।"
+  );
+
+};
 
 
-          let dob = "";
+window.aiTools =
+function() {
+
+  alert(
+    "AI Tools section जल्द उपलब्ध होगा।"
+  );
+
+};
 
 
+window.socialMedia =
+function() {
 
-          if (customerSnap.exists()) {
+  alert(
+    "Social Media section जल्द उपलब्ध होगा।"
+  );
 
-            const data =
-              customerSnap.data();
-
-
-            customerName =
-              data.name ||
-              data.fullName ||
-              customerName;
+};
 
 
-            age =
-              data.age ||
-              "";
+/* ========================= */
+/* MY PROFILE */
+/* ========================= */
+
+window.openProfile =
+async function() {
+
+  const user =
+    auth.currentUser;
+
+  if (!user) {
+
+    window.location.href =
+      "index.html";
+
+    return;
+
+  }
+
+  try {
+
+    /* अब profile missing होने पर
+       alert नहीं आएगा */
+
+    const data =
+      await createOrRepairCustomer(
+        user
+      );
 
 
-            dob =
-              data.dob ||
-              "";
+    /* NAME */
 
-          }
-
-
-
-          welcomeCard.innerHTML = `
-
-            <h1>
-              Welcome, ${escapeHTML(customerName)} 👋
-            </h1>
-
-            <p>
-              Apna Growth Hub में आपका स्वागत है।
-              यहाँ आप LIC, Courses, Digital Skills
-              और AI Tools से जुड़ी जानकारी explore कर सकते हैं।
-            </p>
-
-            <div class="profile-info">
-
-              ${
-                age
-                  ? `
-                    <div class="profile-box">
-                      🎂 Age: ${escapeHTML(age)}
-                    </div>
-                  `
-                  : ""
-              }
-
-              ${
-                dob
-                  ? `
-                    <div class="profile-box">
-                      📅 DOB: ${escapeHTML(dob)}
-                    </div>
-                  `
-                  : ""
-              }
-
-              <div class="profile-box">
-                📧 ${escapeHTML(user.email || "")}
-              </div>
-
-            </div>
-
-          `;
+    document.getElementById(
+      "profileName"
+    ).value =
+      data.name ||
+      data.fullName ||
+      user.displayName ||
+      "";
 
 
-        } catch (error) {
+    /* EMAIL */
 
-          console.error(
-            "Profile load error:",
-            error
-          );
+    document.getElementById(
+      "profileEmail"
+    ).value =
+      user.email ||
+      data.email ||
+      "";
 
 
-          welcomeCard.innerHTML = `
+    /* DOB */
 
-            <h1>
-              Welcome 👋
-            </h1>
+    const customerDOB =
+      data.dob ||
+      data.dateOfBirth ||
+      data.DOB ||
+      localStorage.getItem(
+        "customerDOB"
+      ) ||
+      "";
 
-            <p>
-              Apna Growth Hub में आपका स्वागत है।
-            </p>
 
-          `;
+    document.getElementById(
+      "profileDOB"
+    ).value =
+      customerDOB;
+
+
+    /* AGE */
+
+    let customerAge =
+      data.age;
+
+
+    if (
+      customerAge === undefined ||
+      customerAge === null ||
+      customerAge === ""
+    ) {
+
+      customerAge =
+        calculateAgeFromDOB(
+          customerDOB
+        );
+
+    }
+
+
+    if (
+      customerAge === "" ||
+      customerAge === null ||
+      customerAge === undefined
+    ) {
+
+      customerAge =
+        localStorage.getItem(
+          "customerAge"
+        ) ||
+        "";
+
+    }
+
+
+    document.getElementById(
+      "profileAge"
+    ).value =
+      customerAge;
+
+
+    /* MOBILE */
+
+    document.getElementById(
+      "profileMobile"
+    ).value =
+      data.mobile ||
+      data.phone ||
+      localStorage.getItem(
+        "customerMobile"
+      ) ||
+      "";
+
+
+    /* CLEAR MESSAGE */
+
+    document.getElementById(
+      "profileMessage"
+    ).textContent =
+      "";
+
+
+    /* OPEN MODAL */
+
+    document.getElementById(
+      "profileModal"
+    ).style.display =
+      "block";
+
+
+  } catch (error) {
+
+    console.error(
+      "Profile load error:",
+      error
+    );
+
+    alert(
+      "Profile details load नहीं हो पाईं।"
+    );
+
+  }
+
+};
+
+
+/* ========================= */
+/* SAVE PROFILE */
+/* ========================= */
+
+window.saveProfile =
+async function() {
+
+  const user =
+    auth.currentUser;
+
+  if (!user) {
+    return;
+  }
+
+
+  const name =
+    document.getElementById(
+      "profileName"
+    ).value.trim();
+
+
+  const mobile =
+    document.getElementById(
+      "profileMobile"
+    ).value.trim();
+
+
+  const message =
+    document.getElementById(
+      "profileMessage"
+    );
+
+
+  if (!name) {
+
+    message.style.color =
+      "#dc2626";
+
+    message.textContent =
+      "कृपया Name डालें।";
+
+    return;
+
+  }
+
+
+  try {
+
+    const customerRef =
+      doc(
+        db,
+        "customers",
+        user.uid
+      );
+
+
+    /* updateDoc की जगह setDoc
+       ताकि missing profile में भी
+       save हो सके */
+
+    await setDoc(
+      customerRef,
+      {
+        name:
+          name,
+
+        mobile:
+          mobile,
+
+        email:
+          user.email ||
+          currentCustomerData.email ||
+          "",
+
+        uid:
+          user.uid,
+
+        updatedAt:
+          serverTimestamp()
+      },
+      {
+        merge: true
+      }
+    );
+
+
+    currentCustomerData.name =
+      name;
+
+    currentCustomerData.mobile =
+      mobile;
+
+
+    localStorage.setItem(
+      "customerName",
+      name
+    );
+
+    localStorage.setItem(
+      "customerMobile",
+      mobile
+    );
+
+
+    message.style.color =
+      "#16a34a";
+
+    message.textContent =
+      "Profile successfully update हो गई।";
+
+
+    setTimeout(
+      function() {
+
+        location.reload();
+
+      },
+      1000
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      "Profile update error:",
+      error
+    );
+
+    message.style.color =
+      "#dc2626";
+
+    message.textContent =
+      "Profile update में समस्या आई।";
+
+  }
+
+};
+
+
+/* ========================= */
+/* CHANGE PASSWORD */
+/* ========================= */
+
+window.openChangePassword =
+function() {
+
+  document.getElementById(
+    "newPassword"
+  ).value = "";
+
+  document.getElementById(
+    "confirmPassword"
+  ).value = "";
+
+  document.getElementById(
+    "passwordMessage"
+  ).textContent = "";
+
+  document.getElementById(
+    "passwordModal"
+  ).style.display =
+    "block";
+
+};
+
+
+window.changePassword =
+async function() {
+
+  const user =
+    auth.currentUser;
+
+  if (!user) {
+    return;
+  }
+
+
+  const newPassword =
+    document.getElementById(
+      "newPassword"
+    ).value;
+
+
+  const confirmPassword =
+    document.getElementById(
+      "confirmPassword"
+    ).value;
+
+
+  const message =
+    document.getElementById(
+      "passwordMessage"
+    );
+
+
+  if (!newPassword) {
+
+    message.style.color =
+      "#dc2626";
+
+    message.textContent =
+      "नया password डालें।";
+
+    return;
+
+  }
+
+
+  if (newPassword.length < 6) {
+
+    message.style.color =
+      "#dc2626";
+
+    message.textContent =
+      "Password कम से कम 6 characters का होना चाहिए।";
+
+    return;
+
+  }
+
+
+  if (
+    newPassword !==
+    confirmPassword
+  ) {
+
+    message.style.color =
+      "#dc2626";
+
+    message.textContent =
+      "दोनों passwords match नहीं कर रहे।";
+
+    return;
+
+  }
+
+
+  try {
+
+    await updatePassword(
+      user,
+      newPassword
+    );
+
+
+    message.style.color =
+      "#16a34a";
+
+    message.textContent =
+      "Password successfully change हो गया।";
+
+
+    document.getElementById(
+      "newPassword"
+    ).value = "";
+
+    document.getElementById(
+      "confirmPassword"
+    ).value = "";
+
+
+  } catch (error) {
+
+    console.error(
+      "Password change error:",
+      error
+    );
+
+
+    message.style.color =
+      "#dc2626";
+
+
+    if (
+      error.code ===
+      "auth/requires-recent-login"
+    ) {
+
+      message.textContent =
+        "Security के लिए पहले logout करके फिर login करें, उसके बाद password change करें।";
+
+    } else {
+
+      message.textContent =
+        "Password change में समस्या आई।";
+
+    }
+
+  }
+
+};
+
+
+/* ========================= */
+/* PRIVACY */
+/* ========================= */
+
+window.openPrivacy =
+function() {
+
+  document.getElementById(
+    "privacyModal"
+  ).style.display =
+    "block";
+
+};
+
+
+/* ========================= */
+/* TERMS */
+/* ========================= */
+
+window.openTerms =
+function() {
+
+  document.getElementById(
+    "termsModal"
+  ).style.display =
+    "block";
+
+};
+
+
+/* ========================= */
+/* DISCLAIMER */
+/* ========================= */
+
+window.openDisclaimer =
+function() {
+
+  document.getElementById(
+    "disclaimerModal"
+  ).style.display =
+    "block";
+
+};
+
+
+/* ========================= */
+/* SUPPORT */
+/* ========================= */
+
+window.openSupport =
+function() {
+
+  document.getElementById(
+    "supportModal"
+  ).style.display =
+    "block";
+
+};
+
+
+/* ========================= */
+/* SUPPORT REQUEST */
+/* ========================= */
+
+window.openSupportRequest =
+function() {
+
+  document.getElementById(
+    "supportSubject"
+  ).value = "";
+
+  document.getElementById(
+    "supportMessage"
+  ).value = "";
+
+  document.getElementById(
+    "supportRequestMessage"
+  ).textContent = "";
+
+  document.getElementById(
+    "supportRequestModal"
+  ).style.display =
+    "block";
+
+};
+
+
+window.sendSupportRequest =
+async function() {
+
+  const user =
+    auth.currentUser;
+
+
+  const subject =
+    document.getElementById(
+      "supportSubject"
+    ).value;
+
+
+  const messageText =
+    document.getElementById(
+      "supportMessage"
+    ).value.trim();
+
+
+  const message =
+    document.getElementById(
+      "supportRequestMessage"
+    );
+
+
+  if (!user) {
+
+    message.style.color =
+      "#dc2626";
+
+    message.textContent =
+      "कृपया पहले login करें।";
+
+    return;
+
+  }
+
+
+  if (!subject) {
+
+    message.style.color =
+      "#dc2626";
+
+    message.textContent =
+      "कृपया Problem select करें।";
+
+    return;
+
+  }
+
+
+  if (!messageText) {
+
+    message.style.color =
+      "#dc2626";
+
+    message.textContent =
+      "कृपया अपनी समस्या लिखें।";
+
+    return;
+
+  }
+
+
+  try {
+
+    await addDoc(
+      collection(
+        db,
+        "inquiries"
+      ),
+      {
+
+        type:
+          "support",
+
+        requestType:
+          "Customer Support",
+
+        uid:
+          user.uid,
+
+        email:
+          user.email || "",
+
+        subject:
+          subject,
+
+        message:
+          messageText,
+
+        status:
+          "new",
+
+        createdAt:
+          serverTimestamp()
+
+      }
+    );
+
+
+    message.style.color =
+      "#16a34a";
+
+    message.textContent =
+      "Support Request successfully भेज दी गई है।";
+
+
+    document.getElementById(
+      "supportSubject"
+    ).value = "";
+
+
+    document.getElementById(
+      "supportMessage"
+    ).value = "";
+
+
+  } catch (error) {
+
+    console.error(
+      "Support request error:",
+      error
+    );
+
+
+    message.style.color =
+      "#dc2626";
+
+    message.textContent =
+      "Support Request भेजने में समस्या आई।";
+
+  }
+
+};
+
+
+/* ========================= */
+/* CONTACT */
+/* ========================= */
+
+window.openContact =
+function() {
+
+  document.getElementById(
+    "contactModal"
+  ).style.display =
+    "block";
+
+};
+
+
+/* ========================= */
+/* DELETE ACCOUNT */
+/* ========================= */
+
+window.openDeleteAccount =
+function() {
+
+  document.getElementById(
+    "deleteMessage"
+  ).textContent = "";
+
+
+  document.getElementById(
+    "deleteAccountModal"
+  ).style.display =
+    "block";
+
+};
+
+
+window.deleteAccount =
+async function() {
+
+  const user =
+    auth.currentUser;
+
+
+  const message =
+    document.getElementById(
+      "deleteMessage"
+    );
+
+
+  if (!user) {
+
+    window.location.href =
+      "index.html";
+
+    return;
+
+  }
+
+
+  const confirmed =
+    confirm(
+      "क्या आप सच में अपना account permanently delete करना चाहते हैं?"
+    );
+
+
+  if (!confirmed) {
+    return;
+  }
+
+
+  try {
+
+    message.style.color =
+      "#555";
+
+    message.textContent =
+      "Account delete किया जा रहा है...";
+
+
+    const customerRef =
+      doc(
+        db,
+        "customers",
+        user.uid
+      );
+
+
+    await deleteDoc(
+      customerRef
+    );
+
+
+    await deleteUser(
+      user
+    );
+
+
+    localStorage.removeItem(
+      "customerName"
+    );
+
+    localStorage.removeItem(
+      "customerMobile"
+    );
+
+    localStorage.removeItem(
+      "customerDOB"
+    );
+
+    localStorage.removeItem(
+      "customerAge"
+    );
+
+    localStorage.removeItem(
+      "customerEmail"
+    );
+
+    localStorage.removeItem(
+      "firebaseLoggedIn"
+    );
+
+
+    alert(
+      "आपका account successfully delete हो गया है।"
+    );
+
+
+    window.location.href =
+      "index.html";
+
+
+  } catch (error) {
+
+    console.error(
+      "Delete account error:",
+      error
+    );
+
+
+    message.style.color =
+      "#dc2626";
+
+
+    if (
+      error.code ===
+      "auth/requires-recent-login"
+    ) {
+
+      message.textContent =
+        "Security के कारण account delete करने के लिए पहले logout करके दोबारा login करें, फिर Delete Account करें।";
+
+    } else {
+
+      message.textContent =
+        "Account delete करने में समस्या आई। कृपया Customer Support से संपर्क करें।";
+
+    }
+
+  }
+
+};
+
+
+/* ========================= */
+/* CLOSE MODAL */
+/* ========================= */
+
+window.closeModal =
+function(id) {
+
+  document.getElementById(
+    id
+  ).style.display =
+    "none";
+
+};
+
+
+/* ========================= */
+/* OUTSIDE CLICK */
+/* ========================= */
+
+window.addEventListener(
+  "click",
+  function(event) {
+
+    const modals =
+      document.querySelectorAll(
+        ".modal"
+      );
+
+
+    modals.forEach(
+      function(modal) {
+
+        if (
+          event.target ===
+          modal
+        ) {
+
+          modal.style.display =
+            "none";
 
         }
 
       }
     );
 
+  }
+);
 
 
-    function escapeHTML(value) {
+/* ========================= */
+/* LOGOUT */
+/* ========================= */
 
-      if (
-        value === null ||
-        value === undefined
-      ) {
+window.logout =
+async function() {
 
-        return "";
+  try {
 
-      }
+    await signOut(auth);
 
+    window.location.href =
+      "index.html";
 
-      return String(value)
+  } catch (error) {
 
-        .replace(
-          /&/g,
-          "&amp;"
-        )
+    console.error(
+      "Logout error:",
+      error
+    );
 
-        .replace(
-          /</g,
-          "&lt;"
-        )
+    alert(
+      "Logout में समस्या आई।"
+    );
 
-        .replace(
-          />/g,
-          "&gt;"
-        )
+  }
 
-        .replace(
-          /"/g,
-          "&quot;"
-        )
+};
 
-        .replace(
-          /'/g,
-          "&#039;"
-        );
-
-    }
-
-
-
-    window.openPage =
-      function(page) {
-
-        window.location.href =
-          page;
-
-      };
-
-
-
-    window.digitalSkills =
-      function() {
-
-        alert(
-          "Digital Skills section जल्द उपलब्ध होगा।"
-        );
-
-      };
-
-
-
-    window.aiTools =
-      function() {
-
-        alert(
-          "AI Tools section जल्द उपलब्ध होगा।"
-        );
-
-      };
-
-
-
-    window.socialMedia =
-      function() {
-
-        alert(
-          "Social Media section जल्द उपलब्ध होगा।"
-        );
-
-      };
-
-
-
-    window.logout =
-      async function() {
-
-        try {
-
-          await signOut(auth);
-
-          window.location.href =
-            "index.html";
-
-        } catch (error) {
-
-          console.error(
-            "Logout error:",
-            error
-          );
-
-          alert(
-            "Logout में समस्या आई।"
-          );
-
-        }
-
-      };
-
-
-  </script>
-
+</script>
 
 </body>
 

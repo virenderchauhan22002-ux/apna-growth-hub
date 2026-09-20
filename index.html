@@ -88,6 +88,19 @@
       font-weight: bold;
     }
 
+    .forgot-password {
+      text-align: center;
+      margin-top: 14px;
+      color: #2563eb;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
+
     .message {
       text-align: center;
       margin-top: 15px;
@@ -114,74 +127,104 @@
       Learn • Grow • Succeed
     </div>
 
-    <!-- SIGNUP FORM -->
+
+    <!-- =========================
+         SIGNUP FORM
+    ========================== -->
+
     <div id="signupBox">
 
       <h2>Create New Account</h2>
 
       <label>Full Name</label>
+
       <input
         type="text"
         id="name"
         placeholder="Enter your full name"
       />
 
+
       <label>Mobile Number</label>
+
       <input
         type="tel"
         id="mobile"
         placeholder="Enter mobile number"
       />
 
+
       <label>Date of Birth</label>
+
       <input
         type="date"
         id="dob"
       />
 
+
       <label>Email</label>
+
       <input
         type="email"
         id="signupEmail"
         placeholder="Enter email"
       />
 
+
       <label>Password</label>
+
       <input
         type="password"
         id="signupPassword"
         placeholder="Create password"
       />
 
+
       <button onclick="createAccount()">
         Create Account
       </button>
 
-      <div class="switch" onclick="showLogin()">
+
+      <div
+        class="switch"
+        onclick="showLogin()"
+      >
         Already have an account? Login
       </div>
 
     </div>
 
 
-    <!-- LOGIN FORM -->
-    <div id="loginBox" class="hidden">
+
+    <!-- =========================
+         LOGIN FORM
+    ========================== -->
+
+    <div
+      id="loginBox"
+      class="hidden"
+    >
 
       <h2>Login</h2>
 
+
       <label>Email</label>
+
       <input
         type="email"
         id="loginEmail"
         placeholder="Enter email"
       />
 
+
       <label>Password</label>
+
       <input
         type="password"
         id="loginPassword"
         placeholder="Enter password"
       />
+
 
       <button
         class="secondary"
@@ -190,18 +233,40 @@
         Login
       </button>
 
-      <div class="switch" onclick="showSignup()">
+
+      <!-- FORGOT PASSWORD -->
+
+      <div
+        class="forgot-password"
+        onclick="forgotPassword()"
+      >
+        Forgot Password?
+      </div>
+
+
+      <div
+        class="switch"
+        onclick="showSignup()"
+      >
         Create New Account
       </div>
 
     </div>
 
-    <div id="message" class="message"></div>
+
+    <div
+      id="message"
+      class="message"
+    ></div>
 
   </div>
 
 
-  <!-- Firebase -->
+
+  <!-- =========================
+       FIREBASE
+  ========================== -->
+
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
@@ -209,23 +274,35 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 
+
   <script>
+
+    // =========================
+    // FIREBASE CONFIG
+    // =========================
 
     const firebaseConfig = {
 
-      apiKey: "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
+      apiKey:
+        "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
 
-      authDomain: "apna-growth-hub.firebaseapp.com",
+      authDomain:
+        "apna-growth-hub.firebaseapp.com",
 
-      projectId: "apna-growth-hub",
+      projectId:
+        "apna-growth-hub",
 
-      storageBucket: "apna-growth-hub.firebasestorage.app",
+      storageBucket:
+        "apna-growth-hub.firebasestorage.app",
 
-      messagingSenderId: "939001251123",
+      messagingSenderId:
+        "939001251123",
 
-      appId: "1:939001251123:web:f2966004acaa64186e2a46",
+      appId:
+        "1:939001251123:web:f2966004acaa64186e2a46",
 
-      measurementId: "G-GZGCHL4XQ3"
+      measurementId:
+        "G-GZGCHL4XQ3"
 
     };
 
@@ -233,14 +310,26 @@
     firebase.initializeApp(firebaseConfig);
 
 
-    const auth = firebase.auth();
+    const auth =
+      firebase.auth();
 
-    const db = firebase.firestore();
+
+    const db =
+      firebase.firestore();
 
 
-    function showMessage(text, color = "#dc2626") {
 
-      const message = document.getElementById("message");
+    // =========================
+    // MESSAGE
+    // =========================
+
+    function showMessage(
+      text,
+      color = "#dc2626"
+    ) {
+
+      const message =
+        document.getElementById("message");
 
       message.innerText = text;
 
@@ -248,6 +337,11 @@
 
     }
 
+
+
+    // =========================
+    // SHOW LOGIN
+    // =========================
 
     function showLogin() {
 
@@ -264,6 +358,11 @@
     }
 
 
+
+    // =========================
+    // SHOW SIGNUP
+    // =========================
+
     function showSignup() {
 
       document
@@ -279,19 +378,46 @@
     }
 
 
+
+    // =========================
+    // CALCULATE AGE
+    // =========================
+
     function calculateAge(dob) {
 
-      const birthDate = new Date(dob);
+      if (!dob) {
+        return "";
+      }
 
-      const today = new Date();
+
+      const birthDate =
+        new Date(dob);
+
+
+      if (
+        isNaN(
+          birthDate.getTime()
+        )
+      ) {
+
+        return "";
+
+      }
+
+
+      const today =
+        new Date();
+
 
       let age =
         today.getFullYear() -
         birthDate.getFullYear();
 
+
       const monthDifference =
         today.getMonth() -
         birthDate.getMonth();
+
 
       if (
         monthDifference < 0 ||
@@ -305,9 +431,63 @@
 
       }
 
+
       return age;
 
     }
+
+
+
+    // =========================
+    // SAVE CUSTOMER PROFILE
+    // =========================
+
+    async function saveCustomerProfile(
+      user,
+      name,
+      mobile,
+      dob,
+      age,
+      email
+    ) {
+
+      await db
+        .collection("customers")
+        .doc(user.uid)
+        .set({
+
+          name:
+            name || "",
+
+          mobile:
+            mobile || "",
+
+          dob:
+            dob || "",
+
+          age:
+            age,
+
+          email:
+            email || user.email || "",
+
+          uid:
+            user.uid,
+
+          createdAt:
+            firebase.firestore.FieldValue.serverTimestamp(),
+
+          updatedAt:
+            firebase.firestore.FieldValue.serverTimestamp()
+
+        }, {
+
+          merge: true
+
+        });
+
+    }
+
 
 
     // =========================
@@ -317,25 +497,40 @@
     async function createAccount() {
 
       const name =
-        document.getElementById("name")
-          .value.trim();
+        document
+          .getElementById("name")
+          .value
+          .trim();
+
 
       const mobile =
-        document.getElementById("mobile")
-          .value.trim();
+        document
+          .getElementById("mobile")
+          .value
+          .trim();
+
 
       const dob =
-        document.getElementById("dob")
+        document
+          .getElementById("dob")
           .value;
+
 
       const email =
-        document.getElementById("signupEmail")
-          .value.trim();
+        document
+          .getElementById("signupEmail")
+          .value
+          .trim();
+
 
       const password =
-        document.getElementById("signupPassword")
+        document
+          .getElementById("signupPassword")
           .value;
 
+
+
+      // CHECK ALL FIELDS
 
       if (
         !name ||
@@ -354,7 +549,12 @@
       }
 
 
-      if (password.length < 6) {
+
+      // PASSWORD CHECK
+
+      if (
+        password.length < 6
+      ) {
 
         showMessage(
           "Password कम से कम 6 characters का होना चाहिए।"
@@ -365,10 +565,19 @@
       }
 
 
-      const age = calculateAge(dob);
+
+      // AGE
+
+      const age =
+        calculateAge(dob);
 
 
-      if (age < 0 || age > 120) {
+
+      if (
+        age === "" ||
+        age < 0 ||
+        age > 120
+      ) {
 
         showMessage(
           "कृपया सही Date of Birth डालें।"
@@ -379,45 +588,51 @@
       }
 
 
+
       try {
 
-        // Firebase Authentication account
+        showMessage(
+          "Account बनाया जा रहा है...",
+          "#2563eb"
+        );
+
+
+        // =========================
+        // FIREBASE AUTH ACCOUNT
+        // =========================
+
         const userCredential =
-          await auth.createUserWithEmailAndPassword(
-            email,
-            password
-          );
+          await auth
+            .createUserWithEmailAndPassword(
+              email,
+              password
+            );
 
 
         const user =
           userCredential.user;
 
 
-        // Customer profile Firebase Firestore में save
-        await db
-          .collection("customers")
-          .doc(user.uid)
-          .set({
 
-            name: name,
+        // =========================
+        // FIRESTORE CUSTOMER PROFILE
+        // =========================
 
-            mobile: mobile,
-
-            dob: dob,
-
-            age: age,
-
-            email: email,
-
-            uid: user.uid,
-
-            createdAt:
-              firebase.firestore.FieldValue.serverTimestamp()
-
-          });
+        await saveCustomerProfile(
+          user,
+          name,
+          mobile,
+          dob,
+          age,
+          email
+        );
 
 
-        // Local storage
+
+        // =========================
+        // LOCAL STORAGE
+        // =========================
+
         localStorage.setItem(
           "customerName",
           name
@@ -449,10 +664,12 @@
         );
 
 
+
         showMessage(
-          "Account बन गया। Dashboard खुल रहा है।",
+          "Account बन गया। Dashboard खुल रहा है...",
           "#16a34a"
         );
+
 
 
         setTimeout(() => {
@@ -465,15 +682,47 @@
 
       } catch (error) {
 
-        console.error(error);
-
-        showMessage(
-          error.message
+        console.error(
+          "CREATE ACCOUNT ERROR:",
+          error
         );
+
+
+        if (
+          error.code ===
+          "auth/email-already-in-use"
+        ) {
+
+          showMessage(
+            "इस Email से account पहले से बना हुआ है। Login करें।"
+          );
+
+        }
+
+        else if (
+          error.code ===
+          "auth/invalid-email"
+        ) {
+
+          showMessage(
+            "कृपया सही Email डालें।"
+          );
+
+        }
+
+        else {
+
+          showMessage(
+            error.message ||
+            "Account बनाने में समस्या आई।"
+          );
+
+        }
 
       }
 
     }
+
 
 
     // =========================
@@ -483,15 +732,23 @@
     async function loginAccount() {
 
       const email =
-        document.getElementById("loginEmail")
-          .value.trim();
+        document
+          .getElementById("loginEmail")
+          .value
+          .trim();
+
 
       const password =
-        document.getElementById("loginPassword")
+        document
+          .getElementById("loginPassword")
           .value;
 
 
-      if (!email || !password) {
+
+      if (
+        !email ||
+        !password
+      ) {
 
         showMessage(
           "Email और Password भरें।"
@@ -502,69 +759,257 @@
       }
 
 
+
       try {
 
-        // Firebase Login
+        showMessage(
+          "Login हो रहा है...",
+          "#2563eb"
+        );
+
+
+        // =========================
+        // FIREBASE LOGIN
+        // =========================
+
         const userCredential =
-          await auth.signInWithEmailAndPassword(
-            email,
-            password
-          );
+          await auth
+            .signInWithEmailAndPassword(
+              email,
+              password
+            );
 
 
         const user =
           userCredential.user;
 
 
-        // Firestore से customer profile निकालना
-        const customerDoc =
-          await db
+
+        // =========================
+        // CUSTOMER PROFILE CHECK
+        // =========================
+
+        const customerRef =
+          db
             .collection("customers")
-            .doc(user.uid)
-            .get();
+            .doc(user.uid);
 
 
-        if (customerDoc.exists) {
+        const customerDoc =
+          await customerRef.get();
 
-          const customer =
+
+
+        let customer;
+
+
+
+        // =========================
+        // PROFILE EXISTS
+        // =========================
+
+        if (
+          customerDoc.exists
+        ) {
+
+          customer =
             customerDoc.data();
 
 
-          // Customer details localStorage में save
-          localStorage.setItem(
-            "customerName",
-            customer.name || ""
-          );
+          // अगर DOB मौजूद है
+          // लेकिन Age missing है,
+          // तो Age calculate करेंगे।
 
-          localStorage.setItem(
-            "customerMobile",
-            customer.mobile || ""
-          );
+          let dob =
+            customer.dob ||
+            customer.dateOfBirth ||
+            customer.DOB ||
+            customer.birthDate ||
+            "";
 
-          localStorage.setItem(
-            "customerDOB",
-            customer.dob || ""
-          );
 
-          localStorage.setItem(
-            "customerAge",
-            customer.age ?? ""
-          );
+          let age =
+            customer.age;
 
-          localStorage.setItem(
-            "customerEmail",
-            customer.email || email
-          );
 
-        } else {
+          if (
+            (
+              age === undefined ||
+              age === null ||
+              age === ""
+            ) &&
+            dob
+          ) {
 
-          // पुराने account के लिए
-          localStorage.setItem(
-            "customerEmail",
-            email
-          );
+            age =
+              calculateAge(dob);
+
+          }
+
+
+
+          // Missing fields को repair करना
+
+          await customerRef.set({
+
+            name:
+              customer.name ||
+              customer.fullName ||
+              "",
+
+            mobile:
+              customer.mobile ||
+              customer.phone ||
+              "",
+
+            dob:
+              dob || "",
+
+            age:
+              age ?? "",
+
+            email:
+              customer.email ||
+              user.email ||
+              email,
+
+            uid:
+              user.uid,
+
+            updatedAt:
+              firebase.firestore.FieldValue.serverTimestamp()
+
+          }, {
+
+            merge: true
+
+          });
+
+
+
+          // Fresh data
+
+          const repairedDoc =
+            await customerRef.get();
+
+
+          customer =
+            repairedDoc.data();
 
         }
+
+
+
+        // =========================
+        // PROFILE DOES NOT EXIST
+        // =========================
+
+        else {
+
+          /*
+            पुराने account में अगर
+            customers document नहीं है,
+            तो हम automatically profile
+            create करेंगे।
+
+            पुराने account में DOB नहीं है,
+            इसलिए DOB बाद में profile में
+            add करना पड़ेगा।
+          */
+
+          customer = {
+
+            name:
+              user.displayName || "",
+
+            mobile:
+              "",
+
+            dob:
+              "",
+
+            age:
+              "",
+
+            email:
+              user.email || email,
+
+            uid:
+              user.uid
+
+          };
+
+
+          await customerRef.set({
+
+            name:
+              customer.name,
+
+            mobile:
+              "",
+
+            dob:
+              "",
+
+            age:
+              "",
+
+            email:
+              customer.email,
+
+            uid:
+              user.uid,
+
+            createdAt:
+              firebase.firestore.FieldValue.serverTimestamp(),
+
+            updatedAt:
+              firebase.firestore.FieldValue.serverTimestamp()
+
+          });
+
+        }
+
+
+
+        // =========================
+        // LOCAL STORAGE
+        // =========================
+
+        localStorage.setItem(
+          "customerName",
+          customer.name || ""
+        );
+
+
+        localStorage.setItem(
+          "customerMobile",
+          customer.mobile ||
+          customer.phone ||
+          ""
+        );
+
+
+        localStorage.setItem(
+          "customerDOB",
+          customer.dob ||
+          customer.dateOfBirth ||
+          ""
+        );
+
+
+        localStorage.setItem(
+          "customerAge",
+          customer.age ?? ""
+        );
+
+
+        localStorage.setItem(
+          "customerEmail",
+          customer.email ||
+          user.email ||
+          email
+        );
 
 
         localStorage.setItem(
@@ -573,8 +1018,13 @@
         );
 
 
+
+        // =========================
+        // SUCCESS
+        // =========================
+
         showMessage(
-          "Login successful। Dashboard खुल रहा है।",
+          "Login successful। Dashboard खुल रहा है...",
           "#16a34a"
         );
 
@@ -589,11 +1039,137 @@
 
       } catch (error) {
 
-        console.error(error);
+        console.error(
+          "LOGIN ERROR:",
+          error
+        );
+
+
+        if (
+          error.code ===
+          "auth/user-not-found"
+        ) {
+
+          showMessage(
+            "इस Email से कोई account नहीं मिला।"
+          );
+
+        }
+
+        else if (
+          error.code ===
+          "auth/wrong-password"
+        ) {
+
+          showMessage(
+            "Password गलत है।"
+          );
+
+        }
+
+        else if (
+          error.code ===
+          "auth/invalid-credential"
+        ) {
+
+          showMessage(
+            "Email या Password गलत है।"
+          );
+
+        }
+
+        else {
+
+          showMessage(
+            error.message ||
+            "Login में समस्या आई।"
+          );
+
+        }
+
+      }
+
+    }
+
+
+
+    // =========================
+    // FORGOT PASSWORD
+    // =========================
+
+    async function forgotPassword() {
+
+      const email =
+        document
+          .getElementById("loginEmail")
+          .value
+          .trim();
+
+
+
+      if (!email) {
 
         showMessage(
-          "Email या Password गलत है।"
+          "पहले अपना Email डालें।"
         );
+
+        return;
+
+      }
+
+
+
+      try {
+
+        await auth
+          .sendPasswordResetEmail(
+            email
+          );
+
+
+        showMessage(
+          "Password reset link आपके Email पर भेज दिया गया है।",
+          "#16a34a"
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "PASSWORD RESET ERROR:",
+          error
+        );
+
+
+        if (
+          error.code ===
+          "auth/user-not-found"
+        ) {
+
+          showMessage(
+            "इस Email से कोई account नहीं मिला।"
+          );
+
+        }
+
+        else if (
+          error.code ===
+          "auth/invalid-email"
+        ) {
+
+          showMessage(
+            "कृपया सही Email डालें।"
+          );
+
+        }
+
+        else {
+
+          showMessage(
+            "Password reset में समस्या आई। बाद में फिर कोशिश करें।"
+          );
+
+        }
 
       }
 
