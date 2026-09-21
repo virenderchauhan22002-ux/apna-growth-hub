@@ -105,6 +105,14 @@
       background: #0d47a1;
     }
 
+    .plan-card .official-btn {
+      background: #2e7d32;
+    }
+
+    .plan-card .official-btn:hover {
+      background: #1b5e20;
+    }
+
     .plan-card .inquiry-btn {
       background: #ff6f00;
     }
@@ -300,8 +308,9 @@
             Number(plan.maxAge);
 
 
-          // Age filtering
+          // Active Plan + Age filtering
           if (
+            plan.active !== false &&
             !isNaN(minAge) &&
             !isNaN(maxAge) &&
             age >= minAge &&
@@ -376,6 +385,24 @@
       const maxAge =
         plan.maxAge ?? "-";
 
+      const officialLink =
+        plan.officialLink || "";
+
+
+      // Official LIC link validation
+      const validOfficialLink =
+        /^https?:\/\/.+/i.test(officialLink);
+
+
+      const officialButton =
+        validOfficialLink
+          ? `
+            <button class="official-btn">
+              🔗 Official LIC Website
+            </button>
+          `
+          : "";
+
 
       card.innerHTML = `
 
@@ -389,7 +416,8 @@
 
         <div class="age-range">
           Eligible Age: ${escapeHTML(String(minAge))}
-          - ${escapeHTML(String(maxAge))} Years
+          -
+          ${escapeHTML(String(maxAge))} Years
         </div>
 
         <p>
@@ -404,9 +432,12 @@
           ${escapeHTML(details)}
         </div>
 
+        ${officialButton}
+
         <button class="inquiry-btn">
           📩 LIC Inquiry
         </button>
+
       `;
 
 
@@ -444,6 +475,28 @@
 
         }
       );
+
+
+      // Official LIC Website button
+      if (validOfficialLink) {
+
+        const officialButtonElement =
+          card.querySelector(".official-btn");
+
+        officialButtonElement.addEventListener(
+          "click",
+          function () {
+
+            window.open(
+              officialLink,
+              "_blank",
+              "noopener,noreferrer"
+            );
+
+          }
+        );
+
+      }
 
 
       // Inquiry button

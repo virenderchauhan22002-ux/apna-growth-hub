@@ -1394,11 +1394,7 @@
               accept="image/*"
             >
 
-            <small
-              style="display:block;color:#b45309;margin-top:6px;"
-            >
-              File upload abhi disabled hai — Firebase Storage enable hone ke baad use karenge.
-            </small>
+           
 
           </div>
 
@@ -1718,6 +1714,7 @@
       doc
     } from
       "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+      import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 
     // FIREBASE CONFIG
@@ -1764,6 +1761,7 @@
 
     const db =
       getFirestore(app);
+      const storage = getStorage(app);
 
 
     // ELEMENTS
@@ -2910,13 +2908,12 @@
         }
 
 
-        if (
-          officialLink &&
-          !/^https?:\/\//i.test(
-            officialLink
-          )
-        ) {
-
+      if (
+  officialLink &&
+  !/^https?:\/\/.+/i.test(
+    officialLink
+  )
+) {
           licPlanMessage.style.color =
             "#dc2626";
 
@@ -3482,7 +3479,7 @@
         "licPlanCategory"
       ).value =
         plan.category ||
-        "Money Back";
+        "Money Back Plan";
 
 
       document.getElementById(
@@ -4740,281 +4737,188 @@
       );
 
 
-    async function uploadCourseFile(
-      file,
-      path
-    ) {
+    async function uploadCourseFile(file, path) {
+  if (!file) return "";
 
-      if (file) {
+  const fileRef = ref(storage, path);
 
-        throw new Error(
-          "Firebase Storage abhi enabled nahi hai. File upload baad mein enable karenge."
+  await uploadBytes(fileRef, file);
+
+  return await getDownloadURL(fileRef);
+}
+
+
+    saveCourseBtn.addEventListener(
+  "click",
+  async () => {
+
+    const name =
+      document.getElementById("courseName").value.trim();
+
+    const category =
+      document.getElementById("courseCategory").value;
+
+    const instructor =
+      document.getElementById("courseInstructor").value.trim();
+
+    const duration =
+      document.getElementById("courseDuration").value.trim();
+
+    const lessons =
+      Number(
+        document.getElementById("courseLessons").value || 0
+      );
+
+    const access =
+      document.getElementById("courseAccess").value;
+
+    const price =
+      Number(
+        document.getElementById("coursePrice").value || 0
+      );
+
+    const status =
+      document.getElementById("courseStatus").value;
+
+    const shortDescription =
+      document
+        .getElementById("courseShortDescription")
+        .value.trim();
+
+    const details =
+      document
+        .getElementById("courseDetails")
+        .value.trim();
+
+    const thumbnailFile =
+      document.getElementById("courseThumbnail")
+        .files[0];
+
+    if (!name || !shortDescription) {
+      courseMessage.style.color = "#dc2626";
+      courseMessage.textContent =
+        "Course name aur short description required hai.";
+      return;
+    }
+
+    courseMessage.style.color = "#2563eb";
+    courseMessage.textContent =
+      thumbnailFile
+        ? "Course save aur thumbnail upload ho raha hai..."
+        : "Saving course...";
+
+    try {
+
+      let thumbnailUrl = null;
+
+      if (thumbnailFile) {
+
+        thumbnailUrl =
+          await uploadCourseFile(
+            thumbnailFile,
+            "courses/temp/thumbnails"
+          );
+
+      }
+
+      const data = {
+
+        name,
+
+        category,
+
+        instructor,
+
+        duration,
+
+        lessons,
+
+        access,
+
+        price:
+          access === "Free"
+            ? 0
+            : price,
+
+        status,
+
+        shortDescription,
+
+        details,
+
+        updatedAt:
+          new Date().toISOString()
+
+      };
+
+      if (thumbnailUrl) {
+
+        data.thumbnailUrl =
+          thumbnailUrl;
+
+      }
+
+      if (editingCourseId) {
+
+        await updateDoc(
+          doc(
+            db,
+            "courses",
+            editingCourseId
+          ),
+          data
+        );
+
+        alert(
+          "Course successfully updated."
+        );
+
+      } else {
+
+        data.createdAt =
+          new Date().toISOString();
+
+        data.createdBy =
+          ADMIN_UID;
+
+        await addDoc(
+          collection(
+            db,
+            "courses"
+          ),
+          data
+        );
+
+        alert(
+          "Course successfully saved."
         );
 
       }
 
+      resetCourseForm();
 
-      return null;
+      courseForm.classList.add(
+        "hidden"
+      );
+
+      await loadCourses();
+
+    } catch (error) {
+
+      console.error(error);
+
+      courseMessage.style.color =
+        "#dc2626";
+
+      courseMessage.textContent =
+        "Course save failed: " +
+        error.message;
 
     }
 
+  }
+);
 
-    saveCourseBtn.addEventListener(
-      "click",
-      async () => {
-
-        const name =
-          document
-            .getElementById(
-              "courseName"
-            )
-            .value
-            .trim();
-
-
-        const category =
-          document.getElementById(
-            "courseCategory"
-          ).value;
-
-
-        const instructor =
-          document
-            .getElementById(
-              "courseInstructor"
-            )
-            .value
-            .trim();
-
-
-        const duration =
-          document
-            .getElementById(
-              "courseDuration"
-            )
-            .value
-            .trim();
-
-
-        const lessons =
-          Number(
-            document.getElementById(
-              "courseLessons"
-            ).value ||
-            0
-          );
-
-
-        const access =
-          document.getElementById(
-            "courseAccess"
-          ).value;
-
-
-        const price =
-          Number(
-            document.getElementById(
-              "coursePrice"
-            ).value ||
-            0
-          );
-
-
-        const status =
-          document.getElementById(
-            "courseStatus"
-          ).value;
-
-
-        const shortDescription =
-          document
-            .getElementById(
-              "courseShortDescription"
-            )
-            .value
-            .trim();
-
-
-        const details =
-          document
-            .getElementById(
-              "courseDetails"
-            )
-            .value
-            .trim();
-
-
-        const thumbnailFile =
-          document
-            .getElementById(
-              "courseThumbnail"
-            )
-            .files[0];
-
-
-        if (
-          !name ||
-          !shortDescription
-        ) {
-
-          courseMessage.style.color =
-            "#dc2626";
-
-
-          courseMessage.textContent =
-            "Course Name aur Short Description zaroor bharo.";
-
-
-          return;
-
-        }
-
-
-        courseMessage.style.color =
-          "#2563eb";
-
-
-        courseMessage.textContent =
-          thumbnailFile
-            ? "Course save aur thumbnail upload ho raha hai..."
-            : "Saving course...";
-
-
-        try {
-
-          let thumbnailUrl =
-            null;
-
-
-          if (
-            thumbnailFile
-          ) {
-
-            thumbnailUrl =
-              await uploadCourseFile(
-                thumbnailFile,
-                "courses/temp/thumbnails"
-              );
-
-          }
-
-
-          const data = {
-
-            name,
-
-            category,
-
-            instructor,
-
-            duration,
-
-            lessons,
-
-            access,
-
-            price:
-              access ===
-              "Free"
-                ? 0
-                : price,
-
-            status,
-
-            shortDescription,
-
-            details,
-
-            updatedAt:
-              new Date().toISOString()
-
-          };
-
-
-          if (
-            thumbnailUrl
-          ) {
-
-            data.thumbnailUrl =
-              thumbnailUrl;
-
-          }
-
-
-          if (
-            editingCourseId
-          ) {
-
-            await updateDoc(
-              doc(
-                db,
-                "courses",
-                editingCourseId
-              ),
-              data
-            );
-
-
-            alert(
-              "Course successfully updated."
-            );
-
-          } else {
-
-            data.createdAt =
-              new Date().toISOString();
-
-
-            data.createdBy =
-              ADMIN_UID;
-
-
-            await addDoc(
-              collection(
-                db,
-                "courses"
-              ),
-              data
-            );
-
-
-            alert(
-              "Course successfully saved."
-            );
-
-          }
-
-
-          resetCourseForm();
-
-
-          courseForm.classList.add(
-            "hidden"
-          );
-
-
-          await loadCourses();
-
-
-        } catch (error) {
-
-          console.error(
-            error
-          );
-
-
-          courseMessage.style.color =
-            "#dc2626";
-
-
-          courseMessage.textContent =
-            "Course save failed: " +
-            error.message;
-
-        }
-
-      }
-    );
 
 
     async function loadCourses() {
@@ -5784,26 +5688,23 @@
       }
 
     }
+    async function replaceStorageFile(oldUrl, file, folder) {
+  if (!file) return oldUrl || "";
+
+  const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+  const filePath = `${folder}/${Date.now()}_${safeName}`;
+
+  const fileRef = ref(storage, filePath);
+
+  await uploadBytes(fileRef, file);
+
+  return await getDownloadURL(fileRef);
+}
 
 
-    async function replaceStorageFile(
-      oldUrl,
-      file,
-      folder
-    ) {
+     {
 
-      if (file) {
-
-        throw new Error(
-          "Firebase Storage abhi enabled nahi hai. PDF/video upload baad mein enable karenge."
-        );
-
-      }
-
-
-      return oldUrl ||
-        null;
-
+     
     }
 
 

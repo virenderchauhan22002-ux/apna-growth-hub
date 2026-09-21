@@ -11,239 +11,529 @@
 
 <style>
 
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f7fb;
-  color: #222;
+html {
+  scroll-behavior: smooth;
 }
 
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #1f2937;
+  padding-bottom: 78px;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+
+/* =========================================================
+   TOP HEADER
+========================================================= */
+
 .topbar {
-  background: #0d47a1;
+  background: linear-gradient(135deg, #0d47a1, #1565c0);
   color: white;
-  padding: 18px 20px;
+  padding: 15px 18px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 15px;
+  justify-content: space-between;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.12);
+}
+
+.header-left {
+  min-width: 0;
 }
 
 .brand {
-  font-size: 22px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.2;
 }
 
 .tagline {
-  font-size: 12px;
-  margin-top: 4px;
+  font-size: 11px;
+  margin-top: 3px;
   opacity: 0.9;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-icon-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  font-size: 19px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-icon-btn:hover {
+  background: rgba(255,255,255,0.25);
 }
 
 .logout-btn {
   background: white;
   color: #0d47a1;
   border: none;
-  padding: 9px 15px;
-  border-radius: 8px;
+  padding: 9px 13px;
+  border-radius: 9px;
   cursor: pointer;
   font-weight: bold;
+  font-size: 12px;
 }
+
+
+/* =========================================================
+   MENU PANEL
+========================================================= */
+
+.menu-panel {
+  display: none;
+  position: fixed;
+  top: 68px;
+  right: 12px;
+  width: 230px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  z-index: 5000;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+
+.menu-panel.show {
+  display: block;
+}
+
+.menu-title {
+  padding: 15px;
+  background: #f3f7ff;
+  color: #0d47a1;
+  font-weight: bold;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.menu-item {
+  width: 100%;
+  padding: 13px 15px;
+  border: none;
+  background: white;
+  text-align: left;
+  cursor: pointer;
+  color: #333;
+  font-size: 14px;
+}
+
+.menu-item:hover {
+  background: #f5f8ff;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
 
 .container {
-  max-width: 1100px;
+  max-width: 1050px;
   margin: auto;
-  padding: 25px 15px 40px;
+  padding: 18px 14px 30px;
 }
 
+
+/* =========================================================
+   WELCOME / PROFILE HEADER
+========================================================= */
+
 .welcome-card {
-  background: white;
-  border-radius: 16px;
-  padding: 25px;
-  margin-bottom: 25px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-  border-left: 5px solid #0d47a1;
+  background: linear-gradient(135deg, #ffffff, #f1f6ff);
+  border-radius: 20px;
+  padding: 21px;
+  margin-bottom: 22px;
+  box-shadow: 0 5px 20px rgba(13,71,161,0.09);
+  border: 1px solid #dce8fa;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-card::after {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  right: -45px;
+  top: -45px;
+  border-radius: 50%;
+  background: rgba(13,71,161,0.06);
+}
+
+.welcome-small {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 5px;
 }
 
 .welcome-card h1 {
   color: #0d47a1;
-  font-size: 27px;
-  margin-bottom: 8px;
+  font-size: 25px;
+  margin-bottom: 7px;
+  position: relative;
+  z-index: 2;
 }
 
 .welcome-card p {
-  color: #666;
-  line-height: 1.6;
+  color: #64748b;
+  line-height: 1.55;
+  font-size: 14px;
+  position: relative;
+  z-index: 2;
 }
 
 .profile-info {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 18px;
+  gap: 8px;
+  margin-top: 15px;
+  position: relative;
+  z-index: 2;
 }
 
 .profile-box {
-  background: #f3f7ff;
-  border: 1px solid #dce7f7;
-  padding: 10px 14px;
-  border-radius: 8px;
-  color: #333;
-  font-size: 14px;
+  background: white;
+  border: 1px solid #dbe5f5;
+  padding: 8px 11px;
+  border-radius: 9px;
+  color: #334155;
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 22px 2px 12px;
 }
 
 .section-title {
-  color: #0d47a1;
-  font-size: 24px;
-  margin-bottom: 18px;
+  color: #172554;
+  font-size: 19px;
+  font-weight: 800;
 }
 
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
+.section-subtitle {
+  color: #64748b;
+  font-size: 12px;
+  margin-top: 3px;
 }
 
-.category-card {
-  background: white;
-  border-radius: 16px;
-  padding: 22px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-  border: 1px solid #e5ebf5;
+
+/* =========================================================
+   LIC MAIN CARD
+========================================================= */
+
+.lic-main-card {
+  background: linear-gradient(135deg, #0d47a1, #1976d2);
+  color: white;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 22px;
   cursor: pointer;
-  transition: 0.2s;
+  box-shadow: 0 8px 24px rgba(13,71,161,0.20);
   position: relative;
+  overflow: hidden;
 }
 
-.category-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 7px 20px rgba(0,0,0,0.12);
+.lic-main-card::after {
+  content: "LIC";
+  position: absolute;
+  right: -10px;
+  bottom: -25px;
+  font-size: 85px;
+  font-weight: 900;
+  opacity: 0.07;
 }
 
-.category-icon {
+.lic-card-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  z-index: 2;
+}
+
+.lic-icon {
   width: 58px;
   height: 58px;
-  border-radius: 14px;
-  background: #e8f0ff;
+  border-radius: 16px;
+  background: white;
+  color: #0d47a1;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
-  margin-bottom: 15px;
+  font-size: 29px;
+  flex-shrink: 0;
 }
 
-.category-card h2 {
-  color: #0d47a1;
+.lic-main-card h3 {
   font-size: 20px;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 
-.category-card p {
-  color: #666;
+.lic-main-card p {
+  font-size: 13px;
   line-height: 1.5;
-  font-size: 14px;
+  opacity: 0.92;
 }
 
-.coming-soon-card {
-  cursor: default;
-  background: linear-gradient(135deg, #ffffff, #f8fbff);
-}
-
-.coming-soon-card:hover {
-  transform: none;
-}
-
-.coming-soon-badge {
+.lic-open {
+  margin-top: 16px;
   display: inline-block;
-  margin-top: 12px;
-  background: #fff3cd;
-  color: #856404;
-  border: 1px solid #ffe69c;
-  padding: 6px 10px;
-  border-radius: 20px;
+  background: white;
+  color: #0d47a1;
+  padding: 9px 14px;
+  border-radius: 9px;
   font-size: 12px;
   font-weight: bold;
+  position: relative;
+  z-index: 2;
+}
+
+
+/* =========================================================
+   LEARNING PACKAGE GRID
+========================================================= */
+
+.package-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.package-card {
+  background: white;
+  border: 1px solid #e4e9f2;
+  border-radius: 17px;
+  padding: 16px 13px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.055);
+  cursor: pointer;
+  transition: 0.2s;
+  min-height: 175px;
+  position: relative;
+  overflow: hidden;
+}
+
+.package-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.09);
 }
 
 .package-icon {
-  background: #eef5ff;
-}
-
-.customer-options {
-  margin-top: 30px;
-}
-
-.option-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-}
-
-.option-card {
-  background: white;
+  width: 47px;
+  height: 47px;
   border-radius: 14px;
-  padding: 18px;
-  border: 1px solid #e5ebf5;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-  cursor: pointer;
-  transition: 0.2s;
+  background: #eef5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+  margin-bottom: 12px;
 }
 
-.option-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.10);
-}
-
-.option-icon {
-  font-size: 28px;
-  margin-bottom: 10px;
-}
-
-.option-card h3 {
+.package-card h3 {
   color: #0d47a1;
+  font-size: 16px;
   margin-bottom: 6px;
-  font-size: 17px;
 }
 
-.option-card p {
-  color: #666;
-  font-size: 13px;
+.package-card p {
+  color: #64748b;
+  font-size: 11px;
   line-height: 1.5;
 }
 
-.delete-card {
-  border: 1px solid #fecaca;
-  background: #fffafa;
+.package-badge {
+  display: inline-block;
+  margin-top: 10px;
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+  padding: 5px 8px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: bold;
 }
 
-.delete-card h3 {
-  color: #dc2626;
+.package-card.starter .package-icon {
+  background: #ecfdf5;
 }
 
-.delete-card .option-icon {
-  color: #dc2626;
+.package-card.growth .package-icon {
+  background: #eff6ff;
 }
+
+.package-card.pro .package-icon {
+  background: #faf5ff;
+}
+
+.package-card.elite .package-icon {
+  background: #fffbeb;
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+========================================================= */
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 11px;
+}
+
+.quick-card {
+  background: white;
+  border: 1px solid #e5e9f1;
+  border-radius: 15px;
+  padding: 15px 11px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.045);
+  transition: 0.2s;
+}
+
+.quick-card:hover {
+  transform: translateY(-2px);
+}
+
+.quick-icon {
+  font-size: 25px;
+  margin-bottom: 8px;
+}
+
+.quick-card h4 {
+  color: #1e3a8a;
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+
+.quick-card p {
+  color: #64748b;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   INQUIRY CARD
+========================================================= */
+
+.inquiry-card {
+  margin-top: 18px;
+  background: white;
+  border: 1px solid #e5e9f1;
+  border-radius: 18px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+}
+
+.inquiry-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.inquiry-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: #eef5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.inquiry-card h3 {
+  color: #0d47a1;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.inquiry-card p {
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.inquiry-btn {
+  border: none;
+  background: #0d47a1;
+  color: white;
+  padding: 9px 13px;
+  border-radius: 9px;
+  font-weight: bold;
+  font-size: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 .footer {
   text-align: center;
-  padding: 30px 15px;
-  color: #777;
-  font-size: 13px;
+  padding: 25px 15px;
+  color: #94a3b8;
+  font-size: 11px;
   background: white;
   margin-top: 20px;
-  border-top: 1px solid #e5ebf5;
+  border-top: 1px solid #e5e9f1;
 }
 
 .footer-links {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px 18px;
-  margin-bottom: 15px;
+  gap: 8px 15px;
+  margin-bottom: 13px;
 }
 
 .footer-links span {
@@ -252,9 +542,55 @@ body {
   font-weight: bold;
 }
 
-.footer-links span:hover {
-  text-decoration: underline;
+
+/* =========================================================
+   BOTTOM NAVIGATION
+========================================================= */
+
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 68px;
+  background: white;
+  border-top: 1px solid #e5e7eb;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  z-index: 3000;
+  box-shadow: 0 -4px 18px rgba(0,0,0,0.08);
 }
+
+.bottom-nav button {
+  border: none;
+  background: white;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.bottom-nav button span {
+  font-size: 21px;
+}
+
+.bottom-nav button.active {
+  color: #0d47a1;
+}
+
+.bottom-nav button:hover {
+  background: #f8fafc;
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
 
 .modal {
   display: none;
@@ -265,16 +601,16 @@ body {
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.55);
-  padding: 20px;
+  padding: 15px;
   overflow-y: auto;
 }
 
 .modal-content {
   background: white;
   max-width: 650px;
-  margin: 40px auto;
-  border-radius: 16px;
-  padding: 25px;
+  margin: 35px auto;
+  border-radius: 18px;
+  padding: 22px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.20);
   position: relative;
 }
@@ -282,19 +618,21 @@ body {
 .modal-content h2 {
   color: #0d47a1;
   margin-bottom: 15px;
+  font-size: 20px;
 }
 
 .modal-content h3 {
   color: #0d47a1;
   margin-top: 18px;
   margin-bottom: 7px;
+  font-size: 15px;
 }
 
 .modal-content p,
 .modal-content li {
   color: #555;
   line-height: 1.7;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .modal-content ul {
@@ -303,9 +641,9 @@ body {
 
 .close-btn {
   position: absolute;
-  right: 18px;
-  top: 15px;
-  background: #f1f1f1;
+  right: 15px;
+  top: 13px;
+  background: #f1f5f9;
   border: none;
   width: 34px;
   height: 34px;
@@ -314,9 +652,10 @@ body {
   cursor: pointer;
 }
 
-.close-btn:hover {
-  background: #ddd;
-}
+
+/* =========================================================
+   FORM
+========================================================= */
 
 .profile-field {
   margin-bottom: 15px;
@@ -327,7 +666,7 @@ body {
   margin-bottom: 6px;
   font-weight: bold;
   color: #333;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .profile-field input,
@@ -336,10 +675,9 @@ body {
   width: 100%;
   padding: 11px 12px;
   border: 1px solid #ccd6e5;
-  border-radius: 8px;
+  border-radius: 9px;
   font-size: 14px;
   outline: none;
-  font-family: Arial, sans-serif;
 }
 
 .profile-field textarea {
@@ -362,23 +700,18 @@ body {
   background: #0d47a1;
   color: white;
   border: none;
-  padding: 11px 18px;
-  border-radius: 8px;
+  padding: 11px 17px;
+  border-radius: 9px;
   cursor: pointer;
   font-weight: bold;
-  margin-top: 5px;
-}
-
-.primary-btn:hover {
-  background: #083b89;
 }
 
 .secondary-btn {
   background: #eef3fb;
   color: #0d47a1;
   border: 1px solid #d5e0f0;
-  padding: 11px 18px;
-  border-radius: 8px;
+  padding: 11px 17px;
+  border-radius: 9px;
   cursor: pointer;
   font-weight: bold;
   margin-left: 8px;
@@ -388,29 +721,29 @@ body {
   background: #dc2626;
   color: white;
   border: none;
-  padding: 11px 18px;
-  border-radius: 8px;
+  padding: 11px 17px;
+  border-radius: 9px;
   cursor: pointer;
   font-weight: bold;
-  margin-top: 5px;
-}
-
-.danger-btn:hover {
-  background: #b91c1c;
 }
 
 .message {
   margin-top: 12px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
 }
+
+
+/* =========================================================
+   SUPPORT
+========================================================= */
 
 .support-box {
   background: #f3f7ff;
   border: 1px solid #dce7f7;
   border-radius: 10px;
-  padding: 15px;
-  margin-top: 15px;
+  padding: 14px;
+  margin-top: 14px;
 }
 
 .support-box strong {
@@ -419,13 +752,13 @@ body {
 
 .support-action {
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 9px;
   text-decoration: none;
   background: #0d47a1;
   color: white;
-  padding: 9px 14px;
+  padding: 8px 13px;
   border-radius: 7px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
 }
 
@@ -437,18 +770,23 @@ body {
   background: #0d47a1;
 }
 
+
+/* =========================================================
+   DELETE
+========================================================= */
+
 .delete-warning {
   background: #fff1f2;
   border: 1px solid #fecdd3;
   border-radius: 10px;
-  padding: 15px;
-  margin: 15px 0;
+  padding: 14px;
+  margin: 14px 0;
   color: #991b1b;
 }
 
 .delete-warning ul {
   padding-left: 20px;
-  margin-top: 8px;
+  margin-top: 7px;
 }
 
 .delete-status-box {
@@ -456,8 +794,8 @@ body {
   border: 1px solid #fed7aa;
   color: #9a3412;
   border-radius: 10px;
-  padding: 15px;
-  margin-top: 15px;
+  padding: 14px;
+  margin-top: 14px;
   line-height: 1.6;
 }
 
@@ -473,52 +811,113 @@ body {
   color: #991b1b;
 }
 
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+  .package-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quick-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
 @media (max-width: 600px) {
 
+  body {
+    padding-bottom: 74px;
+  }
+
   .topbar {
-    padding: 14px 12px;
+    padding: 12px;
   }
 
   .brand {
-    font-size: 18px;
+    font-size: 17px;
+  }
+
+  .tagline {
+    font-size: 10px;
   }
 
   .logout-btn {
-    padding: 8px 11px;
-    font-size: 12px;
+    display: none;
+  }
+
+  .header-icon-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 17px;
   }
 
   .container {
-    padding: 20px 12px 30px;
+    padding: 14px 11px 25px;
   }
 
   .welcome-card {
-    padding: 20px;
+    padding: 18px;
+    border-radius: 18px;
   }
 
   .welcome-card h1 {
-    font-size: 23px;
+    font-size: 22px;
+  }
+
+  .profile-box {
+    font-size: 11px;
   }
 
   .section-title {
-    font-size: 21px;
+    font-size: 18px;
   }
 
-  .category-grid {
-    grid-template-columns: 1fr;
+  .package-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 9px;
   }
 
-  .option-grid {
-    grid-template-columns: 1fr;
+  .package-card {
+    padding: 13px 11px;
+    min-height: 165px;
+  }
+
+  .package-card h3 {
+    font-size: 15px;
+  }
+
+  .package-card p {
+    font-size: 10px;
+  }
+
+  .quick-grid {
+    gap: 8px;
+  }
+
+  .quick-card {
+    padding: 13px 8px;
+  }
+
+  .inquiry-card {
+    padding: 14px;
+  }
+
+  .inquiry-btn {
+    padding: 8px 10px;
   }
 
   .modal {
-    padding: 10px;
+    padding: 8px;
   }
 
   .modal-content {
     margin: 20px auto;
-    padding: 20px;
+    padding: 19px;
   }
 
   .secondary-btn {
@@ -532,11 +931,17 @@ body {
 
 </head>
 
+
 <body>
+
+
+<!-- =======================================================
+     TOP HEADER
+======================================================= -->
 
 <div class="topbar">
 
-  <div>
+  <div class="header-left">
 
     <div class="brand">
       Apna Growth Hub
@@ -548,81 +953,224 @@ body {
 
   </div>
 
-  <button
-    class="logout-btn"
-    onclick="logout()">
 
-    Logout
+  <div class="header-right">
+
+    <button
+      class="header-icon-btn"
+      onclick="showNotifications()"
+      title="Notifications">
+
+      🔔
+
+    </button>
+
+
+    <button
+      class="header-icon-btn"
+      onclick="toggleMenu()"
+      title="Menu">
+
+      ☰
+
+    </button>
+
+
+    <button
+      class="logout-btn"
+      onclick="logout()">
+
+      Logout
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =======================================================
+     MENU
+======================================================= -->
+
+<div
+  id="menuPanel"
+  class="menu-panel">
+
+  <div class="menu-title">
+    Apna Growth Hub
+  </div>
+
+  <button
+    class="menu-item"
+    onclick="openProfile(); toggleMenu();">
+
+    👤 My Profile
+
+  </button>
+
+  <button
+    class="menu-item"
+    onclick="openChangePassword(); toggleMenu();">
+
+    🔐 Change Password
+
+  </button>
+
+  <button
+    class="menu-item"
+    onclick="openSupport(); toggleMenu();">
+
+    📞 Customer Support
+
+  </button>
+
+  <button
+    class="menu-item"
+    onclick="openPrivacy(); toggleMenu();">
+
+    🛡️ Privacy Policy
+
+  </button>
+
+  <button
+    class="menu-item"
+    onclick="logout();">
+
+    🚪 Logout
 
   </button>
 
 </div>
 
 
+<!-- =======================================================
+     MAIN
+======================================================= -->
+
 <div class="container">
+
+
+  <!-- WELCOME -->
 
   <div
     id="welcomeCard"
     class="welcome-card">
 
-    <div>
+    <div class="welcome-small">
+      Personal Growth Dashboard
+    </div>
+
+    <h1>
       Dashboard load हो रहा है...
+    </h1>
+
+    <p>
+      Apna Growth Hub में आपका स्वागत है।
+    </p>
+
+  </div>
+
+
+  <!-- =====================================================
+       LIC
+  ====================================================== -->
+
+  <div class="section-heading">
+
+    <div>
+
+      <div class="section-title">
+        Insurance & Protection
+      </div>
+
+      <div class="section-subtitle">
+        अपनी जरूरत और age के अनुसार LIC plans देखें
+      </div>
+
     </div>
 
   </div>
 
 
-  <h2 class="section-title">
-    Explore Categories
-  </h2>
+  <div
+    class="lic-main-card"
+    onclick="openPage('lic.html')">
 
+    <div class="lic-card-top">
 
-  <div class="category-grid">
-
-
-    <!-- LIC -->
-
-    <div
-      class="category-card"
-      onclick="openPage('lic.html')">
-
-      <div class="category-icon">
+      <div class="lic-icon">
         🛡️
       </div>
 
-      <h2>
-        LIC Plans
-      </h2>
+      <div>
 
-      <p>
-        अपनी age के अनुसार उपलब्ध
-        LIC plans और उनकी जानकारी देखें।
-      </p>
+        <h3>
+          LIC Plans
+        </h3>
+
+        <p>
+          आपकी age के अनुसार available LIC plans,
+          benefits और details देखें।
+        </p>
+
+      </div>
 
     </div>
+
+
+    <div class="lic-open">
+      View LIC Plans →
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       LEARNING PROGRAM
+  ====================================================== -->
+
+  <div class="section-heading">
+
+    <div>
+
+      <div class="section-title">
+        Learning Program
+      </div>
+
+      <div class="section-subtitle">
+        Learn • Grow • Succeed
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="package-grid">
 
 
     <!-- STARTER -->
 
     <div
-      class="category-card coming-soon-card">
+      class="package-card starter"
+      onclick="showPackageMessage('Starter')">
 
-      <div class="category-icon package-icon">
+      <div class="package-icon">
         🌱
       </div>
 
-      <h2>
+      <h3>
         Starter
-      </h2>
+      </h3>
 
       <p>
-        Digital skills, AI tools और
-        practical learning की शुरुआत
-        करने वाला learning package।
+        Digital Skills, AI Tools और Canva &
+        Graphic Design की शुरुआत।
       </p>
 
-      <span class="coming-soon-badge">
-        🚧 Coming Soon
+      <span class="package-badge">
+        3 Courses
       </span>
 
     </div>
@@ -631,24 +1179,24 @@ body {
     <!-- GROWTH -->
 
     <div
-      class="category-card coming-soon-card">
+      class="package-card growth"
+      onclick="showPackageMessage('Growth')">
 
-      <div class="category-icon package-icon">
+      <div class="package-icon">
         🚀
       </div>
 
-      <h2>
+      <h3>
         Growth
-      </h2>
+      </h3>
 
       <p>
-        Skills को आगे बढ़ाने और
-        content तथा social media
-        growth के लिए advanced package।
+        Starter के साथ Video Editing,
+        Content Creation और Social Media।
       </p>
 
-      <span class="coming-soon-badge">
-        🚧 Coming Soon
+      <span class="package-badge">
+        6 Courses
       </span>
 
     </div>
@@ -657,24 +1205,24 @@ body {
     <!-- PRO -->
 
     <div
-      class="category-card coming-soon-card">
+      class="package-card pro"
+      onclick="showPackageMessage('Pro')">
 
-      <div class="category-icon package-icon">
-        💼
+      <div class="package-icon">
+        💎
       </div>
 
-      <h2>
+      <h3>
         Pro
-      </h2>
+      </h3>
 
       <p>
-        Advanced skills, communication,
-        Facebook और practical learning
-        के लिए professional package।
+        Growth के साथ Communication Skills
+        और Facebook learning।
       </p>
 
-      <span class="coming-soon-badge">
-        🚧 Coming Soon
+      <span class="package-badge">
+        8 Courses
       </span>
 
     </div>
@@ -683,46 +1231,127 @@ body {
     <!-- ELITE -->
 
     <div
-      class="category-card coming-soon-card">
+      class="package-card elite"
+      onclick="showPackageMessage('Elite')">
 
-      <div class="category-icon package-icon">
+      <div class="package-icon">
         👑
       </div>
 
-      <h2>
+      <h3>
         Elite
-      </h2>
+      </h3>
 
       <p>
-        Advanced AI, automation,
-        freelancing और digital business
-        learning के लिए future package।
+        सभी previous courses के साथ
+        future masterclasses।
       </p>
 
-      <span class="coming-soon-badge">
-        🚧 Coming Soon
+      <span class="package-badge">
+        Coming Soon
       </span>
 
     </div>
 
 
-    <!-- CUSTOMER INQUIRY -->
+  </div>
 
-    <div
-      class="category-card"
-      onclick="openPage('customer-inquiry.html')">
 
-      <div class="category-icon">
-        📩
+  <!-- =====================================================
+       QUICK ACCESS
+  ====================================================== -->
+
+  <div class="section-heading">
+
+    <div>
+
+      <div class="section-title">
+        Quick Access
       </div>
 
-      <h2>
-        Customer Inquiry
-      </h2>
+      <div class="section-subtitle">
+        अपनी learning और account activities
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="quick-grid">
+
+
+    <div
+      class="quick-card"
+      onclick="showComingSoon('My Plans')">
+
+      <div class="quick-icon">
+        📄
+      </div>
+
+      <h4>
+        My Plans
+      </h4>
 
       <p>
-        LIC या अन्य जानकारी के लिए
-        अपनी enquiry भेजें।
+        Saved plans
+      </p>
+
+    </div>
+
+
+    <div
+      class="quick-card"
+      onclick="showComingSoon('My Courses')">
+
+      <div class="quick-icon">
+        🎓
+      </div>
+
+      <h4>
+        My Courses
+      </h4>
+
+      <p>
+        Your learning
+      </p>
+
+    </div>
+
+
+    <div
+      class="quick-card"
+      onclick="showComingSoon('My Inquiries')">
+
+      <div class="quick-icon">
+        💬
+      </div>
+
+      <h4>
+        My Inquiries
+      </h4>
+
+      <p>
+        Your requests
+      </p>
+
+    </div>
+
+
+    <div
+      class="quick-card"
+      onclick="openProfile()">
+
+      <div class="quick-icon">
+        👤
+      </div>
+
+      <h4>
+        My Profile
+      </h4>
+
+      <p>
+        Account details
       </p>
 
     </div>
@@ -731,101 +1360,68 @@ body {
   </div>
 
 
-  <div class="customer-options">
+  <!-- =====================================================
+       CUSTOMER INQUIRY
+  ====================================================== -->
 
-    <h2 class="section-title">
-      My Account & Support
-    </h2>
+  <div class="section-heading">
 
-    <div class="option-grid">
+    <div>
 
-
-      <div
-        class="option-card"
-        onclick="openProfile()">
-
-        <div class="option-icon">
-          👤
-        </div>
-
-        <h3>
-          My Profile
-        </h3>
-
-        <p>
-          अपनी account details देखें और
-          profile information update करें।
-        </p>
-
+      <div class="section-title">
+        Need Help?
       </div>
 
-
-      <div
-        class="option-card"
-        onclick="openChangePassword()">
-
-        <div class="option-icon">
-          🔐
-        </div>
-
-        <h3>
-          Change Password
-        </h3>
-
-        <p>
-          अपने account का password
-          सुरक्षित तरीके से बदलें।
-        </p>
-
+      <div class="section-subtitle">
+        हमसे अपनी enquiry भेजें
       </div>
-
-
-      <div
-        class="option-card"
-        onclick="openSupport()">
-
-        <div class="option-icon">
-          📞
-        </div>
-
-        <h3>
-          Customer Support
-        </h3>
-
-        <p>
-          किसी भी सहायता के लिए
-          हमसे संपर्क करें।
-        </p>
-
-      </div>
-
-
-      <div
-        class="option-card delete-card"
-        onclick="openDeleteAccount()">
-
-        <div class="option-icon">
-          🗑️
-        </div>
-
-        <h3>
-          Delete Account
-        </h3>
-
-        <p>
-          Account delete करने के लिए
-          deletion request भेजें।
-        </p>
-
-      </div>
-
 
     </div>
 
   </div>
 
+
+  <div class="inquiry-card">
+
+    <div class="inquiry-left">
+
+      <div class="inquiry-icon">
+        💬
+      </div>
+
+      <div>
+
+        <h3>
+          Customer Inquiry
+        </h3>
+
+        <p>
+          LIC या अन्य जानकारी के लिए
+          अपनी enquiry भेजें।
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="inquiry-btn"
+      onclick="openPage('customer-inquiry.html')">
+
+      Send Inquiry →
+
+    </button>
+
+  </div>
+
+
 </div>
 
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
 
 <div class="footer">
 
@@ -844,11 +1440,11 @@ body {
     </span>
 
     <span onclick="openSupport()">
-      Customer Support
+      Support
     </span>
 
     <span onclick="openContact()">
-      Contact Us
+      Contact
     </span>
 
   </div>
@@ -859,7 +1455,55 @@ body {
 </div>
 
 
-<!-- PROFILE MODAL -->
+<!-- =======================================================
+     BOTTOM NAV
+======================================================= -->
+
+<div class="bottom-nav">
+
+  <button
+    id="homeNav"
+    class="active"
+    onclick="goHome()">
+
+    <span>🏠</span>
+    Home
+
+  </button>
+
+
+  <button
+    onclick="goLearn()">
+
+    <span>🎓</span>
+    Learn
+
+  </button>
+
+
+  <button
+    onclick="openPage('customer-inquiry.html')">
+
+    <span>💬</span>
+    Inquiry
+
+  </button>
+
+
+  <button
+    onclick="openProfile()">
+
+    <span>👤</span>
+    Profile
+
+  </button>
+
+</div>
+
+
+<!-- =======================================================
+     PROFILE MODAL
+======================================================= -->
 
 <div id="profileModal" class="modal">
 
@@ -876,6 +1520,7 @@ body {
     <h2>
       👤 My Profile
     </h2>
+
 
     <div class="profile-field">
 
@@ -957,7 +1602,9 @@ body {
 </div>
 
 
-<!-- PASSWORD -->
+<!-- =======================================================
+     PASSWORD MODAL
+======================================================= -->
 
 <div id="passwordModal" class="modal">
 
@@ -978,6 +1625,7 @@ body {
     <p>
       नया password कम से कम 6 characters का रखें।
     </p>
+
 
     <div class="profile-field">
 
@@ -1023,7 +1671,9 @@ body {
 </div>
 
 
-<!-- PRIVACY -->
+<!-- =======================================================
+     PRIVACY
+======================================================= -->
 
 <div id="privacyModal" class="modal">
 
@@ -1087,7 +1737,9 @@ body {
 </div>
 
 
-<!-- TERMS -->
+<!-- =======================================================
+     TERMS
+======================================================= -->
 
 <div id="termsModal" class="modal">
 
@@ -1151,7 +1803,9 @@ body {
 </div>
 
 
-<!-- DISCLAIMER -->
+<!-- =======================================================
+     DISCLAIMER
+======================================================= -->
 
 <div id="disclaimerModal" class="modal">
 
@@ -1212,7 +1866,9 @@ body {
 </div>
 
 
-<!-- SUPPORT -->
+<!-- =======================================================
+     SUPPORT
+======================================================= -->
 
 <div id="supportModal" class="modal">
 
@@ -1318,7 +1974,9 @@ body {
 </div>
 
 
-<!-- SUPPORT REQUEST -->
+<!-- =======================================================
+     SUPPORT REQUEST
+======================================================= -->
 
 <div id="supportRequestModal" class="modal">
 
@@ -1416,7 +2074,9 @@ body {
 </div>
 
 
-<!-- CONTACT -->
+<!-- =======================================================
+     CONTACT
+======================================================= -->
 
 <div id="contactModal" class="modal">
 
@@ -1521,7 +2181,9 @@ body {
 </div>
 
 
-<!-- DELETE ACCOUNT -->
+<!-- =======================================================
+     DELETE ACCOUNT
+======================================================= -->
 
 <div id="deleteAccountModal" class="modal">
 
@@ -1612,7 +2274,9 @@ body {
 </div>
 
 
-<!-- FIREBASE -->
+<!-- =======================================================
+     FIREBASE
+======================================================= -->
 
 <script type="module">
 
@@ -1621,6 +2285,7 @@ import {
 } from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
+
 import {
   getAuth,
   onAuthStateChanged,
@@ -1628,6 +2293,7 @@ import {
   updatePassword
 } from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 
 import {
   getFirestore,
@@ -1643,6 +2309,10 @@ import {
 } from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+
+/* =========================================================
+   FIREBASE CONFIG
+========================================================= */
 
 const firebaseConfig = {
 
@@ -1679,15 +2349,17 @@ const auth =
 const db =
   getFirestore(app);
 
+
 const welcomeCard =
   document.getElementById("welcomeCard");
+
 
 let currentCustomerData = {};
 
 
-/* ========================= */
-/* CALCULATE AGE */
-/* ========================= */
+/* =========================================================
+   AGE
+========================================================= */
 
 function calculateAgeFromDOB(dob) {
 
@@ -1695,13 +2367,15 @@ function calculateAgeFromDOB(dob) {
     return "";
   }
 
-  const birthDate = new Date(dob);
+  const birthDate =
+    new Date(dob);
 
   if (isNaN(birthDate.getTime())) {
     return "";
   }
 
-  const today = new Date();
+  const today =
+    new Date();
 
   let age =
     today.getFullYear() -
@@ -1728,9 +2402,9 @@ function calculateAgeFromDOB(dob) {
 }
 
 
-/* ========================= */
-/* LOCAL CUSTOMER DATA */
-/* ========================= */
+/* =========================================================
+   LOCAL CUSTOMER DATA
+========================================================= */
 
 function getLocalCustomerData(user) {
 
@@ -1777,9 +2451,9 @@ function getLocalCustomerData(user) {
 }
 
 
-/* ========================= */
-/* CREATE / REPAIR PROFILE */
-/* ========================= */
+/* =========================================================
+   CREATE / REPAIR PROFILE
+========================================================= */
 
 async function createOrRepairCustomer(user) {
 
@@ -1796,6 +2470,7 @@ async function createOrRepairCustomer(user) {
   const localData =
     getLocalCustomerData(user);
 
+
   if (customerSnap.exists()) {
 
     const existingData =
@@ -1811,6 +2486,7 @@ async function createOrRepairCustomer(user) {
     let age =
       existingData.age;
 
+
     if (
       age === undefined ||
       age === null ||
@@ -1821,6 +2497,7 @@ async function createOrRepairCustomer(user) {
         calculateAgeFromDOB(dob);
 
     }
+
 
     const repairedData = {
 
@@ -1854,16 +2531,19 @@ async function createOrRepairCustomer(user) {
 
     };
 
+
     await setDoc(
       customerRef,
       {
         ...repairedData,
-        updatedAt: serverTimestamp()
+        updatedAt:
+          serverTimestamp()
       },
       {
         merge: true
       }
     );
+
 
     currentCustomerData =
       {
@@ -1896,6 +2576,7 @@ async function createOrRepairCustomer(user) {
       "customerEmail",
       repairedData.email || ""
     );
+
 
     return currentCustomerData;
 
@@ -1956,9 +2637,9 @@ async function createOrRepairCustomer(user) {
 }
 
 
-/* ========================= */
-/* CHECK DELETE REQUEST */
-/* ========================= */
+/* =========================================================
+   DELETE REQUEST CHECK
+========================================================= */
 
 async function checkDeleteRequest(user) {
 
@@ -1977,25 +2658,27 @@ async function checkDeleteRequest(user) {
         )
       );
 
+
     const snapshot =
       await getDocs(
         requestQuery
       );
 
+
     if (snapshot.empty) {
-
       return null;
-
     }
 
 
     let latestRequest = null;
+
 
     snapshot.forEach(
       function(docSnap) {
 
         const data =
           docSnap.data();
+
 
         if (
           !latestRequest ||
@@ -2038,9 +2721,9 @@ async function checkDeleteRequest(user) {
 }
 
 
-/* ========================= */
-/* SHOW DELETE REQUEST STATUS */
-/* ========================= */
+/* =========================================================
+   DELETE REQUEST STATUS
+========================================================= */
 
 function showDeleteRequestStatus(request) {
 
@@ -2156,9 +2839,9 @@ function showDeleteRequestStatus(request) {
 }
 
 
-/* ========================= */
-/* AUTH + DASHBOARD LOAD */
-/* ========================= */
+/* =========================================================
+   AUTH + DASHBOARD
+========================================================= */
 
 onAuthStateChanged(
   auth,
@@ -2173,6 +2856,7 @@ onAuthStateChanged(
 
     }
 
+
     try {
 
       const customerData =
@@ -2186,17 +2870,17 @@ onAuthStateChanged(
         user.displayName ||
         "Customer";
 
+
       let age =
-        customerData.age ??
-        "";
+        customerData.age ?? "";
+
 
       let dob =
-        customerData.dob ||
-        "";
+        customerData.dob || "";
+
 
       let mobile =
-        customerData.mobile ||
-        "";
+        customerData.mobile || "";
 
 
       if (
@@ -2215,14 +2899,18 @@ onAuthStateChanged(
 
       welcomeCard.innerHTML = `
 
+        <div class="welcome-small">
+          Personal Growth Dashboard
+        </div>
+
         <h1>
           Welcome, ${escapeHTML(customerName)} 👋
         </h1>
 
         <p>
           Apna Growth Hub में आपका स्वागत है।
-          यहाँ आप LIC और आने वाले Learning
-          Packages से जुड़ी जानकारी explore कर सकते हैं।
+          यहाँ आप LIC, learning programs और
+          अपनी account activities manage कर सकते हैं।
         </p>
 
         <div class="profile-info">
@@ -2282,6 +2970,10 @@ onAuthStateChanged(
 
       welcomeCard.innerHTML = `
 
+        <div class="welcome-small">
+          Personal Growth Dashboard
+        </div>
+
         <h1>
           Welcome 👋
         </h1>
@@ -2298,9 +2990,9 @@ onAuthStateChanged(
 );
 
 
-/* ========================= */
-/* ESCAPE HTML */
-/* ========================= */
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
 
 function escapeHTML(value) {
 
@@ -2324,9 +3016,9 @@ function escapeHTML(value) {
 }
 
 
-/* ========================= */
-/* PAGE FUNCTIONS */
-/* ========================= */
+/* =========================================================
+   PAGE
+========================================================= */
 
 window.openPage =
 function(page) {
@@ -2337,15 +3029,115 @@ function(page) {
 };
 
 
-/* ========================= */
-/* MY PROFILE */
-/* ========================= */
+/* =========================================================
+   MENU
+========================================================= */
+
+window.toggleMenu =
+function() {
+
+  const menu =
+    document.getElementById(
+      "menuPanel"
+    );
+
+  menu.classList.toggle("show");
+
+};
+
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+window.showNotifications =
+function() {
+
+  alert(
+    "🔔 अभी कोई नई notification नहीं है।"
+  );
+
+};
+
+
+/* =========================================================
+   PACKAGE MESSAGE
+========================================================= */
+
+window.showPackageMessage =
+function(packageName) {
+
+  alert(
+    packageName +
+    " Learning Package अभी setup किया जा रहा है।"
+  );
+
+};
+
+
+/* =========================================================
+   COMING SOON
+========================================================= */
+
+window.showComingSoon =
+function(name) {
+
+  alert(
+    name +
+    " feature जल्द available होगा।"
+  );
+
+};
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+window.goHome =
+function() {
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+};
+
+
+/* =========================================================
+   LEARN
+========================================================= */
+
+window.goLearn =
+function() {
+
+  const section =
+    document.querySelector(
+      ".package-grid"
+    );
+
+  if (section) {
+
+    section.scrollIntoView({
+      behavior: "smooth"
+    });
+
+  }
+
+};
+
+
+/* =========================================================
+   MY PROFILE
+========================================================= */
 
 window.openProfile =
 async function() {
 
   const user =
     auth.currentUser;
+
 
   if (!user) {
 
@@ -2355,6 +3147,7 @@ async function() {
     return;
 
   }
+
 
   try {
 
@@ -2475,15 +3268,16 @@ async function() {
 };
 
 
-/* ========================= */
-/* SAVE PROFILE */
-/* ========================= */
+/* =========================================================
+   SAVE PROFILE
+========================================================= */
 
 window.saveProfile =
 async function() {
 
   const user =
     auth.currentUser;
+
 
   if (!user) {
     return;
@@ -2534,6 +3328,7 @@ async function() {
     await setDoc(
       customerRef,
       {
+
         name:
           name,
 
@@ -2550,6 +3345,7 @@ async function() {
 
         updatedAt:
           serverTimestamp()
+
       },
       {
         merge: true
@@ -2610,9 +3406,9 @@ async function() {
 };
 
 
-/* ========================= */
-/* CHANGE PASSWORD */
-/* ========================= */
+/* =========================================================
+   CHANGE PASSWORD
+========================================================= */
 
 window.openChangePassword =
 function() {
@@ -2642,6 +3438,7 @@ async function() {
 
   const user =
     auth.currentUser;
+
 
   if (!user) {
     return;
@@ -2764,9 +3561,9 @@ async function() {
 };
 
 
-/* ========================= */
-/* PRIVACY */
-/* ========================= */
+/* =========================================================
+   PRIVACY
+========================================================= */
 
 window.openPrivacy =
 function() {
@@ -2779,9 +3576,9 @@ function() {
 };
 
 
-/* ========================= */
-/* TERMS */
-/* ========================= */
+/* =========================================================
+   TERMS
+========================================================= */
 
 window.openTerms =
 function() {
@@ -2794,9 +3591,9 @@ function() {
 };
 
 
-/* ========================= */
-/* DISCLAIMER */
-/* ========================= */
+/* =========================================================
+   DISCLAIMER
+========================================================= */
 
 window.openDisclaimer =
 function() {
@@ -2809,9 +3606,9 @@ function() {
 };
 
 
-/* ========================= */
-/* SUPPORT */
-/* ========================= */
+/* =========================================================
+   SUPPORT
+========================================================= */
 
 window.openSupport =
 function() {
@@ -2824,9 +3621,9 @@ function() {
 };
 
 
-/* ========================= */
-/* SUPPORT REQUEST */
-/* ========================= */
+/* =========================================================
+   SUPPORT REQUEST
+========================================================= */
 
 window.openSupportRequest =
 function() {
@@ -2976,7 +3773,6 @@ async function() {
       error
     );
 
-
     message.style.color =
       "#dc2626";
 
@@ -2988,9 +3784,9 @@ async function() {
 };
 
 
-/* ========================= */
-/* CONTACT */
-/* ========================= */
+/* =========================================================
+   CONTACT
+========================================================= */
 
 window.openContact =
 function() {
@@ -3003,9 +3799,9 @@ function() {
 };
 
 
-/* ========================= */
-/* DELETE ACCOUNT */
-/* ========================= */
+/* =========================================================
+   DELETE ACCOUNT
+========================================================= */
 
 window.openDeleteAccount =
 async function() {
@@ -3015,13 +3811,16 @@ async function() {
       "deleteMessage"
     );
 
+
   const statusBox =
     document.getElementById(
       "deleteStatusBox"
     );
 
+
   message.textContent =
     "";
+
 
   statusBox.style.display =
     "none";
@@ -3060,9 +3859,9 @@ async function() {
 };
 
 
-/* ========================= */
-/* SEND DELETE REQUEST */
-/* ========================= */
+/* =========================================================
+   SEND DELETE REQUEST
+========================================================= */
 
 window.deleteAccount =
 async function() {
@@ -3114,6 +3913,7 @@ async function() {
       message.textContent =
         "आपकी deletion request पहले से pending है।";
 
+
       showDeleteRequestStatus(
         existingRequest
       );
@@ -3148,9 +3948,7 @@ async function() {
 
 
     if (!confirmed) {
-
       return;
-
     }
 
 
@@ -3272,9 +4070,9 @@ async function() {
 };
 
 
-/* ========================= */
-/* CLOSE MODAL */
-/* ========================= */
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
 
 window.closeModal =
 function(id) {
@@ -3287,9 +4085,9 @@ function(id) {
 };
 
 
-/* ========================= */
-/* OUTSIDE CLICK */
-/* ========================= */
+/* =========================================================
+   OUTSIDE CLICK
+========================================================= */
 
 window.addEventListener(
   "click",
@@ -3317,13 +4115,39 @@ window.addEventListener(
       }
     );
 
+
+    const menu =
+      document.getElementById(
+        "menuPanel"
+      );
+
+
+    const menuButton =
+      event.target.closest(
+        ".header-icon-btn"
+      );
+
+
+    if (
+      menu &&
+      menu.classList.contains("show") &&
+      !menu.contains(event.target) &&
+      !menuButton
+    ) {
+
+      menu.classList.remove(
+        "show"
+      );
+
+    }
+
   }
 );
 
 
-/* ========================= */
-/* LOGOUT */
-/* ========================= */
+/* =========================================================
+   LOGOUT
+========================================================= */
 
 window.logout =
 async function() {
