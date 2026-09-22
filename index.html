@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="0u3MrF-SSjnaA2MCIp0KLVi6WMu-NIqVM1fvmqKhdNE" />
   <title>Apna Growth Hub - Login</title>
 
   <style>
@@ -127,7 +128,6 @@
       Learn • Grow • Succeed
     </div>
 
-
     <!-- =========================
          SIGNUP FORM
     ========================== -->
@@ -144,7 +144,6 @@
         placeholder="Enter your full name"
       />
 
-
       <label>Mobile Number</label>
 
       <input
@@ -153,14 +152,12 @@
         placeholder="Enter mobile number"
       />
 
-
       <label>Date of Birth</label>
 
       <input
         type="date"
         id="dob"
       />
-
 
       <label>Email</label>
 
@@ -170,7 +167,6 @@
         placeholder="Enter email"
       />
 
-
       <label>Password</label>
 
       <input
@@ -179,11 +175,9 @@
         placeholder="Create password"
       />
 
-
       <button onclick="createAccount()">
         Create Account
       </button>
-
 
       <div
         class="switch"
@@ -193,7 +187,6 @@
       </div>
 
     </div>
-
 
 
     <!-- =========================
@@ -207,7 +200,6 @@
 
       <h2>Login</h2>
 
-
       <label>Email</label>
 
       <input
@@ -215,7 +207,6 @@
         id="loginEmail"
         placeholder="Enter email"
       />
-
 
       <label>Password</label>
 
@@ -225,7 +216,6 @@
         placeholder="Enter password"
       />
 
-
       <button
         class="secondary"
         onclick="loginAccount()"
@@ -233,16 +223,12 @@
         Login
       </button>
 
-
-      <!-- FORGOT PASSWORD -->
-
       <div
         class="forgot-password"
         onclick="forgotPassword()"
       >
         Forgot Password?
       </div>
-
 
       <div
         class="switch"
@@ -253,14 +239,12 @@
 
     </div>
 
-
     <div
       id="message"
       class="message"
     ></div>
 
   </div>
-
 
 
   <!-- =========================
@@ -272,7 +256,6 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
 
 
   <script>
@@ -307,16 +290,19 @@
     };
 
 
-    firebase.initializeApp(firebaseConfig);
+    // =========================
+    // FIREBASE INITIALIZE
+    // =========================
 
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
 
     const auth =
       firebase.auth();
 
-
     const db =
       firebase.firestore();
-
 
 
     // =========================
@@ -338,7 +324,6 @@
     }
 
 
-
     // =========================
     // SHOW LOGIN
     // =========================
@@ -356,7 +341,6 @@
       showMessage("");
 
     }
-
 
 
     // =========================
@@ -378,7 +362,6 @@
     }
 
 
-
     // =========================
     // CALCULATE AGE
     // =========================
@@ -389,35 +372,27 @@
         return "";
       }
 
-
       const birthDate =
         new Date(dob);
-
 
       if (
         isNaN(
           birthDate.getTime()
         )
       ) {
-
         return "";
-
       }
-
 
       const today =
         new Date();
-
 
       let age =
         today.getFullYear() -
         birthDate.getFullYear();
 
-
       const monthDifference =
         today.getMonth() -
         birthDate.getMonth();
-
 
       if (
         monthDifference < 0 ||
@@ -426,16 +401,12 @@
           today.getDate() < birthDate.getDate()
         )
       ) {
-
         age--;
-
       }
-
 
       return age;
 
     }
-
 
 
     // =========================
@@ -469,7 +440,9 @@
             age,
 
           email:
-            email || user.email || "",
+            email ||
+            user.email ||
+            "",
 
           uid:
             user.uid,
@@ -489,7 +462,6 @@
     }
 
 
-
     // =========================
     // CREATE ACCOUNT
     // =========================
@@ -502,19 +474,16 @@
           .value
           .trim();
 
-
       const mobile =
         document
           .getElementById("mobile")
           .value
           .trim();
 
-
       const dob =
         document
           .getElementById("dob")
           .value;
-
 
       const email =
         document
@@ -522,15 +491,11 @@
           .value
           .trim();
 
-
       const password =
         document
           .getElementById("signupPassword")
           .value;
 
-
-
-      // CHECK ALL FIELDS
 
       if (
         !name ||
@@ -549,9 +514,6 @@
       }
 
 
-
-      // PASSWORD CHECK
-
       if (
         password.length < 6
       ) {
@@ -565,12 +527,8 @@
       }
 
 
-
-      // AGE
-
       const age =
         calculateAge(dob);
-
 
 
       if (
@@ -588,7 +546,6 @@
       }
 
 
-
       try {
 
         showMessage(
@@ -597,9 +554,7 @@
         );
 
 
-        // =========================
         // FIREBASE AUTH ACCOUNT
-        // =========================
 
         const userCredential =
           await auth
@@ -608,15 +563,11 @@
               password
             );
 
-
         const user =
           userCredential.user;
 
 
-
-        // =========================
         // FIRESTORE CUSTOMER PROFILE
-        // =========================
 
         await saveCustomerProfile(
           user,
@@ -628,10 +579,7 @@
         );
 
 
-
-        // =========================
         // LOCAL STORAGE
-        // =========================
 
         localStorage.setItem(
           "customerName",
@@ -664,12 +612,10 @@
         );
 
 
-
         showMessage(
           "Account बन गया। Dashboard खुल रहा है...",
           "#16a34a"
         );
-
 
 
         setTimeout(() => {
@@ -724,26 +670,22 @@
     }
 
 
-
     // =========================
     // LOGIN
     // =========================
 
     async function loginAccount() {
-      alert("LOGIN FUNCTION RUN");
-alert("FIREBASE LOGIN START");
+
       const email =
         document
           .getElementById("loginEmail")
           .value
           .trim();
 
-
       const password =
         document
           .getElementById("loginPassword")
           .value;
-
 
 
       if (
@@ -760,7 +702,6 @@ alert("FIREBASE LOGIN START");
       }
 
 
-
       try {
 
         showMessage(
@@ -769,21 +710,35 @@ alert("FIREBASE LOGIN START");
         );
 
 
-        // =========================
         // FIREBASE LOGIN
-        // =========================
 
         const userCredential =
-          await auth
-            .signInWithEmailAndPassword(
+          await Promise.race([
+
+            auth.signInWithEmailAndPassword(
               email,
               password
-            );
+            ),
+
+            new Promise((_, reject) => {
+
+              setTimeout(() => {
+
+                reject(
+                  new Error(
+                    "Firebase login response नहीं आया। Internet या Firebase Auth connection check करें।"
+                  )
+                );
+
+              }, 12000);
+
+            })
+
+          ]);
 
 
         const user =
           userCredential.user;
-
 
 
         // =========================
@@ -795,128 +750,190 @@ alert("FIREBASE LOGIN START");
             .collection("customers")
             .doc(user.uid);
 
-
-        const customerDoc =
-          await customerRef.get();
-
-
-
         let customer;
 
 
+        try {
 
-        // =========================
-        // PROFILE EXISTS
-        // =========================
+          const profileResult =
+            await Promise.race([
 
-        if (
-          customerDoc.exists
-        ) {
+              (async () => {
+
+                const customerDoc =
+                  await customerRef.get();
+
+
+                if (customerDoc.exists) {
+
+                  customer =
+                    customerDoc.data();
+
+
+                  let dob =
+                    customer.dob ||
+                    customer.dateOfBirth ||
+                    customer.DOB ||
+                    customer.birthDate ||
+                    "";
+
+
+                  let age =
+                    customer.age;
+
+
+                  if (
+                    (
+                      age === undefined ||
+                      age === null ||
+                      age === ""
+                    ) &&
+                    dob
+                  ) {
+
+                    age =
+                      calculateAge(dob);
+
+                  }
+
+
+                  await customerRef.set({
+
+                    name:
+                      customer.name ||
+                      customer.fullName ||
+                      "",
+
+                    mobile:
+                      customer.mobile ||
+                      customer.phone ||
+                      "",
+
+                    dob:
+                      dob || "",
+
+                    age:
+                      age ?? "",
+
+                    email:
+                      customer.email ||
+                      user.email ||
+                      email,
+
+                    uid:
+                      user.uid,
+
+                    updatedAt:
+                      firebase.firestore.FieldValue.serverTimestamp()
+
+                  }, {
+
+                    merge: true
+
+                  });
+
+
+                  const repairedDoc =
+                    await customerRef.get();
+
+
+                  customer =
+                    repairedDoc.data();
+
+                }
+
+                else {
+
+                  customer = {
+
+                    name:
+                      user.displayName || "",
+
+                    mobile:
+                      "",
+
+                    dob:
+                      "",
+
+                    age:
+                      "",
+
+                    email:
+                      user.email || email,
+
+                    uid:
+                      user.uid
+
+                  };
+
+
+                  await customerRef.set({
+
+                    name:
+                      customer.name,
+
+                    mobile:
+                      "",
+
+                    dob:
+                      "",
+
+                    age:
+                      "",
+
+                    email:
+                      customer.email,
+
+                    uid:
+                      user.uid,
+
+                    createdAt:
+                      firebase.firestore.FieldValue.serverTimestamp(),
+
+                    updatedAt:
+                      firebase.firestore.FieldValue.serverTimestamp()
+
+                  });
+
+                }
+
+
+                return customer;
+
+              })(),
+
+
+              new Promise((_, reject) => {
+
+                setTimeout(() => {
+
+                  reject(
+                    new Error(
+                      "Customer profile response नहीं आया।"
+                    )
+                  );
+
+                }, 8000);
+
+              })
+
+            ]);
+
 
           customer =
-            customerDoc.data();
+            profileResult;
 
 
-          // अगर DOB मौजूद है
-          // लेकिन Age missing है,
-          // तो Age calculate करेंगे।
+        } catch (profileError) {
 
-          let dob =
-            customer.dob ||
-            customer.dateOfBirth ||
-            customer.DOB ||
-            customer.birthDate ||
-            "";
+          console.error(
+            "CUSTOMER PROFILE ERROR:",
+            profileError
+          );
 
 
-          let age =
-            customer.age;
-
-
-          if (
-            (
-              age === undefined ||
-              age === null ||
-              age === ""
-            ) &&
-            dob
-          ) {
-
-            age =
-              calculateAge(dob);
-
-          }
-
-
-
-          // Missing fields को repair करना
-
-          await customerRef.set({
-
-            name:
-              customer.name ||
-              customer.fullName ||
-              "",
-
-            mobile:
-              customer.mobile ||
-              customer.phone ||
-              "",
-
-            dob:
-              dob || "",
-
-            age:
-              age ?? "",
-
-            email:
-              customer.email ||
-              user.email ||
-              email,
-
-            uid:
-              user.uid,
-
-            updatedAt:
-              firebase.firestore.FieldValue.serverTimestamp()
-
-          }, {
-
-            merge: true
-
-          });
-
-
-
-          // Fresh data
-
-          const repairedDoc =
-            await customerRef.get();
-
-
-          customer =
-            repairedDoc.data();
-
-        }
-
-
-
-        // =========================
-        // PROFILE DOES NOT EXIST
-        // =========================
-
-        else {
-
-          /*
-            पुराने account में अगर
-            customers document नहीं है,
-            तो हम automatically profile
-            create करेंगे।
-
-            पुराने account में DOB नहीं है,
-            इसलिए DOB बाद में profile में
-            add करना पड़ेगा।
-          */
+          // Auth login successful होने पर
+          // Firestore problem से login block नहीं करेंगे.
 
           customer = {
 
@@ -940,37 +957,7 @@ alert("FIREBASE LOGIN START");
 
           };
 
-
-          await customerRef.set({
-
-            name:
-              customer.name,
-
-            mobile:
-              "",
-
-            dob:
-              "",
-
-            age:
-              "",
-
-            email:
-              customer.email,
-
-            uid:
-              user.uid,
-
-            createdAt:
-              firebase.firestore.FieldValue.serverTimestamp(),
-
-            updatedAt:
-              firebase.firestore.FieldValue.serverTimestamp()
-
-          });
-
         }
-
 
 
         // =========================
@@ -982,14 +969,12 @@ alert("FIREBASE LOGIN START");
           customer.name || ""
         );
 
-
         localStorage.setItem(
           "customerMobile",
           customer.mobile ||
           customer.phone ||
           ""
         );
-
 
         localStorage.setItem(
           "customerDOB",
@@ -998,12 +983,10 @@ alert("FIREBASE LOGIN START");
           ""
         );
 
-
         localStorage.setItem(
           "customerAge",
           customer.age ?? ""
         );
-
 
         localStorage.setItem(
           "customerEmail",
@@ -1012,12 +995,10 @@ alert("FIREBASE LOGIN START");
           email
         );
 
-
         localStorage.setItem(
           "firebaseLoggedIn",
           "true"
         );
-
 
 
         // =========================
@@ -1079,6 +1060,17 @@ alert("FIREBASE LOGIN START");
 
         }
 
+        else if (
+          error.code ===
+          "auth/invalid-email"
+        ) {
+
+          showMessage(
+            "कृपया सही Email डालें।"
+          );
+
+        }
+
         else {
 
           showMessage(
@@ -1091,7 +1083,6 @@ alert("FIREBASE LOGIN START");
       }
 
     }
-
 
 
     // =========================
@@ -1107,7 +1098,6 @@ alert("FIREBASE LOGIN START");
           .trim();
 
 
-
       if (!email) {
 
         showMessage(
@@ -1119,7 +1109,6 @@ alert("FIREBASE LOGIN START");
       }
 
 
-
       try {
 
         await auth
@@ -1129,7 +1118,7 @@ alert("FIREBASE LOGIN START");
 
 
         showMessage(
-          "Password reset link आपके Email पर भेज दिया गया है।",
+          "Password reset link आपके Email पर भेज दिया गया है.",
           "#16a34a"
         );
 
@@ -1167,6 +1156,7 @@ alert("FIREBASE LOGIN START");
         else {
 
           showMessage(
+            error.message ||
             "Password reset में समस्या आई। बाद में फिर कोशिश करें।"
           );
 

@@ -80,13 +80,6 @@
       border-color: #2563eb;
     }
 
-    select:disabled {
-      background: #e2e8f0;
-      color: #1e293b;
-      cursor: not-allowed;
-      font-weight: bold;
-    }
-
     textarea {
       min-height: 110px;
       resize: vertical;
@@ -213,26 +206,33 @@
 
         <label for="planName">Selected LIC Plan</label>
 
-        <select id="planName" required>
-          <option value="">Plan select karein</option>
+        <select id="planName">
+          <option value="">Plan select karein (Optional)</option>
+
           <option value="Child Future Planning">
             Child Future Planning
           </option>
+
           <option value="Life Protection Plan">
             Life Protection Plan
           </option>
+
           <option value="Saving Planning">
             Saving Planning
           </option>
+
           <option value="Retirement Planning">
             Retirement Planning
           </option>
+
           <option value="Jeevan Umang">
             Jeevan Umang
           </option>
+
           <option value="Other LIC Plan">
             Other LIC Plan
           </option>
+
         </select>
 
         <div
@@ -265,9 +265,11 @@
       <div class="error-message" id="errorMessage">
         Inquiry save nahi ho saki. Please dobara try karein.
       </div>
+
     </div>
 
     <div class="box">
+
       <h2>Saved Inquiry</h2>
 
       <div id="savedInquiry">
@@ -279,6 +281,7 @@
       <button class="clear-btn" id="clearBtn">
         Saved Inquiry Delete Karein
       </button>
+
     </div>
 
     <div class="box">
@@ -374,14 +377,20 @@
 
     if (selectedPlan) {
 
-      planName.value = selectedPlan;
+      const planOptionExists =
+        Array.from(planName.options)
+          .some(option => option.value === selectedPlan);
 
-      planName.disabled = true;
+      if (planOptionExists) {
 
-      selectedPlanNote.style.display = "block";
+        planName.value = selectedPlan;
 
-      selectedPlanNote.innerHTML =
-        "Selected Plan: " + selectedPlan + " ✅";
+        selectedPlanNote.style.display = "block";
+
+        selectedPlanNote.innerHTML =
+          "Selected Plan: " + selectedPlan + " ✅";
+
+      }
 
     }
 
@@ -404,7 +413,9 @@
         `;
 
         return;
+
       }
+
 
       savedInquiry.innerHTML = `
 
@@ -421,7 +432,7 @@
           <br>
 
           <strong>Plan:</strong>
-          ${inquiry.plan || ""}
+          ${inquiry.plan || "General Inquiry"}
 
           <br>
 
@@ -464,14 +475,17 @@
             .value
             .trim();
 
+
         const mobile =
           document
             .getElementById("customerMobile")
             .value
             .trim();
 
+
         const plan =
-          planName.value;
+          planName.value.trim();
+
 
         const question =
           document
@@ -479,6 +493,8 @@
             .value
             .trim();
 
+
+        // Mobile validation
 
         if (mobile.length !== 10 || isNaN(mobile)) {
 
@@ -496,20 +512,8 @@
         }
 
 
-        if (!plan) {
-
-          alert(
-            "Please LIC plan select karein."
-          );
-
-          saveButton.disabled = false;
-
-          saveButton.innerText =
-            "Inquiry Firebase Mein Save Karein";
-
-          return;
-
-        }
+        // Plan optional hai
+        // Isliye yahan plan validation nahi hai
 
 
         const inquiry = {
@@ -518,7 +522,7 @@
 
           mobile: mobile,
 
-          plan: plan,
+          plan: plan || "General Inquiry",
 
           question: question,
 
@@ -547,13 +551,14 @@
 
             mobile: mobile,
 
-            plan: plan,
+            plan: plan || "General Inquiry",
 
             question: question,
 
             date: new Date().toLocaleString("en-IN")
 
           };
+
 
           localStorage.setItem(
             "customerInquiry",
@@ -571,28 +576,41 @@
           inquiryForm.reset();
 
 
-          // Selected plan dobara show karna
+          // Agar LIC page se selected plan aaya tha
+          // to dobara select kar denge
+          // Lekin ab disabled/locked nahi hoga
 
           if (selectedPlan) {
 
-            planName.value =
-              selectedPlan;
+            const planOptionExists =
+              Array.from(planName.options)
+                .some(option => option.value === selectedPlan);
 
-            planName.disabled =
-              true;
+            if (planOptionExists) {
+
+              planName.value =
+                selectedPlan;
+
+              selectedPlanNote.style.display =
+                "block";
+
+              selectedPlanNote.innerHTML =
+                "Selected Plan: " +
+                selectedPlan +
+                " ✅";
+
+            }
+
+          } else {
 
             selectedPlanNote.style.display =
-              "block";
-
-            selectedPlanNote.innerHTML =
-              "Selected Plan: " +
-              selectedPlan +
-              " ✅";
+              "none";
 
           }
 
 
           showSavedInquiry();
+
 
           saveButton.innerText =
             "Inquiry Firebase Mein Save Karein";
@@ -608,15 +626,19 @@
             error
           );
 
+
           errorMessage.style.display =
             "block";
+
 
           errorMessage.innerText =
             "Firebase error: " +
             error.message;
 
+
           saveButton.innerText =
             "Dobara Save Karein";
+
 
           saveButton.disabled =
             false;
@@ -638,13 +660,16 @@
             "Kya aap saved inquiry delete karna chahte hain?"
           );
 
+
         if (confirmDelete) {
 
           localStorage.removeItem(
             "customerInquiry"
           );
 
+
           showSavedInquiry();
+
 
           alert(
             "Local saved inquiry delete ho gayi."

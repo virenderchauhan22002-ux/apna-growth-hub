@@ -1299,7 +1299,6 @@ select{
                fill="none"
                xmlns="http://www.w3.org/2000/svg">
 
-            <!-- document -->
             <rect
               x="20"
               y="10"
@@ -1310,7 +1309,6 @@ select{
               stroke="#1764C0"
               stroke-width="5"/>
 
-            <!-- LIC top -->
             <rect
               x="27"
               y="19"
@@ -1329,7 +1327,6 @@ select{
               LIC
             </text>
 
-            <!-- lines -->
             <rect
               x="29"
               y="44"
@@ -1346,7 +1343,6 @@ select{
               rx="2.5"
               fill="#8ABDF4"/>
 
-            <!-- family card -->
             <rect
               x="43"
               y="60"
@@ -1357,7 +1353,6 @@ select{
               stroke="#B8D8FA"
               stroke-width="2"/>
 
-            <!-- people -->
             <circle
               cx="57"
               cy="69"
@@ -1419,7 +1414,6 @@ select{
                fill="none"
                xmlns="http://www.w3.org/2000/svg">
 
-            <!-- document -->
             <rect
               x="25"
               y="11"
@@ -1464,7 +1458,6 @@ select{
               rx="2"
               fill="#9DD5A8"/>
 
-            <!-- folder -->
             <path
               d="M15 48H36L42 54H84C88 54 91 57 91 61V82C91 87 87 91 82 91H18C13 91 10 87 10 82V56C10 51 12 48 15 48Z"
               fill="#FFB719"/>
@@ -1473,12 +1466,10 @@ select{
               d="M10 59H91V82C91 87 87 91 82 91H18C13 91 10 87 10 82V59Z"
               fill="#FFC72C"/>
 
-            <!-- bookmark -->
             <path
               d="M57 51H77V82L67 76L57 82V51Z"
               fill="#16A34A"/>
 
-            <!-- star -->
             <path
               d="M67 57L69.5 62L75 62.7L71 66.4L72 71.7L67 69L62 71.7L63 66.4L59 62.7L64.5 62L67 57Z"
               fill="white"/>
@@ -1524,14 +1515,12 @@ select{
                fill="none"
                xmlns="http://www.w3.org/2000/svg">
 
-            <!-- profile circle -->
             <circle
               cx="47"
               cy="45"
               r="30"
               fill="#2F80ED"/>
 
-            <!-- person -->
             <circle
               cx="47"
               cy="37"
@@ -1542,7 +1531,6 @@ select{
               d="M27 64C27 50 67 50 67 64"
               fill="white"/>
 
-            <!-- profile card -->
             <rect
               x="27"
               y="70"
@@ -1561,7 +1549,6 @@ select{
               rx="2"
               fill="#8ABDF4"/>
 
-            <!-- gear -->
             <circle
               cx="74"
               cy="69"
@@ -1621,7 +1608,6 @@ select{
                fill="none"
                xmlns="http://www.w3.org/2000/svg">
 
-            <!-- clipboard -->
             <rect
               x="21"
               y="20"
@@ -1632,7 +1618,6 @@ select{
               stroke="#1764C0"
               stroke-width="5"/>
 
-            <!-- clip -->
             <rect
               x="37"
               y="10"
@@ -1641,7 +1626,6 @@ select{
               rx="7"
               fill="#1764C0"/>
 
-            <!-- person -->
             <circle
               cx="49"
               cy="43"
@@ -1652,7 +1636,6 @@ select{
               d="M36 61C36 51 62 51 62 61"
               fill="#2F80ED"/>
 
-            <!-- lines -->
             <rect
               x="31"
               y="68"
@@ -1669,7 +1652,6 @@ select{
               rx="2.5"
               fill="#8ABDF4"/>
 
-            <!-- WhatsApp bubble -->
             <circle
               cx="76"
               cy="76"
@@ -2671,47 +2653,24 @@ import {
 
 
 /* =========================================================
-   FIREBASE CONFIG
+   FIREBASE CONFIG (COMMA FIXED)
 ========================================================= */
 
 const firebaseConfig = {
-
-  apiKey:
-    "AIzaSyBasu6SpqOqvldxWEmTHs9WUSTXsK2qz-0w",
-
-  authDomain:
-    "apna-growth-hub.firebaseapp.com",
-
-  projectId:
-    "apna-growth-hub",
-
-  storageBucket:
-    "apna-growth-hub.firebasestorage.app",
-
-  messagingSenderId:
-    "939001251123",
-
-  appId:
-    "1:939001251123:web:f2966004acaa64186e2a46",
-
-  measurementId:
-    "G-GZGCHL4XQ3"
-
+  apiKey: "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
+  authDomain: "apna-growth-hub.firebaseapp.com",
+  projectId: "apna-growth-hub",
+  storageBucket: "apna-growth-hub.firebasestorage.app",
+  messagingSenderId: "939001251123",
+  appId: "1:939001251123:web:f2966004acaa64186e2a46",
+  measurementId: "G-GZGCHL4XQ3"
 };
 
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-const app =
-  initializeApp(firebaseConfig);
-
-const auth =
-  getAuth(app);
-
-const db =
-  getFirestore(app);
-
-const welcomeCard =
-  document.getElementById("welcomeCard");
-
+const welcomeCard = document.getElementById("welcomeCard");
 let currentCustomerData = {};
 
 
@@ -2720,28 +2679,13 @@ let currentCustomerData = {};
 ========================================================= */
 
 function calculateAgeFromDOB(dob){
+  if(!dob) return "";
+  const birthDate = new Date(dob);
+  if(isNaN(birthDate.getTime())) return "";
 
-  if(!dob){
-    return "";
-  }
-
-  const birthDate =
-    new Date(dob);
-
-  if(isNaN(birthDate.getTime())){
-    return "";
-  }
-
-  const today =
-    new Date();
-
-  let age =
-    today.getFullYear() -
-    birthDate.getFullYear();
-
-  const monthDifference =
-    today.getMonth() -
-    birthDate.getMonth();
+  const today = new Date();
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDifference = today.getMonth() - birthDate.getMonth();
 
   if(
     monthDifference < 0 ||
@@ -2762,45 +2706,74 @@ function calculateAgeFromDOB(dob){
 ========================================================= */
 
 function getLocalCustomerData(user){
+  const localDOB = localStorage.getItem("customerDOB") || "";
+  let localAge = localStorage.getItem("customerAge") || "";
 
-  const localDOB =
-    localStorage.getItem("customerDOB") || "";
-
-  let localAge =
-    localStorage.getItem("customerAge") || "";
-
-  if(
-    (!localAge || localAge === "null") &&
-    localDOB
-  ){
-    localAge =
-      calculateAgeFromDOB(localDOB);
+  if((!localAge || localAge === "null") && localDOB){
+    localAge = calculateAgeFromDOB(localDOB);
   }
 
   return {
-
-    name:
-      localStorage.getItem("customerName") || "",
-
-    mobile:
-      localStorage.getItem("customerMobile") || "",
-
-    dob:
-      localDOB,
-
-    age:
-      localAge,
-
-    email:
-      localStorage.getItem("customerEmail") ||
-      user.email ||
-      "",
-
-    uid:
-      user.uid
-
+    name: localStorage.getItem("customerName") || (user ? user.displayName : "") || "",
+    mobile: localStorage.getItem("customerMobile") || "",
+    dob: localDOB,
+    age: localAge,
+    email: localStorage.getItem("customerEmail") || (user ? user.email : "") || "",
+    uid: user ? user.uid : ""
   };
+}
 
+
+/* =========================================================
+   RENDER DASHBOARD (FAST DISPLAY)
+========================================================= */
+
+function renderDashboard(data){
+  let customerName = data.name || "Customer";
+  let age = data.age ?? "";
+  let dob = data.dob || "";
+  let mobile = data.mobile || "";
+
+  if(age === "" || age === null || age === undefined){
+    age = calculateAgeFromDOB(dob);
+  }
+
+  welcomeCard.innerHTML = `
+    <div class="welcome-small">
+      Personal Growth Dashboard
+    </div>
+
+    <h1>
+      नमस्ते! ${escapeHTML(customerName)} 👋
+    </h1>
+
+    <p>
+      Apna Growth Hub में आपका स्वागत है।
+      यहाँ आप LIC, learning programs और
+      अपनी account activities manage कर सकते हैं।
+    </p>
+
+    <div class="profile-info">
+      ${
+        age !== "" && age !== null && age !== undefined
+          ? `<div class="profile-box">🎂 Age: ${escapeHTML(age)}</div>`
+          : ""
+      }
+      ${
+        dob
+          ? `<div class="profile-box">📅 DOB: ${escapeHTML(dob)}</div>`
+          : ""
+      }
+      <div class="profile-box">
+        📧 ${escapeHTML(data.email || "")}
+      </div>
+      ${
+        mobile
+          ? `<div class="profile-box">📱 ${escapeHTML(mobile)}</div>`
+          : ""
+      }
+    </div>
+  `;
 }
 
 
@@ -2809,179 +2782,57 @@ function getLocalCustomerData(user){
 ========================================================= */
 
 async function createOrRepairCustomer(user){
-
-  const customerRef =
-    doc(
-      db,
-      "customers",
-      user.uid
-    );
-
-  const customerSnap =
-    await getDoc(customerRef);
-
-  const localData =
-    getLocalCustomerData(user);
-
+  const customerRef = doc(db, "customers", user.uid);
+  const customerSnap = await getDoc(customerRef);
+  const localData = getLocalCustomerData(user);
 
   if(customerSnap.exists()){
+    const existingData = customerSnap.data();
+    let dob = existingData.dob || existingData.dateOfBirth || existingData.DOB || localData.dob || "";
+    let age = existingData.age;
 
-    const existingData =
-      customerSnap.data();
-
-    let dob =
-      existingData.dob ||
-      existingData.dateOfBirth ||
-      existingData.DOB ||
-      localData.dob ||
-      "";
-
-    let age =
-      existingData.age;
-
-    if(
-      age === undefined ||
-      age === null ||
-      age === ""
-    ){
-      age =
-        calculateAgeFromDOB(dob);
+    if(age === undefined || age === null || age === ""){
+      age = calculateAgeFromDOB(dob);
     }
-
 
     const repairedData = {
-
-      name:
-        existingData.name ||
-        existingData.fullName ||
-        localData.name ||
-        user.displayName ||
-        "Customer",
-
-      mobile:
-        existingData.mobile ||
-        existingData.phone ||
-        localData.mobile ||
-        "",
-
-      dob:
-        dob,
-
-      age:
-        age,
-
-      email:
-        existingData.email ||
-        localData.email ||
-        user.email ||
-        "",
-
-      uid:
-        user.uid
-
+      name: existingData.name || existingData.fullName || localData.name || user.displayName || "Customer",
+      mobile: existingData.mobile || existingData.phone || localData.mobile || "",
+      dob: dob,
+      age: age,
+      email: existingData.email || localData.email || user.email || "",
+      uid: user.uid
     };
 
+    await setDoc(customerRef, {
+      ...repairedData,
+      updatedAt: serverTimestamp()
+    }, { merge: true });
 
-    await setDoc(
-      customerRef,
-      {
-        ...repairedData,
-        updatedAt:
-          serverTimestamp()
-      },
-      {
-        merge:true
-      }
-    );
-
-
-    currentCustomerData = {
-      ...existingData,
-      ...repairedData
-    };
-
-
-    localStorage.setItem(
-      "customerName",
-      repairedData.name || ""
-    );
-
-    localStorage.setItem(
-      "customerMobile",
-      repairedData.mobile || ""
-    );
-
-    localStorage.setItem(
-      "customerDOB",
-      repairedData.dob || ""
-    );
-
-    localStorage.setItem(
-      "customerAge",
-      repairedData.age ?? ""
-    );
-
-    localStorage.setItem(
-      "customerEmail",
-      repairedData.email || ""
-    );
-
+    currentCustomerData = { ...existingData, ...repairedData };
+    localStorage.setItem("customerName", repairedData.name || "");
+    localStorage.setItem("customerMobile", repairedData.mobile || "");
+    localStorage.setItem("customerDOB", repairedData.dob || "");
+    localStorage.setItem("customerAge", repairedData.age ?? "");
+    localStorage.setItem("customerEmail", repairedData.email || "");
 
     return currentCustomerData;
-
   }
 
-
   const newCustomerData = {
-
-    name:
-      localData.name ||
-      user.displayName ||
-      "Customer",
-
-    mobile:
-      localData.mobile ||
-      "",
-
-    dob:
-      localData.dob ||
-      "",
-
-    age:
-      localData.age ||
-      "",
-
-    email:
-      localData.email ||
-      user.email ||
-      "",
-
-    uid:
-      user.uid,
-
-    createdAt:
-      serverTimestamp(),
-
-    updatedAt:
-      serverTimestamp()
-
+    name: localData.name || user.displayName || "Customer",
+    mobile: localData.mobile || "",
+    dob: localData.dob || "",
+    age: localData.age || "",
+    email: localData.email || user.email || "",
+    uid: user.uid,
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp()
   };
 
-
-  await setDoc(
-    customerRef,
-    newCustomerData,
-    {
-      merge:true
-    }
-  );
-
-
-  currentCustomerData =
-    newCustomerData;
-
+  await setDoc(customerRef, newCustomerData, { merge: true });
+  currentCustomerData = newCustomerData;
   return newCustomerData;
-
 }
 
 
@@ -2990,82 +2841,28 @@ async function createOrRepairCustomer(user){
 ========================================================= */
 
 async function checkDeleteRequest(user){
-
   try{
+    const requestQuery = query(
+      collection(db, "accountDeletionRequests"),
+      where("uid", "==", user.uid)
+    );
 
-    const requestQuery =
-      query(
-        collection(
-          db,
-          "accountDeletionRequests"
-        ),
-        where(
-          "uid",
-          "==",
-          user.uid
-        )
-      );
-
-
-    const snapshot =
-      await getDocs(
-        requestQuery
-      );
-
-
-    if(snapshot.empty){
-      return null;
-    }
-
+    const snapshot = await getDocs(requestQuery);
+    if(snapshot.empty) return null;
 
     let latestRequest = null;
-
-
-    snapshot.forEach(
-      function(docSnap){
-
-        const data =
-          docSnap.data();
-
-
-        if(
-          !latestRequest ||
-          (
-            data.createdAt &&
-            latestRequest.createdAt &&
-            data.createdAt.seconds >
-            latestRequest.createdAt.seconds
-          )
-        ){
-
-          latestRequest = {
-
-            id:
-              docSnap.id,
-
-            ...data
-
-          };
-
-        }
-
+    snapshot.forEach(function(docSnap){
+      const data = docSnap.data();
+      if(!latestRequest || (data.createdAt && latestRequest.createdAt && data.createdAt.seconds > latestRequest.createdAt.seconds)){
+        latestRequest = { id: docSnap.id, ...data };
       }
-    );
-
+    });
 
     return latestRequest;
-
   }catch(error){
-
-    console.error(
-      "Delete request check error:",
-      error
-    );
-
+    console.error("Delete request check error:", error);
     return null;
-
   }
-
 }
 
 
@@ -3074,263 +2871,88 @@ async function checkDeleteRequest(user){
 ========================================================= */
 
 function showDeleteRequestStatus(request){
-
-  const statusBox =
-    document.getElementById(
-      "deleteStatusBox"
-    );
-
-  const requestBtn =
-    document.getElementById(
-      "deleteRequestBtn"
-    );
-
+  const statusBox = document.getElementById("deleteStatusBox");
+  const requestBtn = document.getElementById("deleteRequestBtn");
 
   if(!request){
-
-    statusBox.style.display =
-      "none";
-
-    requestBtn.disabled =
-      false;
-
-    requestBtn.style.opacity =
-      "1";
-
-    requestBtn.textContent =
-      "🗑️ Send Delete Request";
-
+    statusBox.style.display = "none";
+    requestBtn.disabled = false;
+    requestBtn.style.opacity = "1";
+    requestBtn.textContent = "🗑️ Send Delete Request";
     return;
-
   }
 
-
-  const status =
-    String(
-      request.status || "pending"
-    ).toLowerCase();
-
-
-  statusBox.style.display =
-    "block";
-
+  const status = String(request.status || "pending").toLowerCase();
+  statusBox.style.display = "block";
 
   if(status === "pending"){
-
-    statusBox.className =
-      "delete-status-box";
-
+    statusBox.className = "delete-status-box";
     statusBox.innerHTML = `
       <strong>⏳ Delete Request Pending</strong>
       <br>
       आपकी deletion request Admin Panel में भेज दी गई है।
       कृपया Admin के response का इंतजार करें।
     `;
-
-    requestBtn.disabled =
-      true;
-
-    requestBtn.style.opacity =
-      "0.6";
-
-    requestBtn.textContent =
-      "⏳ Request Pending";
-
+    requestBtn.disabled = true;
+    requestBtn.style.opacity = "0.6";
+    requestBtn.textContent = "⏳ Request Pending";
   }
-
   else if(status === "rejected"){
-
-    statusBox.className =
-      "delete-status-box delete-status-rejected";
-
+    statusBox.className = "delete-status-box delete-status-rejected";
     statusBox.innerHTML = `
       <strong>❌ Delete Request Rejected</strong>
       <br>
       आपकी previous deletion request reject कर दी गई है।
       आप चाहें तो नई request भेज सकते हैं।
     `;
-
-    requestBtn.disabled =
-      false;
-
-    requestBtn.style.opacity =
-      "1";
-
-    requestBtn.textContent =
-      "🗑️ Send New Delete Request";
-
+    requestBtn.disabled = false;
+    requestBtn.style.opacity = "1";
+    requestBtn.textContent = "🗑️ Send New Delete Request";
   }
-
   else if(status === "approved"){
-
-    statusBox.className =
-      "delete-status-box delete-status-approved";
-
+    statusBox.className = "delete-status-box delete-status-approved";
     statusBox.innerHTML = `
       <strong>✅ Delete Request Approved</strong>
       <br>
       आपकी deletion request Admin द्वारा approve कर दी गई है।
       Account deletion process पूरा किया जाएगा।
     `;
-
-    requestBtn.disabled =
-      true;
-
-    requestBtn.style.opacity =
-      "0.6";
-
-    requestBtn.textContent =
-      "✅ Request Approved";
-
+    requestBtn.disabled = true;
+    requestBtn.style.opacity = "0.6";
+    requestBtn.textContent = "✅ Request Approved";
   }
-
 }
 
 
 /* =========================================================
-   AUTH + DASHBOARD
+   AUTH + DASHBOARD (INSTANT DISPLAY & SAFE SYNC)
 ========================================================= */
 
-onAuthStateChanged(
-  auth,
-  async(user)=>{
+onAuthStateChanged(auth, async(user) => {
+  const isLocalLoggedIn = localStorage.getItem("firebaseLoggedIn") === "true";
 
-    if(!user){
-
-      window.location.href =
-        "index.html";
-
-      return;
-
-    }
-
-
-    try{
-
-      const customerData =
-        await createOrRepairCustomer(user);
-
-
-      let customerName =
-        customerData.name ||
-        user.displayName ||
-        "Customer";
-
-      let age =
-        customerData.age ?? "";
-
-      let dob =
-        customerData.dob || "";
-
-      let mobile =
-        customerData.mobile || "";
-
-
-      if(
-        age === "" ||
-        age === null ||
-        age === undefined
-      ){
-
-        age =
-          calculateAgeFromDOB(dob);
-
-      }
-
-
-      welcomeCard.innerHTML = `
-
-        <div class="welcome-small">
-          Personal Growth Dashboard
-        </div>
-
-        <h1>
-          नमस्ते! ${escapeHTML(customerName)} 👋
-        </h1>
-
-        <p>
-          Apna Growth Hub में आपका स्वागत है।
-          यहाँ आप LIC, learning programs और
-          अपनी account activities manage कर सकते हैं।
-        </p>
-
-        <div class="profile-info">
-
-          ${
-            age !== "" &&
-            age !== null &&
-            age !== undefined
-              ? `
-                <div class="profile-box">
-                  🎂 Age: ${escapeHTML(age)}
-                </div>
-              `
-              : ""
-          }
-
-
-          ${
-            dob
-              ? `
-                <div class="profile-box">
-                  📅 DOB: ${escapeHTML(dob)}
-                </div>
-              `
-              : ""
-          }
-
-
-          <div class="profile-box">
-            📧 ${escapeHTML(
-              customerData.email ||
-              user.email ||
-              ""
-            )}
-          </div>
-
-
-          ${
-            mobile
-              ? `
-                <div class="profile-box">
-                  📱 ${escapeHTML(mobile)}
-                </div>
-              `
-              : ""
-          }
-
-        </div>
-
-      `;
-
-    }catch(error){
-
-      console.error(
-        "Profile load error:",
-        error
-      );
-
-
-      welcomeCard.innerHTML = `
-
-        <div class="welcome-small">
-          Personal Growth Dashboard
-        </div>
-
-        <h1>
-          नमस्ते! 👋
-        </h1>
-
-        <p>
-          Apna Growth Hub में आपका स्वागत है।
-        </p>
-
-      `;
-
-    }
-
+  if(!user && !isLocalLoggedIn){
+    window.location.href = "index.html";
+    return;
   }
-);
+
+  // Turant screen par local data render karein taaki loading par atke nahi
+  const localData = getLocalCustomerData(user);
+  currentCustomerData = localData;
+  renderDashboard(localData);
+
+  // Background me Firestore sync
+  if(user){
+    try{
+      const syncPromise = createOrRepairCustomer(user);
+      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout")), 4000));
+      const customerData = await Promise.race([syncPromise, timeoutPromise]);
+      renderDashboard(customerData);
+    }catch(error){
+      console.warn("Firestore sync delay/error:", error);
+    }
+  }
+});
 
 
 /* =========================================================
@@ -3338,21 +2960,13 @@ onAuthStateChanged(
 ========================================================= */
 
 function escapeHTML(value){
-
-  if(
-    value === null ||
-    value === undefined
-  ){
-    return "";
-  }
-
+  if(value === null || value === undefined) return "";
   return String(value)
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#039;");
-
 }
 
 
@@ -3360,12 +2974,8 @@ function escapeHTML(value){
    PAGE
 ========================================================= */
 
-window.openPage =
-function(page){
-
-  window.location.href =
-    page;
-
+window.openPage = function(page){
+  window.location.href = page;
 };
 
 
@@ -3373,16 +2983,9 @@ function(page){
    MENU
 ========================================================= */
 
-window.toggleMenu =
-function(){
-
-  const menu =
-    document.getElementById(
-      "menuPanel"
-    );
-
+window.toggleMenu = function(){
+  const menu = document.getElementById("menuPanel");
   menu.classList.toggle("show");
-
 };
 
 
@@ -3390,13 +2993,8 @@ function(){
    NOTIFICATIONS
 ========================================================= */
 
-window.showNotifications =
-function(){
-
-  alert(
-    "🔔 अभी कोई नई notification नहीं है।"
-  );
-
+window.showNotifications = function(){
+  alert("🔔 अभी कोई नई notification नहीं है।");
 };
 
 
@@ -3404,14 +3002,8 @@ function(){
    PACKAGE MESSAGE
 ========================================================= */
 
-window.showPackageMessage =
-function(packageName){
-
-  alert(
-    packageName +
-    " Learning Package अभी setup किया जा रहा है।"
-  );
-
+window.showPackageMessage = function(packageName){
+  alert(packageName + " Learning Package अभी setup किया जा रहा है।");
 };
 
 
@@ -3419,287 +3011,95 @@ function(packageName){
    MY PLANS
 ========================================================= */
 
-window.openMyPlans =
-async function(){
+window.openMyPlans = async function(){
+  const modal = document.getElementById("myPlansModal");
+  const loading = document.getElementById("myPlansLoading");
+  const list = document.getElementById("myPlansList");
+  const message = document.getElementById("myPlansMessage");
 
-  const modal =
-    document.getElementById(
-      "myPlansModal"
-    );
+  modal.style.display = "block";
+  loading.style.display = "block";
+  list.innerHTML = "";
+  message.style.display = "none";
 
-  const loading =
-    document.getElementById(
-      "myPlansLoading"
-    );
-
-  const list =
-    document.getElementById(
-      "myPlansList"
-    );
-
-  const message =
-    document.getElementById(
-      "myPlansMessage"
-    );
-
-
-  modal.style.display =
-    "block";
-
-  loading.style.display =
-    "block";
-
-  list.innerHTML =
-    "";
-
-  message.style.display =
-    "none";
-
-
-  const user =
-    auth.currentUser;
-
-
+  const user = auth.currentUser;
   if(!user){
-
-    loading.style.display =
-      "none";
-
-    message.style.display =
-      "block";
-
-    message.textContent =
-      "कृपया पहले login करें।";
-
+    loading.style.display = "none";
+    message.style.display = "block";
+    message.textContent = "कृपया पहले login करें।";
     return;
-
   }
-
 
   try{
-
-    const savedPlansRef =
-      collection(
-        db,
-        "customers",
-        user.uid,
-        "savedPlans"
-      );
-
-
-    const snapshot =
-      await getDocs(
-        savedPlansRef
-      );
-
-
-    loading.style.display =
-      "none";
-
+    const savedPlansRef = collection(db, "customers", user.uid, "savedPlans");
+    const snapshot = await getDocs(savedPlansRef);
+    loading.style.display = "none";
 
     if(snapshot.empty){
-
-      message.style.display =
-        "block";
-
-      message.textContent =
-        "अभी आपने कोई LIC Plan save नहीं किया है।";
-
+      message.style.display = "block";
+      message.textContent = "अभी आपने कोई LIC Plan save नहीं किया है।";
       return;
-
     }
 
+    snapshot.forEach((planDoc) => {
+      const plan = planDoc.data();
+      const card = document.createElement("div");
+      card.className = "saved-plan-card";
 
-    snapshot.forEach((planDoc)=>{
-
-      const plan =
-        planDoc.data();
-
-
-      const card =
-        document.createElement("div");
-
-
-      card.className =
-        "saved-plan-card";
-
-
-      const name =
-        escapeHTML(
-          plan.name ||
-          "LIC Plan"
-        );
-
-
-      const category =
-        escapeHTML(
-          plan.category ||
-          "LIC Plan"
-        );
-
-
-      const benefits =
-        escapeHTML(
-          plan.benefits ||
-          ""
-        );
-
-
-      const officialLink =
-        plan.officialLink ||
-        "";
-
-
-    const validOfficialLink =
-  /^https?:\/\/.+/i.test(
-    officialLink
-  );
+      const name = escapeHTML(plan.name || "LIC Plan");
+      const category = escapeHTML(plan.category || "LIC Plan");
+      const benefits = escapeHTML(plan.benefits || "");
+      const officialLink = plan.officialLink || "";
+      const validOfficialLink = /^https?:\/\/.+/i.test(officialLink);
 
       card.innerHTML = `
-
-        <h3>
-          ${name}
-        </h3>
-
-        <span class="saved-plan-category">
-          ${category}
-        </span>
-
-        <p>
-          ${benefits}
-        </p>
-
+        <h3>${name}</h3>
+        <span class="saved-plan-category">${category}</span>
+        <p>${benefits}</p>
         <div class="saved-plan-actions">
-
           ${
             validOfficialLink
-              ? `
-                <button class="official-saved-btn">
-                  🔗 Official LIC
-                </button>
-              `
+              ? `<button class="official-saved-btn">🔗 Official LIC</button>`
               : ""
           }
-
-          <button
-            class="secondary remove-saved-plan-btn">
-            🗑 Remove
-          </button>
-
+          <button class="secondary remove-saved-plan-btn">🗑 Remove</button>
         </div>
-
       `;
 
-
-      const officialBtn =
-        card.querySelector(
-          ".official-saved-btn"
-        );
-
-
+      const officialBtn = card.querySelector(".official-saved-btn");
       if(officialBtn){
-
-        officialBtn.addEventListener(
-          "click",
-          function(){
-
-            window.open(
-              officialLink,
-              "_blank",
-              "noopener,noreferrer"
-            );
-
-          }
-        );
-
+        officialBtn.addEventListener("click", function(){
+          window.open(officialLink, "_blank", "noopener,noreferrer");
+        });
       }
 
+      const removeBtn = card.querySelector(".remove-saved-plan-btn");
+      removeBtn.addEventListener("click", async function(){
+        const removeConfirmed = confirm("क्या आप यह saved plan हटाना चाहते हैं?");
+        if(!removeConfirmed) return;
 
-      const removeBtn =
-        card.querySelector(
-          ".remove-saved-plan-btn"
-        );
+        try{
+          const { deleteDoc, doc } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+          await deleteDoc(doc(db, "customers", user.uid, "savedPlans", planDoc.id));
+          card.remove();
 
-
-      removeBtn.addEventListener(
-        "click",
-        async function(){
-
-          const removeConfirmed =
-            confirm(
-              "क्या आप यह saved plan हटाना चाहते हैं?"
-            );
-
-
-          if(!removeConfirmed){
-            return;
+          if(!list.children.length){
+            message.style.display = "block";
+            message.textContent = "अभी आपने कोई LIC Plan save नहीं किया है।";
           }
-
-
-          try{
-
-            const {
-              deleteDoc,
-              doc
-            } = await import(
-              "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
-            );
-
-
-            await deleteDoc(
-              doc(
-                db,
-                "customers",
-                user.uid,
-                "savedPlans",
-                planDoc.id
-              )
-            );
-
-
-            card.remove();
-
-
-            if(!list.children.length){
-
-              message.style.display =
-                "block";
-
-              message.textContent =
-                "अभी आपने कोई LIC Plan save नहीं किया है।";
-
-            }
-
-          }catch(error){
-
-            alert(
-              "Plan हटाया नहीं जा सका।"
-            );
-
-          }
-
+        }catch(error){
+          alert("Plan हटाया नहीं जा सका।");
         }
-      );
-
+      });
 
       list.appendChild(card);
-
     });
 
-
   }catch(error){
-
-    loading.style.display =
-      "none";
-
-    message.style.display =
-      "block";
-
-    message.textContent =
-      "Saved plans load नहीं हो पाए।";
-
+    loading.style.display = "none";
+    message.style.display = "block";
+    message.textContent = "Saved plans load नहीं हो पाए।";
   }
-
 };
 
 
@@ -3707,14 +3107,8 @@ async function(){
    COMING SOON
 ========================================================= */
 
-window.showComingSoon =
-function(name){
-
-  alert(
-    name +
-    " feature जल्द available होगा।"
-  );
-
+window.showComingSoon = function(name){
+  alert(name + " feature जल्द available होगा।");
 };
 
 
@@ -3722,14 +3116,8 @@ function(name){
    HOME
 ========================================================= */
 
-window.goHome =
-function(){
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
+window.goHome = function(){
+  window.scrollTo({ top:0, behavior:"smooth" });
 };
 
 
@@ -3737,23 +3125,11 @@ function(){
    LEARN
 ========================================================= */
 
-window.goLearn =
-function(){
-
-  const section =
-    document.querySelector(
-      ".package-grid"
-    );
-
-
+window.goLearn = function(){
+  const section = document.querySelector(".package-grid");
   if(section){
-
-    section.scrollIntoView({
-      behavior:"smooth"
-    });
-
+    section.scrollIntoView({ behavior:"smooth" });
   }
-
 };
 
 
@@ -3761,140 +3137,36 @@ function(){
    MY PROFILE
 ========================================================= */
 
-window.openProfile =
-async function(){
+window.openProfile = async function(){
+  const user = auth.currentUser;
+  const isLocalLoggedIn = localStorage.getItem("firebaseLoggedIn") === "true";
 
-  const user =
-    auth.currentUser;
-
-
-  if(!user){
-
-    window.location.href =
-      "index.html";
-
+  if(!user && !isLocalLoggedIn){
+    window.location.href = "index.html";
     return;
-
   }
 
+  const localData = getLocalCustomerData(user);
+  document.getElementById("profileName").value = localData.name || "";
+  document.getElementById("profileEmail").value = localData.email || "";
+  document.getElementById("profileDOB").value = localData.dob || "";
+  document.getElementById("profileAge").value = localData.age || "";
+  document.getElementById("profileMobile").value = localData.mobile || "";
+  document.getElementById("profileMessage").textContent = "";
+  document.getElementById("profileModal").style.display = "block";
 
-  try{
-
-    const data =
-      await createOrRepairCustomer(
-        user
-      );
-
-
-    document.getElementById(
-      "profileName"
-    ).value =
-      data.name ||
-      data.fullName ||
-      user.displayName ||
-      "";
-
-
-    document.getElementById(
-      "profileEmail"
-    ).value =
-      user.email ||
-      data.email ||
-      "";
-
-
-    const customerDOB =
-      data.dob ||
-      data.dateOfBirth ||
-      data.DOB ||
-      localStorage.getItem(
-        "customerDOB"
-      ) ||
-      "";
-
-
-    document.getElementById(
-      "profileDOB"
-    ).value =
-      customerDOB;
-
-
-    let customerAge =
-      data.age;
-
-
-    if(
-      customerAge === undefined ||
-      customerAge === null ||
-      customerAge === ""
-    ){
-
-      customerAge =
-        calculateAgeFromDOB(
-          customerDOB
-        );
-
+  if(user){
+    try{
+      const data = await createOrRepairCustomer(user);
+      document.getElementById("profileName").value = data.name || localData.name || "";
+      document.getElementById("profileEmail").value = data.email || localData.email || "";
+      document.getElementById("profileDOB").value = data.dob || localData.dob || "";
+      document.getElementById("profileAge").value = data.age || localData.age || "";
+      document.getElementById("profileMobile").value = data.mobile || localData.mobile || "";
+    }catch(error){
+      console.warn("Profile sync error:", error);
     }
-
-
-    if(
-      customerAge === "" ||
-      customerAge === null ||
-      customerAge === undefined
-    ){
-
-      customerAge =
-        localStorage.getItem(
-          "customerAge"
-        ) ||
-        "";
-
-    }
-
-
-    document.getElementById(
-      "profileAge"
-    ).value =
-      customerAge;
-
-
-    document.getElementById(
-      "profileMobile"
-    ).value =
-      data.mobile ||
-      data.phone ||
-      localStorage.getItem(
-        "customerMobile"
-      ) ||
-      "";
-
-
-    document.getElementById(
-      "profileMessage"
-    ).textContent =
-      "";
-
-
-    document.getElementById(
-      "profileModal"
-    ).style.display =
-      "block";
-
-
-  }catch(error){
-
-    console.error(
-      "Profile load error:",
-      error
-    );
-
-
-    alert(
-      "Profile details load नहीं हो पाईं।"
-    );
-
   }
-
 };
 
 
@@ -3902,138 +3174,45 @@ async function(){
    SAVE PROFILE
 ========================================================= */
 
-window.saveProfile =
-async function(){
-
-  const user =
-    auth.currentUser;
-
-
-  if(!user){
-    return;
-  }
-
-
-  const name =
-    document.getElementById(
-      "profileName"
-    ).value.trim();
-
-
-  const mobile =
-    document.getElementById(
-      "profileMobile"
-    ).value.trim();
-
-
-  const message =
-    document.getElementById(
-      "profileMessage"
-    );
-
+window.saveProfile = async function(){
+  const user = auth.currentUser;
+  const name = document.getElementById("profileName").value.trim();
+  const mobile = document.getElementById("profileMobile").value.trim();
+  const message = document.getElementById("profileMessage");
 
   if(!name){
-
-    message.style.color =
-      "#dc2626";
-
-    message.textContent =
-      "कृपया Name डालें।";
-
+    message.style.color = "#dc2626";
+    message.textContent = "कृपया Name डालें।";
     return;
-
   }
-
 
   try{
+    localStorage.setItem("customerName", name);
+    localStorage.setItem("customerMobile", mobile);
 
-    const customerRef =
-      doc(
-        db,
-        "customers",
-        user.uid
-      );
+    if(user){
+      const customerRef = doc(db, "customers", user.uid);
+      await setDoc(customerRef, {
+        name: name,
+        mobile: mobile,
+        email: user.email || currentCustomerData.email || "",
+        uid: user.uid,
+        updatedAt: serverTimestamp()
+      }, { merge: true });
+    }
 
+    message.style.color = "#16a34a";
+    message.textContent = "Profile successfully update हो गई।";
 
-    await setDoc(
-      customerRef,
-      {
-
-        name:
-          name,
-
-        mobile:
-          mobile,
-
-        email:
-          user.email ||
-          currentCustomerData.email ||
-          "",
-
-        uid:
-          user.uid,
-
-        updatedAt:
-          serverTimestamp()
-
-      },
-      {
-        merge:true
-      }
-    );
-
-
-    currentCustomerData.name =
-      name;
-
-    currentCustomerData.mobile =
-      mobile;
-
-
-    localStorage.setItem(
-      "customerName",
-      name
-    );
-
-    localStorage.setItem(
-      "customerMobile",
-      mobile
-    );
-
-
-    message.style.color =
-      "#16a34a";
-
-    message.textContent =
-      "Profile successfully update हो गई।";
-
-
-    setTimeout(
-      function(){
-
-        location.reload();
-
-      },
-      1000
-    );
-
+    setTimeout(function(){
+      location.reload();
+    }, 1000);
 
   }catch(error){
-
-    console.error(
-      "Profile update error:",
-      error
-    );
-
-
-    message.style.color =
-      "#dc2626";
-
-    message.textContent =
-      "Profile update में समस्या आई।";
-
+    console.error("Profile update error:", error);
+    message.style.color = "#dc2626";
+    message.textContent = "Profile update में समस्या आई।";
   }
-
 };
 
 
@@ -4041,776 +3220,231 @@ async function(){
    CHANGE PASSWORD
 ========================================================= */
 
-window.openChangePassword =
-function(){
-
-  document.getElementById(
-    "newPassword"
-  ).value =
-    "";
-
-  document.getElementById(
-    "confirmPassword"
-  ).value =
-    "";
-
-  document.getElementById(
-    "passwordMessage"
-  ).textContent =
-    "";
-
-  document.getElementById(
-    "passwordModal"
-  ).style.display =
-    "block";
-
+window.openChangePassword = function(){
+  document.getElementById("newPassword").value = "";
+  document.getElementById("confirmPassword").value = "";
+  document.getElementById("passwordMessage").textContent = "";
+  document.getElementById("passwordModal").style.display = "block";
 };
 
+window.changePassword = async function(){
+  const user = auth.currentUser;
+  if(!user) return;
 
-window.changePassword =
-async function(){
-
-  const user =
-    auth.currentUser;
-
-
-  if(!user){
-    return;
-  }
-
-
-  const newPassword =
-    document.getElementById(
-      "newPassword"
-    ).value;
-
-
-  const confirmPassword =
-    document.getElementById(
-      "confirmPassword"
-    ).value;
-
-
-  const message =
-    document.getElementById(
-      "passwordMessage"
-    );
-
+  const newPassword = document.getElementById("newPassword").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+  const message = document.getElementById("passwordMessage");
 
   if(!newPassword){
-
-    message.style.color =
-      "#dc2626";
-
-    message.textContent =
-      "नया password डालें।";
-
+    message.style.color = "#dc2626";
+    message.textContent = "नया password डालें।";
     return;
-
   }
-
 
   if(newPassword.length < 6){
-
-    message.style.color =
-      "#dc2626";
-
-    message.textContent =
-      "Password कम से कम 6 characters का होना चाहिए।";
-
+    message.style.color = "#dc2626";
+    message.textContent = "Password कम से कम 6 characters का होना चाहिए।";
     return;
-
   }
-
 
   if(newPassword !== confirmPassword){
-
-    message.style.color =
-      "#dc2626";
-
-    message.textContent =
-      "दोनों passwords match नहीं कर रहे।";
-
+    message.style.color = "#dc2626";
+    message.textContent = "दोनों passwords match नहीं कर रहे।";
     return;
-
   }
-
 
   try{
-
-    await updatePassword(
-      user,
-      newPassword
-    );
-
-
-    message.style.color =
-      "#16a34a";
-
-    message.textContent =
-      "Password successfully change हो गया।";
-
-
-    document.getElementById(
-      "newPassword"
-    ).value =
-      "";
-
-    document.getElementById(
-      "confirmPassword"
-    ).value =
-      "";
-
-
+    await updatePassword(user, newPassword);
+    message.style.color = "#16a34a";
+    message.textContent = "Password successfully change हो गया।";
+    document.getElementById("newPassword").value = "";
+    document.getElementById("confirmPassword").value = "";
   }catch(error){
-
-    console.error(
-      "Password change error:",
-      error
-    );
-
-
-    message.style.color =
-      "#dc2626";
-
-
-    if(
-      error.code ===
-      "auth/requires-recent-login"
-    ){
-
-      message.textContent =
-        "Security के लिए पहले logout करके फिर login करें, उसके बाद password change करें।";
-
+    console.error("Password change error:", error);
+    message.style.color = "#dc2626";
+    if(error.code === "auth/requires-recent-login"){
+      message.textContent = "Security के लिए पहले logout करके फिर login करें, उसके बाद password change करें।";
     }else{
-
-      message.textContent =
-        "Password change में समस्या आई।";
-
+      message.textContent = "Password change में समस्या आई।";
     }
-
   }
-
 };
 
 
 /* =========================================================
-   PRIVACY
+   MODAL CONTROLS & SUPPORT
 ========================================================= */
 
-window.openPrivacy =
-function(){
+window.openPrivacy = function(){ document.getElementById("privacyModal").style.display = "block"; };
+window.openTerms = function(){ document.getElementById("termsModal").style.display = "block"; };
+window.openDisclaimer = function(){ document.getElementById("disclaimerModal").style.display = "block"; };
+window.openSupport = function(){ document.getElementById("supportModal").style.display = "block"; };
+window.openContact = function(){ document.getElementById("contactModal").style.display = "block"; };
 
-  document.getElementById(
-    "privacyModal"
-  ).style.display =
-    "block";
-
+window.openSupportRequest = function(){
+  document.getElementById("supportSubject").value = "";
+  document.getElementById("supportMessage").value = "";
+  document.getElementById("supportRequestMessage").textContent = "";
+  document.getElementById("supportRequestModal").style.display = "block";
 };
 
-
-/* =========================================================
-   TERMS
-========================================================= */
-
-window.openTerms =
-function(){
-
-  document.getElementById(
-    "termsModal"
-  ).style.display =
-    "block";
-
-};
-
-
-/* =========================================================
-   DISCLAIMER
-========================================================= */
-
-window.openDisclaimer =
-function(){
-
-  document.getElementById(
-    "disclaimerModal"
-  ).style.display =
-    "block";
-
-};
-
-
-/* =========================================================
-   SUPPORT
-========================================================= */
-
-window.openSupport =
-function(){
-
-  document.getElementById(
-    "supportModal"
-  ).style.display =
-    "block";
-
-};
-
-
-/* =========================================================
-   SUPPORT REQUEST
-========================================================= */
-
-window.openSupportRequest =
-function(){
-
-  document.getElementById(
-    "supportSubject"
-  ).value =
-    "";
-
-  document.getElementById(
-    "supportMessage"
-  ).value =
-    "";
-
-  document.getElementById(
-    "supportRequestMessage"
-  ).textContent =
-    "";
-
-  document.getElementById(
-    "supportRequestModal"
-  ).style.display =
-    "block";
-
-};
-
-
-window.sendSupportRequest =
-async function(){
-
-  const user =
-    auth.currentUser;
-
-
-  const subject =
-    document.getElementById(
-      "supportSubject"
-    ).value;
-
-
-  const messageText =
-    document.getElementById(
-      "supportMessage"
-    ).value.trim();
-
-
-  const message =
-    document.getElementById(
-      "supportRequestMessage"
-    );
-
+window.sendSupportRequest = async function(){
+  const user = auth.currentUser;
+  const subject = document.getElementById("supportSubject").value;
+  const messageText = document.getElementById("supportMessage").value.trim();
+  const message = document.getElementById("supportRequestMessage");
 
   if(!user){
-
-    message.style.color =
-      "#dc2626";
-
-    message.textContent =
-      "कृपया पहले login करें।";
-
+    message.style.color = "#dc2626";
+    message.textContent = "कृपया पहले login करें।";
     return;
-
   }
-
 
   if(!subject){
-
-    message.style.color =
-      "#dc2626";
-
-    message.textContent =
-      "कृपया Problem select करें।";
-
+    message.style.color = "#dc2626";
+    message.textContent = "कृपया Problem select करें।";
     return;
-
   }
-
 
   if(!messageText){
-
-    message.style.color =
-      "#dc2626";
-
-    message.textContent =
-      "कृपया अपनी समस्या लिखें।";
-
+    message.style.color = "#dc2626";
+    message.textContent = "कृपया अपनी समस्या लिखें।";
     return;
-
   }
-
 
   try{
+    await addDoc(collection(db, "inquiries"), {
+      type: "support",
+      requestType: "Customer Support",
+      uid: user.uid,
+      email: user.email || "",
+      subject: subject,
+      message: messageText,
+      status: "new",
+      createdAt: serverTimestamp()
+    });
 
-    await addDoc(
-      collection(
-        db,
-        "inquiries"
-      ),
-      {
-
-        type:
-          "support",
-
-        requestType:
-          "Customer Support",
-
-        uid:
-          user.uid,
-
-        email:
-          user.email || "",
-
-        subject:
-          subject,
-
-        message:
-          messageText,
-
-        status:
-          "new",
-
-        createdAt:
-          serverTimestamp()
-
-      }
-    );
-
-
-    message.style.color =
-      "#16a34a";
-
-    message.textContent =
-      "Support Request successfully भेज दी गई है.";
-
-
-    document.getElementById(
-      "supportSubject"
-    ).value =
-      "";
-
-    document.getElementById(
-      "supportMessage"
-    ).value =
-      "";
-
-
+    message.style.color = "#16a34a";
+    message.textContent = "Support Request successfully भेज दी गई है.";
+    document.getElementById("supportSubject").value = "";
+    document.getElementById("supportMessage").value = "";
   }catch(error){
+    console.error("Support request error:", error);
+    message.style.color = "#dc2626";
+    message.textContent = "Support Request भेजने में समस्या आई।";
+  }
+};
 
-    console.error(
-      "Support request error:",
-      error
-    );
+window.openDeleteAccount = async function(){
+  const message = document.getElementById("deleteMessage");
+  const statusBox = document.getElementById("deleteStatusBox");
+  message.textContent = "";
+  statusBox.style.display = "none";
 
-
-    message.style.color =
-      "#dc2626";
-
-    message.textContent =
-      "Support Request भेजने में समस्या आई।";
-
+  const user = auth.currentUser;
+  if(!user){
+    window.location.href = "index.html";
+    return;
   }
 
+  const existingRequest = await checkDeleteRequest(user);
+  showDeleteRequestStatus(existingRequest);
+  document.getElementById("deleteAccountModal").style.display = "block";
 };
 
-
-/* =========================================================
-   CONTACT
-========================================================= */
-
-window.openContact =
-function(){
-
-  document.getElementById(
-    "contactModal"
-  ).style.display =
-    "block";
-
-};
-
-
-/* =========================================================
-   DELETE ACCOUNT
-========================================================= */
-
-window.openDeleteAccount =
-async function(){
-
-  const message =
-    document.getElementById(
-      "deleteMessage"
-    );
-
-
-  const statusBox =
-    document.getElementById(
-      "deleteStatusBox"
-    );
-
-
-  message.textContent =
-    "";
-
-  statusBox.style.display =
-    "none";
-
-
-  const user =
-    auth.currentUser;
-
+window.deleteAccount = async function(){
+  const user = auth.currentUser;
+  const message = document.getElementById("deleteMessage");
+  const requestBtn = document.getElementById("deleteRequestBtn");
 
   if(!user){
-
-    window.location.href =
-      "index.html";
-
+    window.location.href = "index.html";
     return;
-
   }
-
-
-  const existingRequest =
-    await checkDeleteRequest(
-      user
-    );
-
-
-  showDeleteRequestStatus(
-    existingRequest
-  );
-
-
-  document.getElementById(
-    "deleteAccountModal"
-  ).style.display =
-    "block";
-
-};
-
-
-/* =========================================================
-   SEND DELETE REQUEST
-========================================================= */
-
-window.deleteAccount =
-async function(){
-
-  const user =
-    auth.currentUser;
-
-
-  const message =
-    document.getElementById(
-      "deleteMessage"
-    );
-
-
-  const requestBtn =
-    document.getElementById(
-      "deleteRequestBtn"
-    );
-
-
-  if(!user){
-
-    window.location.href =
-      "index.html";
-
-    return;
-
-  }
-
 
   try{
-
-    const existingRequest =
-      await checkDeleteRequest(
-        user
-      );
-
-
-    if(
-      existingRequest &&
-      String(
-        existingRequest.status
-      ).toLowerCase() === "pending"
-    ){
-
-      message.style.color =
-        "#dc2626";
-
-      message.textContent =
-        "आपकी deletion request पहले से pending है।";
-
-
-      showDeleteRequestStatus(
-        existingRequest
-      );
-
-      return;
-
-    }
-
-
-    if(
-      existingRequest &&
-      String(
-        existingRequest.status
-      ).toLowerCase() === "approved"
-    ){
-
-      message.style.color =
-        "#16a34a";
-
-      message.textContent =
-        "आपकी deletion request पहले ही approve हो चुकी है।";
-
-      return;
-
-    }
-
-
-    const confirmed =
-      confirm(
-        "क्या आप अपना account delete करने की request भेजना चाहते हैं?"
-      );
-
-
-    if(!confirmed){
+    const existingRequest = await checkDeleteRequest(user);
+    if(existingRequest && String(existingRequest.status).toLowerCase() === "pending"){
+      message.style.color = "#dc2626";
+      message.textContent = "आपकी deletion request पहले से pending है।";
+      showDeleteRequestStatus(existingRequest);
       return;
     }
 
+    if(existingRequest && String(existingRequest.status).toLowerCase() === "approved"){
+      message.style.color = "#16a34a";
+      message.textContent = "आपकी deletion request पहले ही approve हो चुकी है।";
+      return;
+    }
 
-    requestBtn.disabled =
-      true;
+    const confirmed = confirm("क्या आप अपना account delete करने की request भेजना चाहते हैं?");
+    if(!confirmed) return;
 
-    requestBtn.style.opacity =
-      "0.6";
+    requestBtn.disabled = true;
+    requestBtn.style.opacity = "0.6";
+    message.style.color = "#555";
+    message.textContent = "Delete request भेजी जा रही है...";
 
+    const customerData = await createOrRepairCustomer(user);
+    await addDoc(collection(db, "accountDeletionRequests"), {
+      uid: user.uid,
+      name: customerData.name || user.displayName || "Customer",
+      email: user.email || customerData.email || "",
+      mobile: customerData.mobile || "",
+      reason: "Customer requested account deletion",
+      status: "pending",
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp()
+    });
 
-    message.style.color =
-      "#555";
+    message.style.color = "#16a34a";
+    message.textContent = "✅ Delete request successfully भेज दी गई है.";
+    showDeleteRequestStatus({ status: "pending" });
 
-    message.textContent =
-      "Delete request भेजी जा रही है...";
-
-
-    const customerData =
-      await createOrRepairCustomer(
-        user
-      );
-
-
-    await addDoc(
-      collection(
-        db,
-        "accountDeletionRequests"
-      ),
-      {
-
-        uid:
-          user.uid,
-
-        name:
-          customerData.name ||
-          user.displayName ||
-          "Customer",
-
-        email:
-          user.email ||
-          customerData.email ||
-          "",
-
-        mobile:
-          customerData.mobile ||
-          "",
-
-        reason:
-          "Customer requested account deletion",
-
-        status:
-          "pending",
-
-        createdAt:
-          serverTimestamp(),
-
-        updatedAt:
-          serverTimestamp()
-
-      }
-    );
-
-
-    message.style.color =
-      "#16a34a";
-
-    message.textContent =
-      "✅ Delete request successfully भेज दी गई है.";
-
-
-    const newRequest = {
-
-      status:
-        "pending"
-
-    };
-
-
-    showDeleteRequestStatus(
-      newRequest
-    );
-
-
-    setTimeout(
-      function(){
-
-        closeModal(
-          "deleteAccountModal"
-        );
-
-      },
-      1800
-    );
-
+    setTimeout(function(){
+      closeModal("deleteAccountModal");
+    }, 1800);
 
   }catch(error){
-
-    console.error(
-      "Delete request error:",
-      error
-    );
-
-
-    requestBtn.disabled =
-      false;
-
-    requestBtn.style.opacity =
-      "1";
-
-
-    message.style.color =
-      "#dc2626";
-
-    message.textContent =
-      "Delete request भेजने में समस्या आई। कृपया Customer Support से संपर्क करें।";
-
+    console.error("Delete request error:", error);
+    requestBtn.disabled = false;
+    requestBtn.style.opacity = "1";
+    message.style.color = "#dc2626";
+    message.textContent = "Delete request भेजने में समस्या आई। कृपया Customer Support से संपर्क करें।";
   }
-
 };
 
-
-/* =========================================================
-   CLOSE MODAL
-========================================================= */
-
-window.closeModal =
-function(id){
-
-  document.getElementById(
-    id
-  ).style.display =
-    "none";
-
+window.closeModal = function(id){
+  document.getElementById(id).style.display = "none";
 };
 
+window.addEventListener("click", function(event){
+  const modals = document.querySelectorAll(".modal");
+  modals.forEach(function(modal){
+    if(event.target === modal) modal.style.display = "none";
+  });
 
-/* =========================================================
-   OUTSIDE CLICK
-========================================================= */
-
-window.addEventListener(
-  "click",
-  function(event){
-
-    const modals =
-      document.querySelectorAll(
-        ".modal"
-      );
-
-
-    modals.forEach(
-      function(modal){
-
-        if(
-          event.target ===
-          modal
-        ){
-
-          modal.style.display =
-            "none";
-
-        }
-
-      }
-    );
-
-
-    const menu =
-      document.getElementById(
-        "menuPanel"
-      );
-
-
-    const menuButton =
-      event.target.closest(
-        ".header-icon-btn"
-      );
-
-
-    if(
-      menu &&
-      menu.classList.contains("show") &&
-      !menu.contains(event.target) &&
-      !menuButton
-    ){
-
-      menu.classList.remove(
-        "show"
-      );
-
-    }
-
+  const menu = document.getElementById("menuPanel");
+  const menuButton = event.target.closest(".header-icon-btn");
+  if(menu && menu.classList.contains("show") && !menu.contains(event.target) && !menuButton){
+    menu.classList.remove("show");
   }
-);
+});
 
 
 /* =========================================================
    LOGOUT
 ========================================================= */
 
-window.logout =
-async function(){
-
+window.logout = async function(){
   try{
-
+    localStorage.removeItem("firebaseLoggedIn");
     await signOut(auth);
-
-    window.location.href =
-      "index.html";
-
-
+    window.location.href = "index.html";
   }catch(error){
-
-    console.error(
-      "Logout error:",
-      error
-    );
-
-
-    alert(
-      "Logout में समस्या आई।"
-    );
-
+    console.error("Logout error:", error);
+    window.location.href = "index.html";
   }
-
 };
 
 </script>
