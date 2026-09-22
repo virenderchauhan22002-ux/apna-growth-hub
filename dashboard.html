@@ -2,9 +2,7 @@
 <html lang="hi">
 
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Apna Growth Hub - Dashboard</title>
@@ -15,28 +13,28 @@
    RESET
 ========================================================= */
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-html {
-  scroll-behavior: smooth;
+html{
+  scroll-behavior:smooth;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #f5f7fb;
-  color: #1f2937;
-  padding-bottom: 78px;
+body{
+  font-family:Arial,sans-serif;
+  background:#ffffff;
+  color:#1f2937;
+  padding-bottom:78px;
 }
 
 button,
 input,
 textarea,
-select {
-  font-family: inherit;
+select{
+  font-family:inherit;
 }
 
 
@@ -44,69 +42,71 @@ select {
    TOP HEADER
 ========================================================= */
 
-.topbar {
-  background: linear-gradient(135deg, #0d47a1, #1565c0);
-  color: white;
-  padding: 15px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 3px 14px rgba(0,0,0,0.12);
+.topbar{
+  background:linear-gradient(135deg,#eef5ff,#f8fbff);
+  color:#123b82;
+  padding:18px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  border-bottom:1px solid #e1eaf7;
+  box-shadow:0 3px 16px rgba(30,64,175,.06);
 }
 
-.header-left {
-  min-width: 0;
+.header-left{
+  min-width:0;
 }
 
-.brand {
-  font-size: 20px;
-  font-weight: 800;
-  line-height: 1.2;
+.brand{
+  font-size:22px;
+  font-weight:800;
+  line-height:1.2;
+  color:#12418f;
 }
 
-.tagline {
-  font-size: 11px;
-  margin-top: 3px;
-  opacity: 0.9;
+.tagline{
+  font-size:12px;
+  margin-top:4px;
+  color:#64748b;
 }
 
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
-.header-icon-btn {
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.15);
-  color: white;
-  font-size: 19px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.header-icon-btn{
+  width:40px;
+  height:40px;
+  border:none;
+  border-radius:50%;
+  background:#dcecff;
+  color:#1255b5;
+  font-size:18px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.header-icon-btn:hover {
-  background: rgba(255,255,255,0.25);
+.header-icon-btn:hover{
+  background:#cce2ff;
 }
 
-.logout-btn {
-  background: white;
-  color: #0d47a1;
-  border: none;
-  padding: 9px 13px;
-  border-radius: 9px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 12px;
+.logout-btn{
+  background:#1255b5;
+  color:white;
+  border:none;
+  padding:9px 13px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:12px;
 }
 
 
@@ -114,123 +114,126 @@ select {
    MENU PANEL
 ========================================================= */
 
-.menu-panel {
-  display: none;
-  position: fixed;
-  top: 68px;
-  right: 12px;
-  width: 230px;
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-  z-index: 5000;
-  overflow: hidden;
-  border: 1px solid #e5e7eb;
+.menu-panel{
+  display:none;
+  position:fixed;
+  top:70px;
+  right:12px;
+  width:230px;
+  background:white;
+  border-radius:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,.18);
+  z-index:5000;
+  overflow:hidden;
+  border:1px solid #e5e7eb;
 }
 
-.menu-panel.show {
-  display: block;
+.menu-panel.show{
+  display:block;
 }
 
-.menu-title {
-  padding: 15px;
-  background: #f3f7ff;
-  color: #0d47a1;
-  font-weight: bold;
-  border-bottom: 1px solid #e5e7eb;
+.menu-title{
+  padding:15px;
+  background:#f3f7ff;
+  color:#0d47a1;
+  font-weight:bold;
+  border-bottom:1px solid #e5e7eb;
 }
 
-.menu-item {
-  width: 100%;
-  padding: 13px 15px;
-  border: none;
-  background: white;
-  text-align: left;
-  cursor: pointer;
-  color: #333;
-  font-size: 14px;
+.menu-item{
+  width:100%;
+  padding:13px 15px;
+  border:none;
+  background:white;
+  text-align:left;
+  cursor:pointer;
+  color:#333;
+  font-size:14px;
 }
 
-.menu-item:hover {
-  background: #f5f8ff;
-}
-
-
-/* =========================================================
-   MAIN CONTAINER
-========================================================= */
-
-.container {
-  max-width: 1050px;
-  margin: auto;
-  padding: 18px 14px 30px;
+.menu-item:hover{
+  background:#f5f8ff;
 }
 
 
 /* =========================================================
-   WELCOME / PROFILE HEADER
+   MAIN
 ========================================================= */
 
-.welcome-card {
-  background: linear-gradient(135deg, #ffffff, #f1f6ff);
-  border-radius: 20px;
-  padding: 21px;
-  margin-bottom: 22px;
-  box-shadow: 0 5px 20px rgba(13,71,161,0.09);
-  border: 1px solid #dce8fa;
-  position: relative;
-  overflow: hidden;
+.container{
+  max-width:1500px;
+  margin:auto;
+  padding:22px 26px 35px;
 }
 
-.welcome-card::after {
-  content: "";
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  right: -45px;
-  top: -45px;
-  border-radius: 50%;
-  background: rgba(13,71,161,0.06);
+
+/* =========================================================
+   WELCOME CARD
+========================================================= */
+
+.welcome-card{
+  background:linear-gradient(135deg,#f1f6ff,#ffffff);
+  border-radius:22px;
+  padding:25px 30px;
+  margin-bottom:28px;
+  border:1px solid #dbe8fb;
+  box-shadow:0 5px 20px rgba(30,64,175,.07);
+  position:relative;
+  overflow:hidden;
 }
 
-.welcome-small {
-  font-size: 12px;
-  color: #64748b;
-  margin-bottom: 5px;
+.welcome-card::after{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  right:-60px;
+  top:-70px;
+  border-radius:50%;
+  background:#e6f0ff;
 }
 
-.welcome-card h1 {
-  color: #0d47a1;
-  font-size: 25px;
-  margin-bottom: 7px;
-  position: relative;
-  z-index: 2;
+.welcome-small{
+  font-size:12px;
+  color:#64748b;
+  margin-bottom:6px;
+  position:relative;
+  z-index:2;
 }
 
-.welcome-card p {
-  color: #64748b;
-  line-height: 1.55;
-  font-size: 14px;
-  position: relative;
-  z-index: 2;
+.welcome-card h1{
+  color:#16489a;
+  font-size:30px;
+  margin-bottom:7px;
+  position:relative;
+  z-index:2;
 }
 
-.profile-info {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 15px;
-  position: relative;
-  z-index: 2;
+.welcome-card p{
+  color:#64748b;
+  line-height:1.55;
+  font-size:14px;
+  position:relative;
+  z-index:2;
+  max-width:800px;
 }
 
-.profile-box {
-  background: white;
-  border: 1px solid #dbe5f5;
-  padding: 8px 11px;
-  border-radius: 9px;
-  color: #334155;
-  font-size: 12px;
+.profile-info{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:15px;
+  position:relative;
+  z-index:2;
+}
+
+.profile-box{
+  background:white;
+  border:1px solid #dbe5f5;
+  padding:8px 11px;
+  border-radius:9px;
+  color:#334155;
+  font-size:12px;
 }
 
 
@@ -238,279 +241,340 @@ select {
    SECTION TITLE
 ========================================================= */
 
-.section-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 22px 2px 12px;
+.section-heading{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:20px 2px 14px;
 }
 
-.section-title {
-  color: #172554;
-  font-size: 19px;
-  font-weight: 800;
+.section-title{
+  color:#172554;
+  font-size:21px;
+  font-weight:800;
 }
 
-.section-subtitle {
-  color: #64748b;
-  font-size: 12px;
-  margin-top: 3px;
-}
-
-
-/* =========================================================
-   LIC MAIN CARD
-========================================================= */
-
-.lic-main-card {
-  background: linear-gradient(135deg, #0d47a1, #1976d2);
-  color: white;
-  border-radius: 20px;
-  padding: 20px;
-  margin-bottom: 22px;
-  cursor: pointer;
-  box-shadow: 0 8px 24px rgba(13,71,161,0.20);
-  position: relative;
-  overflow: hidden;
-}
-
-.lic-main-card::after {
-  content: "LIC";
-  position: absolute;
-  right: -10px;
-  bottom: -25px;
-  font-size: 85px;
-  font-weight: 900;
-  opacity: 0.07;
-}
-
-.lic-card-top {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  position: relative;
-  z-index: 2;
-}
-
-.lic-icon {
-  width: 58px;
-  height: 58px;
-  border-radius: 16px;
-  background: white;
-  color: #0d47a1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 29px;
-  flex-shrink: 0;
-}
-
-.lic-main-card h3 {
-  font-size: 20px;
-  margin-bottom: 5px;
-}
-
-.lic-main-card p {
-  font-size: 13px;
-  line-height: 1.5;
-  opacity: 0.92;
-}
-
-.lic-open {
-  margin-top: 16px;
-  display: inline-block;
-  background: white;
-  color: #0d47a1;
-  padding: 9px 14px;
-  border-radius: 9px;
-  font-size: 12px;
-  font-weight: bold;
-  position: relative;
-  z-index: 2;
+.section-subtitle{
+  color:#64748b;
+  font-size:12px;
+  margin-top:4px;
 }
 
 
 /* =========================================================
-   LEARNING PACKAGE GRID
+   FINAL 4 DASHBOARD CARDS
 ========================================================= */
 
-.package-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+.dashboard-action-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+  margin-bottom:30px;
 }
 
-.package-card {
-  background: white;
-  border: 1px solid #e4e9f2;
-  border-radius: 17px;
-  padding: 16px 13px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.055);
-  cursor: pointer;
-  transition: 0.2s;
-  min-height: 175px;
-  position: relative;
-  overflow: hidden;
+.dashboard-action-card{
+  min-height:265px;
+  border-radius:22px;
+  padding:27px 30px;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  border:2px solid;
+  transition:transform .2s,box-shadow .2s;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
 
-.package-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.09);
+.dashboard-action-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 28px rgba(15,23,42,.10);
 }
 
-.package-icon {
-  width: 47px;
-  height: 47px;
-  border-radius: 14px;
-  background: #eef5ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 23px;
-  margin-bottom: 12px;
+.dashboard-action-card::after{
+  content:"";
+  position:absolute;
+  width:210px;
+  height:210px;
+  right:-65px;
+  bottom:-105px;
+  border-radius:50%;
+  background:rgba(255,255,255,.55);
 }
 
-.package-card h3 {
-  color: #0d47a1;
-  font-size: 16px;
-  margin-bottom: 6px;
+.dashboard-action-card::before{
+  content:"";
+  position:absolute;
+  width:160px;
+  height:160px;
+  left:-85px;
+  bottom:-90px;
+  border-radius:50%;
+  background:rgba(255,255,255,.38);
 }
 
-.package-card p {
-  color: #64748b;
-  font-size: 11px;
-  line-height: 1.5;
+
+/* BLUE */
+
+.action-blue{
+  background:linear-gradient(135deg,#edf7ff,#dceeff);
+  border-color:#8bc7ff;
 }
 
-.package-badge {
-  display: inline-block;
-  margin-top: 10px;
-  background: #f1f5f9;
-  color: #64748b;
-  border: 1px solid #e2e8f0;
-  padding: 5px 8px;
-  border-radius: 20px;
-  font-size: 10px;
-  font-weight: bold;
+.action-blue h3,
+.action-blue p{
+  color:#103b80;
 }
 
-.package-card.starter .package-icon {
-  background: #ecfdf5;
+.action-blue .action-icon-box{
+  background:#d5eaff;
+  border-color:#8dc8ff;
 }
 
-.package-card.growth .package-icon {
-  background: #eff6ff;
+
+/* GREEN */
+
+.action-green{
+  background:linear-gradient(135deg,#effced,#dcf8da);
+  border-color:#9ce3a0;
 }
 
-.package-card.pro .package-icon {
-  background: #faf5ff;
+.action-green h3,
+.action-green p{
+  color:#095c2c;
 }
 
-.package-card.elite .package-icon {
-  background: #fffbeb;
+.action-green .action-icon-box{
+  background:#d6f6d7;
+  border-color:#93d99a;
+}
+
+
+/* PURPLE */
+
+.action-purple{
+  background:linear-gradient(135deg,#f5edff,#eadcff);
+  border-color:#c9a9ff;
+}
+
+.action-purple h3,
+.action-purple p{
+  color:#30177c;
+}
+
+.action-purple .action-icon-box{
+  background:#e5d5ff;
+  border-color:#c5a4ff;
+}
+
+
+/* ORANGE */
+
+.action-orange{
+  background:linear-gradient(135deg,#fff5e8,#ffead2);
+  border-color:#ffc27f;
+}
+
+.action-orange h3,
+.action-orange p{
+  color:#713508;
+}
+
+.action-orange .action-icon-box{
+  background:#ffe4c1;
+  border-color:#ffbe72;
 }
 
 
 /* =========================================================
-   QUICK ACTIONS
+   CARD CONTENT
 ========================================================= */
 
-.quick-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 11px;
+.action-content{
+  position:relative;
+  z-index:3;
+  padding-right:55px;
 }
 
-.quick-card {
-  background: white;
-  border: 1px solid #e5e9f1;
-  border-radius: 15px;
-  padding: 15px 11px;
-  text-align: center;
-  cursor: pointer;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.045);
-  transition: 0.2s;
+.action-icon-box{
+  width:84px;
+  height:84px;
+  border-radius:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:17px;
+  border:1px solid;
+  box-shadow:0 5px 14px rgba(0,0,0,.07);
 }
 
-.quick-card:hover {
-  transform: translateY(-2px);
+.action-icon-box svg{
+  width:62px;
+  height:62px;
 }
 
-.quick-icon {
-  font-size: 25px;
-  margin-bottom: 8px;
+.dashboard-action-card h3{
+  font-size:27px;
+  margin-bottom:8px;
+  font-weight:800;
 }
 
-.quick-card h4 {
-  color: #1e3a8a;
-  font-size: 13px;
-  margin-bottom: 3px;
+.dashboard-action-card p{
+  font-size:15px;
+  line-height:1.55;
+  max-width:440px;
 }
 
-.quick-card p {
-  color: #64748b;
-  font-size: 10px;
-  line-height: 1.4;
+.action-pill{
+  display:inline-flex;
+  align-items:center;
+  width:max-content;
+  max-width:100%;
+  margin-top:15px;
+  padding:8px 13px;
+  border-radius:22px;
+  background:rgba(255,255,255,.68);
+  border:1px solid rgba(255,255,255,.85);
+  font-size:11px;
+  font-weight:bold;
+  position:relative;
+  z-index:3;
+}
+
+.action-blue .action-pill{
+  color:#1553a5;
+}
+
+.action-green .action-pill{
+  color:#14733c;
+}
+
+.action-purple .action-pill{
+  color:#5730b0;
+}
+
+.action-orange .action-pill{
+  color:#a25512;
 }
 
 
 /* =========================================================
-   INQUIRY CARD
+   ARROW
 ========================================================= */
 
-.inquiry-card {
-  margin-top: 18px;
-  background: white;
-  border: 1px solid #e5e9f1;
-  border-radius: 18px;
-  padding: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+.action-arrow{
+  position:absolute;
+  right:25px;
+  top:50%;
+  transform:translateY(-50%);
+  width:49px;
+  height:49px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:29px;
+  font-weight:bold;
+  z-index:5;
+  box-shadow:0 4px 12px rgba(0,0,0,.12);
 }
 
-.inquiry-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.action-blue .action-arrow{
+  background:#1976e8;
 }
 
-.inquiry-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
-  background: #eef5ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  flex-shrink: 0;
+.action-green .action-arrow{
+  background:#31ad57;
 }
 
-.inquiry-card h3 {
-  color: #0d47a1;
-  font-size: 16px;
-  margin-bottom: 4px;
+.action-purple .action-arrow{
+  background:#7040d0;
 }
 
-.inquiry-card p {
-  color: #64748b;
-  font-size: 11px;
-  line-height: 1.4;
+.action-orange .action-arrow{
+  background:#ff7f16;
 }
 
-.inquiry-btn {
-  border: none;
-  background: #0d47a1;
-  color: white;
-  padding: 9px 13px;
-  border-radius: 9px;
-  font-weight: bold;
-  font-size: 11px;
-  cursor: pointer;
-  white-space: nowrap;
+
+/* =========================================================
+   LEARNING PACKAGE
+========================================================= */
+
+.package-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.package-card{
+  background:white;
+  border:1px solid #e4e9f2;
+  border-radius:17px;
+  padding:16px 13px;
+  box-shadow:0 4px 14px rgba(0,0,0,.055);
+  cursor:pointer;
+  transition:.2s;
+  min-height:175px;
+  position:relative;
+  overflow:hidden;
+}
+
+.package-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 20px rgba(0,0,0,.09);
+}
+
+.package-icon{
+  width:47px;
+  height:47px;
+  border-radius:14px;
+  background:#eef5ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:23px;
+  margin-bottom:12px;
+}
+
+.package-card h3{
+  color:#0d47a1;
+  font-size:16px;
+  margin-bottom:6px;
+}
+
+.package-card p{
+  color:#64748b;
+  font-size:11px;
+  line-height:1.5;
+}
+
+.package-badge{
+  display:inline-block;
+  margin-top:10px;
+  background:#f1f5f9;
+  color:#64748b;
+  border:1px solid #e2e8f0;
+  padding:5px 8px;
+  border-radius:20px;
+  font-size:10px;
+  font-weight:bold;
+}
+
+.package-card.starter .package-icon{
+  background:#ecfdf5;
+}
+
+.package-card.growth .package-icon{
+  background:#eff6ff;
+}
+
+.package-card.pro .package-icon{
+  background:#faf5ff;
+}
+
+.package-card.elite .package-icon{
+  background:#fffbeb;
 }
 
 
@@ -518,73 +582,73 @@ select {
    FOOTER
 ========================================================= */
 
-.footer {
-  text-align: center;
-  padding: 25px 15px;
-  color: #94a3b8;
-  font-size: 11px;
-  background: white;
-  margin-top: 20px;
-  border-top: 1px solid #e5e9f1;
+.footer{
+  text-align:center;
+  padding:25px 15px;
+  color:#94a3b8;
+  font-size:11px;
+  background:white;
+  margin-top:20px;
+  border-top:1px solid #e5e9f1;
 }
 
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px 15px;
-  margin-bottom: 13px;
+.footer-links{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px 15px;
+  margin-bottom:13px;
 }
 
-.footer-links span {
-  color: #0d47a1;
-  cursor: pointer;
-  font-weight: bold;
+.footer-links span{
+  color:#0d47a1;
+  cursor:pointer;
+  font-weight:bold;
 }
 
 
 /* =========================================================
-   BOTTOM NAVIGATION
+   BOTTOM NAV
 ========================================================= */
 
-.bottom-nav {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 68px;
-  background: white;
-  border-top: 1px solid #e5e7eb;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  z-index: 3000;
-  box-shadow: 0 -4px 18px rgba(0,0,0,0.08);
+.bottom-nav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  height:68px;
+  background:white;
+  border-top:1px solid #e5e7eb;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  z-index:3000;
+  box-shadow:0 -4px 18px rgba(0,0,0,.08);
 }
 
-.bottom-nav button {
-  border: none;
-  background: white;
-  color: #64748b;
-  cursor: pointer;
-  font-size: 10px;
-  font-weight: bold;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
+.bottom-nav button{
+  border:none;
+  background:white;
+  color:#64748b;
+  cursor:pointer;
+  font-size:10px;
+  font-weight:bold;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
 }
 
-.bottom-nav button span {
-  font-size: 21px;
+.bottom-nav button span{
+  font-size:21px;
 }
 
-.bottom-nav button.active {
-  color: #0d47a1;
+.bottom-nav button.active{
+  color:#0d47a1;
 }
 
-.bottom-nav button:hover {
-  background: #f8fafc;
+.bottom-nav button:hover{
+  background:#f8fafc;
 }
 
 
@@ -592,64 +656,64 @@ select {
    MODALS
 ========================================================= */
 
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.55);
-  padding: 15px;
-  overflow-y: auto;
+.modal{
+  display:none;
+  position:fixed;
+  z-index:9999;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.55);
+  padding:15px;
+  overflow-y:auto;
 }
 
-.modal-content {
-  background: white;
-  max-width: 650px;
-  margin: 35px auto;
-  border-radius: 18px;
-  padding: 22px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.20);
-  position: relative;
+.modal-content{
+  background:white;
+  max-width:650px;
+  margin:35px auto;
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 8px 30px rgba(0,0,0,.20);
+  position:relative;
 }
 
-.modal-content h2 {
-  color: #0d47a1;
-  margin-bottom: 15px;
-  font-size: 20px;
+.modal-content h2{
+  color:#0d47a1;
+  margin-bottom:15px;
+  font-size:20px;
 }
 
-.modal-content h3 {
-  color: #0d47a1;
-  margin-top: 18px;
-  margin-bottom: 7px;
-  font-size: 15px;
+.modal-content h3{
+  color:#0d47a1;
+  margin-top:18px;
+  margin-bottom:7px;
+  font-size:15px;
 }
 
 .modal-content p,
-.modal-content li {
-  color: #555;
-  line-height: 1.7;
-  font-size: 13px;
+.modal-content li{
+  color:#555;
+  line-height:1.7;
+  font-size:13px;
 }
 
-.modal-content ul {
-  padding-left: 20px;
+.modal-content ul{
+  padding-left:20px;
 }
 
-.close-btn {
-  position: absolute;
-  right: 15px;
-  top: 13px;
-  background: #f1f5f9;
-  border: none;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  font-size: 20px;
-  cursor: pointer;
+.close-btn{
+  position:absolute;
+  right:15px;
+  top:13px;
+  background:#f1f5f9;
+  border:none;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  font-size:20px;
+  cursor:pointer;
 }
 
 
@@ -657,80 +721,80 @@ select {
    FORM
 ========================================================= */
 
-.profile-field {
-  margin-bottom: 15px;
+.profile-field{
+  margin-bottom:15px;
 }
 
-.profile-field label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: bold;
-  color: #333;
-  font-size: 13px;
+.profile-field label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:bold;
+  color:#333;
+  font-size:13px;
 }
 
 .profile-field input,
 .profile-field textarea,
-.profile-field select {
-  width: 100%;
-  padding: 11px 12px;
-  border: 1px solid #ccd6e5;
-  border-radius: 9px;
-  font-size: 14px;
-  outline: none;
+.profile-field select{
+  width:100%;
+  padding:11px 12px;
+  border:1px solid #ccd6e5;
+  border-radius:9px;
+  font-size:14px;
+  outline:none;
 }
 
-.profile-field textarea {
-  min-height: 110px;
-  resize: vertical;
+.profile-field textarea{
+  min-height:110px;
+  resize:vertical;
 }
 
 .profile-field input:focus,
 .profile-field textarea:focus,
-.profile-field select:focus {
-  border-color: #0d47a1;
+.profile-field select:focus{
+  border-color:#0d47a1;
 }
 
-.profile-field input:disabled {
-  background: #f3f4f6;
-  color: #666;
+.profile-field input:disabled{
+  background:#f3f4f6;
+  color:#666;
 }
 
-.primary-btn {
-  background: #0d47a1;
-  color: white;
-  border: none;
-  padding: 11px 17px;
-  border-radius: 9px;
-  cursor: pointer;
-  font-weight: bold;
+.primary-btn{
+  background:#0d47a1;
+  color:white;
+  border:none;
+  padding:11px 17px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold;
 }
 
-.secondary-btn {
-  background: #eef3fb;
-  color: #0d47a1;
-  border: 1px solid #d5e0f0;
-  padding: 11px 17px;
-  border-radius: 9px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-left: 8px;
+.secondary-btn{
+  background:#eef3fb;
+  color:#0d47a1;
+  border:1px solid #d5e0f0;
+  padding:11px 17px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold;
+  margin-left:8px;
 }
 
-.danger-btn {
-  background: #dc2626;
-  color: white;
-  border: none;
-  padding: 11px 17px;
-  border-radius: 9px;
-  cursor: pointer;
-  font-weight: bold;
+.danger-btn{
+  background:#dc2626;
+  color:white;
+  border:none;
+  padding:11px 17px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold;
 }
 
-.message {
-  margin-top: 12px;
-  font-size: 13px;
-  font-weight: bold;
+.message{
+  margin-top:12px;
+  font-size:13px;
+  font-weight:bold;
 }
 
 
@@ -738,36 +802,36 @@ select {
    SUPPORT
 ========================================================= */
 
-.support-box {
-  background: #f3f7ff;
-  border: 1px solid #dce7f7;
-  border-radius: 10px;
-  padding: 14px;
-  margin-top: 14px;
+.support-box{
+  background:#f3f7ff;
+  border:1px solid #dce7f7;
+  border-radius:10px;
+  padding:14px;
+  margin-top:14px;
 }
 
-.support-box strong {
-  color: #0d47a1;
+.support-box strong{
+  color:#0d47a1;
 }
 
-.support-action {
-  display: inline-block;
-  margin-top: 9px;
-  text-decoration: none;
-  background: #0d47a1;
-  color: white;
-  padding: 8px 13px;
-  border-radius: 7px;
-  font-size: 12px;
-  font-weight: bold;
+.support-action{
+  display:inline-block;
+  margin-top:9px;
+  text-decoration:none;
+  background:#0d47a1;
+  color:white;
+  padding:8px 13px;
+  border-radius:7px;
+  font-size:12px;
+  font-weight:bold;
 }
 
-.whatsapp-action {
-  background: #16a34a;
+.whatsapp-action{
+  background:#16a34a;
 }
 
-.email-action {
-  background: #0d47a1;
+.email-action{
+  background:#0d47a1;
 }
 
 
@@ -775,160 +839,302 @@ select {
    DELETE
 ========================================================= */
 
-.delete-warning {
-  background: #fff1f2;
-  border: 1px solid #fecdd3;
-  border-radius: 10px;
-  padding: 14px;
-  margin: 14px 0;
-  color: #991b1b;
+.delete-warning{
+  background:#fff1f2;
+  border:1px solid #fecdd3;
+  border-radius:10px;
+  padding:14px;
+  margin:14px 0;
+  color:#991b1b;
 }
 
-.delete-warning ul {
-  padding-left: 20px;
-  margin-top: 7px;
+.delete-warning ul{
+  padding-left:20px;
+  margin-top:7px;
 }
 
-.delete-status-box {
-  background: #fff7ed;
-  border: 1px solid #fed7aa;
-  color: #9a3412;
-  border-radius: 10px;
-  padding: 14px;
-  margin-top: 14px;
-  line-height: 1.6;
+.delete-status-box{
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  color:#9a3412;
+  border-radius:10px;
+  padding:14px;
+  margin-top:14px;
+  line-height:1.6;
 }
 
-.delete-status-approved {
-  background: #f0fdf4;
-  border-color: #bbf7d0;
-  color: #166534;
+.delete-status-approved{
+  background:#f0fdf4;
+  border-color:#bbf7d0;
+  color:#166534;
 }
 
-.delete-status-rejected {
-  background: #fff1f2;
-  border-color: #fecdd3;
-  color: #991b1b;
+.delete-status-rejected{
+  background:#fff1f2;
+  border-color:#fecdd3;
+  color:#991b1b;
 }
 
 
 /* =========================================================
-   MOBILE
+   MY PLANS
 ========================================================= */
 
-@media (max-width: 800px) {
+.my-plans-list{
+  display:grid;
+  gap:12px;
+}
 
-  .package-grid {
-    grid-template-columns: repeat(2, 1fr);
+.saved-plan-card{
+  background:#f8fbff;
+  border:1px solid #dbeafe;
+  border-radius:14px;
+  padding:14px;
+}
+
+.saved-plan-card h3{
+  color:#0d47a1;
+  font-size:16px;
+  margin-bottom:6px;
+}
+
+.saved-plan-card p{
+  color:#64748b;
+  font-size:12px;
+  line-height:1.5;
+  margin-bottom:8px;
+}
+
+.saved-plan-category{
+  display:inline-block;
+  background:#eaf2ff;
+  color:#0d47a1;
+  padding:4px 8px;
+  border-radius:15px;
+  font-size:10px;
+  font-weight:bold;
+}
+
+.saved-plan-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+
+.saved-plan-actions button{
+  border:none;
+  border-radius:8px;
+  padding:8px 10px;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:11px;
+  background:#0d47a1;
+  color:white;
+}
+
+.saved-plan-actions button.secondary{
+  background:#eef3fb;
+  color:#0d47a1;
+}
+
+.saved-plans-empty{
+  text-align:center;
+  padding:22px 12px;
+  background:#f8fbff;
+  border:1px dashed #cbdcf5;
+  border-radius:15px;
+  margin-top:8px;
+}
+
+.saved-plans-empty-icon{
+  width:58px;
+  height:58px;
+  margin:0 auto 10px;
+  border-radius:16px;
+  background:#eef5ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+}
+
+.saved-plans-empty h3{
+  color:#0d47a1;
+  font-size:16px;
+  margin-bottom:6px;
+}
+
+.saved-plans-empty p{
+  color:#64748b;
+  font-size:12px;
+  line-height:1.5;
+  margin-bottom:13px;
+}
+
+.saved-plans-view-btn{
+  border:none;
+  background:#0d47a1;
+  color:white;
+  padding:10px 15px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:12px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:900px){
+
+  .package-grid{
+    grid-template-columns:repeat(2,1fr);
   }
 
-  .quick-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .dashboard-action-card{
+    min-height:245px;
+  }
+
+  .dashboard-action-card h3{
+    font-size:23px;
   }
 
 }
 
-@media (max-width: 600px) {
+@media(max-width:600px){
 
-  body {
-    padding-bottom: 74px;
+  body{
+    padding-bottom:74px;
   }
 
-  .topbar {
-    padding: 12px;
+  .topbar{
+    padding:12px 13px;
   }
 
-  .brand {
-    font-size: 17px;
+  .brand{
+    font-size:17px;
   }
 
-  .tagline {
-    font-size: 10px;
+  .tagline{
+    font-size:10px;
   }
 
-  .logout-btn {
-    display: none;
+  .logout-btn{
+    display:none;
   }
 
-  .header-icon-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 17px;
+  .header-icon-btn{
+    width:36px;
+    height:36px;
+    font-size:17px;
   }
 
-  .container {
-    padding: 14px 11px 25px;
+  .container{
+    padding:13px 11px 25px;
   }
 
-  .welcome-card {
-    padding: 18px;
-    border-radius: 18px;
+  .welcome-card{
+    padding:18px;
+    border-radius:18px;
   }
 
-  .welcome-card h1 {
-    font-size: 22px;
+  .welcome-card h1{
+    font-size:22px;
   }
 
-  .profile-box {
-    font-size: 11px;
+  .profile-box{
+    font-size:11px;
   }
 
-  .section-title {
-    font-size: 18px;
+  .section-title{
+    font-size:18px;
   }
 
-  .package-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 9px;
+  .section-subtitle{
+    font-size:11px;
   }
 
-  .package-card {
-    padding: 13px 11px;
-    min-height: 165px;
+  .dashboard-action-grid{
+    grid-template-columns:1fr;
+    gap:12px;
   }
 
-  .package-card h3 {
-    font-size: 15px;
+  .dashboard-action-card{
+    min-height:225px;
+    padding:21px;
+    border-radius:20px;
   }
 
-  .package-card p {
-    font-size: 10px;
+  .action-icon-box{
+    width:70px;
+    height:70px;
+    border-radius:18px;
+    margin-bottom:13px;
   }
 
-  .quick-grid {
-    gap: 8px;
+  .action-icon-box svg{
+    width:52px;
+    height:52px;
   }
 
-  .quick-card {
-    padding: 13px 8px;
+  .dashboard-action-card h3{
+    font-size:21px;
   }
 
-  .inquiry-card {
-    padding: 14px;
+  .dashboard-action-card p{
+    font-size:12px;
   }
 
-  .inquiry-btn {
-    padding: 8px 10px;
+  .action-arrow{
+    width:40px;
+    height:40px;
+    right:17px;
+    font-size:24px;
   }
 
-  .modal {
-    padding: 8px;
+  .action-pill{
+    font-size:9px;
+    padding:7px 10px;
   }
 
-  .modal-content {
-    margin: 20px auto;
-    padding: 19px;
+  .package-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:9px;
   }
 
-  .secondary-btn {
-    margin-left: 0;
-    margin-top: 8px;
+  .package-card{
+    padding:13px 11px;
+    min-height:165px;
+  }
+
+  .package-card h3{
+    font-size:15px;
+  }
+
+  .package-card p{
+    font-size:10px;
+  }
+
+  .modal{
+    padding:8px;
+  }
+
+  .modal-content{
+    margin:20px auto;
+    padding:19px;
+  }
+
+  .secondary-btn{
+    margin-left:0;
+    margin-top:8px;
   }
 
 }
 
 </style>
-
 </head>
 
 
@@ -953,35 +1159,26 @@ select {
 
   </div>
 
-
   <div class="header-right">
 
     <button
       class="header-icon-btn"
       onclick="showNotifications()"
       title="Notifications">
-
       🔔
-
     </button>
-
 
     <button
       class="header-icon-btn"
       onclick="toggleMenu()"
       title="Menu">
-
       ☰
-
     </button>
-
 
     <button
       class="logout-btn"
       onclick="logout()">
-
       Logout
-
     </button>
 
   </div>
@@ -993,9 +1190,7 @@ select {
      MENU
 ======================================================= -->
 
-<div
-  id="menuPanel"
-  class="menu-panel">
+<div id="menuPanel" class="menu-panel">
 
   <div class="menu-title">
     Apna Growth Hub
@@ -1004,41 +1199,31 @@ select {
   <button
     class="menu-item"
     onclick="openProfile(); toggleMenu();">
-
     👤 My Profile
-
   </button>
 
   <button
     class="menu-item"
     onclick="openChangePassword(); toggleMenu();">
-
     🔐 Change Password
-
   </button>
 
   <button
     class="menu-item"
     onclick="openSupport(); toggleMenu();">
-
     📞 Customer Support
-
   </button>
 
   <button
     class="menu-item"
     onclick="openPrivacy(); toggleMenu();">
-
     🛡️ Privacy Policy
-
   </button>
 
   <button
     class="menu-item"
     onclick="logout();">
-
     🚪 Logout
-
   </button>
 
 </div>
@@ -1053,9 +1238,7 @@ select {
 
   <!-- WELCOME -->
 
-  <div
-    id="welcomeCard"
-    class="welcome-card">
+  <div id="welcomeCard" class="welcome-card">
 
     <div class="welcome-small">
       Personal Growth Dashboard
@@ -1073,7 +1256,7 @@ select {
 
 
   <!-- =====================================================
-       LIC
+       FINAL FOUR CARDS
   ====================================================== -->
 
   <div class="section-heading">
@@ -1085,7 +1268,7 @@ select {
       </div>
 
       <div class="section-subtitle">
-        अपनी जरूरत और age के अनुसार LIC plans देखें
+        अपनी LIC plans और account services आसानी से manage करें
       </div>
 
     </div>
@@ -1093,35 +1276,434 @@ select {
   </div>
 
 
-  <div
-    class="lic-main-card"
-    onclick="openPage('lic.html')">
+  <div class="dashboard-action-grid">
 
-    <div class="lic-card-top">
 
-      <div class="lic-icon">
-        🛡️
+    <!-- =================================================
+         VIEW LIC PLANS
+    ================================================== -->
+
+    <div
+      class="dashboard-action-card action-blue"
+      onclick="openPage('lic.html')">
+
+      <div class="action-arrow">
+        ›
       </div>
 
-      <div>
+      <div class="action-content">
+
+        <div class="action-icon-box">
+
+          <svg viewBox="0 0 100 100"
+               fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+
+            <!-- document -->
+            <rect
+              x="20"
+              y="10"
+              width="55"
+              height="72"
+              rx="7"
+              fill="white"
+              stroke="#1764C0"
+              stroke-width="5"/>
+
+            <!-- LIC top -->
+            <rect
+              x="27"
+              y="19"
+              width="41"
+              height="18"
+              rx="4"
+              fill="#1764C0"/>
+
+            <text
+              x="47"
+              y="32"
+              text-anchor="middle"
+              font-size="11"
+              font-weight="bold"
+              fill="#FFD21F">
+              LIC
+            </text>
+
+            <!-- lines -->
+            <rect
+              x="29"
+              y="44"
+              width="32"
+              height="5"
+              rx="2.5"
+              fill="#8ABDF4"/>
+
+            <rect
+              x="29"
+              y="54"
+              width="25"
+              height="5"
+              rx="2.5"
+              fill="#8ABDF4"/>
+
+            <!-- family card -->
+            <rect
+              x="43"
+              y="60"
+              width="39"
+              height="27"
+              rx="6"
+              fill="white"
+              stroke="#B8D8FA"
+              stroke-width="2"/>
+
+            <!-- people -->
+            <circle
+              cx="57"
+              cy="69"
+              r="5"
+              fill="#1764C0"/>
+
+            <path
+              d="M49 81C49 74 65 74 65 81"
+              fill="#1764C0"/>
+
+            <circle
+              cx="70"
+              cy="71"
+              r="4"
+              fill="#1764C0"/>
+
+            <path
+              d="M64 81C64 76 76 76 76 81"
+              fill="#1764C0"/>
+
+          </svg>
+
+        </div>
 
         <h3>
-          LIC Plans
+          View LIC Plans
         </h3>
 
         <p>
-          आपकी age के अनुसार available LIC plans,
-          benefits और details देखें।
+          अपनी उम्र के अनुसार उपलब्ध LIC Plans देखें
         </p>
+
+        <span class="action-pill">
+          👁 सभी Plan की जानकारी
+        </span>
 
       </div>
 
     </div>
 
 
-    <div class="lic-open">
-      View LIC Plans →
+    <!-- =================================================
+         SAVED LIC PLANS
+    ================================================== -->
+
+    <div
+      class="dashboard-action-card action-green"
+      onclick="openMyPlans()">
+
+      <div class="action-arrow">
+        ›
+      </div>
+
+      <div class="action-content">
+
+        <div class="action-icon-box">
+
+          <svg viewBox="0 0 100 100"
+               fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+
+            <!-- document -->
+            <rect
+              x="25"
+              y="11"
+              width="48"
+              height="61"
+              rx="6"
+              fill="white"
+              stroke="#159447"
+              stroke-width="5"/>
+
+            <rect
+              x="32"
+              y="19"
+              width="34"
+              height="15"
+              rx="3"
+              fill="#1764C0"/>
+
+            <text
+              x="49"
+              y="30"
+              text-anchor="middle"
+              font-size="9"
+              font-weight="bold"
+              fill="#FFD21F">
+              LIC
+            </text>
+
+            <rect
+              x="33"
+              y="41"
+              width="29"
+              height="5"
+              rx="2"
+              fill="#9DD5A8"/>
+
+            <rect
+              x="33"
+              y="51"
+              width="23"
+              height="5"
+              rx="2"
+              fill="#9DD5A8"/>
+
+            <!-- folder -->
+            <path
+              d="M15 48H36L42 54H84C88 54 91 57 91 61V82C91 87 87 91 82 91H18C13 91 10 87 10 82V56C10 51 12 48 15 48Z"
+              fill="#FFB719"/>
+
+            <path
+              d="M10 59H91V82C91 87 87 91 82 91H18C13 91 10 87 10 82V59Z"
+              fill="#FFC72C"/>
+
+            <!-- bookmark -->
+            <path
+              d="M57 51H77V82L67 76L57 82V51Z"
+              fill="#16A34A"/>
+
+            <!-- star -->
+            <path
+              d="M67 57L69.5 62L75 62.7L71 66.4L72 71.7L67 69L62 71.7L63 66.4L59 62.7L64.5 62L67 57Z"
+              fill="white"/>
+
+          </svg>
+
+        </div>
+
+        <h3>
+          Saved LIC Plans
+        </h3>
+
+        <p>
+          आपके Save किए हुए Plans यहाँ देखें
+        </p>
+
+        <span class="action-pill">
+          🔖 जो Plan आपने पसंद किए हैं
+        </span>
+
+      </div>
+
     </div>
+
+
+    <!-- =================================================
+         MY PROFILE
+    ================================================== -->
+
+    <div
+      class="dashboard-action-card action-purple"
+      onclick="openProfile()">
+
+      <div class="action-arrow">
+        ›
+      </div>
+
+      <div class="action-content">
+
+        <div class="action-icon-box">
+
+          <svg viewBox="0 0 100 100"
+               fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+
+            <!-- profile circle -->
+            <circle
+              cx="47"
+              cy="45"
+              r="30"
+              fill="#2F80ED"/>
+
+            <!-- person -->
+            <circle
+              cx="47"
+              cy="37"
+              r="10"
+              fill="white"/>
+
+            <path
+              d="M27 64C27 50 67 50 67 64"
+              fill="white"/>
+
+            <!-- profile card -->
+            <rect
+              x="27"
+              y="70"
+              width="42"
+              height="18"
+              rx="5"
+              fill="white"
+              stroke="#AFCBFF"
+              stroke-width="2"/>
+
+            <rect
+              x="34"
+              y="76"
+              width="25"
+              height="4"
+              rx="2"
+              fill="#8ABDF4"/>
+
+            <!-- gear -->
+            <circle
+              cx="74"
+              cy="69"
+              r="17"
+              fill="#5B34C7"/>
+
+            <circle
+              cx="74"
+              cy="69"
+              r="6"
+              fill="white"/>
+
+            <path
+              d="M74 54V58M74 80V84M59 69H63M85 69H89M63 58L66 61M82 77L85 80M85 58L82 61M66 77L63 80"
+              stroke="white"
+              stroke-width="4"
+              stroke-linecap="round"/>
+
+          </svg>
+
+        </div>
+
+        <h3>
+          My Profile
+        </h3>
+
+        <p>
+          अपनी personal और account details manage करें
+        </p>
+
+        <span class="action-pill">
+          👤 Profile, Settings & Security
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- =================================================
+         CUSTOMER INQUIRY
+    ================================================== -->
+
+    <div
+      class="dashboard-action-card action-orange"
+      onclick="openPage('customer-inquiry.html')">
+
+      <div class="action-arrow">
+        ›
+      </div>
+
+      <div class="action-content">
+
+        <div class="action-icon-box">
+
+          <svg viewBox="0 0 100 100"
+               fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+
+            <!-- clipboard -->
+            <rect
+              x="21"
+              y="20"
+              width="56"
+              height="68"
+              rx="7"
+              fill="white"
+              stroke="#1764C0"
+              stroke-width="5"/>
+
+            <!-- clip -->
+            <rect
+              x="37"
+              y="10"
+              width="25"
+              height="17"
+              rx="7"
+              fill="#1764C0"/>
+
+            <!-- person -->
+            <circle
+              cx="49"
+              cy="43"
+              r="8"
+              fill="#2F80ED"/>
+
+            <path
+              d="M36 61C36 51 62 51 62 61"
+              fill="#2F80ED"/>
+
+            <!-- lines -->
+            <rect
+              x="31"
+              y="68"
+              width="35"
+              height="5"
+              rx="2.5"
+              fill="#8ABDF4"/>
+
+            <rect
+              x="31"
+              y="78"
+              width="27"
+              height="5"
+              rx="2.5"
+              fill="#8ABDF4"/>
+
+            <!-- WhatsApp bubble -->
+            <circle
+              cx="76"
+              cy="76"
+              r="18"
+              fill="#16C766"/>
+
+            <path
+              d="M69 86L71 80C69 78 68 75 68 73C68 67 73 62 79 62C85 62 90 67 90 73C90 79 85 84 79 84C77 84 75 83 73 82L69 86Z"
+              fill="white"/>
+
+            <path
+              d="M75 69C76 69 77 72 78 72C79 72 80 70 81 71C82 72 84 73 84 74C84 76 82 77 81 77C78 77 74 74 74 71C74 70 74 69 75 69Z"
+              fill="#16C766"/>
+
+          </svg>
+
+        </div>
+
+        <h3>
+          Customer Inquiry
+        </h3>
+
+        <p>
+          LIC या अन्य जानकारी के लिए अपनी enquiry भेजें
+        </p>
+
+        <span class="action-pill">
+          💬 हम जल्द संपर्क करेंगे
+        </span>
+
+      </div>
+
+    </div>
+
 
   </div>
 
@@ -1149,9 +1731,6 @@ select {
 
   <div class="package-grid">
 
-
-    <!-- STARTER -->
-
     <div
       class="package-card starter"
       onclick="showPackageMessage('Starter')">
@@ -1175,8 +1754,6 @@ select {
 
     </div>
 
-
-    <!-- GROWTH -->
 
     <div
       class="package-card growth"
@@ -1202,8 +1779,6 @@ select {
     </div>
 
 
-    <!-- PRO -->
-
     <div
       class="package-card pro"
       onclick="showPackageMessage('Pro')">
@@ -1228,8 +1803,6 @@ select {
     </div>
 
 
-    <!-- ELITE -->
-
     <div
       class="package-card elite"
       onclick="showPackageMessage('Elite')">
@@ -1253,168 +1826,7 @@ select {
 
     </div>
 
-
   </div>
-
-
-  <!-- =====================================================
-       QUICK ACCESS
-  ====================================================== -->
-
-  <div class="section-heading">
-
-    <div>
-
-      <div class="section-title">
-        Quick Access
-      </div>
-
-      <div class="section-subtitle">
-        अपनी learning और account activities
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="quick-grid">
-
-
-    <div
-      class="quick-card"
-      onclick="showComingSoon('My Plans')">
-
-      <div class="quick-icon">
-        📄
-      </div>
-
-      <h4>
-        My Plans
-      </h4>
-
-      <p>
-        Saved plans
-      </p>
-
-    </div>
-
-
-    <div
-      class="quick-card"
-      onclick="showComingSoon('My Courses')">
-
-      <div class="quick-icon">
-        🎓
-      </div>
-
-      <h4>
-        My Courses
-      </h4>
-
-      <p>
-        Your learning
-      </p>
-
-    </div>
-
-
-    <div
-      class="quick-card"
-      onclick="showComingSoon('My Inquiries')">
-
-      <div class="quick-icon">
-        💬
-      </div>
-
-      <h4>
-        My Inquiries
-      </h4>
-
-      <p>
-        Your requests
-      </p>
-
-    </div>
-
-
-    <div
-      class="quick-card"
-      onclick="openProfile()">
-
-      <div class="quick-icon">
-        👤
-      </div>
-
-      <h4>
-        My Profile
-      </h4>
-
-      <p>
-        Account details
-      </p>
-
-    </div>
-
-
-  </div>
-
-
-  <!-- =====================================================
-       CUSTOMER INQUIRY
-  ====================================================== -->
-
-  <div class="section-heading">
-
-    <div>
-
-      <div class="section-title">
-        Need Help?
-      </div>
-
-      <div class="section-subtitle">
-        हमसे अपनी enquiry भेजें
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="inquiry-card">
-
-    <div class="inquiry-left">
-
-      <div class="inquiry-icon">
-        💬
-      </div>
-
-      <div>
-
-        <h3>
-          Customer Inquiry
-        </h3>
-
-        <p>
-          LIC या अन्य जानकारी के लिए
-          अपनी enquiry भेजें।
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <button
-      class="inquiry-btn"
-      onclick="openPage('customer-inquiry.html')">
-
-      Send Inquiry →
-
-    </button>
-
-  </div>
-
 
 </div>
 
@@ -1471,27 +1883,21 @@ select {
 
   </button>
 
-
-  <button
-    onclick="goLearn()">
+  <button onclick="goLearn()">
 
     <span>🎓</span>
     Learn
 
   </button>
 
-
-  <button
-    onclick="openPage('customer-inquiry.html')">
+  <button onclick="openPage('customer-inquiry.html')">
 
     <span>💬</span>
     Inquiry
 
   </button>
 
-
-  <button
-    onclick="openProfile()">
+  <button onclick="openProfile()">
 
     <span>👤</span>
     Profile
@@ -1512,89 +1918,111 @@ select {
     <button
       class="close-btn"
       onclick="closeModal('profileModal')">
-
       ×
-
     </button>
 
     <h2>
       👤 My Profile
     </h2>
 
-
     <div class="profile-field">
-
       <label>Name</label>
 
       <input
         id="profileName"
         type="text"
         placeholder="Your Name">
-
     </div>
 
-
     <div class="profile-field">
-
       <label>Email</label>
 
       <input
         id="profileEmail"
         type="email"
         disabled>
-
     </div>
 
-
     <div class="profile-field">
-
       <label>Date of Birth</label>
 
       <input
         id="profileDOB"
         type="text"
         disabled>
-
     </div>
 
-
     <div class="profile-field">
-
       <label>Age</label>
 
       <input
         id="profileAge"
         type="text"
         disabled>
-
     </div>
 
-
     <div class="profile-field">
-
       <label>Mobile Number</label>
 
       <input
         id="profileMobile"
         type="tel"
         placeholder="Mobile Number">
-
     </div>
-
 
     <button
       class="primary-btn"
       onclick="saveProfile()">
-
       Save Profile
-
     </button>
-
 
     <div
       id="profileMessage"
       class="message">
+    </div>
 
+  </div>
+
+</div>
+
+
+<!-- =======================================================
+     MY PLANS MODAL
+======================================================= -->
+
+<div id="myPlansModal" class="modal">
+
+  <div class="modal-content">
+
+    <button
+      class="close-btn"
+      onclick="closeModal('myPlansModal')">
+      ×
+    </button>
+
+    <h2>
+      📁🔖 Saved LIC Plans
+    </h2>
+
+    <p style="color:#64748b;font-size:13px;margin-bottom:15px;">
+      यहाँ आपके पसंद किए हुए और Save किए गए LIC Plans दिखाई देंगे।
+    </p>
+
+    <div
+      id="myPlansLoading"
+      class="message">
+      Saved plans load हो रहे हैं...
+    </div>
+
+    <div
+      id="myPlansList"
+      class="my-plans-list">
+    </div>
+
+    <div
+      id="myPlansMessage"
+      class="message"
+      style="display:none;">
     </div>
 
   </div>
@@ -1613,9 +2041,7 @@ select {
     <button
       class="close-btn"
       onclick="closeModal('passwordModal')">
-
       ×
-
     </button>
 
     <h2>
@@ -1625,7 +2051,6 @@ select {
     <p>
       नया password कम से कम 6 characters का रखें।
     </p>
-
 
     <div class="profile-field">
 
@@ -1638,7 +2063,6 @@ select {
 
     </div>
 
-
     <div class="profile-field">
 
       <label>Confirm New Password</label>
@@ -1650,20 +2074,15 @@ select {
 
     </div>
 
-
     <button
       class="primary-btn"
       onclick="changePassword()">
-
       Change Password
-
     </button>
-
 
     <div
       id="passwordMessage"
       class="message">
-
     </div>
 
   </div>
@@ -1682,9 +2101,7 @@ select {
     <button
       class="close-btn"
       onclick="closeModal('privacyModal')">
-
       ×
-
     </button>
 
     <h2>
@@ -1748,9 +2165,7 @@ select {
     <button
       class="close-btn"
       onclick="closeModal('termsModal')">
-
       ×
-
     </button>
 
     <h2>
@@ -1814,9 +2229,7 @@ select {
     <button
       class="close-btn"
       onclick="closeModal('disclaimerModal')">
-
       ×
-
     </button>
 
     <h2>
@@ -1877,9 +2290,7 @@ select {
     <button
       class="close-btn"
       onclick="closeModal('supportModal')">
-
       ×
-
     </button>
 
     <h2>
@@ -1890,7 +2301,6 @@ select {
       Apna Growth Hub से संबंधित किसी भी सहायता के
       लिए नीचे दिए गए options का उपयोग करें।
     </p>
-
 
     <div class="support-box">
 
@@ -1903,13 +2313,10 @@ select {
       <a
         class="support-action email-action"
         href="mailto:apnagrowthhub@gmail.com">
-
         Email करें
-
       </a>
 
     </div>
-
 
     <div class="support-box">
 
@@ -1923,13 +2330,10 @@ select {
         class="support-action whatsapp-action"
         href="https://wa.me/917876260435"
         target="_blank">
-
         WhatsApp करें
-
       </a>
 
     </div>
-
 
     <div class="support-box">
 
@@ -1942,13 +2346,10 @@ select {
       <a
         class="support-action"
         href="tel:+917876260435">
-
         Call करें
-
       </a>
 
     </div>
-
 
     <div class="support-box">
 
@@ -1962,9 +2363,7 @@ select {
       <button
         class="primary-btn"
         onclick="openSupportRequest()">
-
         Support Request भेजें
-
       </button>
 
     </div>
@@ -1985,9 +2384,7 @@ select {
     <button
       class="close-btn"
       onclick="closeModal('supportRequestModal')">
-
       ×
-
     </button>
 
     <h2>
@@ -1998,7 +2395,6 @@ select {
       अपनी समस्या नीचे लिखें। आपकी request support
       team तक भेज दी जाएगी।
     </p>
-
 
     <div class="profile-field">
 
@@ -2040,7 +2436,6 @@ select {
 
     </div>
 
-
     <div class="profile-field">
 
       <label>
@@ -2053,20 +2448,15 @@ select {
 
     </div>
 
-
     <button
       class="primary-btn"
       onclick="sendSupportRequest()">
-
       Send Support Request
-
     </button>
-
 
     <div
       id="supportRequestMessage"
       class="message">
-
     </div>
 
   </div>
@@ -2085,9 +2475,7 @@ select {
     <button
       class="close-btn"
       onclick="closeModal('contactModal')">
-
       ×
-
     </button>
 
     <h2>
@@ -2098,7 +2486,6 @@ select {
       Apna Growth Hub से संपर्क करने के लिए
       नीचे दिए गए options का उपयोग करें।
     </p>
-
 
     <div class="support-box">
 
@@ -2111,7 +2498,6 @@ select {
       </p>
 
     </div>
-
 
     <div class="support-box">
 
@@ -2126,13 +2512,10 @@ select {
       <a
         class="support-action"
         href="tel:+917876260435">
-
         Call करें
-
       </a>
 
     </div>
-
 
     <div class="support-box">
 
@@ -2148,13 +2531,10 @@ select {
         class="support-action whatsapp-action"
         href="https://wa.me/917876260435"
         target="_blank">
-
         WhatsApp करें
-
       </a>
 
     </div>
-
 
     <div class="support-box">
 
@@ -2169,9 +2549,7 @@ select {
       <a
         class="support-action email-action"
         href="mailto:apnagrowthhub@gmail.com">
-
         Email करें
-
       </a>
 
     </div>
@@ -2192,9 +2570,7 @@ select {
     <button
       class="close-btn"
       onclick="closeModal('deleteAccountModal')">
-
       ×
-
     </button>
 
     <h2 style="color:#dc2626;">
@@ -2205,7 +2581,6 @@ select {
       Account permanently delete करने के लिए
       पहले deletion request भेजनी होगी।
     </p>
-
 
     <div class="delete-warning">
 
@@ -2235,38 +2610,28 @@ select {
 
     </div>
 
-
     <div
       id="deleteStatusBox"
       class="delete-status-box"
       style="display:none;">
-
     </div>
-
 
     <button
       id="deleteRequestBtn"
       class="danger-btn"
       onclick="deleteAccount()">
-
       🗑️ Send Delete Request
-
     </button>
-
 
     <button
       class="secondary-btn"
       onclick="closeModal('deleteAccountModal')">
-
       Cancel
-
     </button>
-
 
     <div
       id="deleteMessage"
       class="message">
-
     </div>
 
   </div>
@@ -2282,18 +2647,14 @@ select {
 
 import {
   initializeApp
-} from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
   getAuth,
   onAuthStateChanged,
   signOut,
   updatePassword
-} from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
   getFirestore,
@@ -2306,8 +2667,7 @@ import {
   query,
   where,
   getDocs
-} from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 /* =========================================================
@@ -2317,7 +2677,7 @@ import {
 const firebaseConfig = {
 
   apiKey:
-    "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
+    "AIzaSyBasu6SpqOqvldxWEmTHs9WUSTXsK2qz-0w",
 
   authDomain:
     "apna-growth-hub.firebaseapp.com",
@@ -2349,10 +2709,8 @@ const auth =
 const db =
   getFirestore(app);
 
-
 const welcomeCard =
   document.getElementById("welcomeCard");
-
 
 let currentCustomerData = {};
 
@@ -2361,16 +2719,16 @@ let currentCustomerData = {};
    AGE
 ========================================================= */
 
-function calculateAgeFromDOB(dob) {
+function calculateAgeFromDOB(dob){
 
-  if (!dob) {
+  if(!dob){
     return "";
   }
 
   const birthDate =
     new Date(dob);
 
-  if (isNaN(birthDate.getTime())) {
+  if(isNaN(birthDate.getTime())){
     return "";
   }
 
@@ -2385,20 +2743,17 @@ function calculateAgeFromDOB(dob) {
     today.getMonth() -
     birthDate.getMonth();
 
-  if (
+  if(
     monthDifference < 0 ||
     (
       monthDifference === 0 &&
       today.getDate() < birthDate.getDate()
     )
-  ) {
-
+  ){
     age--;
-
   }
 
   return age;
-
 }
 
 
@@ -2406,7 +2761,7 @@ function calculateAgeFromDOB(dob) {
    LOCAL CUSTOMER DATA
 ========================================================= */
 
-function getLocalCustomerData(user) {
+function getLocalCustomerData(user){
 
   const localDOB =
     localStorage.getItem("customerDOB") || "";
@@ -2414,14 +2769,12 @@ function getLocalCustomerData(user) {
   let localAge =
     localStorage.getItem("customerAge") || "";
 
-  if (
+  if(
     (!localAge || localAge === "null") &&
     localDOB
-  ) {
-
+  ){
     localAge =
       calculateAgeFromDOB(localDOB);
-
   }
 
   return {
@@ -2455,7 +2808,7 @@ function getLocalCustomerData(user) {
    CREATE / REPAIR PROFILE
 ========================================================= */
 
-async function createOrRepairCustomer(user) {
+async function createOrRepairCustomer(user){
 
   const customerRef =
     doc(
@@ -2471,7 +2824,7 @@ async function createOrRepairCustomer(user) {
     getLocalCustomerData(user);
 
 
-  if (customerSnap.exists()) {
+  if(customerSnap.exists()){
 
     const existingData =
       customerSnap.data();
@@ -2486,16 +2839,13 @@ async function createOrRepairCustomer(user) {
     let age =
       existingData.age;
 
-
-    if (
+    if(
       age === undefined ||
       age === null ||
       age === ""
-    ) {
-
+    ){
       age =
         calculateAgeFromDOB(dob);
-
     }
 
 
@@ -2540,16 +2890,15 @@ async function createOrRepairCustomer(user) {
           serverTimestamp()
       },
       {
-        merge: true
+        merge:true
       }
     );
 
 
-    currentCustomerData =
-      {
-        ...existingData,
-        ...repairedData
-      };
+    currentCustomerData = {
+      ...existingData,
+      ...repairedData
+    };
 
 
     localStorage.setItem(
@@ -2623,14 +2972,13 @@ async function createOrRepairCustomer(user) {
     customerRef,
     newCustomerData,
     {
-      merge: true
+      merge:true
     }
   );
 
 
   currentCustomerData =
     newCustomerData;
-
 
   return newCustomerData;
 
@@ -2641,9 +2989,9 @@ async function createOrRepairCustomer(user) {
    DELETE REQUEST CHECK
 ========================================================= */
 
-async function checkDeleteRequest(user) {
+async function checkDeleteRequest(user){
 
-  try {
+  try{
 
     const requestQuery =
       query(
@@ -2665,7 +3013,7 @@ async function checkDeleteRequest(user) {
       );
 
 
-    if (snapshot.empty) {
+    if(snapshot.empty){
       return null;
     }
 
@@ -2674,13 +3022,13 @@ async function checkDeleteRequest(user) {
 
 
     snapshot.forEach(
-      function(docSnap) {
+      function(docSnap){
 
         const data =
           docSnap.data();
 
 
-        if (
+        if(
           !latestRequest ||
           (
             data.createdAt &&
@@ -2688,7 +3036,7 @@ async function checkDeleteRequest(user) {
             data.createdAt.seconds >
             latestRequest.createdAt.seconds
           )
-        ) {
+        ){
 
           latestRequest = {
 
@@ -2707,7 +3055,7 @@ async function checkDeleteRequest(user) {
 
     return latestRequest;
 
-  } catch (error) {
+  }catch(error){
 
     console.error(
       "Delete request check error:",
@@ -2725,7 +3073,7 @@ async function checkDeleteRequest(user) {
    DELETE REQUEST STATUS
 ========================================================= */
 
-function showDeleteRequestStatus(request) {
+function showDeleteRequestStatus(request){
 
   const statusBox =
     document.getElementById(
@@ -2738,7 +3086,7 @@ function showDeleteRequestStatus(request) {
     );
 
 
-  if (!request) {
+  if(!request){
 
     statusBox.style.display =
       "none";
@@ -2767,7 +3115,7 @@ function showDeleteRequestStatus(request) {
     "block";
 
 
-  if (status === "pending") {
+  if(status === "pending"){
 
     statusBox.className =
       "delete-status-box";
@@ -2790,7 +3138,7 @@ function showDeleteRequestStatus(request) {
 
   }
 
-  else if (status === "rejected") {
+  else if(status === "rejected"){
 
     statusBox.className =
       "delete-status-box delete-status-rejected";
@@ -2813,7 +3161,7 @@ function showDeleteRequestStatus(request) {
 
   }
 
-  else if (status === "approved") {
+  else if(status === "approved"){
 
     statusBox.className =
       "delete-status-box delete-status-approved";
@@ -2845,9 +3193,9 @@ function showDeleteRequestStatus(request) {
 
 onAuthStateChanged(
   auth,
-  async (user) => {
+  async(user)=>{
 
-    if (!user) {
+    if(!user){
 
       window.location.href =
         "index.html";
@@ -2857,12 +3205,10 @@ onAuthStateChanged(
     }
 
 
-    try {
+    try{
 
       const customerData =
-        await createOrRepairCustomer(
-          user
-        );
+        await createOrRepairCustomer(user);
 
 
       let customerName =
@@ -2870,29 +3216,24 @@ onAuthStateChanged(
         user.displayName ||
         "Customer";
 
-
       let age =
         customerData.age ?? "";
 
-
       let dob =
         customerData.dob || "";
-
 
       let mobile =
         customerData.mobile || "";
 
 
-      if (
+      if(
         age === "" ||
         age === null ||
         age === undefined
-      ) {
+      ){
 
         age =
-          calculateAgeFromDOB(
-            dob
-          );
+          calculateAgeFromDOB(dob);
 
       }
 
@@ -2904,7 +3245,7 @@ onAuthStateChanged(
         </div>
 
         <h1>
-          Welcome, ${escapeHTML(customerName)} 👋
+          नमस्ते! ${escapeHTML(customerName)} 👋
         </h1>
 
         <p>
@@ -2927,6 +3268,7 @@ onAuthStateChanged(
               : ""
           }
 
+
           ${
             dob
               ? `
@@ -2937,6 +3279,7 @@ onAuthStateChanged(
               : ""
           }
 
+
           <div class="profile-box">
             📧 ${escapeHTML(
               customerData.email ||
@@ -2944,6 +3287,7 @@ onAuthStateChanged(
               ""
             )}
           </div>
+
 
           ${
             mobile
@@ -2959,8 +3303,7 @@ onAuthStateChanged(
 
       `;
 
-
-    } catch (error) {
+    }catch(error){
 
       console.error(
         "Profile load error:",
@@ -2975,7 +3318,7 @@ onAuthStateChanged(
         </div>
 
         <h1>
-          Welcome 👋
+          नमस्ते! 👋
         </h1>
 
         <p>
@@ -2994,24 +3337,21 @@ onAuthStateChanged(
    ESCAPE HTML
 ========================================================= */
 
-function escapeHTML(value) {
+function escapeHTML(value){
 
-  if (
+  if(
     value === null ||
     value === undefined
-  ) {
-
+  ){
     return "";
-
   }
 
   return String(value)
-
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
@@ -3021,7 +3361,7 @@ function escapeHTML(value) {
 ========================================================= */
 
 window.openPage =
-function(page) {
+function(page){
 
   window.location.href =
     page;
@@ -3034,7 +3374,7 @@ function(page) {
 ========================================================= */
 
 window.toggleMenu =
-function() {
+function(){
 
   const menu =
     document.getElementById(
@@ -3051,7 +3391,7 @@ function() {
 ========================================================= */
 
 window.showNotifications =
-function() {
+function(){
 
   alert(
     "🔔 अभी कोई नई notification नहीं है।"
@@ -3065,7 +3405,7 @@ function() {
 ========================================================= */
 
 window.showPackageMessage =
-function(packageName) {
+function(packageName){
 
   alert(
     packageName +
@@ -3076,11 +3416,299 @@ function(packageName) {
 
 
 /* =========================================================
+   MY PLANS
+========================================================= */
+
+window.openMyPlans =
+async function(){
+
+  const modal =
+    document.getElementById(
+      "myPlansModal"
+    );
+
+  const loading =
+    document.getElementById(
+      "myPlansLoading"
+    );
+
+  const list =
+    document.getElementById(
+      "myPlansList"
+    );
+
+  const message =
+    document.getElementById(
+      "myPlansMessage"
+    );
+
+
+  modal.style.display =
+    "block";
+
+  loading.style.display =
+    "block";
+
+  list.innerHTML =
+    "";
+
+  message.style.display =
+    "none";
+
+
+  const user =
+    auth.currentUser;
+
+
+  if(!user){
+
+    loading.style.display =
+      "none";
+
+    message.style.display =
+      "block";
+
+    message.textContent =
+      "कृपया पहले login करें।";
+
+    return;
+
+  }
+
+
+  try{
+
+    const savedPlansRef =
+      collection(
+        db,
+        "customers",
+        user.uid,
+        "savedPlans"
+      );
+
+
+    const snapshot =
+      await getDocs(
+        savedPlansRef
+      );
+
+
+    loading.style.display =
+      "none";
+
+
+    if(snapshot.empty){
+
+      message.style.display =
+        "block";
+
+      message.textContent =
+        "अभी आपने कोई LIC Plan save नहीं किया है।";
+
+      return;
+
+    }
+
+
+    snapshot.forEach((planDoc)=>{
+
+      const plan =
+        planDoc.data();
+
+
+      const card =
+        document.createElement("div");
+
+
+      card.className =
+        "saved-plan-card";
+
+
+      const name =
+        escapeHTML(
+          plan.name ||
+          "LIC Plan"
+        );
+
+
+      const category =
+        escapeHTML(
+          plan.category ||
+          "LIC Plan"
+        );
+
+
+      const benefits =
+        escapeHTML(
+          plan.benefits ||
+          ""
+        );
+
+
+      const officialLink =
+        plan.officialLink ||
+        "";
+
+
+    const validOfficialLink =
+  /^https?:\/\/.+/i.test(
+    officialLink
+  );
+
+      card.innerHTML = `
+
+        <h3>
+          ${name}
+        </h3>
+
+        <span class="saved-plan-category">
+          ${category}
+        </span>
+
+        <p>
+          ${benefits}
+        </p>
+
+        <div class="saved-plan-actions">
+
+          ${
+            validOfficialLink
+              ? `
+                <button class="official-saved-btn">
+                  🔗 Official LIC
+                </button>
+              `
+              : ""
+          }
+
+          <button
+            class="secondary remove-saved-plan-btn">
+            🗑 Remove
+          </button>
+
+        </div>
+
+      `;
+
+
+      const officialBtn =
+        card.querySelector(
+          ".official-saved-btn"
+        );
+
+
+      if(officialBtn){
+
+        officialBtn.addEventListener(
+          "click",
+          function(){
+
+            window.open(
+              officialLink,
+              "_blank",
+              "noopener,noreferrer"
+            );
+
+          }
+        );
+
+      }
+
+
+      const removeBtn =
+        card.querySelector(
+          ".remove-saved-plan-btn"
+        );
+
+
+      removeBtn.addEventListener(
+        "click",
+        async function(){
+
+          const removeConfirmed =
+            confirm(
+              "क्या आप यह saved plan हटाना चाहते हैं?"
+            );
+
+
+          if(!removeConfirmed){
+            return;
+          }
+
+
+          try{
+
+            const {
+              deleteDoc,
+              doc
+            } = await import(
+              "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
+            );
+
+
+            await deleteDoc(
+              doc(
+                db,
+                "customers",
+                user.uid,
+                "savedPlans",
+                planDoc.id
+              )
+            );
+
+
+            card.remove();
+
+
+            if(!list.children.length){
+
+              message.style.display =
+                "block";
+
+              message.textContent =
+                "अभी आपने कोई LIC Plan save नहीं किया है।";
+
+            }
+
+          }catch(error){
+
+            alert(
+              "Plan हटाया नहीं जा सका।"
+            );
+
+          }
+
+        }
+      );
+
+
+      list.appendChild(card);
+
+    });
+
+
+  }catch(error){
+
+    loading.style.display =
+      "none";
+
+    message.style.display =
+      "block";
+
+    message.textContent =
+      "Saved plans load नहीं हो पाए।";
+
+  }
+
+};
+
+
+/* =========================================================
    COMING SOON
 ========================================================= */
 
 window.showComingSoon =
-function(name) {
+function(name){
 
   alert(
     name +
@@ -3095,11 +3723,11 @@ function(name) {
 ========================================================= */
 
 window.goHome =
-function() {
+function(){
 
   window.scrollTo({
-    top: 0,
-    behavior: "smooth"
+    top:0,
+    behavior:"smooth"
   });
 
 };
@@ -3110,17 +3738,18 @@ function() {
 ========================================================= */
 
 window.goLearn =
-function() {
+function(){
 
   const section =
     document.querySelector(
       ".package-grid"
     );
 
-  if (section) {
+
+  if(section){
 
     section.scrollIntoView({
-      behavior: "smooth"
+      behavior:"smooth"
     });
 
   }
@@ -3133,13 +3762,13 @@ function() {
 ========================================================= */
 
 window.openProfile =
-async function() {
+async function(){
 
   const user =
     auth.currentUser;
 
 
-  if (!user) {
+  if(!user){
 
     window.location.href =
       "index.html";
@@ -3149,7 +3778,7 @@ async function() {
   }
 
 
-  try {
+  try{
 
     const data =
       await createOrRepairCustomer(
@@ -3194,11 +3823,11 @@ async function() {
       data.age;
 
 
-    if (
+    if(
       customerAge === undefined ||
       customerAge === null ||
       customerAge === ""
-    ) {
+    ){
 
       customerAge =
         calculateAgeFromDOB(
@@ -3208,11 +3837,11 @@ async function() {
     }
 
 
-    if (
+    if(
       customerAge === "" ||
       customerAge === null ||
       customerAge === undefined
-    ) {
+    ){
 
       customerAge =
         localStorage.getItem(
@@ -3252,12 +3881,13 @@ async function() {
       "block";
 
 
-  } catch (error) {
+  }catch(error){
 
     console.error(
       "Profile load error:",
       error
     );
+
 
     alert(
       "Profile details load नहीं हो पाईं।"
@@ -3273,13 +3903,13 @@ async function() {
 ========================================================= */
 
 window.saveProfile =
-async function() {
+async function(){
 
   const user =
     auth.currentUser;
 
 
-  if (!user) {
+  if(!user){
     return;
   }
 
@@ -3302,7 +3932,7 @@ async function() {
     );
 
 
-  if (!name) {
+  if(!name){
 
     message.style.color =
       "#dc2626";
@@ -3315,7 +3945,7 @@ async function() {
   }
 
 
-  try {
+  try{
 
     const customerRef =
       doc(
@@ -3348,7 +3978,7 @@ async function() {
 
       },
       {
-        merge: true
+        merge:true
       }
     );
 
@@ -3379,7 +4009,7 @@ async function() {
 
 
     setTimeout(
-      function() {
+      function(){
 
         location.reload();
 
@@ -3388,12 +4018,13 @@ async function() {
     );
 
 
-  } catch (error) {
+  }catch(error){
 
     console.error(
       "Profile update error:",
       error
     );
+
 
     message.style.color =
       "#dc2626";
@@ -3411,19 +4042,22 @@ async function() {
 ========================================================= */
 
 window.openChangePassword =
-function() {
+function(){
 
   document.getElementById(
     "newPassword"
-  ).value = "";
+  ).value =
+    "";
 
   document.getElementById(
     "confirmPassword"
-  ).value = "";
+  ).value =
+    "";
 
   document.getElementById(
     "passwordMessage"
-  ).textContent = "";
+  ).textContent =
+    "";
 
   document.getElementById(
     "passwordModal"
@@ -3434,13 +4068,13 @@ function() {
 
 
 window.changePassword =
-async function() {
+async function(){
 
   const user =
     auth.currentUser;
 
 
-  if (!user) {
+  if(!user){
     return;
   }
 
@@ -3463,7 +4097,7 @@ async function() {
     );
 
 
-  if (!newPassword) {
+  if(!newPassword){
 
     message.style.color =
       "#dc2626";
@@ -3476,7 +4110,7 @@ async function() {
   }
 
 
-  if (newPassword.length < 6) {
+  if(newPassword.length < 6){
 
     message.style.color =
       "#dc2626";
@@ -3489,10 +4123,7 @@ async function() {
   }
 
 
-  if (
-    newPassword !==
-    confirmPassword
-  ) {
+  if(newPassword !== confirmPassword){
 
     message.style.color =
       "#dc2626";
@@ -3505,7 +4136,7 @@ async function() {
   }
 
 
-  try {
+  try{
 
     await updatePassword(
       user,
@@ -3522,14 +4153,16 @@ async function() {
 
     document.getElementById(
       "newPassword"
-    ).value = "";
+    ).value =
+      "";
 
     document.getElementById(
       "confirmPassword"
-    ).value = "";
+    ).value =
+      "";
 
 
-  } catch (error) {
+  }catch(error){
 
     console.error(
       "Password change error:",
@@ -3541,15 +4174,15 @@ async function() {
       "#dc2626";
 
 
-    if (
+    if(
       error.code ===
       "auth/requires-recent-login"
-    ) {
+    ){
 
       message.textContent =
         "Security के लिए पहले logout करके फिर login करें, उसके बाद password change करें।";
 
-    } else {
+    }else{
 
       message.textContent =
         "Password change में समस्या आई।";
@@ -3566,7 +4199,7 @@ async function() {
 ========================================================= */
 
 window.openPrivacy =
-function() {
+function(){
 
   document.getElementById(
     "privacyModal"
@@ -3581,7 +4214,7 @@ function() {
 ========================================================= */
 
 window.openTerms =
-function() {
+function(){
 
   document.getElementById(
     "termsModal"
@@ -3596,7 +4229,7 @@ function() {
 ========================================================= */
 
 window.openDisclaimer =
-function() {
+function(){
 
   document.getElementById(
     "disclaimerModal"
@@ -3611,7 +4244,7 @@ function() {
 ========================================================= */
 
 window.openSupport =
-function() {
+function(){
 
   document.getElementById(
     "supportModal"
@@ -3626,19 +4259,22 @@ function() {
 ========================================================= */
 
 window.openSupportRequest =
-function() {
+function(){
 
   document.getElementById(
     "supportSubject"
-  ).value = "";
+  ).value =
+    "";
 
   document.getElementById(
     "supportMessage"
-  ).value = "";
+  ).value =
+    "";
 
   document.getElementById(
     "supportRequestMessage"
-  ).textContent = "";
+  ).textContent =
+    "";
 
   document.getElementById(
     "supportRequestModal"
@@ -3649,7 +4285,7 @@ function() {
 
 
 window.sendSupportRequest =
-async function() {
+async function(){
 
   const user =
     auth.currentUser;
@@ -3673,7 +4309,7 @@ async function() {
     );
 
 
-  if (!user) {
+  if(!user){
 
     message.style.color =
       "#dc2626";
@@ -3686,7 +4322,7 @@ async function() {
   }
 
 
-  if (!subject) {
+  if(!subject){
 
     message.style.color =
       "#dc2626";
@@ -3699,7 +4335,7 @@ async function() {
   }
 
 
-  if (!messageText) {
+  if(!messageText){
 
     message.style.color =
       "#dc2626";
@@ -3712,7 +4348,7 @@ async function() {
   }
 
 
-  try {
+  try{
 
     await addDoc(
       collection(
@@ -3753,25 +4389,27 @@ async function() {
       "#16a34a";
 
     message.textContent =
-      "Support Request successfully भेज दी गई है।";
+      "Support Request successfully भेज दी गई है.";
 
 
     document.getElementById(
       "supportSubject"
-    ).value = "";
-
+    ).value =
+      "";
 
     document.getElementById(
       "supportMessage"
-    ).value = "";
+    ).value =
+      "";
 
 
-  } catch (error) {
+  }catch(error){
 
     console.error(
       "Support request error:",
       error
     );
+
 
     message.style.color =
       "#dc2626";
@@ -3789,7 +4427,7 @@ async function() {
 ========================================================= */
 
 window.openContact =
-function() {
+function(){
 
   document.getElementById(
     "contactModal"
@@ -3804,7 +4442,7 @@ function() {
 ========================================================= */
 
 window.openDeleteAccount =
-async function() {
+async function(){
 
   const message =
     document.getElementById(
@@ -3821,7 +4459,6 @@ async function() {
   message.textContent =
     "";
 
-
   statusBox.style.display =
     "none";
 
@@ -3830,7 +4467,7 @@ async function() {
     auth.currentUser;
 
 
-  if (!user) {
+  if(!user){
 
     window.location.href =
       "index.html";
@@ -3864,7 +4501,7 @@ async function() {
 ========================================================= */
 
 window.deleteAccount =
-async function() {
+async function(){
 
   const user =
     auth.currentUser;
@@ -3882,7 +4519,7 @@ async function() {
     );
 
 
-  if (!user) {
+  if(!user){
 
     window.location.href =
       "index.html";
@@ -3892,7 +4529,7 @@ async function() {
   }
 
 
-  try {
+  try{
 
     const existingRequest =
       await checkDeleteRequest(
@@ -3900,12 +4537,12 @@ async function() {
       );
 
 
-    if (
+    if(
       existingRequest &&
       String(
         existingRequest.status
       ).toLowerCase() === "pending"
-    ) {
+    ){
 
       message.style.color =
         "#dc2626";
@@ -3923,12 +4560,12 @@ async function() {
     }
 
 
-    if (
+    if(
       existingRequest &&
       String(
         existingRequest.status
       ).toLowerCase() === "approved"
-    ) {
+    ){
 
       message.style.color =
         "#16a34a";
@@ -3947,7 +4584,7 @@ async function() {
       );
 
 
-    if (!confirmed) {
+    if(!confirmed){
       return;
     }
 
@@ -4016,7 +4653,7 @@ async function() {
       "#16a34a";
 
     message.textContent =
-      "✅ Delete request successfully भेज दी गई है।";
+      "✅ Delete request successfully भेज दी गई है.";
 
 
     const newRequest = {
@@ -4033,7 +4670,7 @@ async function() {
 
 
     setTimeout(
-      function() {
+      function(){
 
         closeModal(
           "deleteAccountModal"
@@ -4044,7 +4681,7 @@ async function() {
     );
 
 
-  } catch (error) {
+  }catch(error){
 
     console.error(
       "Delete request error:",
@@ -4075,7 +4712,7 @@ async function() {
 ========================================================= */
 
 window.closeModal =
-function(id) {
+function(id){
 
   document.getElementById(
     id
@@ -4091,7 +4728,7 @@ function(id) {
 
 window.addEventListener(
   "click",
-  function(event) {
+  function(event){
 
     const modals =
       document.querySelectorAll(
@@ -4100,12 +4737,12 @@ window.addEventListener(
 
 
     modals.forEach(
-      function(modal) {
+      function(modal){
 
-        if (
+        if(
           event.target ===
           modal
-        ) {
+        ){
 
           modal.style.display =
             "none";
@@ -4128,12 +4765,12 @@ window.addEventListener(
       );
 
 
-    if (
+    if(
       menu &&
       menu.classList.contains("show") &&
       !menu.contains(event.target) &&
       !menuButton
-    ) {
+    ){
 
       menu.classList.remove(
         "show"
@@ -4150,21 +4787,23 @@ window.addEventListener(
 ========================================================= */
 
 window.logout =
-async function() {
+async function(){
 
-  try {
+  try{
 
     await signOut(auth);
 
     window.location.href =
       "index.html";
 
-  } catch (error) {
+
+  }catch(error){
 
     console.error(
       "Logout error:",
       error
     );
+
 
     alert(
       "Logout में समस्या आई।"
@@ -4177,5 +4816,4 @@ async function() {
 </script>
 
 </body>
-
 </html>

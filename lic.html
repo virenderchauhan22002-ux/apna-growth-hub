@@ -1,544 +1,166 @@
 <!DOCTYPE html>
 <html lang="hi">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>LIC Plans - Apna Growth Hub</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 20px;
-      font-family: Arial, sans-serif;
-      background: #f1f8ff;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: auto;
-    }
-
-    h1 {
-      text-align: center;
-      color: #1565c0;
-      margin-bottom: 20px;
-    }
-
-    .welcome {
-      background: white;
-      padding: 15px;
-      border-radius: 12px;
-      text-align: center;
-      margin-bottom: 20px;
-      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.10);
-    }
-
-    .welcome h3 {
-      margin-top: 0;
-      color: #1565c0;
-    }
-
-    .welcome p {
-      margin-bottom: 0;
-      color: #444;
-    }
-
-    .plans {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 18px;
-    }
-
-    .plan-card {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
-    }
-
-    .plan-card h2 {
-      color: #1565c0;
-      font-size: 21px;
-      margin-top: 0;
-    }
-
-    .category {
-      display: inline-block;
-      background: #e3f2fd;
-      color: #1565c0;
-      padding: 5px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      margin-bottom: 10px;
-    }
-
-    .plan-card p {
-      color: #444;
-      line-height: 1.6;
-    }
-
-    .age-range {
-      font-size: 13px;
-      color: #666;
-      margin-bottom: 12px;
-    }
-
-    .plan-card button {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      background: #1565c0;
-      color: white;
-      font-size: 15px;
-      cursor: pointer;
-      margin-top: 8px;
-    }
-
-    .plan-card button:hover {
-      background: #0d47a1;
-    }
-
-    .plan-card .official-btn {
-      background: #2e7d32;
-    }
-
-    .plan-card .official-btn:hover {
-      background: #1b5e20;
-    }
-
-    .plan-card .inquiry-btn {
-      background: #ff6f00;
-    }
-
-    .plan-card .inquiry-btn:hover {
-      background: #e65100;
-    }
-
-    .message {
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 10px;
-      text-align: center;
-      background: #fff3cd;
-      color: #856404;
-    }
-
-    .details-box {
-      display: none;
-      margin-top: 12px;
-      padding: 12px;
-      background: #f5f9ff;
-      border-radius: 8px;
-      color: #333;
-      line-height: 1.6;
-      white-space: pre-line;
-    }
-
-    .back-button {
-      display: block;
-      max-width: 300px;
-      margin: 25px auto 0;
-      padding: 13px;
-      text-align: center;
-      text-decoration: none;
-      color: white;
-      background: #2e7d32;
-      border-radius: 10px;
-      font-weight: bold;
-    }
-
-    .back-button:hover {
-      background: #1b5e20;
-    }
-
-    .loading {
-      text-align: center;
-      padding: 20px;
-      color: #1565c0;
-      font-weight: bold;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIC Plans - Apna Growth Hub</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;padding:20px;font-family:Arial,sans-serif;background:#f1f8ff}
+.container{max-width:900px;margin:auto}
+h1{text-align:center;color:#1565c0;margin-bottom:20px}
+.welcome{background:white;padding:15px;border-radius:12px;text-align:center;margin-bottom:20px;box-shadow:0 3px 12px rgba(0,0,0,.10)}
+.welcome h3{margin-top:0;color:#1565c0}.welcome p{margin-bottom:0;color:#444}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.plan-card{background:white;padding:20px;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,.10)}
+.plan-card h2{color:#1565c0;font-size:21px;margin-top:0}.category{display:inline-block;background:#e3f2fd;color:#1565c0;padding:5px 10px;border-radius:20px;font-size:12px;margin-bottom:10px}
+.plan-card p{color:#444;line-height:1.6}.age-range{font-size:13px;color:#666;margin-bottom:12px}
+.plan-card button{width:100%;padding:12px;border:none;border-radius:8px;background:#1565c0;color:white;font-size:15px;cursor:pointer;margin-top:8px}
+.plan-card button:hover{background:#0d47a1}.plan-card .official-btn{background:#2e7d32}.plan-card .official-btn:hover{background:#1b5e20}
+.plan-card .inquiry-btn{background:#ff6f00}.plan-card .inquiry-btn:hover{background:#e65100}
+.plan-card .save-btn{background:#7b1fa2}.plan-card .save-btn:hover{background:#4a148c}.plan-card .save-btn.saved{background:#2e7d32}
+.message{margin-top:20px;padding:15px;border-radius:10px;text-align:center;background:#fff3cd;color:#856404}
+.details-box{display:none;margin-top:12px;padding:12px;background:#f5f9ff;border-radius:8px;color:#333;line-height:1.6;white-space:pre-line}
+.back-button{display:block;max-width:300px;margin:25px auto 0;padding:13px;text-align:center;text-decoration:none;color:white;background:#2e7d32;border-radius:10px;font-weight:bold}
+.back-button:hover{background:#1b5e20}.loading{text-align:center;padding:20px;color:#1565c0;font-weight:bold}
+</style>
 </head>
-
 <body>
-
-  <div class="container">
-
-    <h1>LIC Plans</h1>
-
-    <div class="welcome">
-      <h3 id="welcomeText">Welcome</h3>
-      <p id="ageText"></p>
-    </div>
-
-    <div id="loadingBox" class="loading">
-      LIC Plans load हो रहे हैं...
-    </div>
-
-    <div class="plans" id="plansContainer"></div>
-
-    <div id="messageBox"></div>
-
-    <a href="dashboard.html" class="back-button">
-      Dashboard पर वापस जाएँ
-    </a>
-
-  </div>
-
-
-  <script type="module">
-
-    import {
-      initializeApp
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-    import {
-      getFirestore,
-      collection,
-      getDocs
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-
-    // Firebase Configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
-      authDomain: "apna-growth-hub.firebaseapp.com",
-      projectId: "apna-growth-hub",
-      storageBucket: "apna-growth-hub.firebasestorage.app",
-      messagingSenderId: "939001251123",
-      appId: "1:939001251123:web:f2966004acaa64186e2a46",
-      measurementId: "G-GZGCHL4XQ3"
-    };
-
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-
-    // Customer Information
-    const customerName =
-      localStorage.getItem("customerName");
-
-    const customerAge =
-      localStorage.getItem("customerAge");
-
-    const age =
-      Number(customerAge);
-
-
-    const welcomeText =
-      document.getElementById("welcomeText");
-
-    const ageText =
-      document.getElementById("ageText");
-
-    const messageBox =
-      document.getElementById("messageBox");
-
-    const plansContainer =
-      document.getElementById("plansContainer");
-
-    const loadingBox =
-      document.getElementById("loadingBox");
-
-
-    // Customer information check
-    if (
-      !customerName ||
-      customerAge === null ||
-      customerAge === "" ||
-      isNaN(age)
-    ) {
-
-      loadingBox.style.display = "none";
-
-      welcomeText.textContent =
-        "कृपया पहले अपनी जानकारी भरें।";
-
-      ageText.textContent = "";
-
-      messageBox.innerHTML = `
-        <div class="message">
-          पहले index.html पर Name और Date of Birth
-          भरकर Save करें।
-        </div>
-      `;
-
-    } else {
-
-      welcomeText.textContent =
-        "Welcome " + customerName + " ji";
-
-      ageText.textContent =
-        "आपकी उम्र: " + age + " साल";
-
-      loadLicPlans();
-
-    }
-
-
-    // Firebase से LIC Plans लाना
-    async function loadLicPlans() {
-
-      try {
-
-        const snapshot =
-          await getDocs(collection(db, "licPlans"));
-
-        loadingBox.style.display = "none";
-
-        let visiblePlans = 0;
-
-        snapshot.forEach((docSnapshot) => {
-
-          const plan =
-            docSnapshot.data();
-
-          const minAge =
-            Number(plan.minAge);
-
-          const maxAge =
-            Number(plan.maxAge);
-
-
-          // Active Plan + Age filtering
-          if (
-            plan.active !== false &&
-            !isNaN(minAge) &&
-            !isNaN(maxAge) &&
-            age >= minAge &&
-            age <= maxAge
-          ) {
-
-            visiblePlans++;
-
-            createPlanCard(
-              docSnapshot.id,
-              plan
-            );
-
-          }
-
-        });
-
-
-        // कोई plan available नहीं
-        if (visiblePlans === 0) {
-
-          messageBox.innerHTML = `
-            <div class="message">
-              आपकी उम्र के लिए अभी कोई LIC Plan उपलब्ध नहीं है।
-            </div>
-          `;
-
-        }
-
-      } catch (error) {
-
-        loadingBox.style.display = "none";
-
-        messageBox.innerHTML = `
-          <div class="message">
-            LIC Plans load नहीं हो पाए।
-            <br><br>
-            ${escapeHTML(error.message)}
-          </div>
-        `;
-
-      }
-
-    }
-
-
-    // Plan Card बनाना
-    function createPlanCard(planId, plan) {
-
-      const card =
-        document.createElement("div");
-
-      card.className =
-        "plan-card";
-
-
-      const name =
-        plan.name || "LIC Plan";
-
-      const category =
-        plan.category || "LIC Plan";
-
-      const benefits =
-        plan.benefits || "इस plan की जानकारी जल्द उपलब्ध होगी।";
-
-      const details =
-        plan.details || "इस plan की विस्तृत जानकारी उपलब्ध नहीं है।";
-
-      const minAge =
-        plan.minAge ?? "-";
-
-      const maxAge =
-        plan.maxAge ?? "-";
-
-      const officialLink =
-        plan.officialLink || "";
-
-
-      // Official LIC link validation
-      const validOfficialLink =
-        /^https?:\/\/.+/i.test(officialLink);
-
-
-      const officialButton =
-        validOfficialLink
-          ? `
-            <button class="official-btn">
-              🔗 Official LIC Website
-            </button>
-          `
-          : "";
-
-
-      card.innerHTML = `
-
-        <h2>
-          ${escapeHTML(name)}
-        </h2>
-
-        <span class="category">
-          ${escapeHTML(category)}
-        </span>
-
-        <div class="age-range">
-          Eligible Age: ${escapeHTML(String(minAge))}
-          -
-          ${escapeHTML(String(maxAge))} Years
-        </div>
-
-        <p>
-          ${escapeHTML(benefits)}
-        </p>
-
-        <button class="details-btn">
-          📋 Plan Details
-        </button>
-
-        <div class="details-box">
-          ${escapeHTML(details)}
-        </div>
-
-        ${officialButton}
-
-        <button class="inquiry-btn">
-          📩 LIC Inquiry
-        </button>
-
-      `;
-
-
-      // Plan Details button
-      const detailsButton =
-        card.querySelector(".details-btn");
-
-      const detailsBox =
-        card.querySelector(".details-box");
-
-
-      detailsButton.addEventListener(
-        "click",
-        function () {
-
-          if (
-            detailsBox.style.display === "block"
-          ) {
-
-            detailsBox.style.display =
-              "none";
-
-            detailsButton.textContent =
-              "📋 Plan Details";
-
-          } else {
-
-            detailsBox.style.display =
-              "block";
-
-            detailsButton.textContent =
-              "📋 Hide Details";
-
-          }
-
-        }
-      );
-
-
-      // Official LIC Website button
-      if (validOfficialLink) {
-
-        const officialButtonElement =
-          card.querySelector(".official-btn");
-
-        officialButtonElement.addEventListener(
-          "click",
-          function () {
-
-            window.open(
-              officialLink,
-              "_blank",
-              "noopener,noreferrer"
-            );
-
-          }
-        );
-
-      }
-
-
-      // Inquiry button
-      const inquiryButton =
-        card.querySelector(".inquiry-btn");
-
-
-      inquiryButton.addEventListener(
-        "click",
-        function () {
-
-          localStorage.setItem(
-            "selectedPlan",
-            name
-          );
-
-          window.location.href =
-            "customer-inquiry.html";
-
-        }
-      );
-
-
-      plansContainer.appendChild(card);
-
-    }
-
-
-    // Security: HTML escape
-    function escapeHTML(value) {
-
-      return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-    }
-
-  </script>
-
+<div class="container">
+<h1>LIC Plans</h1>
+<div class="welcome"><h3 id="welcomeText">Welcome</h3><p id="ageText"></p></div>
+<div id="loadingBox" class="loading">LIC Plans load हो रहे हैं...</div>
+<div class="plans" id="plansContainer"></div>
+<div id="messageBox"></div>
+<a href="dashboard.html" class="back-button">Dashboard पर वापस जाएँ</a>
+</div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, collection, getDocs, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig={
+ apiKey:"AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
+ authDomain:"apna-growth-hub.firebaseapp.com",
+ projectId:"apna-growth-hub",
+ storageBucket:"apna-growth-hub.firebasestorage.app",
+ messagingSenderId:"939001251123",
+ appId:"1:939001251123:web:f2966004acaa64186e2a46",
+ measurementId:"G-GZGCHL4XQ3"
+};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+
+const customerName=localStorage.getItem("customerName");
+const customerAge=localStorage.getItem("customerAge");
+const age=Number(customerAge);
+const welcomeText=document.getElementById("welcomeText");
+const ageText=document.getElementById("ageText");
+const messageBox=document.getElementById("messageBox");
+const plansContainer=document.getElementById("plansContainer");
+const loadingBox=document.getElementById("loadingBox");
+
+if(!customerName||customerAge===null||customerAge===""||isNaN(age)){
+ loadingBox.style.display="none";
+ welcomeText.textContent="कृपया पहले अपनी जानकारी भरें।";
+ ageText.textContent="";
+ messageBox.innerHTML=`<div class="message">पहले index.html पर Name और Date of Birth भरकर Save करें।</div>`;
+}else{
+ welcomeText.textContent="Welcome "+customerName+" ji";
+ ageText.textContent="आपकी उम्र: "+age+" साल";
+ loadLicPlans();
+}
+
+async function loadLicPlans(){
+ try{
+  const snapshot=await getDocs(collection(db,"licPlans"));
+  loadingBox.style.display="none";
+  let visiblePlans=0;
+  snapshot.forEach(docSnapshot=>{
+   const plan=docSnapshot.data();
+   const minAge=Number(plan.minAge); const maxAge=Number(plan.maxAge);
+   if(plan.active!==false&&!isNaN(minAge)&&!isNaN(maxAge)&&age>=minAge&&age<=maxAge){
+    visiblePlans++; createPlanCard(docSnapshot.id,plan);
+   }
+  });
+  if(visiblePlans===0){messageBox.innerHTML=`<div class="message">आपकी उम्र के लिए अभी कोई LIC Plan उपलब्ध नहीं है।</div>`;}
+ }catch(error){
+  loadingBox.style.display="none";
+  messageBox.innerHTML=`<div class="message">LIC Plans load नहीं हो पाए।<br><br>${escapeHTML(error.message)}</div>`;
+ }
+}
+
+function createPlanCard(planId,plan){
+ const card=document.createElement("div"); card.className="plan-card";
+ const name=plan.name||"LIC Plan";
+ const category=plan.category||"LIC Plan";
+ const benefits=plan.benefits||"इस plan की जानकारी जल्द उपलब्ध होगी।";
+ const details=plan.details||"इस plan की विस्तृत जानकारी उपलब्ध नहीं है।";
+ const minAge=plan.minAge??"-"; const maxAge=plan.maxAge??"-";
+ const officialLink=plan.officialLink||"";
+ const validOfficialLink=/^https?:\/\/.+/i.test(officialLink);
+ const officialButton=validOfficialLink?`<button class="official-btn">🔗 Official LIC Website</button>`:"";
+ card.innerHTML=`
+  <h2>${escapeHTML(name)}</h2>
+  <span class="category">${escapeHTML(category)}</span>
+  <div class="age-range">Eligible Age: ${escapeHTML(String(minAge))} - ${escapeHTML(String(maxAge))} Years</div>
+  <p>${escapeHTML(benefits)}</p>
+  <button class="details-btn">📋 Plan Details</button>
+  <div class="details-box">${escapeHTML(details)}</div>
+  <button class="save-btn">⭐ Save This Plan</button>
+  ${officialButton}
+  <button class="inquiry-btn">📩 LIC Inquiry</button>`;
+
+ const detailsButton=card.querySelector(".details-btn");
+ const detailsBox=card.querySelector(".details-box");
+ detailsButton.addEventListener("click",function(){
+  if(detailsBox.style.display==="block"){detailsBox.style.display="none";detailsButton.textContent="📋 Plan Details";}
+  else{detailsBox.style.display="block";detailsButton.textContent="📋 Hide Details";}
+ });
+
+ const saveButton=card.querySelector(".save-btn");
+ saveButton.addEventListener("click",async function(){
+  const user=auth.currentUser;
+  if(!user){
+   alert("कृपया पहले login करें।");
+   window.location.href="index.html";
+   return;
+  }
+  saveButton.disabled=true;
+  try{
+   await setDoc(doc(db,"customers",user.uid,"savedPlans",planId),{
+    planId:planId,
+    name:name,
+    category:category,
+    benefits:benefits,
+    details:details,
+    minAge:minAge,
+    maxAge:maxAge,
+    officialLink:officialLink,
+    savedAt:serverTimestamp()
+   });
+   saveButton.textContent="✅ Plan Saved";
+   saveButton.classList.add("saved");
+  }catch(error){
+   console.error(error);
+   alert("Plan save नहीं हो पाया।");
+  }finally{saveButton.disabled=false;}
+ });
+
+ if(validOfficialLink){
+  card.querySelector(".official-btn").addEventListener("click",function(){window.open(officialLink,"_blank","noopener,noreferrer");});
+ }
+
+ card.querySelector(".inquiry-btn").addEventListener("click",function(){
+  localStorage.setItem("selectedPlan",name);
+  window.location.href="customer-inquiry.html";
+ });
+ plansContainer.appendChild(card);
+}
+
+function escapeHTML(value){return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");}
+</script>
 </body>
-
 </html>
