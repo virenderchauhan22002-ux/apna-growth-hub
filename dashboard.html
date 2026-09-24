@@ -1319,7 +1319,7 @@
         <button
           type="button"
           class="icon-btn"
-          onclick="showToast('Notifications coming soon.')"
+          onclick="openNotifications()"
           aria-label="Notifications"
         >
           🔔
@@ -1389,162 +1389,15 @@
         </div>
 
 
-        <div class="grid">
+        <div
+          class="grid"
+          id="packagesGrid"
+        >
 
-
-          <!-- STARTER -->
-
-          <div
-            class="card clickable"
-            onclick="openPackage('Starter')"
-          >
-
-            <div class="card-icon">
-              🌱
-            </div>
-
-            <h3>
-              Starter
-            </h3>
-
-            <p>
-              Start your learning journey
-              with essential digital skills.
-            </p>
-
-            <div class="package-count">
-              3 Courses
-            </div>
-
-            <div class="course-list">
-
-              <div>
-                Digital Skills Basics
-              </div>
-
-              <div>
-                AI Tools Basics
-              </div>
-
-              <div>
-                Social Media Basics
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <!-- GROWTH -->
-
-          <div
-            class="card clickable"
-            onclick="openPackage('Growth')"
-          >
-
-            <div class="card-icon">
-              📈
-            </div>
-
-            <h3>
-              Growth
-            </h3>
-
-            <p>
-              Build practical skills for
-              content, YouTube and earning.
-            </p>
-
-            <div class="package-count">
-              7 Courses
-            </div>
-
-            <div class="course-list">
-
-              <div>
-                Video Editing Basics
-              </div>
-
-              <div>
-                YouTube Basics
-              </div>
-
-              <div>
-                Online Earning Basics
-              </div>
-
-              <div>
-                Freelancing Basics
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <!-- PRO -->
-
-          <div
-            class="card clickable"
-            onclick="openPackage('Pro')"
-          >
-
-            <div class="card-icon">
-              🚀
-            </div>
-
-            <h3>
-              Pro
-            </h3>
-
-            <p>
-              Advanced tools and
-              content monetization skills.
-            </p>
-
-            <div class="package-count">
-              9 Courses
-            </div>
-
-            <div class="course-list">
-
-              <div>
-                Advanced AI Tools
-              </div>
-
-              <div>
-                Content Creation & Monetization
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <!-- ELITE -->
-
-          <div
-            class="card locked"
-            onclick="openPackage('Elite')"
-          >
-
-            <div class="card-icon">
-              👑
-            </div>
-
-            <h3>
-              Elite
-            </h3>
-
-            <p>
-              Advanced future learning
-              package.
-            </p>
-
-            <div class="coming-soon">
-              Coming Soon
-            </div>
-
+          <div class="card">
+            <div class="card-icon">⏳</div>
+            <h3>Packages Loading...</h3>
+            <p>Latest package information load ho rahi hai.</p>
           </div>
 
         </div>
@@ -1568,118 +1421,37 @@
         </div>
 
 
-        <div class="grid">
+        <div class="grid" id="servicesGrid">
 
-
-          <div
-            class="card clickable"
-            onclick="openInquiry('LIC Services')"
-          >
-
-            <div class="card-icon">
-              🏠
-            </div>
-
-            <h3>
-              LIC Services
-            </h3>
-
-            <p>
-              LIC related service aur
-              plan information ke liye enquiry.
-            </p>
-
+          <div class="card clickable" onclick="openInquiry('LIC Services')">
+            <div class="card-icon">🏠</div>
+            <h3>LIC Services</h3>
+            <p>LIC related service aur plan information ke liye enquiry.</p>
           </div>
 
-
-          <div
-            class="card clickable"
-            onclick="openInquiry('PAN Card Services')"
-          >
-
-            <div class="card-icon">
-              🪪
-            </div>
-
-            <h3>
-              PAN Card Services
-            </h3>
-
-            <p>
-              PAN related service enquiry
-              submit karein.
-            </p>
-
+          <div class="card clickable" onclick="openInquiry('PAN Card Services')">
+            <div class="card-icon">🪪</div>
+            <h3>PAN Card Services</h3>
+            <p>PAN related service enquiry submit karein.</p>
           </div>
 
-
-          <div
-            class="card clickable"
-            onclick="openFutureServices()"
-          >
-
-            <div class="card-icon">
-              🚀
-            </div>
-
-            <h3>
-              Future Services
-            </h3>
-
-            <p>
-              New services future mein
-              yahan available hongi.
-            </p>
-
+          <div class="card clickable" onclick="openInquiry('Customer Inquiry')">
+            <div class="card-icon">📩</div>
+            <h3>Customer Inquiry</h3>
+            <p>Apni requirement directly submit karein.</p>
           </div>
 
-
-          <div
-            class="card clickable"
-            onclick="openInquiry('Customer Inquiry')"
-          >
-
-            <div class="card-icon">
-              📩
-            </div>
-
-            <h3>
-              Customer Inquiry
-            </h3>
-
-            <p>
-              Apni requirement directly
-              submit karein.
-            </p>
-
+          <div class="card clickable" onclick="openTracker()">
+            <div class="card-icon">📋</div>
+            <h3>My Requests</h3>
+            <p>Apni submitted requests aur status dekhein.</p>
+            <div id="myRequestsLabel" class="package-count">View Requests →</div>
           </div>
 
-
-          <div
-            class="card clickable"
-            onclick="openTracker()"
-          >
-
-            <div class="card-icon">
-              📋
-            </div>
-
-            <h3>
-              My Requests
-            </h3>
-
-            <p>
-              Apni submitted requests
-              aur status dekhein.
-            </p>
-
-            <div
-              id="myRequestsLabel"
-              class="package-count"
-            >
-              View Requests →
-            </div>
-
+          <div class="card" id="servicesLoadingCard">
+            <div class="card-icon">⏳</div>
+            <h3>More Services Loading...</h3>
+            <p>Admin Panel se available services load ho rahi hain.</p>
           </div>
 
         </div>
@@ -1998,82 +1770,12 @@
         </div>
 
 
-        <div class="grid-2">
+        <div class="grid-2" id="resourcesGrid">
 
-
-          <div class="card clickable"
-               onclick="showToast('PDFs & Guides section coming soon.')">
-
-            <div class="card-icon">
-              📄
-            </div>
-
-            <h3>
-              PDFs / Guides
-            </h3>
-
-            <p>
-              Useful learning guides aur
-              reference material.
-            </p>
-
-          </div>
-
-
-          <div class="card clickable"
-               onclick="showToast('Checklists section coming soon.')">
-
-            <div class="card-icon">
-              ☑️
-            </div>
-
-            <h3>
-              Checklists
-            </h3>
-
-            <p>
-              Step-by-step useful
-              checklists.
-            </p>
-
-          </div>
-
-
-          <div class="card clickable"
-               onclick="showToast('Templates section coming soon.')">
-
-            <div class="card-icon">
-              🧩
-            </div>
-
-            <h3>
-              Templates
-            </h3>
-
-            <p>
-              Ready-to-use templates
-              aur resources.
-            </p>
-
-          </div>
-
-
-          <div class="card clickable"
-               onclick="showToast('Useful Tools & Links coming soon.')">
-
-            <div class="card-icon">
-              🔗
-            </div>
-
-            <h3>
-              Useful Tools & Links
-            </h3>
-
-            <p>
-              Helpful online tools
-              aur links.
-            </p>
-
+          <div class="card">
+            <div class="card-icon">⏳</div>
+            <h3>Resources Loading...</h3>
+            <p>Latest resources load ho rahe hain.</p>
           </div>
 
         </div>
@@ -2180,26 +1882,14 @@
         </div>
 
 
-        <div class="card announcement">
-
-          <div class="announcement-icon">
-            📢
+        <div id="announcementsGrid" class="grid-2">
+          <div class="card announcement">
+            <div class="announcement-icon">⏳</div>
+            <div>
+              <h3>Announcements Loading...</h3>
+              <p>Latest updates load ho rahe hain.</p>
+            </div>
           </div>
-
-          <div>
-
-            <h3>
-              Latest Updates
-            </h3>
-
-            <p>
-              New courses, packages,
-              services aur important
-              updates yahan show honge.
-            </p>
-
-          </div>
-
         </div>
 
       </section>
@@ -2218,48 +1908,8 @@
         </div>
 
 
-        <div class="feature-grid">
-
-          <div class="feature-item">
-            🏆 Rewards & Achievements
-          </div>
-
-          <div class="feature-item">
-            🎯 Daily Growth Tasks
-          </div>
-
-          <div class="feature-item">
-            🎓 Certificates & Course Completion
-          </div>
-
-          <div class="feature-item">
-            🤝 Refer & Earn
-          </div>
-
-          <div class="feature-item">
-            💡 Recommended for You
-          </div>
-
-          <div class="feature-item">
-            📋 Service Tracker
-          </div>
-
-          <div class="feature-item">
-            📊 Progress & Reports
-          </div>
-
-          <div class="feature-item">
-            💼 Jobs & Opportunities
-          </div>
-
-          <div class="feature-item">
-            💬 Community / Discussion
-          </div>
-
-          <div class="feature-item">
-            🔔 Smart Notifications
-          </div>
-
+        <div class="feature-grid" id="growthFeaturesGrid">
+          <div class="feature-item">⏳ Growth Features Loading...</div>
         </div>
 
       </section>
@@ -2572,6 +2222,63 @@
 
 
   <!-- =========================
+       NOTIFICATIONS
+  ========================= -->
+
+  <div id="notificationsModal" class="modal" onclick="if(event.target===this) closeModal('notificationsModal')">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h2>🔔 Notifications</h2>
+        <button class="modal-close" onclick="closeModal('notificationsModal')">×</button>
+      </div>
+      <div class="modal-body" id="notificationsContent">
+        <div class="loading-box">⏳ Notifications load ho rahi hain...</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =========================
+       ACCOUNT INFORMATION
+  ========================= -->
+
+  <div id="accountInfoModal" class="modal" onclick="if(event.target===this) closeModal('accountInfoModal')">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h2 id="accountInfoTitle">Information</h2>
+        <button class="modal-close" onclick="closeModal('accountInfoModal')">×</button>
+      </div>
+      <div class="modal-body" id="accountInfoContent"></div>
+    </div>
+  </div>
+
+
+  <!-- =========================
+       CHANGE PASSWORD
+  ========================= -->
+
+  <div id="passwordModal" class="modal" onclick="if(event.target===this) closeModal('passwordModal')">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h2>🔐 Change Password</h2>
+        <button class="modal-close" onclick="closeModal('passwordModal')">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>New Password</label>
+          <input id="newPassword" type="password" minlength="6" placeholder="Minimum 6 characters">
+        </div>
+        <div class="form-group">
+          <label>Confirm New Password</label>
+          <input id="confirmPassword" type="password" minlength="6" placeholder="Password dobara enter karein">
+        </div>
+        <button type="button" class="primary-btn" onclick="changePassword()">Update Password</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =========================
        ACCOUNT
   ========================= -->
 
@@ -2618,7 +2325,7 @@
 
           <button
             class="account-item"
-            onclick="showToast('Security settings coming soon.')"
+            onclick="openPasswordChange()"
           >
             <span>
               🔐 Security / Change Password
@@ -2631,7 +2338,7 @@
 
           <button
             class="account-item"
-            onclick="showToast('Help & Support coming soon.')"
+            onclick="openSupport()"
           >
             <span>
               💬 Help & Support
@@ -2644,7 +2351,7 @@
 
           <button
             class="account-item"
-            onclick="showToast('Privacy Policy page coming soon.')"
+            onclick="openPolicy('privacy')"
           >
             <span>
               🔒 Privacy Policy
@@ -2657,7 +2364,7 @@
 
           <button
             class="account-item"
-            onclick="showToast('Terms & Conditions page coming soon.')"
+            onclick="openPolicy('terms')"
           >
             <span>
               📄 Terms & Conditions
@@ -2670,7 +2377,7 @@
 
           <button
             class="account-item"
-            onclick="showToast('About Apna Growth Hub coming soon.')"
+            onclick="openPolicy('about')"
           >
             <span>
               ℹ️ About Apna Growth Hub
@@ -2816,8 +2523,7 @@
       getAuth,
       onAuthStateChanged,
       signOut,
-      setPersistence,
-      browserLocalPersistence
+      updatePassword
     } from
       "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
@@ -2877,10 +2583,6 @@
       getFirestore(app);
 
 
-    /* Keep the customer login session available across pages. */
-    await setPersistence(auth, browserLocalPersistence);
-
-
     let currentUser = null;
 
     let currentCustomerData = {};
@@ -2906,6 +2608,20 @@
         currentUser = user;
 
         await loadCustomer(user);
+
+        await loadPackages();
+
+        await loadResources();
+
+        await loadServices();
+
+        await loadAnnouncements();
+
+        await loadGrowthFeatures();
+
+        await loadNotifications();
+
+        await loadDashboardSettings();
 
         await loadRequestCount(user);
 
@@ -3132,8 +2848,560 @@
 
 
     /* =========================
-       PACKAGE
+       PACKAGES
     ========================= */
+
+    function packageText(value){
+
+      return String(
+        value === undefined ||
+        value === null
+          ? ""
+          : value
+      )
+      .replace(/&/g,"&amp;")
+      .replace(/</g,"&lt;")
+      .replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;")
+      .replace(/'/g,"&#039;");
+
+    }
+
+
+    function packageIcon(name){
+
+      const icons = {
+        Starter: "🌱",
+        Growth: "📈",
+        Pro: "🚀",
+        Elite: "👑"
+      };
+
+      return icons[name] || "📦";
+
+    }
+
+
+    function renderPackages(items){
+
+      const grid =
+        document.getElementById(
+          "packagesGrid"
+        );
+
+      if(!grid){
+        return;
+      }
+
+      if(!items.length){
+
+        grid.innerHTML = `
+          <div class="card">
+            <div class="card-icon">📦</div>
+            <h3>No Packages Available</h3>
+            <p>Abhi koi active package available nahi hai.</p>
+          </div>
+        `;
+
+        return;
+
+      }
+
+      grid.innerHTML = items.map(function(item){
+
+        const name =
+          String(item.name || "Package");
+
+        const status =
+          String(item.status || "Active");
+
+        const courseCount =
+          Number(item.courseCount || 0);
+
+        const courseNames =
+          Array.isArray(item.courseNames)
+            ? item.courseNames
+            : String(item.courseNames || "")
+                .split("\n")
+                .map(function(x){return x.trim();})
+                .filter(Boolean);
+
+        const price =
+          Number(item.price || 0);
+
+        const accessType =
+          String(item.accessType || item.access || (price > 0 ? "Paid" : "Free"));
+
+        const isElite =
+          name.toLowerCase() === "elite" ||
+          status.toLowerCase() === "coming soon";
+
+        const cardClass =
+          isElite ? "card locked" : "card clickable";
+
+        const description =
+          item.description ||
+          "Package details will be available here.";
+
+        const courseHtml =
+          courseNames.length
+            ? courseNames.map(function(course){
+                return `<div>${packageText(course)}</div>`;
+              }).join("")
+            : `<div>No courses added yet.</div>`;
+
+        const priceHtml =
+          price > 0
+            ? `<div class="package-count">₹${price.toLocaleString("en-IN")} · ${packageText(accessType)}</div>`
+            : `<div class="package-count">${packageText(accessType)}</div>`;
+
+        return `
+          <div
+            class="${cardClass}"
+            onclick="openPackage('${packageText(name).replace(/'/g,"\\'")}')"
+          >
+
+            <div class="card-icon">
+              ${packageIcon(name)}
+            </div>
+
+            <h3>
+              ${packageText(name)}
+            </h3>
+
+            <p>
+              ${packageText(description)}
+            </p>
+
+            ${priceHtml}
+
+            <div class="package-count">
+              ${courseCount} ${courseCount === 1 ? "Course" : "Courses"}
+            </div>
+
+            <div class="course-list">
+              ${courseHtml}
+            </div>
+
+            ${isElite ? `<div class="coming-soon">Coming Soon</div>` : ""}
+
+          </div>
+        `;
+
+      }).join("");
+
+    }
+
+
+    function resourceText(value){
+
+      return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+    }
+
+
+    function resourceIcon(type, icon){
+
+      if(icon){
+        return String(icon);
+      }
+
+      const t = String(type || "").toLowerCase();
+
+      if(t.includes("check")){
+        return "☑️";
+      }
+
+      if(t.includes("template")){
+        return "🧩";
+      }
+
+      if(t.includes("tool") || t.includes("link")){
+        return "🔗";
+      }
+
+      return "📄";
+
+    }
+
+
+    function renderResources(items){
+
+      const grid = document.getElementById("resourcesGrid");
+
+      if(!grid){
+        return;
+      }
+
+      if(!items.length){
+
+        grid.innerHTML = `
+          <div class="card">
+            <div class="card-icon">📦</div>
+            <h3>No Resources Available</h3>
+            <p>Abhi koi active resource available nahi hai.</p>
+          </div>
+        `;
+
+        return;
+
+      }
+
+      grid.innerHTML = items.map(function(item){
+
+        const title = String(item.title || "Resource");
+        const type = String(item.type || "Resource");
+        const description = String(item.description || "Useful resource.");
+        const url = String(item.url || "").trim();
+        const icon = resourceIcon(type, item.icon);
+
+        const cardClass = url ? "card clickable" : "card";
+        const action = url
+          ? `onclick="openResource('${resourceText(url).replace(/'/g,"\\'")}')"`
+          : "";
+
+        return `
+          <div class="${cardClass}" ${action}>
+
+            <div class="card-icon">
+              ${resourceText(icon)}
+            </div>
+
+            <h3>
+              ${resourceText(title)}
+            </h3>
+
+            <div class="package-count">
+              ${resourceText(type)}
+            </div>
+
+            <p>
+              ${resourceText(description)}
+            </p>
+
+            ${url ? `<div class="coming-soon">Open Resource ↗</div>` : ""}
+
+          </div>
+        `;
+
+      }).join("");
+
+    }
+
+
+    async function loadResources(){
+
+      const grid = document.getElementById("resourcesGrid");
+
+      if(!grid){
+        return;
+      }
+
+      try{
+
+        const snapshot =
+          await getDocs(
+            collection(
+              db,
+              "dashboardResources"
+            )
+          );
+
+        const items = [];
+
+        snapshot.forEach(function(docSnap){
+
+          items.push({
+            id: docSnap.id,
+            ...docSnap.data()
+          });
+
+        });
+
+        items.sort(function(a,b){
+          return Number(a.order || 0) -
+                 Number(b.order || 0);
+        });
+
+        const activeItems =
+          items.filter(function(item){
+            return String(item.status || "Active").toLowerCase() === "active";
+          });
+
+        renderResources(activeItems);
+
+      }catch(error){
+
+        console.error(
+          "Resource load error:",
+          error
+        );
+
+        grid.innerHTML = `
+          <div class="card">
+            <div class="card-icon">⚠️</div>
+            <h3>Resources Load Failed</h3>
+            <p>Resources abhi load nahi ho pa rahe hain.</p>
+          </div>
+        `;
+
+      }
+
+    }
+
+
+    window.openResource =
+      function(url){
+
+        if(!url){
+          return;
+        }
+
+        try{
+          const parsed = new URL(url, window.location.href);
+          if(parsed.protocol === "http:" || parsed.protocol === "https:"){
+            window.open(parsed.href, "_blank", "noopener,noreferrer");
+          }else{
+            showToast("Resource link available nahi hai.");
+          }
+        }catch(error){
+          showToast("Resource link valid nahi hai.");
+        }
+
+      };
+
+
+    async function loadServices(){
+      const grid = document.getElementById("servicesGrid");
+      if(!grid) return;
+      try{
+        const snapshot = await getDocs(collection(db,"dashboardServices"));
+        const items=[];
+        snapshot.forEach(function(docSnap){ items.push({id:docSnap.id,...docSnap.data()}); });
+        items.sort(function(a,b){ return Number(a.order||0)-Number(b.order||0); });
+        const active=items.filter(function(item){ return String(item.status||"Active").toLowerCase()==="active"; });
+        const oldLoading=document.getElementById("servicesLoadingCard");
+        if(oldLoading) oldLoading.remove();
+        if(!active.length) return;
+        active.forEach(function(item){
+          const title=resourceText(item.title||"Service");
+          const icon=resourceText(item.icon||"🛠️");
+          const description=resourceText(item.description||"Service details available here.");
+          const url=String(item.url||"").trim();
+          const action=String(item.action||"inquiry").toLowerCase();
+          const card=document.createElement("div");
+          card.className="card clickable";
+          if(url){ card.onclick=function(){ openResource(url); }; }
+          else if(action==="inquiry"){ card.onclick=function(){ openInquiry(item.title||"Service Inquiry"); }; }
+          else { card.onclick=function(){ showToast("Service details selected."); }; }
+          card.innerHTML=`<div class="card-icon">${icon}</div><h3>${title}</h3><p>${description}</p>${url?'<div class="coming-soon">Open Service ↗</div>':''}`;
+          grid.appendChild(card);
+        });
+      }catch(error){
+        console.error("Service load error:",error);
+        const oldLoading=document.getElementById("servicesLoadingCard");
+        if(oldLoading) oldLoading.innerHTML='<div class="card-icon">⚠️</div><h3>Services Load Failed</h3><p>Admin services abhi load nahi ho pa rahe hain.</p>';
+      }
+    }
+
+
+    async function loadAnnouncements(){
+      const grid=document.getElementById("announcementsGrid");
+      if(!grid) return;
+      try{
+        const snapshot=await getDocs(collection(db,"dashboardAnnouncements"));
+        const items=[];
+        snapshot.forEach(function(docSnap){items.push({id:docSnap.id,...docSnap.data()});});
+        items.sort(function(a,b){return Number(a.order||0)-Number(b.order||0);});
+        const active=items.filter(function(item){return String(item.status||"Active").toLowerCase()==="active";});
+        if(!active.length){grid.innerHTML='<div class="card announcement"><div class="announcement-icon">📢</div><div><h3>No New Announcements</h3><p>Abhi koi active announcement available nahi hai.</p></div></div>';return;}
+        grid.innerHTML=active.map(function(item){return `<div class="card announcement"><div class="announcement-icon">📢</div><div><h3>${resourceText(item.title||"Announcement")}</h3><p>${resourceText(item.message||"")}</p></div></div>`;}).join("");
+      }catch(error){
+        console.error("Announcement load error:",error);
+        grid.innerHTML='<div class="card announcement"><div class="announcement-icon">⚠️</div><div><h3>Announcements Load Failed</h3><p>Updates abhi load nahi ho pa rahe hain.</p></div></div>';
+      }
+    }
+
+
+    async function loadGrowthFeatures(){
+      const grid=document.getElementById("growthFeaturesGrid");
+      if(!grid) return;
+      try{
+        const snapshot=await getDocs(collection(db,"growthFeatures"));
+        const items=[];
+        snapshot.forEach(function(docSnap){items.push({id:docSnap.id,...docSnap.data()});});
+        items.sort(function(a,b){return Number(a.order||0)-Number(b.order||0);});
+        const active=items.filter(function(item){return String(item.status||"Active").toLowerCase()==="active";});
+        if(!active.length){grid.innerHTML='<div class="feature-item">📌 No active growth features available.</div>';return;}
+        grid.innerHTML=active.map(function(item){return `<div class="feature-item" title="${resourceText(item.description||"")}">${resourceText(item.icon||"⭐")} ${resourceText(item.title||"Growth Feature")}</div>`;}).join("");
+      }catch(error){
+        console.error("Growth feature load error:",error);
+        grid.innerHTML='<div class="feature-item">⚠️ Growth features load nahi ho pa rahe hain.</div>';
+      }
+    }
+
+
+    async function loadNotifications(){
+      try{
+        const snapshot=await getDocs(collection(db,"notifications"));
+        const items=[];
+        snapshot.forEach(function(docSnap){items.push({id:docSnap.id,...docSnap.data()});});
+        items.sort(function(a,b){return new Date(b.createdAt||0)-new Date(a.createdAt||0);});
+        window.customerNotifications=items.filter(function(item){return String(item.status||"Active").toLowerCase()==="active";});
+      }catch(error){
+        console.error("Notification load error:",error);
+        window.customerNotifications=[];
+      }
+    }
+
+
+    window.openNotifications=function(){
+      const modal=document.getElementById("notificationsModal");
+      const box=document.getElementById("notificationsContent");
+      if(!modal||!box) return;
+      modal.classList.add("show");
+      const items=Array.isArray(window.customerNotifications)?window.customerNotifications:[];
+      if(!items.length){box.innerHTML='<div class="future-empty"><div class="big-icon">🔔</div><h3>No New Notifications</h3><p>Abhi koi active notification available nahi hai.</p></div>';return;}
+      box.innerHTML=items.slice(0,20).map(function(item){return `<div class="request-card"><div class="request-top"><div class="request-service">🔔 ${resourceText(item.title||"Notification")}</div><div class="status">${resourceText(item.type||"General")}</div></div><div class="request-message">${resourceText(item.message||"")}</div><div class="request-date">👥 ${resourceText(item.audience||"All Customers")}</div></div>`;}).join("");
+    };
+
+
+    async function loadDashboardSettings(){
+      try{
+        const supportSnap=await getDoc(doc(db,"dashboardSettings","support"));
+        window.dashboardSupport=supportSnap.exists()?supportSnap.data():{};
+        const policySnap=await getDoc(doc(db,"dashboardSettings","policies"));
+        window.dashboardPolicies=policySnap.exists()?policySnap.data():{};
+      }catch(error){console.error("Dashboard settings load error:",error);window.dashboardSupport={};window.dashboardPolicies={};}
+    }
+
+
+    window.openSupport=async function(){
+      closeModal("accountModal");
+      await loadDashboardSettings();
+      const x=window.dashboardSupport||{};
+      const whatsapp=String(x.whatsapp||"").replace(/\D/g,"");
+      const email=String(x.email||"").trim();
+      const help=String(x.help||"For any help or support, contact us.");
+      const box=document.getElementById("accountInfoContent");
+      document.getElementById("accountInfoTitle").textContent="💬 Help & Support";
+      box.innerHTML=`<p>${resourceText(help)}</p><div style="display:grid;gap:12px;margin-top:16px;">${whatsapp?`<button class="primary-btn" onclick="window.open('https://wa.me/${whatsapp}','_blank','noopener,noreferrer')">💬 WhatsApp Support</button>`:""}${email?`<button class="secondary-btn" onclick="window.location.href='mailto:${resourceText(email)}'">✉️ ${resourceText(email)}</button>`:""}</div>`;
+      document.getElementById("accountInfoModal").classList.add("show");
+    };
+
+
+    window.openPolicy=async function(type){
+      closeModal("accountModal");
+      await loadDashboardSettings();
+      const x=window.dashboardPolicies||{};
+      const map={privacy:["🔒 Privacy Policy","privacy"],terms:["📄 Terms & Conditions","terms"],about:["ℹ️ About Apna Growth Hub","about"]};
+      const selected=map[type]||map.about;
+      const text=String(x[selected[1]]||"Information is currently unavailable.");
+      document.getElementById("accountInfoTitle").textContent=selected[0];
+      document.getElementById("accountInfoContent").innerHTML=`<div style="white-space:pre-wrap;line-height:1.7;">${resourceText(text)}</div>`;
+      document.getElementById("accountInfoModal").classList.add("show");
+    };
+
+
+    window.openPasswordChange=function(){
+      closeModal("accountModal");
+      document.getElementById("newPassword").value="";
+      document.getElementById("confirmPassword").value="";
+      document.getElementById("passwordModal").classList.add("show");
+    };
+
+
+    window.changePassword=async function(){
+      if(!currentUser){showToast("Please login again.");return;}
+      const password=document.getElementById("newPassword").value;
+      const confirm=document.getElementById("confirmPassword").value;
+      if(password.length<6){showToast("Password minimum 6 characters ka hona chahiye.");return;}
+      if(password!==confirm){showToast("Passwords match nahi kar rahe.");return;}
+      try{
+        await updatePassword(currentUser,password);
+        closeModal("passwordModal");
+        showToast("✅ Password successfully updated.");
+      }catch(error){
+        console.error("Password update error:",error);
+        if(error && error.code==="auth/requires-recent-login") showToast("Security ke liye dobara login karke password change karein.");
+        else showToast("❌ Password update nahi ho paya.");
+      }
+    };
+
+
+    async function loadPackages(){
+
+      const grid =
+        document.getElementById(
+          "packagesGrid"
+        );
+
+      if(!grid){
+        return;
+      }
+
+      try{
+
+        const snapshot =
+          await getDocs(
+            collection(
+              db,
+              "packages"
+            )
+          );
+
+        const items = [];
+
+        snapshot.forEach(function(docSnap){
+
+          items.push({
+            id: docSnap.id,
+            ...docSnap.data()
+          });
+
+        });
+
+        items.sort(function(a,b){
+          return Number(a.order || 0) -
+                 Number(b.order || 0);
+        });
+
+        const activeItems =
+          items.filter(function(item){
+            const status =
+              String(item.status || "Active")
+                .toLowerCase();
+
+            return status === "active" ||
+                   status === "coming soon";
+          });
+
+        renderPackages(activeItems);
+
+      }catch(error){
+
+        console.error(
+          "Package load error:",
+          error
+        );
+
+        grid.innerHTML = `
+          <div class="card">
+            <div class="card-icon">⚠️</div>
+            <h3>Packages Load Failed</h3>
+            <p>Package information abhi load nahi ho pa rahi hai.</p>
+          </div>
+        `;
+
+      }
+
+    }
+
 
     window.openPackage =
       function(packageName){
@@ -3150,7 +3418,6 @@
           return;
 
         }
-
 
         showToast(
           packageName +
