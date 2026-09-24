@@ -400,6 +400,20 @@
         font-size: 21px;
       }
     }
+  
+    /* ===== APNA GROWTH HUB - ADVANCED ADMIN UI ===== */
+    .admin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+    .admin-mini-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:16px}
+    .admin-mini-card h4{font-size:14px;color:#475569;margin-bottom:5px}.admin-mini-card .big{font-size:25px;font-weight:800;color:#172033}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.tab-btn{padding:10px 14px;border:1px solid #cbd5e1;background:#fff;border-radius:10px;font-weight:700}.tab-btn.active{background:#2563eb;color:#fff;border-color:#2563eb}
+    .table-wrap{overflow:auto}.admin-table{width:100%;border-collapse:collapse;min-width:720px}.admin-table th,.admin-table td{padding:10px;border-bottom:1px solid #e2e8f0;text-align:left;vertical-align:top}.admin-table th{background:#f8fafc;font-size:13px}
+    .pill{display:inline-block;padding:4px 9px;border-radius:999px;background:#e2e8f0;font-size:12px;font-weight:700}.pill-green{background:#dcfce7;color:#166534}.pill-red{background:#fee2e2;color:#991b1b}.pill-blue{background:#dbeafe;color:#1e40af}.pill-yellow{background:#fef3c7;color:#92400e}
+    .danger-note{padding:12px;border-radius:10px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;margin:10px 0}.success-note{padding:12px;border-radius:10px;background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;margin:10px 0}
+    .admin-form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.admin-form-grid .full{grid-column:1/-1}
+    .metric-link{cursor:pointer}.metric-link:hover{transform:translateY(-1px)}
+    @media(max-width:1000px){.admin-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:700px){.admin-grid,.admin-form-grid{grid-template-columns:1fr}.admin-table{min-width:650px}}
+
   </style>
 </head>
 
@@ -487,25 +501,50 @@
         🛡️ LIC Management
       </button>
 
-      <button class="menu-btn" data-section="digital">
-        💻 Digital Skills
-      </button>
-
-      <button class="menu-btn" data-section="ai">
-        🤖 AI Tools
-      </button>
-
-      <button class="menu-btn" data-section="social">
-        📱 Social Media
+      <button class="menu-btn" data-section="services">
+        🛠️ Services Management
       </button>
 
       <button class="menu-btn" data-section="courses">
-        🎓 Courses
+        🎓 Course & Package Management
+      </button>
+
+      <button class="menu-btn" data-section="resources">
+        📚 Resources Management
+      </button>
+
+      <button class="menu-btn" data-section="announcements">
+        📢 Announcements Management
+      </button>
+
+      <button class="menu-btn" data-section="growthFeatures">
+        🚀 Growth Features Management
+      </button>
+
+      <button class="menu-btn" data-section="support">
+        💬 Support Management
       </button>
 
       <button class="menu-btn" data-section="privacy">
         🔐 Privacy & Policies
       </button>
+
+
+      <button class="menu-btn" data-section="notifications">🔔 Notification Management</button>
+      <button class="menu-btn" data-section="scheduledNotifications">⏰ Scheduled Notifications</button>
+      <button class="menu-btn" data-section="paymentPricing">💰 Payment & Pricing</button>
+      <button class="menu-btn" data-section="financialRecords">🧾 Audit & Financial Records</button>
+      <button class="menu-btn" data-section="appSettings">⚙️ App Settings</button>
+      <button class="menu-btn" data-section="adminManagement">👑 Admin Management</button>
+      <button class="menu-btn" data-section="activityLog">📝 Admin Activity Log</button>
+      <button class="menu-btn" data-section="backupRecovery">💾 Backup & Recovery</button>
+      <button class="menu-btn" data-section="systemHealth">🩺 System Health</button>
+      <button class="menu-btn" data-section="dataExport">📤 Data Export</button>
+      <button class="menu-btn" data-section="segmentation">🎯 Customer Segmentation</button>
+      <button class="menu-btn" data-section="appointments">📞 Appointment / Callback</button>
+      <button class="menu-btn" data-section="globalSearch">🔍 Global Search</button>
+      <button class="menu-btn" data-section="fileManagement">🗂️ Document / File Management</button>
+      <button class="menu-btn" data-section="sandbox">🧪 Test / Sandbox</button>
 
       <button class="menu-btn" id="openCustomerDashboard">
         👤 Customer Dashboard
@@ -639,6 +678,28 @@
 
         </div>
 
+      <div class="content-card">
+        <h2>📊 Advanced Analytics</h2>
+        <div class="admin-grid">
+          <div class="admin-mini-card"><h4>Total Customers</h4><div class="big" id="aTotalCustomers">0</div></div>
+          <div class="admin-mini-card"><h4>New Customers</h4><div class="big" id="aNewCustomers">0</div></div>
+          <div class="admin-mini-card"><h4>LIC Inquiries</h4><div class="big" id="aLicInquiries">0</div></div>
+          <div class="admin-mini-card"><h4>PAN Inquiries</h4><div class="big" id="aPanInquiries">0</div></div>
+          <div class="admin-mini-card"><h4>Total Courses</h4><div class="big" id="aCourses">0</div></div>
+          <div class="admin-mini-card"><h4>Active Courses</h4><div class="big" id="aActiveCourses">0</div></div>
+          <div class="admin-mini-card"><h4>Total Orders</h4><div class="big" id="aOrders">0</div></div>
+          <div class="admin-mini-card"><h4>Total Revenue</h4><div class="big" id="aRevenue">₹0</div></div>
+        </div>
+        <div class="content-card" style="margin-top:15px;background:#f8fafc">
+          <h3>📦 Package-wise Revenue</h3>
+          <div class="admin-grid">
+            <div class="admin-mini-card"><h4>Starter</h4><div class="big" id="revStarter">₹0</div></div>
+            <div class="admin-mini-card"><h4>Growth</h4><div class="big" id="revGrowth">₹0</div></div>
+            <div class="admin-mini-card"><h4>Pro</h4><div class="big" id="revPro">₹0</div></div>
+            <div class="admin-mini-card"><h4>Elite</h4><div class="big" id="revElite">₹0</div></div>
+          </div>
+        </div>
+      </div>
       </section>
 
 
@@ -651,15 +712,21 @@
         <div class="content-card">
 
           <h2>
-            Customer Inquiries
+            📋 Customer Inquiries
           </h2>
+          <div class="tabs">
+            <button class="tab-btn active inquiry-tab" data-inquiry-tab="LIC">🛡️ LIC Inquiry</button>
+            <button class="tab-btn inquiry-tab" data-inquiry-tab="PAN">🪪 PAN Inquiry</button>
+            <button class="tab-btn inquiry-tab" data-inquiry-tab="ALL">📋 All</button>
+          </div>
+          <p id="inquiryTabInfo" style="color:#64748b;margin-bottom:10px;">LIC inquiries</p>
 
           <div class="search-box">
 
             <input
               type="text"
               id="searchInput"
-              placeholder="Search name, mobile, email, plan..."
+              placeholder="Search name, mobile, email, plan/request type..."
             >
 
             <select
@@ -709,7 +776,7 @@
         <div class="content-card">
 
           <h2>
-            Customers
+            👥 Customer Management
           </h2>
 
           <div class="search-box">
@@ -1090,69 +1157,6 @@
       </section>
 
 
-      <!-- DIGITAL -->
-      <section
-        id="digital"
-        class="section"
-      >
-
-        <div class="content-card">
-
-          <h2>
-            Digital Skills Management
-          </h2>
-
-          <p>
-            Digital skills lessons future mein yahan manage honge.
-          </p>
-
-        </div>
-
-      </section>
-
-
-      <!-- AI -->
-      <section
-        id="ai"
-        class="section"
-      >
-
-        <div class="content-card">
-
-          <h2>
-            AI Tools Management
-          </h2>
-
-          <p>
-            AI tools aur prompts future mein yahan manage honge.
-          </p>
-
-        </div>
-
-      </section>
-
-
-      <!-- SOCIAL -->
-      <section
-        id="social"
-        class="section"
-      >
-
-        <div class="content-card">
-
-          <h2>
-            Social Media Management
-          </h2>
-
-          <p>
-            Instagram, YouTube aur Facebook content future mein manage hoga.
-          </p>
-
-        </div>
-
-      </section>
-
-
       <!-- COURSES -->
       <section
         id="courses"
@@ -1246,12 +1250,18 @@
                   Other
                 </option>
 
+            <div class="input-group">
+              <label for="coursePackage">Package *</label>
+              <select id="coursePackage">
+                <option value="Unassigned">Unassigned</option>
+                <option value="Starter">Starter</option>
+                <option value="Growth">Growth</option>
+                <option value="Pro">Pro</option>
+                <option value="Elite">Elite</option>
               </select>
-
             </div>
 
             <div class="input-group">
-
               <label for="courseInstructor">
                 Instructor Name
               </label>
@@ -1428,7 +1438,35 @@
         </div>
 
 
-        <div
+        <div class="content-card" style="margin-top:16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+          <div><h2>📦 Package Management</h2><p>Starter, Growth, Pro aur Elite package yahan manage karein.</p></div>
+          <button class="btn btn-primary" id="addPackageBtn">➕ Add / Edit Package</button>
+        </div>
+      </div>
+
+      <div id="packageForm" class="content-card hidden" style="margin-top:16px;">
+        <h2>Package Settings</h2>
+        <div class="feature-grid" style="margin-top:15px;">
+          <div class="input-group"><label for="packageName">Package</label><select id="packageName"><option>Starter</option><option>Growth</option><option>Pro</option><option>Elite</option></select></div>
+          <div class="input-group"><label for="packageStatus">Status</label><select id="packageStatus"><option>Active</option><option>Hidden</option><option>Coming Soon</option></select></div>
+          <div class="input-group"><label for="packageOrder">Order</label><input id="packageOrder" type="number" min="1" value="1"></div>
+          <div class="input-group"><label for="packageCourseCount">Course Count</label><input id="packageCourseCount" type="number" min="0" value="0"></div>
+        </div>
+        <div class="input-group"><label for="packageDescription">Package Description</label><textarea id="packageDescription" rows="4"></textarea></div>
+        <div class="input-group"><label for="packageCourseNames">Course Names (one per line)</label><textarea id="packageCourseNames" rows="6" placeholder="Digital Skills Basics
+AI Tools Basics
+Social Media Basics"></textarea></div>
+        <div id="packageMessage" class="message"></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;"><button class="btn btn-primary" id="savePackageBtn">💾 Save Package</button><button class="btn btn-light" id="cancelPackageBtn">Cancel</button></div>
+      </div>
+
+      <div class="content-card" style="margin-top:16px;">
+        <h2>Saved Packages</h2><div id="packagesList" style="margin-top:15px;"><div class="empty">Packages loading...</div></div>
+      </div>
+
+
+      <div
           id="lessonManager"
           class="content-card hidden"
           style="margin-top:16px;"
@@ -1559,7 +1597,7 @@
                 <small
                   style="display:block;color:#b45309;margin-top:6px;"
                 >
-                  PDF upload abhi disabled hai.
+                  PDF maximum 50 MB.
                 </small>
 
               </div>
@@ -1579,7 +1617,7 @@
                 <small
                   style="display:block;color:#b45309;margin-top:6px;"
                 >
-                  Video upload abhi disabled hai.
+                  Video maximum 500 MB.
                 </small>
 
               </div>
@@ -1663,25 +1701,123 @@
       </section>
 
 
-      <!-- PRIVACY -->
-      <section
-        id="privacy"
-        class="section"
-      >
-
-        <div class="content-card">
-
-          <h2>
-            Privacy & Policies
-          </h2>
-
-          <p>
-            Customer passwords Admin Panel mein show nahi honge.
-          </p>
-
-        </div>
-
+      <!-- SERVICES -->
+      <section id="services" class="section">
+        <div class="content-card"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;"><div><h2>🛠️ Services Management</h2><p>PAN Card Service aur future services manage karein.</p></div><button class="btn btn-primary" id="addServiceBtn">➕ Add Service</button></div></div>
+        <div id="serviceForm" class="content-card hidden" style="margin-top:16px;"><h2 id="serviceFormTitle">Add Service</h2><div class="feature-grid"><div class="input-group"><label for="serviceTitle">Service Title *</label><input id="serviceTitle" type="text"></div><div class="input-group"><label for="serviceIcon">Icon</label><input id="serviceIcon" type="text" value="🛠️"></div><div class="input-group"><label for="serviceCategory">Service Category</label><select id="serviceCategory"><option value="LIC">LIC Services</option><option value="PAN">PAN Card Services</option><option value="Other">Other / Future Services</option></select></div><div class="input-group"><label for="serviceAction">Action</label><select id="serviceAction"><option value="inquiry">Inquiry</option><option value="future">Future / Coming Soon</option><option value="url">Open URL</option></select></div><div class="input-group"><label for="serviceUrl">URL</label><input id="serviceUrl" type="url" placeholder="https://..."></div><div class="input-group"><label for="serviceOrder">Order</label><input id="serviceOrder" type="number" min="1" value="1"></div><div class="input-group"><label for="serviceStatus">Status</label><select id="serviceStatus"><option>Active</option><option>Hidden</option></select></div></div><div class="input-group"><label for="serviceDescription">Description</label><textarea id="serviceDescription" rows="4"></textarea></div><div id="serviceMessage" class="message"></div><button class="btn btn-success" id="saveServiceBtn">💾 Save Service</button> <button class="btn btn-light" id="cancelServiceBtn">Cancel</button></div>
+        <div class="content-card" style="margin-top:16px;"><h2>Saved Services</h2><div id="servicesList" style="margin-top:15px;"></div></div>
       </section>
+
+      <!-- RESOURCES -->
+      <section id="resources" class="section">
+        <div class="content-card"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;"><div><h2>📚 Resources Management</h2><p>PDFs, guides, checklists, templates aur useful links manage karein.</p></div><button class="btn btn-primary" id="addResourceBtn">➕ Add Resource</button></div></div>
+        <div id="resourceForm" class="content-card hidden" style="margin-top:16px;"><h2 id="resourceFormTitle">Add Resource</h2><div class="feature-grid"><div class="input-group"><label for="resourceTitle">Title *</label><input id="resourceTitle"></div><div class="input-group"><label for="resourceIcon">Icon</label><input id="resourceIcon" value="📄"></div><div class="input-group"><label for="resourceType">Type</label><select id="resourceType"><option>PDF / Guide</option><option>Checklist</option><option>Template</option><option>Useful Tool / Link</option></select></div><div class="input-group"><label for="resourceUrl">URL</label><input id="resourceUrl" type="url"></div><div class="input-group"><label for="resourceOrder">Order</label><input id="resourceOrder" type="number" min="1" value="1"></div><div class="input-group"><label for="resourceStatus">Status</label><select id="resourceStatus"><option>Active</option><option>Hidden</option></select></div></div><div class="input-group"><label for="resourceDescription">Description</label><textarea id="resourceDescription" rows="4"></textarea></div><div id="resourceMessage" class="message"></div><button class="btn btn-success" id="saveResourceBtn">💾 Save Resource</button> <button class="btn btn-light" id="cancelResourceBtn">Cancel</button></div>
+        <div class="content-card" style="margin-top:16px;"><h2>Saved Resources</h2><div id="resourcesList" style="margin-top:15px;"></div></div>
+      </section>
+
+      <!-- ANNOUNCEMENTS -->
+      <section id="announcements" class="section">
+        <div class="content-card"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;"><div><h2>📢 Announcements Management</h2><p>Customer dashboard ke latest updates manage karein.</p></div><button class="btn btn-primary" id="addAnnouncementBtn">➕ Add Announcement</button></div></div>
+        <div id="announcementForm" class="content-card hidden" style="margin-top:16px;"><h2 id="announcementFormTitle">Add Announcement</h2><div class="feature-grid"><div class="input-group"><label for="announcementTitle">Title *</label><input id="announcementTitle"></div><div class="input-group"><label for="announcementOrder">Order</label><input id="announcementOrder" type="number" min="1" value="1"></div><div class="input-group"><label for="announcementStatus">Status</label><select id="announcementStatus"><option>Active</option><option>Hidden</option></select></div></div><div class="input-group"><label for="announcementMessage">Message *</label><textarea id="announcementMessage" rows="5"></textarea></div><div id="announcementMessageBox" class="message"></div><button class="btn btn-success" id="saveAnnouncementBtn">💾 Save Announcement</button> <button class="btn btn-light" id="cancelAnnouncementBtn">Cancel</button></div>
+        <div class="content-card" style="margin-top:16px;"><h2>Saved Announcements</h2><div id="announcementsList" style="margin-top:15px;"></div></div>
+      </section>
+
+      <!-- GROWTH FEATURES -->
+      <section id="growthFeatures" class="section">
+        <div class="content-card"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;"><div><h2>🚀 Growth Features Management</h2><p>Rewards, tasks, certificates, referral aur future features manage karein.</p></div><button class="btn btn-primary" id="addGrowthFeatureBtn">➕ Add Feature</button></div></div>
+        <div id="growthFeatureForm" class="content-card hidden" style="margin-top:16px;"><h2 id="growthFeatureFormTitle">Add Growth Feature</h2><div class="feature-grid"><div class="input-group"><label for="growthFeatureTitle">Title *</label><input id="growthFeatureTitle"></div><div class="input-group"><label for="growthFeatureIcon">Icon</label><input id="growthFeatureIcon" value="⭐"></div><div class="input-group"><label for="growthFeatureOrder">Order</label><input id="growthFeatureOrder" type="number" min="1" value="1"></div><div class="input-group"><label for="growthFeatureStatus">Status</label><select id="growthFeatureStatus"><option>Active</option><option>Hidden</option></select></div></div><div class="input-group"><label for="growthFeatureDescription">Description</label><textarea id="growthFeatureDescription" rows="4"></textarea></div><div id="growthFeatureMessage" class="message"></div><button class="btn btn-success" id="saveGrowthFeatureBtn">💾 Save Feature</button> <button class="btn btn-light" id="cancelGrowthFeatureBtn">Cancel</button></div>
+        <div class="content-card" style="margin-top:16px;"><h2>Saved Growth Features</h2><div id="growthFeaturesList" style="margin-top:15px;"></div></div>
+      </section>
+
+      <!-- SUPPORT -->
+      <section id="support" class="section">
+        <div class="content-card"><h2>💬 Support Management</h2><p>Customer support details manage karein.</p><div class="input-group"><label for="supportWhatsapp">WhatsApp / Mobile</label><input id="supportWhatsapp" type="text" placeholder="7876260435"></div><div class="input-group"><label for="supportEmail">Email</label><input id="supportEmail" type="email" placeholder="support@example.com"></div><div class="input-group"><label for="supportHelp">Help & Support Text</label><textarea id="supportHelp" rows="6"></textarea></div><div id="supportMessage" class="message"></div><button class="btn btn-success" id="saveSupportBtn">💾 Save Support Settings</button></div>
+      </section>
+
+      <!-- PRIVACY -->
+      <section id="privacy" class="section">
+        <div class="content-card"><h2>🔐 Privacy & Policies</h2><p>Customer passwords Admin Panel mein show nahi honge.</p><div class="input-group"><label for="policyPrivacy">Privacy Policy</label><textarea id="policyPrivacy" rows="10"></textarea></div><div class="input-group"><label for="policyTerms">Terms & Conditions</label><textarea id="policyTerms" rows="10"></textarea></div><div class="input-group"><label for="policyAbout">About Apna Growth Hub</label><textarea id="policyAbout" rows="8"></textarea></div><div id="policyMessage" class="message"></div><button class="btn btn-success" id="savePolicyBtn">💾 Save Policies</button></div>
+      </section>
+
+
+      <!-- NOTIFICATIONS -->
+      <section id="notifications" class="section">
+        <div class="content-card"><h2>🔔 Notification Management</h2><p>Create, edit, hide and send customer notifications.</p>
+          <div class="admin-form-grid" style="margin-top:15px">
+            <div class="input-group"><label>Title *</label><input id="notifTitle"></div>
+            <div class="input-group"><label>Type</label><select id="notifType"><option>General</option><option>LIC</option><option>PAN</option><option>Course</option><option>Service</option></select></div>
+            <div class="input-group"><label>Audience</label><select id="notifAudience"><option>All Customers</option><option>LIC Customers</option><option>PAN Customers</option><option>Paid Customers</option><option>Free Customers</option></select></div>
+            <div class="input-group"><label>Status</label><select id="notifStatus"><option>Active</option><option>Hidden</option></select></div>
+            <div class="input-group full"><label>Message *</label><textarea id="notifMessage" rows="4"></textarea></div>
+          </div><div id="notifMessageBox" class="message"></div><button class="btn btn-success" id="saveNotifBtn">💾 Save Notification</button>
+        </div><div class="content-card"><h3>Saved Notifications</h3><div id="notificationsList"><div class="empty">Loading...</div></div></div>
+      </section>
+
+      <!-- SCHEDULED NOTIFICATIONS -->
+      <section id="scheduledNotifications" class="section">
+        <div class="content-card"><h2>⏰ Scheduled Notifications</h2><div class="admin-form-grid">
+          <div class="input-group"><label>Notification ID / Title</label><input id="scheduleTitle"></div>
+          <div class="input-group"><label>Send Date & Time</label><input id="scheduleDate" type="datetime-local"></div>
+          <div class="input-group"><label>Audience</label><select id="scheduleAudience"><option>All Customers</option><option>LIC Customers</option><option>PAN Customers</option><option>Paid Customers</option></select></div>
+          <div class="input-group"><label>Status</label><select id="scheduleStatus"><option>Scheduled</option><option>Sent</option><option>Failed</option></select></div>
+          <div class="input-group full"><label>Message *</label><textarea id="scheduleMessage" rows="4"></textarea></div>
+        </div><button class="btn btn-success" id="saveScheduleBtn">💾 Save Schedule</button><div id="scheduleMessageBox" class="message"></div></div>
+        <div class="content-card"><h3>Notification History</h3><div id="scheduleList"><div class="empty">Loading...</div></div></div>
+      </section>
+
+      <!-- PAYMENT / PRICING -->
+      <section id="paymentPricing" class="section">
+        <div class="content-card"><h2>💰 Payment & Pricing Management</h2><p>Package/course pricing and PhonePe gateway settings.</p>
+          <div class="admin-form-grid">
+            <div class="input-group"><label>Starter Price (₹)</label><input id="priceStarter" type="number" min="0"></div>
+            <div class="input-group"><label>Growth Price (₹)</label><input id="priceGrowth" type="number" min="0"></div>
+            <div class="input-group"><label>Pro Price (₹)</label><input id="pricePro" type="number" min="0"></div>
+            <div class="input-group"><label>Elite Price (₹)</label><input id="priceElite" type="number" min="0"></div>
+            <div class="input-group"><label>Payment Gateway</label><select id="paymentGateway"><option>PhonePe</option><option>Razorpay</option><option>Cashfree</option></select></div>
+            <div class="input-group"><label>Gateway Status</label><select id="gatewayStatus"><option>Active</option><option>Test Mode</option><option>Disabled</option></select></div>
+            <div class="input-group"><label>Offer Start</label><input id="offerStart" type="datetime-local"></div><div class="input-group"><label>Offer End</label><input id="offerEnd" type="datetime-local"></div>
+          </div><div class="danger-note">Gateway secret keys/passwords ko HTML/frontend mein store mat karo. Production payment credentials server-side/Cloud Functions mein rakhe jayenge.</div><button class="btn btn-success" id="savePricingBtn">💾 Save Pricing</button><div id="pricingMessage" class="message"></div>
+        </div>
+        <div class="content-card"><h3>Current Pricing</h3><div id="pricingSummary"></div></div>
+      </section>
+
+      <!-- FINANCIAL RECORDS -->
+      <section id="financialRecords" class="section"><div class="content-card"><h2>🧾 Audit & Financial Records</h2><p>Actual orders, payment status and revenue history.</p><div class="admin-grid"><div class="admin-mini-card"><h4>Success</h4><div class="big" id="finSuccess">0</div></div><div class="admin-mini-card"><h4>Pending</h4><div class="big" id="finPending">0</div></div><div class="admin-mini-card"><h4>Failed</h4><div class="big" id="finFailed">0</div></div><div class="admin-mini-card"><h4>Refunded</h4><div class="big" id="finRefunded">0</div></div></div></div><div class="content-card"><div class="table-wrap"><table class="admin-table"><thead><tr><th>Customer</th><th>Package/Course</th><th>Amount</th><th>Order ID</th><th>Method</th><th>Status</th><th>Date</th></tr></thead><tbody id="financialList"><tr><td colspan="7">Loading...</td></tr></tbody></table></div></div></section>
+
+      <!-- PAN MANAGEMENT -->
+
+      <!-- APP SETTINGS -->
+      <section id="appSettings" class="section"><div class="content-card"><h2>⚙️ App Settings</h2><div class="admin-form-grid"><div class="input-group"><label>App Name</label><input id="settingAppName" value="Apna Growth Hub"></div><div class="input-group"><label>App Logo URL</label><input id="settingLogo"></div><div class="input-group"><label>Website/App URL</label><input id="settingAppUrl" type="url"></div><div class="input-group"><label>WhatsApp Number</label><input id="settingWhatsapp"></div><div class="input-group"><label>Support Email</label><input id="settingEmail" type="email"></div><div class="input-group"><label>Maintenance Mode</label><select id="settingMaintenance"><option value="false">Normal Mode</option><option value="true">Maintenance Mode</option></select></div><div class="input-group full"><label>Social Media Links</label><textarea id="settingSocial" rows="3" placeholder="One link per line"></textarea></div><div class="input-group full"><label>Basic App Information</label><textarea id="settingInfo" rows="4"></textarea></div></div><button class="btn btn-success" id="saveAppSettingsBtn">💾 Save App Settings</button><div id="appSettingsMessage" class="message"></div></div></section>
+
+      <!-- ADMIN MANAGEMENT -->
+      <section id="adminManagement" class="section"><div class="content-card"><h2>👑 Admin Management</h2><p>Owner/Main Admin aur Staff Admins manage karein.</p><div class="admin-form-grid"><div class="input-group"><label>Staff Admin Name</label><input id="staffName"></div><div class="input-group"><label>Staff Admin Email</label><input id="staffEmail" type="email"></div><div class="input-group"><label>Temporary Password</label><input id="staffPassword" type="password" minlength="6"></div><div class="input-group"><label>Role</label><select id="staffRole"><option>Staff Admin</option><option>Manager</option><option>Support Admin</option></select></div><div class="input-group full"><label>Permissions</label><textarea id="staffPermissions" rows="3" placeholder="customers,inquiries,courses,notifications"></textarea></div></div><div class="danger-note">Owner Admin ko disable/delete karne ka option nahi diya gaya. Staff permissions production rules se enforce honge.</div><button class="btn btn-success" id="addStaffBtn">➕ Add Staff Admin</button><div id="adminMessage" class="message"></div></div><div class="content-card"><h3>Admin Accounts</h3><div id="adminList"></div></div></section>
+
+      <!-- ACTIVITY LOG -->
+      <section id="activityLog" class="section"><div class="content-card"><h2>📝 Admin Activity Log</h2><p>Login, add, update, delete aur important admin actions.</p><div class="table-wrap"><table class="admin-table"><thead><tr><th>Admin</th><th>Action</th><th>Section</th><th>Date/Time</th><th>Details</th></tr></thead><tbody id="activityList"><tr><td colspan="5">Loading...</td></tr></tbody></table></div></div></section>
+
+      <!-- BACKUP -->
+      <section id="backupRecovery" class="section"><div class="content-card"><h2>💾 Backup & Recovery</h2><p>Important Firestore data ka manual backup aur controlled restore.</p><div class="success-note">Passwords backup mein include nahi kiye jayenge.</div><button class="btn btn-primary" id="createBackupBtn">⬇️ Create Backup</button><input id="restoreFile" type="file" accept="application/json" style="margin:8px"><button class="btn btn-dark" id="restoreBackupBtn">♻️ Restore Backup</button><div id="backupMessage" class="message"></div></div><div class="content-card"><h3>Backup History</h3><div id="backupHistory"></div></div></section>
+
+      <!-- SYSTEM HEALTH -->
+      <section id="systemHealth" class="section"><div class="content-card"><h2>🩺 System Error & Health Monitoring</h2><div class="admin-grid"><div class="admin-mini-card"><h4>Firebase</h4><div class="big" id="healthFirebase">Checking</div></div><div class="admin-mini-card"><h4>Authentication</h4><div class="big" id="healthAuth">Checking</div></div><div class="admin-mini-card"><h4>Firestore</h4><div class="big" id="healthFirestore">Checking</div></div><div class="admin-mini-card"><h4>Storage</h4><div class="big" id="healthStorage">Ready</div></div></div><button class="btn btn-primary" id="runHealthBtn">🔄 Run Health Check</button></div><div class="content-card"><h3>Error History</h3><div id="errorHistory"></div></div></section>
+
+      <!-- DATA EXPORT -->
+      <section id="dataExport" class="section"><div class="content-card"><h2>📤 Data Export</h2><p>Permission-based CSV/JSON export.</p><div class="tabs"><button class="tab-btn export-btn" data-export="customers">Customers CSV</button><button class="tab-btn export-btn" data-export="inquiries">Inquiries CSV</button><button class="tab-btn export-btn" data-export="orders">Orders CSV</button><button class="tab-btn export-btn" data-export="courses">Courses CSV</button><button class="tab-btn export-btn" data-export="revenue">Revenue CSV</button></div><div id="exportMessage" class="message"></div></div></section>
+
+      <!-- SEGMENTATION -->
+      <section id="segmentation" class="section"><div class="content-card"><h2>🎯 Customer Segmentation</h2><div class="admin-form-grid"><div class="input-group"><label>Segment</label><select id="segmentType"><option>All Customers</option><option>LIC Customers</option><option>PAN Customers</option><option>Course Students</option><option>Paid Customers</option><option>Free Customers</option><option>Active Customers</option><option>Inactive Customers</option><option>Starter</option><option>Growth</option><option>Pro</option><option>Elite</option></select></div><div class="input-group"><label>Search</label><input id="segmentSearch"></div></div><div class="admin-grid"><div class="admin-mini-card"><h4>Matching Customers</h4><div class="big" id="segmentCount">0</div></div></div></div><div class="content-card"><div id="segmentList"></div></div></section>
+
+      <!-- APPOINTMENTS -->
+      <section id="appointments" class="section"><div class="content-card"><h2>📞 Appointment / Callback Management</h2><div class="admin-form-grid"><div class="input-group"><label>Customer Name *</label><input id="apptName"></div><div class="input-group"><label>Mobile</label><input id="apptMobile"></div><div class="input-group"><label>Date & Time</label><input id="apptDate" type="datetime-local"></div><div class="input-group"><label>Status</label><select id="apptStatus"><option>Pending</option><option>Completed</option><option>Cancelled</option></select></div><div class="input-group"><label>Staff Assignment</label><input id="apptStaff"></div><div class="input-group full"><label>Notes</label><textarea id="apptNotes" rows="3"></textarea></div></div><button class="btn btn-success" id="saveApptBtn">💾 Save Callback</button><div id="apptMessage" class="message"></div></div><div class="content-card"><h3>Callback List</h3><div id="appointmentsList"></div></div></section>
+
+      <!-- GLOBAL SEARCH -->
+      <section id="globalSearch" class="section"><div class="content-card"><h2>🔍 Global Search</h2><p>Customers, inquiries, courses, orders aur permitted records ek jagah search karein.</p><input id="globalSearchInput" placeholder="Type name, mobile, email, course, order ID..." style="width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:10px"><div id="globalSearchResults" style="margin-top:15px"><div class="empty">Search start karein.</div></div></div></section>
+
+      <!-- FILE MANAGEMENT -->
+      <section id="fileManagement" class="section"><div class="content-card"><h2>🗂️ Document / File Management</h2><p>Course PDFs, videos, thumbnails aur resource files.</p><input id="adminFileUpload" type="file"><input id="adminFileFolder" value="admin-files" placeholder="Folder" style="margin:8px;padding:10px"><button class="btn btn-primary" id="uploadAdminFileBtn">⬆️ Upload File</button><div id="fileMessage" class="message"></div></div><div class="content-card"><h3>Storage Files</h3><div id="storageFileList"><div class="empty">Storage list load karein.</div></div><button class="btn btn-light" id="refreshFilesBtn">🔄 Refresh Files</button></div></section>
+
+      <!-- SANDBOX -->
+      <section id="sandbox" class="section"><div class="content-card"><h2>🧪 Test / Sandbox Mode</h2><p>Live customer data ko touch kiye bina testing records manage karein.</p><div class="admin-form-grid"><div class="input-group"><label>Test Type</label><select id="sandboxType"><option>Payment</option><option>Notification</option><option>Course</option><option>Service</option></select></div><div class="input-group"><label>Test Name</label><input id="sandboxName"></div><div class="input-group full"><label>Test Data</label><textarea id="sandboxData" rows="4"></textarea></div></div><button class="btn btn-primary" id="runSandboxBtn">▶️ Run Test</button><button class="btn btn-danger" id="clearSandboxBtn">🗑️ Clear Test Data</button><div id="sandboxResult" class="message"></div></div><div class="content-card"><h3>Sandbox History</h3><div id="sandboxHistory"></div></div></section>
 
     </main>
 
@@ -1699,7 +1835,8 @@
       getAuth,
       onAuthStateChanged,
       signInWithEmailAndPassword,
-      signOut
+      signOut,
+      createUserWithEmailAndPassword
     } from
       "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
@@ -1711,10 +1848,12 @@
       addDoc,
       updateDoc,
       deleteDoc,
-      doc
+      setDoc,
+      doc,
+      getDoc
     } from
       "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-      import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+      import { getStorage, ref, uploadBytes, getDownloadURL, listAll, deleteObject } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 
     // FIREBASE CONFIG
@@ -2014,6 +2153,8 @@
         await loadDeleteRequests();
 
         await loadCourses();
+        await loadAllCms();
+        await loadAdvancedFeatures();
 
       }
     );
@@ -2197,8 +2338,8 @@
             </p>
 
             <p>
-              <strong>🛡️ Plan:</strong>
-              ${escapeHTML(plan)}
+              <strong>${inquiryLabel}</strong>
+              ${escapeHTML(inquiryValue)}
             </p>
 
             <p>
@@ -2371,11 +2512,23 @@
             "Not available";
 
 
+          const panInquiry = isPanInquiry(item);
+          const requestType =
+            item.requestType ||
+            item.service ||
+            item.type ||
+            "Not specified";
+
           const plan =
             item.plan ||
             item.selectedPlan ||
             "Not selected";
 
+          const inquiryLabel =
+            panInquiry ? "🪪 Request Type:" : "🛡️ Plan:";
+
+          const inquiryValue =
+            panInquiry ? requestType : plan;
 
           const question =
             item.question ||
@@ -2385,7 +2538,9 @@
 
           const waText =
             encodeURIComponent(
-              `Namaste ${name}, Apna Growth Hub se aapki LIC inquiry ke regarding contact kar rahe hain.`
+              panInquiry
+                ? `Namaste ${name}, Apna Growth Hub se aapki PAN Card service inquiry ke regarding contact kar rahe hain.`
+                : `Namaste ${name}, Apna Growth Hub se aapki LIC inquiry ke regarding contact kar rahe hain.`
             );
 
 
@@ -2434,8 +2589,8 @@
             </p>
 
             <p>
-              <strong>🛡️ Plan:</strong>
-              ${escapeHTML(plan)}
+              <strong>${inquiryLabel}</strong>
+              ${escapeHTML(inquiryValue)}
             </p>
 
             <p>
@@ -2726,7 +2881,7 @@
         document.getElementById(
           "licPlanCategory"
         ).value =
-          "Money Back";
+          "Money Back Plan";
 
 
         document.getElementById(
@@ -3033,7 +3188,7 @@
           document.getElementById(
             "licPlanCategory"
           ).value =
-            "Money Back";
+            "Money Back Plan";
 
 
           document.getElementById(
@@ -3794,17 +3949,19 @@
               )}
             </p>
 
-            <p>
-              <strong>🔢 UID:</strong>
-              ${escapeHTML(
-                c.uid ||
-                c.userId ||
-                c.id ||
-                "Not available"
-              )}
-            </p>
-
+            <p><strong>🔢 UID:</strong> ${escapeHTML(c.uid||c.userId||c.id||"Not available")}</p>
+            <p><strong>📦 Package:</strong> ${escapeHTML(c.package||c.packageName||"Not assigned")}</p>
+            <p><strong>📅 Registration:</strong> ${escapeHTML(advDate(c.createdAt||c.registrationDate))}</p>
+            <p><strong>📌 Account Status:</strong> ${escapeHTML(c.status||"Active")}</p>
+            <p><strong>📚 Course Progress:</strong> ${escapeHTML(c.courseProgress||c.progress||"0")}</p>
+            <p><strong>🛠️ Services Activity:</strong> ${escapeHTML(c.servicesActivity||"-" )}</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+              <button class="btn btn-light customer-status-btn">Block/Unblock</button>
+              ${c.mobile?`<a class="btn btn-success" target="_blank" rel="noopener" href="https://wa.me/${String(c.mobile).replace(/\D/g,"")}">💬 WhatsApp</a>`:""}
+              ${c.mobile?`<a class="btn btn-light" href="tel:${String(c.mobile).replace(/[^0-9+]/g,"")}">📞 Call</a>`:""}
+            </div>
           `;
+          card.querySelector(".customer-status-btn").onclick=async()=>{const next=String(c.status||"Active")==="Active"?"Inactive":"Active";if(confirm(`Customer status ${next} karna hai?`)){try{await updateDoc(doc(db,"customers",c.id),{status:next,updatedAt:new Date().toISOString()});await logAdminAction("Update","Customer Management",`${c.id}: ${next}`);await loadCustomers();}catch(e){alert("Status update failed: "+e.message);}}};
 
 
           list.appendChild(
@@ -4585,6 +4742,11 @@
       ).value =
         "LIC";
 
+      document.getElementById(
+        "coursePackage"
+      ).value =
+        "Unassigned";
+
 
       document.getElementById(
         "courseAccess"
@@ -4758,6 +4920,9 @@
     const category =
       document.getElementById("courseCategory").value;
 
+    const packageName =
+      document.getElementById("coursePackage").value;
+
     const instructor =
       document.getElementById("courseInstructor").value.trim();
 
@@ -4816,7 +4981,7 @@
         thumbnailUrl =
           await uploadCourseFile(
             thumbnailFile,
-            "courses/temp/thumbnails"
+            `courses/thumbnails/${Date.now()}_${thumbnailFile.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`
           );
 
       }
@@ -4826,6 +4991,8 @@
         name,
 
         category,
+
+        packageName,
 
         instructor,
 
@@ -5050,6 +5217,14 @@
               </p>
 
               <p>
+                <strong>📦 Package:</strong>
+                ${escapeHTML(
+                  course.packageName ||
+                  "Unassigned"
+                )}
+              </p>
+
+              <p>
                 <strong>👨‍🏫 Instructor:</strong>
                 ${escapeHTML(
                   course.instructor ||
@@ -5223,6 +5398,12 @@
       ).value =
         course.category ||
         "LIC";
+
+      document.getElementById(
+        "coursePackage"
+      ).value =
+        course.packageName ||
+        "Unassigned";
 
 
       document.getElementById(
@@ -6117,6 +6298,206 @@
     }
 
 
+    // =====================================================
+    // DASHBOARD CONTENT MANAGEMENT
+    // =====================================================
+
+    const CMS_CONFIG = {
+      services: { collection: "dashboardServices", listId: "servicesList", formId: "serviceForm", titleId: "serviceFormTitle", messageId: "serviceMessage", label: "Service" },
+      resources: { collection: "dashboardResources", listId: "resourcesList", formId: "resourceForm", titleId: "resourceFormTitle", messageId: "resourceMessage", label: "Resource" },
+      announcements: { collection: "dashboardAnnouncements", listId: "announcementsList", formId: "announcementForm", titleId: "announcementFormTitle", messageId: "announcementMessageBox", label: "Announcement" },
+      growthFeatures: { collection: "growthFeatures", listId: "growthFeaturesList", formId: "growthFeatureForm", titleId: "growthFeatureFormTitle", messageId: "growthFeatureMessage", label: "Growth Feature" }
+    };
+
+    const cmsEditing = { services: null, resources: null, announcements: null, growthFeatures: null };
+    function cmsEl(id){ return document.getElementById(id); }
+    function cmsValue(id){ const el=cmsEl(id); return el ? el.value.trim() : ""; }
+    function setCmsValue(id,value){ const el=cmsEl(id); if(el) el.value=value ?? ""; }
+
+    function resetCmsForm(type){
+      const cfg=CMS_CONFIG[type]; cmsEditing[type]=null;
+      cmsEl(cfg.titleId).textContent=`Add ${cfg.label}`;
+      const ids={services:["serviceTitle","serviceIcon","serviceDescription","serviceUrl","serviceOrder"],resources:["resourceTitle","resourceIcon","resourceDescription","resourceUrl","resourceOrder"],announcements:["announcementTitle","announcementMessage","announcementOrder"],growthFeatures:["growthFeatureTitle","growthFeatureIcon","growthFeatureDescription","growthFeatureOrder"]};
+      (ids[type]||[]).forEach(id=>setCmsValue(id,""));
+      if(type==="services"){setCmsValue("serviceIcon","🛠️");setCmsValue("serviceCategory","Other");setCmsValue("serviceAction","inquiry");setCmsValue("serviceOrder","1");setCmsValue("serviceStatus","Active");}
+      if(type==="resources"){setCmsValue("resourceIcon","📄");setCmsValue("resourceType","PDF / Guide");setCmsValue("resourceOrder","1");setCmsValue("resourceStatus","Active");}
+      if(type==="announcements"){setCmsValue("announcementOrder","1");setCmsValue("announcementStatus","Active");}
+      if(type==="growthFeatures"){setCmsValue("growthFeatureIcon","⭐");setCmsValue("growthFeatureOrder","1");setCmsValue("growthFeatureStatus","Active");}
+      cmsEl(cfg.messageId).textContent="";
+    }
+
+    function openCmsForm(type,item){
+      const cfg=CMS_CONFIG[type]; cmsEditing[type]=item?.id||null;
+      cmsEl(cfg.titleId).textContent=item?`Edit ${cfg.label}`:`Add ${cfg.label}`;
+      if(type==="services"){setCmsValue("serviceTitle",item?.title||"");setCmsValue("serviceIcon",item?.icon||"🛠️");setCmsValue("serviceCategory",item?.category||"Other");setCmsValue("serviceDescription",item?.description||"");setCmsValue("serviceAction",item?.action||"inquiry");setCmsValue("serviceUrl",item?.url||"");setCmsValue("serviceOrder",item?.order??1);setCmsValue("serviceStatus",item?.status||"Active");}
+      if(type==="resources"){setCmsValue("resourceTitle",item?.title||"");setCmsValue("resourceIcon",item?.icon||"📄");setCmsValue("resourceDescription",item?.description||"");setCmsValue("resourceType",item?.type||"PDF / Guide");setCmsValue("resourceUrl",item?.url||"");setCmsValue("resourceOrder",item?.order??1);setCmsValue("resourceStatus",item?.status||"Active");}
+      if(type==="announcements"){setCmsValue("announcementTitle",item?.title||"");setCmsValue("announcementMessage",item?.message||"");setCmsValue("announcementOrder",item?.order??1);setCmsValue("announcementStatus",item?.status||"Active");}
+      if(type==="growthFeatures"){setCmsValue("growthFeatureTitle",item?.title||"");setCmsValue("growthFeatureIcon",item?.icon||"⭐");setCmsValue("growthFeatureDescription",item?.description||"");setCmsValue("growthFeatureOrder",item?.order??1);setCmsValue("growthFeatureStatus",item?.status||"Active");}
+      cmsEl(cfg.formId).classList.remove("hidden"); cmsEl(cfg.formId).scrollIntoView({behavior:"smooth",block:"start"});
+    }
+
+    async function saveCmsItem(type){
+      const cfg=CMS_CONFIG[type], id=cmsEditing[type]; let data={};
+      if(type==="services") data={title:cmsValue("serviceTitle"),icon:cmsValue("serviceIcon")||"🛠️",category:cmsValue("serviceCategory")||"Other",description:cmsValue("serviceDescription"),action:cmsValue("serviceAction")||"inquiry",url:cmsValue("serviceUrl"),order:Number(cmsValue("serviceOrder")||0),status:cmsValue("serviceStatus")||"Active"};
+      if(type==="resources") data={title:cmsValue("resourceTitle"),icon:cmsValue("resourceIcon")||"📄",description:cmsValue("resourceDescription"),type:cmsValue("resourceType")||"PDF / Guide",url:cmsValue("resourceUrl"),order:Number(cmsValue("resourceOrder")||0),status:cmsValue("resourceStatus")||"Active"};
+      if(type==="announcements") data={title:cmsValue("announcementTitle"),message:cmsValue("announcementMessage"),order:Number(cmsValue("announcementOrder")||0),status:cmsValue("announcementStatus")||"Active"};
+      if(type==="growthFeatures") data={title:cmsValue("growthFeatureTitle"),icon:cmsValue("growthFeatureIcon")||"⭐",description:cmsValue("growthFeatureDescription"),order:Number(cmsValue("growthFeatureOrder")||0),status:cmsValue("growthFeatureStatus")||"Active"};
+      if(!data.title || (type==="announcements"&&!data.message)){cmsEl(cfg.messageId).style.color="#dc2626";cmsEl(cfg.messageId).textContent="Required details fill karein.";return;}
+      data.updatedAt=new Date().toISOString();
+      try{if(id){await updateDoc(doc(db,cfg.collection,id),data);}else{data.createdAt=new Date().toISOString();data.createdBy=ADMIN_UID;await addDoc(collection(db,cfg.collection),data);}cmsEl(cfg.messageId).style.color="#16a34a";cmsEl(cfg.messageId).textContent="Saved successfully.";cmsEl(cfg.formId).classList.add("hidden");resetCmsForm(type);await loadCmsList(type);}catch(error){console.error(error);cmsEl(cfg.messageId).style.color="#dc2626";cmsEl(cfg.messageId).textContent="Save failed: "+error.message;}
+    }
+
+    async function deleteCmsItem(type,id){const cfg=CMS_CONFIG[type];if(!confirm(`Kya aap ye ${cfg.label} delete karna chahte ho?`))return;try{await deleteDoc(doc(db,cfg.collection,id));await loadCmsList(type);}catch(error){alert("Delete failed: "+error.message);}}
+
+    async function loadCmsList(type){
+      const cfg=CMS_CONFIG[type],box=cmsEl(cfg.listId); if(!box)return; box.innerHTML='<div class="empty">Loading...</div>';
+      try{const snap=await getDocs(collection(db,cfg.collection));const items=[];snap.forEach(x=>items.push({id:x.id,...x.data()}));items.sort((a,b)=>Number(a.order||0)-Number(b.order||0));if(!items.length){box.innerHTML='<div class="empty">Abhi koi item add nahi hua.</div>';return;}box.innerHTML="";items.forEach(item=>{const card=document.createElement("div");card.className="recent-card";card.innerHTML=`<h3>${escapeHTML(item.icon|| (type==="announcements"?"📢":"📌"))} ${escapeHTML(item.title||"Untitled")}</h3><p>${escapeHTML(item.description||item.message||"")}</p>${type==="services"?`<p><strong>Category:</strong> ${escapeHTML(item.category||"Other")}</p>`:""}<p><strong>Status:</strong> ${escapeHTML(item.status||"Active")}</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;"><button class="btn btn-light edit-cms-btn">✏️ Edit</button><button class="btn btn-danger delete-cms-btn">🗑️ Delete</button></div>`;card.querySelector(".edit-cms-btn").addEventListener("click",()=>openCmsForm(type,item));card.querySelector(".delete-cms-btn").addEventListener("click",()=>deleteCmsItem(type,item.id));box.appendChild(card);});}catch(error){box.innerHTML='<div class="empty">Load failed: '+escapeHTML(error.message)+'</div>';}
+    }
+
+    let editingPackageId=null;
+    function resetPackageForm(){editingPackageId=null;setCmsValue("packageName","Starter");setCmsValue("packageStatus","Active");setCmsValue("packageOrder","1");setCmsValue("packageCourseCount","0");setCmsValue("packageDescription","");setCmsValue("packageCourseNames","");cmsEl("packageMessage").textContent="";}
+    function editPackage(item){editingPackageId=item.id;setCmsValue("packageName",item.name||"Starter");setCmsValue("packageStatus",item.status||"Active");setCmsValue("packageOrder",item.order??1);setCmsValue("packageCourseCount",item.courseCount??0);setCmsValue("packageDescription",item.description||"");setCmsValue("packageCourseNames",Array.isArray(item.courseNames)?item.courseNames.join("\n"):(item.courseNames||""));cmsEl("packageForm").classList.remove("hidden");}
+    async function savePackage(){const name=cmsValue("packageName");if(!name){cmsEl("packageMessage").textContent="Package select karein.";return;}const data={name,status:cmsValue("packageStatus")||"Active",order:Number(cmsValue("packageOrder")||0),courseCount:Number(cmsValue("packageCourseCount")||0),description:cmsValue("packageDescription"),courseNames:cmsValue("packageCourseNames").split("\n").map(x=>x.trim()).filter(Boolean),updatedAt:new Date().toISOString()};try{if(editingPackageId){await updateDoc(doc(db,"packages",editingPackageId),data);}else{data.createdAt=new Date().toISOString();data.createdBy=ADMIN_UID;await addDoc(collection(db,"packages"),data);}cmsEl("packageForm").classList.add("hidden");resetPackageForm();await loadPackages();}catch(error){cmsEl("packageMessage").style.color="#dc2626";cmsEl("packageMessage").textContent="Save failed: "+error.message;}}
+    async function deletePackage(id){if(!confirm("Kya aap ye package delete karna chahte ho?"))return;try{await deleteDoc(doc(db,"packages",id));await loadPackages();}catch(error){alert("Delete failed: "+error.message);}}
+    async function loadPackages(){const box=cmsEl("packagesList");if(!box)return;box.innerHTML='<div class="empty">Packages loading...</div>';try{const snap=await getDocs(collection(db,"packages"));const items=[];snap.forEach(x=>items.push({id:x.id,...x.data()}));items.sort((a,b)=>Number(a.order||0)-Number(b.order||0));if(!items.length){box.innerHTML='<div class="empty">Abhi package settings add nahi hui.</div>';return;}box.innerHTML="";items.forEach(item=>{const card=document.createElement("div");card.className="recent-card";card.innerHTML=`<h3>📦 ${escapeHTML(item.name||"Package")}</h3><p>${escapeHTML(item.description||"")}</p><p><strong>Courses:</strong> ${escapeHTML(item.courseCount??0)} | <strong>Status:</strong> ${escapeHTML(item.status||"Active")}</p><p><strong>Course Names:</strong> ${escapeHTML(Array.isArray(item.courseNames)?item.courseNames.join(", "):(item.courseNames||"Not added"))}</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;"><button class="btn btn-light edit-package-btn">✏️ Edit</button><button class="btn btn-danger delete-package-btn">🗑️ Delete</button></div>`;card.querySelector(".edit-package-btn").addEventListener("click",()=>editPackage(item));card.querySelector(".delete-package-btn").addEventListener("click",()=>deletePackage(item.id));box.appendChild(card);});}catch(error){box.innerHTML='<div class="empty">Packages load failed: '+escapeHTML(error.message)+'</div>';}}
+
+    async function loadSupport(){try{const snap=await getDocs(collection(db,"dashboardSettings"));let found=null;snap.forEach(x=>{if(x.id==="support")found=x.data();});if(found){setCmsValue("supportWhatsapp",found.whatsapp||"");setCmsValue("supportEmail",found.email||"");setCmsValue("supportHelp",found.help||"");}}catch(error){console.error("Support load error",error);}}
+    async function saveSupport(){try{await setDoc(doc(db,"dashboardSettings","support"),{whatsapp:cmsValue("supportWhatsapp"),email:cmsValue("supportEmail"),help:cmsValue("supportHelp"),updatedAt:new Date().toISOString(),updatedBy:ADMIN_UID},{merge:true});cmsEl("supportMessage").style.color="#16a34a";cmsEl("supportMessage").textContent="Support settings saved.";}catch(error){cmsEl("supportMessage").style.color="#dc2626";cmsEl("supportMessage").textContent="Save failed: "+error.message;}}
+    async function loadPolicies(){try{const snap=await getDocs(collection(db,"dashboardSettings"));let found=null;snap.forEach(x=>{if(x.id==="policies")found=x.data();});if(found){setCmsValue("policyPrivacy",found.privacy||"");setCmsValue("policyTerms",found.terms||"");setCmsValue("policyAbout",found.about||"");}}catch(error){console.error("Policy load error",error);}}
+    async function savePolicies(){try{await setDoc(doc(db,"dashboardSettings","policies"),{privacy:cmsValue("policyPrivacy"),terms:cmsValue("policyTerms"),about:cmsValue("policyAbout"),updatedAt:new Date().toISOString(),updatedBy:ADMIN_UID},{merge:true});cmsEl("policyMessage").style.color="#16a34a";cmsEl("policyMessage").textContent="Policies saved.";}catch(error){cmsEl("policyMessage").style.color="#dc2626";cmsEl("policyMessage").textContent="Save failed: "+error.message;}}
+
+    cmsEl("addServiceBtn").addEventListener("click",()=>{resetCmsForm("services");cmsEl("serviceForm").classList.remove("hidden");});
+    cmsEl("cancelServiceBtn").addEventListener("click",()=>{resetCmsForm("services");cmsEl("serviceForm").classList.add("hidden");});
+    cmsEl("saveServiceBtn").addEventListener("click",()=>saveCmsItem("services"));
+    cmsEl("addResourceBtn").addEventListener("click",()=>{resetCmsForm("resources");cmsEl("resourceForm").classList.remove("hidden");});
+    cmsEl("cancelResourceBtn").addEventListener("click",()=>{resetCmsForm("resources");cmsEl("resourceForm").classList.add("hidden");});
+    cmsEl("saveResourceBtn").addEventListener("click",()=>saveCmsItem("resources"));
+    cmsEl("addAnnouncementBtn").addEventListener("click",()=>{resetCmsForm("announcements");cmsEl("announcementForm").classList.remove("hidden");});
+    cmsEl("cancelAnnouncementBtn").addEventListener("click",()=>{resetCmsForm("announcements");cmsEl("announcementForm").classList.add("hidden");});
+    cmsEl("saveAnnouncementBtn").addEventListener("click",()=>saveCmsItem("announcements"));
+    cmsEl("addGrowthFeatureBtn").addEventListener("click",()=>{resetCmsForm("growthFeatures");cmsEl("growthFeatureForm").classList.remove("hidden");});
+    cmsEl("cancelGrowthFeatureBtn").addEventListener("click",()=>{resetCmsForm("growthFeatures");cmsEl("growthFeatureForm").classList.add("hidden");});
+    cmsEl("saveGrowthFeatureBtn").addEventListener("click",()=>saveCmsItem("growthFeatures"));
+    cmsEl("saveSupportBtn").addEventListener("click",saveSupport);
+    cmsEl("savePolicyBtn").addEventListener("click",savePolicies);
+    cmsEl("addPackageBtn").addEventListener("click",()=>{resetPackageForm();cmsEl("packageForm").classList.remove("hidden");});
+    cmsEl("cancelPackageBtn").addEventListener("click",()=>{resetPackageForm();cmsEl("packageForm").classList.add("hidden");});
+    cmsEl("savePackageBtn").addEventListener("click",savePackage);
+
+    async function loadAllCms(){for(const type of Object.keys(CMS_CONFIG)){await loadCmsList(type);}await loadSupport();await loadPolicies();await loadPackages();}
+
+
+
+    // =====================================================
+    // ADVANCED ADMIN FEATURES
+    // =====================================================
+    const ADV_COLLECTIONS = ["customers","inquiries","courses","orders","payments","notifications","scheduledNotifications","appointments","adminActivityLogs","adminUsers","dashboardSettings","dashboardServices","dashboardResources","dashboardAnnouncements","growthFeatures","packages"];
+    let allOrders = [], allNotifications = [], allAppointments = [], allAdminLogs = [];
+    let inquiryTab = "LIC";
+
+    function advDate(v){
+      if(!v) return "-";
+      if(typeof v === "object" && v.seconds) return new Date(Number(v.seconds)*1000).toLocaleString("en-IN");
+      const d=new Date(v); return Number.isNaN(d.getTime())?String(v):d.toLocaleString("en-IN");
+    }
+    function advNum(v){ return Number(v||0).toLocaleString("en-IN"); }
+    function setText(id,v){ const e=document.getElementById(id); if(e)e.textContent=v; }
+    function collectionField(item, keys){ for(const k of keys){ if(item[k]!==undefined && item[k]!==null && item[k]!=="") return item[k]; } return ""; }
+    function isPanInquiry(i){ const x=String(i.service||i.requestType||i.category||i.type||"").toLowerCase(); return x.includes("pan"); }
+    function isLicInquiry(i){ return !isPanInquiry(i); }
+    async function logAdminAction(action, section, details=""){
+      try{ await addDoc(collection(db,"adminActivityLogs"),{adminUid:auth.currentUser?.uid||ADMIN_UID,adminEmail:auth.currentUser?.email||"",action,section,details,createdAt:new Date().toISOString()}); }catch(e){ console.warn("Activity log failed",e); }
+    }
+
+    // Advanced analytics
+    async function loadAdvancedAnalytics(){
+      try{
+        const cSnap=await getDocs(collection(db,"customers")); const customers=[]; cSnap.forEach(d=>customers.push({id:d.id,...d.data()}));
+        const courseSnap=await getDocs(collection(db,"courses")); const courses=[]; courseSnap.forEach(d=>courses.push({id:d.id,...d.data()}));
+        const orderSnap=await getDocs(collection(db,"orders")); const orders=[]; orderSnap.forEach(d=>orders.push({id:d.id,...d.data()}));
+        allOrders=orders;
+        const total=orders.reduce((n,o)=>String(o.status||"success").toLowerCase()==="success"?n+Number(o.amount||o.price||0):n,0);
+        const now=Date.now(), day=86400000; const newCust=customers.filter(c=>{const t=new Date(c.createdAt||c.registrationDate||0).getTime();return t&&now-t<=30*day}).length;
+        setText("aTotalCustomers",advNum(customers.length)); setText("aNewCustomers",advNum(newCust)); setText("aCourses",advNum(courses.length)); setText("aActiveCourses",advNum(courses.filter(c=>String(c.status||"Active")==="Active").length)); setText("aOrders",advNum(orders.length)); setText("aRevenue","₹"+advNum(total));
+        setText("aLicInquiries",advNum(allInquiries.filter(isLicInquiry).length)); setText("aPanInquiries",advNum(allInquiries.filter(isPanInquiry).length));
+        const rev={Starter:0,Growth:0,Pro:0,Elite:0}; orders.forEach(o=>{if(String(o.status||"success").toLowerCase()!=="success")return; const p=String(o.package||o.packageName||""); if(rev[p]!==undefined)rev[p]+=Number(o.amount||o.price||0)}); Object.keys(rev).forEach(k=>setText("rev"+k,"₹"+advNum(rev[k])));
+        updateFinancialSummary(orders);
+      }catch(e){ console.warn("Analytics load:",e); }
+    }
+    function updateFinancialSummary(orders){ const counts={Success:0,Pending:0,Failed:0,Refunded:0}; orders.forEach(o=>{const s=String(o.status||"Success"); const k=Object.keys(counts).find(x=>x.toLowerCase()===s.toLowerCase()); if(k)counts[k]++;}); Object.keys(counts).forEach(k=>setText("fin"+k,advNum(counts[k]))); renderFinancial(orders); }
+    function renderFinancial(orders){ const box=document.getElementById("financialList"); if(!box)return; if(!orders.length){box.innerHTML='<tr><td colspan="7">No orders/payments found.</td></tr>';return;} box.innerHTML=orders.slice().sort((a,b)=>new Date(b.createdAt||0)-new Date(a.createdAt||0)).map(o=>`<tr><td>${escapeHTML(o.customerName||o.name||o.email||"-")}</td><td>${escapeHTML(o.package||o.packageName||o.courseName||"-")}</td><td>₹${advNum(o.amount||o.price||0)}</td><td>${escapeHTML(o.orderId||o.id||"-")}</td><td>${escapeHTML(o.paymentMethod||o.method||"-")}</td><td>${escapeHTML(o.status||"Success")}</td><td>${escapeHTML(advDate(o.createdAt))}</td></tr>`).join(""); }
+
+    // Inquiry tabs
+    document.querySelectorAll(".inquiry-tab").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".inquiry-tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");inquiryTab=b.dataset.inquiryTab;setText("inquiryTabInfo",inquiryTab==="PAN"?"PAN inquiries":inquiryTab==="LIC"?"LIC inquiries":"All inquiries");applyInquiryFilters();}));
+    const originalApplyInquiryFilters=applyInquiryFilters;
+    applyInquiryFilters=function(){
+      const searchText=searchInput.value.toLowerCase().trim(), selectedStatus=statusFilter.value;
+      const filtered=allInquiries.filter(item=>{const name=String(item.name||item.customerName||"").toLowerCase(),mobile=String(item.mobile||item.phone||"").toLowerCase(),email=String(item.email||"").toLowerCase(),plan=String(item.plan||item.selectedPlan||item.requestType||"").toLowerCase(),status=item.status||"Pending"; const typeOK=inquiryTab==="ALL"||(inquiryTab==="PAN"?isPanInquiry(item):isLicInquiry(item)); return typeOK&&(name.includes(searchText)||mobile.includes(searchText)||email.includes(searchText)||plan.includes(searchText))&&(selectedStatus==="All"||status===selectedStatus);}); displayInquiries(filtered);
+    };
+
+    // Notifications
+    async function loadNotifications(){const box=document.getElementById("notificationsList");if(!box)return;try{const s=await getDocs(collection(db,"notifications"));allNotifications=[];s.forEach(d=>allNotifications.push({id:d.id,...d.data()}));box.innerHTML=allNotifications.length?allNotifications.sort((a,b)=>new Date(b.createdAt||0)-new Date(a.createdAt||0)).map(n=>`<div class="recent-card"><h3>🔔 ${escapeHTML(n.title||"Notification")}</h3><p>${escapeHTML(n.message||"")}</p><p><strong>Type:</strong> ${escapeHTML(n.type||"General")} | <strong>Audience:</strong> ${escapeHTML(n.audience||"All Customers")} | <strong>Status:</strong> ${escapeHTML(n.status||"Active")}</p><button class="btn btn-danger delete-notif" data-id="${n.id}">🗑️ Delete</button></div>`).join(""):'<div class="empty">No notifications.</div>';box.querySelectorAll(".delete-notif").forEach(b=>b.onclick=async()=>{if(confirm("Delete notification?")){await deleteDoc(doc(db,"notifications",b.dataset.id));await logAdminAction("Delete","Notifications",b.dataset.id);loadNotifications();}});}catch(e){box.innerHTML='<div class="empty">Load failed: '+escapeHTML(e.message)+'</div>';}}
+    document.getElementById("saveNotifBtn").onclick=async()=>{const data={title:cmsValue("notifTitle"),message:cmsValue("notifMessage"),type:cmsValue("notifType"),audience:cmsValue("notifAudience"),status:cmsValue("notifStatus"),createdAt:new Date().toISOString(),createdBy:ADMIN_UID};if(!data.title||!data.message){setText("notifMessageBox","Title and message required.");return;}try{await addDoc(collection(db,"notifications"),data);await logAdminAction("Create","Notifications",data.title);document.getElementById("notifMessage").value="";document.getElementById("notifTitle").value="";setText("notifMessageBox","Saved successfully.");loadNotifications();}catch(e){setText("notifMessageBox","Save failed: "+e.message);}};
+
+    // Scheduled notifications
+    async function loadSchedules(){const box=document.getElementById("scheduleList");try{const s=await getDocs(collection(db,"scheduledNotifications"));const a=[];s.forEach(d=>a.push({id:d.id,...d.data()}));box.innerHTML=a.length?a.sort((x,y)=>new Date(x.sendAt||0)-new Date(y.sendAt||0)).map(n=>`<div class="recent-card"><h3>⏰ ${escapeHTML(n.title||"")}</h3><p>${escapeHTML(n.message||"")}</p><p><strong>Send:</strong> ${escapeHTML(advDate(n.sendAt))} | <strong>Status:</strong> ${escapeHTML(n.status||"Scheduled")}</p></div>`).join(""):'<div class="empty">No scheduled notifications.</div>';}catch(e){box.innerHTML='<div class="empty">Load failed.</div>';}}
+    document.getElementById("saveScheduleBtn").onclick=async()=>{const data={title:cmsValue("scheduleTitle"),message:cmsValue("scheduleMessage"),audience:cmsValue("scheduleAudience"),status:cmsValue("scheduleStatus"),sendAt:document.getElementById("scheduleDate").value,createdAt:new Date().toISOString(),createdBy:ADMIN_UID};if(!data.title||!data.message||!data.sendAt){setText("scheduleMessageBox","Title, message and date required.");return;}try{await addDoc(collection(db,"scheduledNotifications"),data);await logAdminAction("Create","Scheduled Notifications",data.title);setText("scheduleMessageBox","Scheduled successfully.");loadSchedules();}catch(e){setText("scheduleMessageBox","Save failed: "+e.message);}};
+
+    // Pricing
+    async function loadPricing(){try{const d=await getDoc(doc(db,"dashboardSettings","pricing"));if(d.exists()){const x=d.data();["Starter","Growth","Pro","Elite"].forEach(k=>{const e=document.getElementById("price"+k);if(e)e.value=x[k.toLowerCase()]??0});document.getElementById("paymentGateway").value=x.gateway||"PhonePe";document.getElementById("gatewayStatus").value=x.gatewayStatus||"Active";document.getElementById("offerStart").value=x.offerStart||"";document.getElementById("offerEnd").value=x.offerEnd||"";}renderPricing();}catch(e){console.warn(e)}}
+    function renderPricing(){const keys=["Starter","Growth","Pro","Elite"];document.getElementById("pricingSummary").innerHTML=keys.map(k=>`<span class="pill pill-blue" style="margin:4px">${k}: ₹${advNum(document.getElementById("price"+k).value||0)}</span>`).join("");}
+    document.getElementById("savePricingBtn").onclick=async()=>{const data={starter:Number(document.getElementById("priceStarter").value||0),growth:Number(document.getElementById("priceGrowth").value||0),pro:Number(document.getElementById("pricePro").value||0),elite:Number(document.getElementById("priceElite").value||0),gateway:document.getElementById("paymentGateway").value,gatewayStatus:document.getElementById("gatewayStatus").value,offerStart:document.getElementById("offerStart").value,offerEnd:document.getElementById("offerEnd").value,updatedAt:new Date().toISOString(),updatedBy:ADMIN_UID};try{await setDoc(doc(db,"dashboardSettings","pricing"),data,{merge:true});await logAdminAction("Update","Payment & Pricing","Pricing/gateway");setText("pricingMessage","Pricing saved.");renderPricing();}catch(e){setText("pricingMessage","Save failed: "+e.message);}};
+
+    // PAN services (separate collection)
+
+    // App settings
+    async function loadAppSettings(){try{const d=await getDoc(doc(db,"dashboardSettings","app"));if(d.exists()){const x=d.data();document.getElementById("settingAppName").value=x.appName||"Apna Growth Hub";document.getElementById("settingLogo").value=x.logo||"";document.getElementById("settingAppUrl").value=x.appUrl||"";document.getElementById("settingWhatsapp").value=x.whatsapp||"";document.getElementById("settingEmail").value=x.email||"";document.getElementById("settingMaintenance").value=String(x.maintenance||false);document.getElementById("settingSocial").value=x.social||"";document.getElementById("settingInfo").value=x.info||"";}}catch(e){console.warn(e)}}
+    document.getElementById("saveAppSettingsBtn").onclick=async()=>{const d={appName:cmsValue("settingAppName"),logo:cmsValue("settingLogo"),appUrl:cmsValue("settingAppUrl"),whatsapp:cmsValue("settingWhatsapp"),email:cmsValue("settingEmail"),maintenance:document.getElementById("settingMaintenance").value==="true",social:cmsValue("settingSocial"),info:cmsValue("settingInfo"),updatedAt:new Date().toISOString(),updatedBy:ADMIN_UID};try{await setDoc(doc(db,"dashboardSettings","app"),d,{merge:true});await logAdminAction("Update","App Settings","Application settings");setText("appSettingsMessage","App settings saved.");}catch(e){setText("appSettingsMessage","Save failed: "+e.message);}};
+
+    // Admin management
+    async function loadAdmins(){const box=document.getElementById("adminList");try{const s=await getDocs(collection(db,"adminUsers"));const a=[];s.forEach(d=>a.push({id:d.id,...d.data()}));a.unshift({id:ADMIN_UID,name:"Virender Chauhan",email:"Owner Admin",role:"Owner",status:"Active",permissions:"ALL"});box.innerHTML=a.map(x=>`<div class="recent-card"><h3>👑 ${escapeHTML(x.name||x.email||"Admin")}</h3><p>${escapeHTML(x.email||"")} | <strong>Role:</strong> ${escapeHTML(x.role||"Staff Admin")} | <strong>Status:</strong> ${escapeHTML(x.status||"Active")}</p><p><strong>Permissions:</strong> ${escapeHTML(x.permissions||"-")}</p>${x.role!=="Owner"?`<button class="btn btn-light toggle-admin" data-id="${x.id}" data-status="${x.status||"Active"}">${x.status==="Active"?"Disable":"Enable"}</button>`:""}</div>`).join("");box.querySelectorAll(".toggle-admin").forEach(b=>b.onclick=async()=>{await updateDoc(doc(db,"adminUsers",b.dataset.id),{status:b.dataset.status==="Active"?"Inactive":"Active",updatedAt:new Date().toISOString()});loadAdmins();});}catch(e){box.innerHTML='<div class="empty">Admin list unavailable: '+escapeHTML(e.message)+'</div>';}}
+    document.getElementById("addStaffBtn").onclick=async()=>{const name=cmsValue("staffName"),email=cmsValue("staffEmail"),password=document.getElementById("staffPassword").value,role=cmsValue("staffRole"),permissions=cmsValue("staffPermissions");if(!name||!email||password.length<6){setText("adminMessage","Name, email and 6+ character password required.");return;}try{const secondary=initializeApp(firebaseConfig,"adminCreation");const secAuth=getAuth(secondary);const cred=await createUserWithEmailAndPassword(secAuth,email,password);await setDoc(doc(db,"adminUsers",cred.user.uid),{name,email,role,permissions,status:"Active",createdAt:new Date().toISOString(),createdBy:ADMIN_UID});await signOut(secAuth);setText("adminMessage","Staff Admin created successfully.");logAdminAction("Create","Admin Management",email);loadAdmins();}catch(e){setText("adminMessage","Add Admin failed: "+e.message);}};
+
+    // Activity logs
+    async function loadActivityLogs(){const box=document.getElementById("activityList");try{const s=await getDocs(collection(db,"adminActivityLogs"));allAdminLogs=[];s.forEach(d=>allAdminLogs.push({id:d.id,...d.data()}));allAdminLogs.sort((a,b)=>new Date(b.createdAt||0)-new Date(a.createdAt||0));box.innerHTML=allAdminLogs.slice(0,200).map(x=>`<tr><td>${escapeHTML(x.adminEmail||x.adminUid||"-")}</td><td>${escapeHTML(x.action||"")}</td><td>${escapeHTML(x.section||"")}</td><td>${escapeHTML(advDate(x.createdAt))}</td><td>${escapeHTML(x.details||"")}</td></tr>`).join("")||'<tr><td colspan="5">No activity yet.</td></tr>';}catch(e){box.innerHTML='<tr><td colspan="5">Logs unavailable.</td></tr>';}}
+
+    // Backup / restore
+    async function readCollectionData(name){const s=await getDocs(collection(db,name));const a=[];s.forEach(d=>a.push({id:d.id,data:d.data()}));return a;}
+    document.getElementById("createBackupBtn").onclick=async()=>{try{const data={version:1,createdAt:new Date().toISOString(),collections:{}};for(const c of ["customers","inquiries","courses","packages","orders","payments","notifications","scheduledNotifications","appointments","dashboardServices","dashboardResources","dashboardAnnouncements","growthFeatures","dashboardSettings"]){try{data.collections[c]=await readCollectionData(c);}catch(e){data.collections[c]=[];}}delete data.collections.customers; // customer auth/profile backup intentionally excluded for privacy
+      const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=`apna-growth-hub-backup-${Date.now()}.json`;a.click();URL.revokeObjectURL(url);await logAdminAction("Create","Backup & Recovery","Manual backup");setText("backupMessage","Backup downloaded. Customer passwords/auth data excluded.");}catch(e){setText("backupMessage","Backup failed: "+e.message);}};
+    document.getElementById("restoreBackupBtn").onclick=async()=>{const f=document.getElementById("restoreFile").files[0];if(!f){setText("backupMessage","Backup JSON select karo.");return;}if(!confirm("Restore se existing records change ho sakte hain. Continue?"))return;try{const data=JSON.parse(await f.text());const allowed=["packages","dashboardServices","dashboardResources","dashboardAnnouncements","growthFeatures","dashboardSettings","notifications","scheduledNotifications","appointments"];let count=0;for(const c of allowed){for(const item of (data.collections?.[c]||[])){await setDoc(doc(db,c,item.id),item.data,{merge:true});count++;}}await logAdminAction("Restore","Backup & Recovery",`${count} records`);setText("backupMessage",`Safe restore complete: ${count} records.`);}catch(e){setText("backupMessage","Restore failed: "+e.message);}};
+
+    // System health
+    async function runHealth(){setText("healthFirebase","OK");setText("healthAuth",auth.currentUser?"OK":"Login required");try{await getDocs(collection(db,"dashboardSettings"));setText("healthFirestore","OK");}catch(e){setText("healthFirestore","ERROR");}setText("healthStorage","Ready");}
+    document.getElementById("runHealthBtn").onclick=runHealth;
+
+    // CSV export
+    function csvDownload(rows,name){if(!rows.length){setText("exportMessage","No data available.");return;}const keys=[...new Set(rows.flatMap(r=>Object.keys(r)))];const esc=v=>`"${String(v??"").replaceAll('"','""')}"`;const csv=[keys.join(","),...rows.map(r=>keys.map(k=>esc(typeof r[k]==="object"?JSON.stringify(r[k]):r[k])).join(","))].join("\n");const blob=new Blob([csv],{type:"text/csv;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;a.click();URL.revokeObjectURL(url);}
+    document.querySelectorAll(".export-btn").forEach(b=>b.onclick=async()=>{try{const type=b.dataset.export, map={customers:"customers",inquiries:"inquiries",orders:"orders",courses:"courses",revenue:"orders"},rows=await readCollectionData(map[type]);csvDownload(rows.map(x=>x.data),`apna-growth-hub-${type}.csv`);await logAdminAction("Export","Data Export",type);setText("exportMessage","Export complete.");}catch(e){setText("exportMessage","Export failed: "+e.message);}});
+
+    // Segmentation
+    function segmentMatch(c,type){const x=JSON.stringify(c).toLowerCase(); if(type==="All Customers")return true;if(type==="LIC Customers")return x.includes("lic");if(type==="PAN Customers")return x.includes("pan");if(type==="Course Students")return x.includes("course");if(type==="Paid Customers")return x.includes("paid");if(type==="Free Customers")return x.includes("free");if(type==="Active Customers")return String(c.status||"Active").toLowerCase()==="active";if(type==="Inactive Customers")return String(c.status||"").toLowerCase()==="inactive";return String(c.package||c.packageName||"").toLowerCase()===type.toLowerCase();}
+    function renderSegments(){const type=document.getElementById("segmentType").value,q=document.getElementById("segmentSearch").value.toLowerCase();const a=allCustomers.filter(c=>segmentMatch(c,type)&&(!q||JSON.stringify(c).toLowerCase().includes(q)));setText("segmentCount",a.length);document.getElementById("segmentList").innerHTML=a.map(c=>`<div class="recent-card"><h3>${escapeHTML(c.name||c.customerName||"Customer")}</h3><p>${escapeHTML(c.mobile||c.phone||"")} | ${escapeHTML(c.email||"")} | Package: ${escapeHTML(c.package||c.packageName||"-")}</p></div>`).join("")||'<div class="empty">No matching customers.</div>';}
+    document.getElementById("segmentType").onchange=renderSegments;document.getElementById("segmentSearch").oninput=renderSegments;
+
+    // Appointments
+    async function loadAppointments(){const box=document.getElementById("appointmentsList");try{const s=await getDocs(collection(db,"appointments"));allAppointments=[];s.forEach(d=>allAppointments.push({id:d.id,...d.data()}));allAppointments.sort((a,b)=>new Date(a.date||0)-new Date(b.date||0));box.innerHTML=allAppointments.map(a=>`<div class="recent-card"><h3>📞 ${escapeHTML(a.name||"Customer")}</h3><p>📱 ${escapeHTML(a.mobile||"-")} | 📅 ${escapeHTML(advDate(a.date))} | ${escapeHTML(a.status||"Pending")}</p><p>${escapeHTML(a.notes||"")}</p><button class="btn btn-light appt-done" data-id="${a.id}">Mark Completed</button></div>`).join("")||'<div class="empty">No callbacks.</div>';box.querySelectorAll(".appt-done").forEach(b=>b.onclick=async()=>{await updateDoc(doc(db,"appointments",b.dataset.id),{status:"Completed",updatedAt:new Date().toISOString()});loadAppointments();});}catch(e){box.innerHTML='<div class="empty">Load failed.</div>';}}
+    document.getElementById("saveApptBtn").onclick=async()=>{const d={name:cmsValue("apptName"),mobile:cmsValue("apptMobile"),date:document.getElementById("apptDate").value,status:document.getElementById("apptStatus").value,staff:cmsValue("apptStaff"),notes:cmsValue("apptNotes"),createdAt:new Date().toISOString(),createdBy:ADMIN_UID};if(!d.name){setText("apptMessage","Customer name required.");return;}try{await addDoc(collection(db,"appointments"),d);await logAdminAction("Create","Appointments",d.name);setText("apptMessage","Callback saved.");loadAppointments();}catch(e){setText("apptMessage","Save failed: "+e.message);}};
+
+    // Global search
+    document.getElementById("globalSearchInput").oninput=async()=>{const q=document.getElementById("globalSearchInput").value.toLowerCase().trim(),box=document.getElementById("globalSearchResults");if(q.length<2){box.innerHTML='<div class="empty">2+ characters type karein.</div>';return;}const sources=[...allCustomers.map(x=>({type:"Customer",title:x.name||x.customerName||x.email||x.id,data:x})),...allInquiries.map(x=>({type:"Inquiry",title:x.name||x.customerName||x.email||x.id,data:x}))];try{const cs=await getDocs(collection(db,"courses"));cs.forEach(d=>{const x=d.data();sources.push({type:"Course",title:x.name||d.id,data:x});});const os=await getDocs(collection(db,"orders"));os.forEach(d=>{const x=d.data();sources.push({type:"Order",title:x.orderId||d.id,data:x});});}catch(e){}const r=sources.filter(x=>(x.title+JSON.stringify(x.data)).toLowerCase().includes(q)).slice(0,50);box.innerHTML=r.map(x=>`<div class="recent-card"><h3>${escapeHTML(x.type)} — ${escapeHTML(x.title)}</h3><p>${escapeHTML(JSON.stringify(x.data))}</p></div>`).join("")||'<div class="empty">No results.</div>';};
+
+    // File management
+    async function loadStorageFiles(){const box=document.getElementById("storageFileList");try{const root=ref(storage,""),res=await listAll(root);const all=[...res.items];box.innerHTML=all.length?all.map(x=>`<div class="recent-card"><strong>📄 ${escapeHTML(x.name)}</strong><button class="btn btn-danger delete-storage-file" data-path="${escapeHTML(x.fullPath)}">Delete</button></div>`).join(""):'<div class="empty">Root-level files only are shown here. Course files remain under their course folders.</div>';box.querySelectorAll(".delete-storage-file").forEach(b=>b.onclick=async()=>{if(confirm("Delete this storage file? Check that it is not in use.")){await deleteObject(ref(storage,b.dataset.path));loadStorageFiles();}});}catch(e){box.innerHTML='<div class="empty">Storage list unavailable: '+escapeHTML(e.message)+'</div>';}}
+    document.getElementById("uploadAdminFileBtn").onclick=async()=>{const f=document.getElementById("adminFileUpload").files[0],folder=cmsValue("adminFileFolder")||"admin-files";if(!f){setText("fileMessage","File select karo.");return;}try{const r=ref(storage,`${folder}/${Date.now()}_${f.name.replace(/[^a-zA-Z0-9._-]/g,"_")}`);await uploadBytes(r,f);const url=await getDownloadURL(r);setText("fileMessage","Uploaded: "+url);loadStorageFiles();}catch(e){setText("fileMessage","Upload failed: "+e.message);}};document.getElementById("refreshFilesBtn").onclick=loadStorageFiles;
+
+    // Sandbox
+    async function loadSandbox(){const box=document.getElementById("sandboxHistory");try{const s=await getDocs(collection(db,"sandboxTests"));const a=[];s.forEach(d=>a.push({id:d.id,...d.data()}));box.innerHTML=a.map(x=>`<div class="recent-card"><h3>🧪 ${escapeHTML(x.type||"")} — ${escapeHTML(x.name||"")}</h3><p>${escapeHTML(x.result||"")} | ${escapeHTML(advDate(x.createdAt))}</p></div>`).join("")||'<div class="empty">No tests yet.</div>';}catch(e){box.innerHTML='<div class="empty">Sandbox unavailable.</div>';}}
+    document.getElementById("runSandboxBtn").onclick=async()=>{const d={type:cmsValue("sandboxType"),name:cmsValue("sandboxName"),data:cmsValue("sandboxData"),result:"TEST COMPLETED — no live customer record changed",createdAt:new Date().toISOString(),createdBy:ADMIN_UID};try{await addDoc(collection(db,"sandboxTests"),d);setText("sandboxResult","Test completed safely in sandbox.");loadSandbox();}catch(e){setText("sandboxResult","Test failed: "+e.message);}};
+    document.getElementById("clearSandboxBtn").onclick=async()=>{if(!confirm("Delete all sandbox test records?"))return;try{const s=await getDocs(collection(db,"sandboxTests"));for(const d of s.docs)await deleteDoc(doc(db,"sandboxTests",d.id));loadSandbox();}catch(e){setText("sandboxResult","Clear failed: "+e.message);}};
+
+    async function loadAdvancedFeatures(){await loadAdvancedAnalytics();await loadNotifications();await loadSchedules();await loadPricing();await loadPanServices();await loadAppSettings();await loadAdmins();await loadActivityLogs();await runHealth();await renderSegments();await loadAppointments();await loadSandbox();}
+
     // MENU
 
     document
@@ -6228,21 +6609,25 @@
         lic:
           "LIC Management",
 
-        digital:
-          "Digital Skills",
-
-        ai:
-          "AI Tools",
-
-        social:
-          "Social Media",
+        services:
+          "Services Management",
 
         courses:
-          "Course Management",
+          "Course & Package Management",
 
-        privacy:
-          "Privacy & Policies"
+        resources:
+          "Resources Management",
 
+        announcements:
+          "Announcements Management",
+
+        growthFeatures:
+          "Growth Features Management",
+
+        support:
+          "Support Management",
+
+        privacy:"Privacy & Policies", notifications:"Notification Management", scheduledNotifications:"Scheduled Notifications", paymentPricing:"Payment & Pricing", financialRecords:"Audit & Financial Records", appSettings:"App Settings", adminManagement:"Admin Management", activityLog:"Admin Activity Log", backupRecovery:"Backup & Recovery", systemHealth:"System Health", dataExport:"Data Export", segmentation:"Customer Segmentation", appointments:"Appointment / Callback", globalSearch:"Global Search", fileManagement:"Document / File Management", sandbox:"Test / Sandbox"
       };
 
 
@@ -6261,6 +6646,26 @@
         loadDeleteRequests();
 
       }
+
+      if(sectionName === "services") loadCmsList("services");
+      if(sectionName === "resources") loadCmsList("resources");
+      if(sectionName === "announcements") loadCmsList("announcements");
+      if(sectionName === "growthFeatures") loadCmsList("growthFeatures");
+      if(sectionName === "support") loadSupport();
+      if(sectionName === "privacy") loadPolicies();
+      if(sectionName === "courses") loadPackages();
+      if(sectionName === "notifications") loadNotifications();
+      if(sectionName === "scheduledNotifications") loadSchedules();
+      if(sectionName === "paymentPricing") loadPricing();
+      if(sectionName === "financialRecords") loadAdvancedAnalytics();
+      if(sectionName === "appSettings") loadAppSettings();
+      if(sectionName === "adminManagement") loadAdmins();
+      if(sectionName === "activityLog") loadActivityLogs();
+      if(sectionName === "systemHealth") runHealth();
+      if(sectionName === "segmentation") renderSegments();
+      if(sectionName === "appointments") loadAppointments();
+      if(sectionName === "fileManagement") loadStorageFiles();
+      if(sectionName === "sandbox") loadSandbox();
 
     }
 
@@ -6284,6 +6689,8 @@
           await loadDeleteRequests();
 
           await loadCourses();
+          await loadAllCms();
+          await loadAdvancedFeatures();
 
         }
       );

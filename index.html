@@ -1,10 +1,145 @@
 <!DOCTYPE html>
+
 <html lang="hi">
 <head>
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="google-site-verification" content="0u3MrF-SSjnaA2MCIp0KLVi6WMu-NIqVM1fvmqKhdNE" />
-  <title>Apna Growth Hub - Login</title>
+
+  <meta
+    name="google-site-verification"
+    content="0u3MrF-SSjnaA2MCIp0KLVi6WMu-NIqVM1fvmqKhdNE"
+  />
+
+  <!-- SEO -->
+  <title>Apna Growth Hub – Learn, Grow & Succeed</title>
+
+  <meta
+    name="description"
+    content="Apna Growth Hub – Learn, Grow & Succeed with LIC Plans, Digital Skills, AI Tools, Online Learning and useful growth resources."
+  />
+
+  <meta
+    name="keywords"
+    content="Apna Growth Hub, LIC Plans, Digital Skills, AI Tools, Online Learning, Growth Resources, Learning Platform"
+  />
+
+  <meta
+    name="author"
+    content="Apna Growth Hub"
+  />
+
+  <meta
+    name="robots"
+    content="index, follow"
+  />
+
+  <link
+    rel="canonical"
+    href="https://apna-growth-hub.web.app/"
+  />
+
+  <meta
+    name="theme-color"
+    content="#2563eb"
+  />
+
+  <meta
+    name="language"
+    content="Hindi"
+  />
+
+  <!-- Favicon -->
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%232563eb'/%3E%3Ctext x='50' y='65' font-size='45' text-anchor='middle' fill='white' font-family='Arial'%3EAGH%3C/text%3E%3C/svg%3E"
+  />
+
+  <!-- Open Graph -->
+  <meta
+    property="og:type"
+    content="website"
+  />
+
+  <meta
+    property="og:title"
+    content="Apna Growth Hub – Learn, Grow & Succeed"
+  />
+
+  <meta
+    property="og:description"
+    content="Learn, Grow & Succeed with LIC Plans, Digital Skills, AI Tools, Online Learning and useful growth resources."
+  />
+
+  <meta
+    property="og:url"
+    content="https://apna-growth-hub.web.app/"
+  />
+
+  <meta
+    property="og:site_name"
+    content="Apna Growth Hub"
+  />
+
+  <meta
+    property="og:locale"
+    content="hi_IN"
+  />
+
+  <!-- Twitter / X -->
+  <meta
+    name="twitter:card"
+    content="summary"
+  />
+
+  <meta
+    name="twitter:title"
+    content="Apna Growth Hub – Learn, Grow & Succeed"
+  />
+
+  <meta
+    name="twitter:description"
+    content="Learn, Grow & Succeed with LIC Plans, Digital Skills, AI Tools and Online Learning."
+  />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://apna-growth-hub.web.app/#website",
+        "url": "https://apna-growth-hub.web.app/",
+        "name": "Apna Growth Hub",
+        "description": "Learn, Grow & Succeed with LIC Plans, Digital Skills, AI Tools, Online Learning and useful growth resources.",
+        "inLanguage": "hi-IN"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://apna-growth-hub.web.app/#organization",
+        "name": "Apna Growth Hub",
+        "alternateName": "Apna Growth Hub",
+        "url": "https://apna-growth-hub.web.app/"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://apna-growth-hub.web.app/#webpage",
+        "url": "https://apna-growth-hub.web.app/",
+        "name": "Apna Growth Hub – Learn, Grow & Succeed",
+        "description": "Apna Growth Hub provides learning and growth resources including LIC Plans, Digital Skills, AI Tools and Online Learning.",
+        "isPartOf": {
+          "@id": "https://apna-growth-hub.web.app/#website"
+        },
+        "about": {
+          "@id": "https://apna-growth-hub.web.app/#organization"
+        },
+        "inLanguage": "hi-IN"
+      }
+    ]
+  }
+  </script>
 
   <style>
     * {
@@ -116,6 +251,7 @@
       color: #333;
     }
   </style>
+
 </head>
 
 <body>
@@ -128,9 +264,7 @@
       Learn • Grow • Succeed
     </div>
 
-    <!-- =========================
-         SIGNUP FORM
-    ========================== -->
+    <!-- SIGNUP FORM -->
 
     <div id="signupBox">
 
@@ -189,9 +323,7 @@
     </div>
 
 
-    <!-- =========================
-         LOGIN FORM
-    ========================== -->
+    <!-- LOGIN FORM -->
 
     <div
       id="loginBox"
@@ -247,926 +379,949 @@
   </div>
 
 
-  <!-- =========================
-       FIREBASE
-  ========================== -->
+  <!-- FIREBASE -->
 
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
-
-  <script>
-
-    // =========================
-    // FIREBASE CONFIG
-    // =========================
-
-    const firebaseConfig = {
-
-      apiKey:
-        "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
-
-      authDomain:
-        "apna-growth-hub.firebaseapp.com",
-
-      projectId:
-        "apna-growth-hub",
-
-      storageBucket:
-        "apna-growth-hub.firebasestorage.app",
-
-      messagingSenderId:
-        "939001251123",
-
-      appId:
-        "1:939001251123:web:f2966004acaa64186e2a46",
-
-      measurementId:
-        "G-GZGCHL4XQ3"
-
-    };
-
-
-    // =========================
-    // FIREBASE INITIALIZE
-    // =========================
-
-    if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-    }
-
-    const auth =
-      firebase.auth();
-
-    const db =
-      firebase.firestore();
-
-
-    // =========================
-    // MESSAGE
-    // =========================
-
-    function showMessage(
-      text,
-      color = "#dc2626"
-    ) {
-
-      const message =
-        document.getElementById("message");
-
-      message.innerText = text;
-
-      message.style.color = color;
-
-    }
-
-
-    // =========================
-    // SHOW LOGIN
-    // =========================
-
-    function showLogin() {
-
-      document
-        .getElementById("signupBox")
-        .classList.add("hidden");
-
-      document
-        .getElementById("loginBox")
-        .classList.remove("hidden");
-
-      showMessage("");
-
-    }
-
-
-    // =========================
-    // SHOW SIGNUP
-    // =========================
-
-    function showSignup() {
-
-      document
-        .getElementById("loginBox")
-        .classList.add("hidden");
-
-      document
-        .getElementById("signupBox")
-        .classList.remove("hidden");
-
-      showMessage("");
-
-    }
-
-
-    // =========================
-    // CALCULATE AGE
-    // =========================
-
-    function calculateAge(dob) {
-
-      if (!dob) {
-        return "";
-      }
-
-      const birthDate =
-        new Date(dob);
-
-      if (
-        isNaN(
-          birthDate.getTime()
-        )
-      ) {
-        return "";
-      }
-
-      const today =
-        new Date();
-
-      let age =
-        today.getFullYear() -
-        birthDate.getFullYear();
-
-      const monthDifference =
-        today.getMonth() -
-        birthDate.getMonth();
-
-      if (
-        monthDifference < 0 ||
-        (
-          monthDifference === 0 &&
-          today.getDate() < birthDate.getDate()
-        )
-      ) {
-        age--;
-      }
-
-      return age;
-
-    }
-
-
-    // =========================
-    // SAVE CUSTOMER PROFILE
-    // =========================
-
-    async function saveCustomerProfile(
-      user,
-      name,
-      mobile,
-      dob,
-      age,
-      email
-    ) {
-
-      await db
-        .collection("customers")
-        .doc(user.uid)
-        .set({
-
-          name:
-            name || "",
-
-          mobile:
-            mobile || "",
-
-          dob:
-            dob || "",
-
-          age:
-            age,
-
-          email:
-            email ||
-            user.email ||
-            "",
-
-          uid:
-            user.uid,
-
-          createdAt:
-            firebase.firestore.FieldValue.serverTimestamp(),
-
-          updatedAt:
-            firebase.firestore.FieldValue.serverTimestamp()
-
-        }, {
-
-          merge: true
-
-        });
-
-    }
-
-
-    // =========================
-    // CREATE ACCOUNT
-    // =========================
-
-    async function createAccount() {
-
-      const name =
-        document
-          .getElementById("name")
-          .value
-          .trim();
-
-      const mobile =
-        document
-          .getElementById("mobile")
-          .value
-          .trim();
-
-      const dob =
-        document
-          .getElementById("dob")
-          .value;
-
-      const email =
-        document
-          .getElementById("signupEmail")
-          .value
-          .trim();
-
-      const password =
-        document
-          .getElementById("signupPassword")
-          .value;
-
-
-      if (
-        !name ||
-        !mobile ||
-        !dob ||
-        !email ||
-        !password
-      ) {
-
-        showMessage(
-          "कृपया सभी details भरें।"
-        );
-
-        return;
-
-      }
-
-
-      if (
-        password.length < 6
-      ) {
-
-        showMessage(
-          "Password कम से कम 6 characters का होना चाहिए।"
-        );
-
-        return;
-
-      }
-
-
-      const age =
-        calculateAge(dob);
-
-
-      if (
-        age === "" ||
-        age < 0 ||
-        age > 120
-      ) {
-
-        showMessage(
-          "कृपया सही Date of Birth डालें।"
-        );
-
-        return;
-
-      }
-
-
-      try {
-
-        showMessage(
-          "Account बनाया जा रहा है...",
-          "#2563eb"
-        );
-
-
-        // FIREBASE AUTH ACCOUNT
-
-        const userCredential =
-          await auth
-            .createUserWithEmailAndPassword(
-              email,
-              password
-            );
-
-        const user =
-          userCredential.user;
-
-
-        // FIRESTORE CUSTOMER PROFILE
-
-        await saveCustomerProfile(
-          user,
-          name,
-          mobile,
-          dob,
-          age,
-          email
-        );
-
-
-        // LOCAL STORAGE
-
-        localStorage.setItem(
-          "customerName",
-          name
-        );
-
-        localStorage.setItem(
-          "customerMobile",
-          mobile
-        );
-
-        localStorage.setItem(
-          "customerDOB",
-          dob
-        );
-
-        localStorage.setItem(
-          "customerAge",
-          age
-        );
-
-        localStorage.setItem(
-          "customerEmail",
-          email
-        );
-
-        localStorage.setItem(
-          "firebaseLoggedIn",
-          "true"
-        );
-
-
-        showMessage(
-          "Account बन गया। Dashboard खुल रहा है...",
-          "#16a34a"
-        );
-
-
-        setTimeout(() => {
-
-          window.location.href =
-            "dashboard.html";
-
-        }, 1000);
-
-
-      } catch (error) {
-
-        console.error(
-          "CREATE ACCOUNT ERROR:",
-          error
-        );
-
-
-        if (
-          error.code ===
-          "auth/email-already-in-use"
-        ) {
-
-          showMessage(
-            "इस Email से account पहले से बना हुआ है। Login करें।"
-          );
-
-        }
-
-        else if (
-          error.code ===
-          "auth/invalid-email"
-        ) {
-
-          showMessage(
-            "कृपया सही Email डालें।"
-          );
-
-        }
-
-        else {
-
-          showMessage(
-            error.message ||
-            "Account बनाने में समस्या आई।"
-          );
-
-        }
-
-      }
-
-    }
-
-
-    // =========================
-    // LOGIN
-    // =========================
-
-    async function loginAccount() {
-
-      const email =
-        document
-          .getElementById("loginEmail")
-          .value
-          .trim();
-
-      const password =
-        document
-          .getElementById("loginPassword")
-          .value;
-
-
-      if (
-        !email ||
-        !password
-      ) {
-
-        showMessage(
-          "Email और Password भरें।"
-        );
-
-        return;
-
-      }
-
-
-      try {
-
-        showMessage(
-          "Login हो रहा है...",
-          "#2563eb"
-        );
-
-
-        // FIREBASE LOGIN
-
-        const userCredential =
-          await Promise.race([
-
-            auth.signInWithEmailAndPassword(
-              email,
-              password
-            ),
-
-            new Promise((_, reject) => {
-
-              setTimeout(() => {
-
-                reject(
-                  new Error(
-                    "Firebase login response नहीं आया। Internet या Firebase Auth connection check करें।"
-                  )
-                );
-
-              }, 12000);
-
-            })
-
-          ]);
-
-
-        const user =
-          userCredential.user;
-
-
-        // =========================
-        // CUSTOMER PROFILE CHECK
-        // =========================
-
-        const customerRef =
-          db
-            .collection("customers")
-            .doc(user.uid);
-
-        let customer;
-
-
-        try {
-
-          const profileResult =
-            await Promise.race([
-
-              (async () => {
-
-                const customerDoc =
-                  await customerRef.get();
-
-
-                if (customerDoc.exists) {
-
-                  customer =
-                    customerDoc.data();
-
-
-                  let dob =
-                    customer.dob ||
-                    customer.dateOfBirth ||
-                    customer.DOB ||
-                    customer.birthDate ||
-                    "";
-
-
-                  let age =
-                    customer.age;
-
-
-                  if (
-                    (
-                      age === undefined ||
-                      age === null ||
-                      age === ""
-                    ) &&
-                    dob
-                  ) {
-
-                    age =
-                      calculateAge(dob);
-
-                  }
-
-
-                  await customerRef.set({
-
-                    name:
-                      customer.name ||
-                      customer.fullName ||
-                      "",
-
-                    mobile:
-                      customer.mobile ||
-                      customer.phone ||
-                      "",
-
-                    dob:
-                      dob || "",
-
-                    age:
-                      age ?? "",
-
-                    email:
-                      customer.email ||
-                      user.email ||
-                      email,
-
-                    uid:
-                      user.uid,
-
-                    updatedAt:
-                      firebase.firestore.FieldValue.serverTimestamp()
-
-                  }, {
-
-                    merge: true
-
-                  });
-
-
-                  const repairedDoc =
-                    await customerRef.get();
-
-
-                  customer =
-                    repairedDoc.data();
-
-                }
-
-                else {
-
-                  customer = {
-
-                    name:
-                      user.displayName || "",
-
-                    mobile:
-                      "",
-
-                    dob:
-                      "",
-
-                    age:
-                      "",
-
-                    email:
-                      user.email || email,
-
-                    uid:
-                      user.uid
-
-                  };
-
-
-                  await customerRef.set({
-
-                    name:
-                      customer.name,
-
-                    mobile:
-                      "",
-
-                    dob:
-                      "",
-
-                    age:
-                      "",
-
-                    email:
-                      customer.email,
-
-                    uid:
-                      user.uid,
-
-                    createdAt:
-                      firebase.firestore.FieldValue.serverTimestamp(),
-
-                    updatedAt:
-                      firebase.firestore.FieldValue.serverTimestamp()
-
-                  });
-
-                }
-
-
-                return customer;
-
-              })(),
-
-
-              new Promise((_, reject) => {
-
-                setTimeout(() => {
-
-                  reject(
-                    new Error(
-                      "Customer profile response नहीं आया।"
-                    )
-                  );
-
-                }, 8000);
-
-              })
-
-            ]);
-
-
-          customer =
-            profileResult;
-
-
-        } catch (profileError) {
-
-          console.error(
-            "CUSTOMER PROFILE ERROR:",
-            profileError
-          );
-
-
-          // Auth login successful होने पर
-          // Firestore problem से login block नहीं करेंगे.
-
-          customer = {
-
-            name:
-              user.displayName || "",
-
-            mobile:
-              "",
-
-            dob:
-              "",
-
-            age:
-              "",
-
-            email:
-              user.email || email,
-
-            uid:
-              user.uid
-
-          };
-
-        }
-
-
-        // =========================
-        // LOCAL STORAGE
-        // =========================
-
-        localStorage.setItem(
-          "customerName",
-          customer.name || ""
-        );
-
-        localStorage.setItem(
-          "customerMobile",
-          customer.mobile ||
-          customer.phone ||
-          ""
-        );
-
-        localStorage.setItem(
-          "customerDOB",
-          customer.dob ||
-          customer.dateOfBirth ||
-          ""
-        );
-
-        localStorage.setItem(
-          "customerAge",
-          customer.age ?? ""
-        );
-
-        localStorage.setItem(
-          "customerEmail",
-          customer.email ||
-          user.email ||
-          email
-        );
-
-        localStorage.setItem(
-          "firebaseLoggedIn",
-          "true"
-        );
-
-
-        // =========================
-        // SUCCESS
-        // =========================
-
-        showMessage(
-          "Login successful। Dashboard खुल रहा है...",
-          "#16a34a"
-        );
-
-
-        setTimeout(() => {
-
-          window.location.href =
-            "dashboard.html";
-
-        }, 1000);
-
-
-      } catch (error) {
-
-        console.error(
-          "LOGIN ERROR:",
-          error
-        );
-
-
-        if (
-          error.code ===
-          "auth/user-not-found"
-        ) {
-
-          showMessage(
-            "इस Email से कोई account नहीं मिला।"
-          );
-
-        }
-
-        else if (
-          error.code ===
-          "auth/wrong-password"
-        ) {
-
-          showMessage(
-            "Password गलत है।"
-          );
-
-        }
-
-        else if (
-          error.code ===
-          "auth/invalid-credential"
-        ) {
-
-          showMessage(
-            "Email या Password गलत है।"
-          );
-
-        }
-
-        else if (
-          error.code ===
-          "auth/invalid-email"
-        ) {
-
-          showMessage(
-            "कृपया सही Email डालें।"
-          );
-
-        }
-
-        else {
-
-          showMessage(
-            error.message ||
-            "Login में समस्या आई।"
-          );
-
-        }
-
-      }
-
-    }
-
-
-    // =========================
-    // FORGOT PASSWORD
-    // =========================
-
-    async function forgotPassword() {
-
-      const email =
-        document
-          .getElementById("loginEmail")
-          .value
-          .trim();
-
-
-      if (!email) {
-
-        showMessage(
-          "पहले अपना Email डालें।"
-        );
-
-        return;
-
-      }
-
-
-      try {
-
-        await auth
-          .sendPasswordResetEmail(
-            email
-          );
-
-
-        showMessage(
-          "Password reset link आपके Email पर भेज दिया गया है.",
-          "#16a34a"
-        );
-
-
-      } catch (error) {
-
-        console.error(
-          "PASSWORD RESET ERROR:",
-          error
-        );
-
-
-        if (
-          error.code ===
-          "auth/user-not-found"
-        ) {
-
-          showMessage(
-            "इस Email से कोई account नहीं मिला।"
-          );
-
-        }
-
-        else if (
-          error.code ===
-          "auth/invalid-email"
-        ) {
-
-          showMessage(
-            "कृपया सही Email डालें।"
-          );
-
-        }
-
-        else {
-
-          showMessage(
-            error.message ||
-            "Password reset में समस्या आई। बाद में फिर कोशिश करें।"
-          );
-
-        }
-
-      }
-
-    }
-
-  </script>
-
-</body>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script> 
+ 
+ 
+  <script> 
+ 
+    // ========================= 
+    // FIREBASE CONFIG 
+    // ========================= 
+ 
+    const firebaseConfig = { 
+      apiKey: "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w", 
+      authDomain: "apna-growth-hub.firebaseapp.com", 
+      projectId: "apna-growth-hub", 
+      storageBucket: "apna-growth-hub.firebasestorage.app", 
+      messagingSenderId: "939001251123", 
+      appId: "1:939001251123:web:f2966004acaa64186e2a46", 
+      measurementId: "G-GZGCHL4XQ3" 
+    }; 
+ 
+ 
+    // ========================= 
+    // FIREBASE INITIALIZE 
+    // ========================= 
+ 
+    if (!firebase.apps.length) { 
+      firebase.initializeApp(firebaseConfig); 
+    } 
+ 
+    const auth = firebase.auth(); 
+    const db = firebase.firestore(); 
+ 
+ 
+    // ========================= 
+    // AUTH PERSISTENCE 
+    // ========================= 
+ 
+    auth.setPersistence( 
+      firebase.auth.Auth.Persistence.LOCAL 
+    ).catch(function(error) { 
+ 
+      console.error( 
+        "AUTH PERSISTENCE ERROR:", 
+        error 
+      ); 
+ 
+    }); 
+ 
+ 
+    // ========================= 
+    // MESSAGE 
+    // ========================= 
+ 
+    function showMessage( 
+      text, 
+      color = "#dc2626" 
+    ) { 
+ 
+      const message = 
+        document.getElementById("message"); 
+ 
+      message.innerText = text; 
+ 
+      message.style.color = color; 
+ 
+    } 
+ 
+ 
+    // ========================= 
+    // SHOW LOGIN 
+    // ========================= 
+ 
+    function showLogin() { 
+ 
+      document 
+        .getElementById("signupBox") 
+        .classList.add("hidden"); 
+ 
+      document 
+        .getElementById("loginBox") 
+        .classList.remove("hidden"); 
+ 
+      showMessage(""); 
+ 
+    } 
+ 
+ 
+    // ========================= 
+    // SHOW SIGNUP 
+    // ========================= 
+ 
+    function showSignup() { 
+ 
+      document 
+        .getElementById("loginBox") 
+        .classList.add("hidden"); 
+ 
+      document 
+        .getElementById("signupBox") 
+        .classList.remove("hidden"); 
+ 
+      showMessage(""); 
+ 
+    } 
+ 
+ 
+    // ========================= 
+    // CALCULATE AGE 
+    // ========================= 
+ 
+    function calculateAge(dob) { 
+ 
+      if (!dob) { 
+        return ""; 
+      } 
+ 
+      const birthDate = new Date(dob); 
+ 
+      if (isNaN(birthDate.getTime())) { 
+        return ""; 
+      } 
+ 
+      const today = new Date(); 
+ 
+      let age = 
+        today.getFullYear() - 
+        birthDate.getFullYear(); 
+ 
+      const monthDifference = 
+        today.getMonth() - 
+        birthDate.getMonth(); 
+ 
+      if ( 
+        monthDifference < 0 || 
+        ( 
+          monthDifference === 0 && 
+          today.getDate() < birthDate.getDate() 
+        ) 
+      ) { 
+ 
+        age--; 
+ 
+      } 
+ 
+      return age; 
+ 
+    } 
+ 
+ 
+    // ========================= 
+    // SAVE CUSTOMER PROFILE 
+    // ========================= 
+ 
+    async function saveCustomerProfile( 
+      user, 
+      name, 
+      mobile, 
+      dob, 
+      age, 
+      email 
+    ) { 
+ 
+      await db 
+        .collection("customers") 
+        .doc(user.uid) 
+        .set({ 
+ 
+          name: name || "", 
+ 
+          mobile: mobile || "", 
+ 
+          dob: dob || "", 
+ 
+          age: age, 
+ 
+          email: 
+            email || 
+            user.email || 
+            "", 
+ 
+          uid: 
+            user.uid, 
+ 
+          createdAt: 
+            firebase.firestore.FieldValue.serverTimestamp(), 
+ 
+          updatedAt: 
+            firebase.firestore.FieldValue.serverTimestamp() 
+ 
+        }, { 
+ 
+          merge: true 
+ 
+        }); 
+ 
+    } 
+ 
+ 
+    // ========================= 
+    // CREATE ACCOUNT 
+    // ========================= 
+ 
+    async function createAccount() { 
+ 
+      const name = 
+        document 
+          .getElementById("name") 
+          .value 
+          .trim(); 
+ 
+      const mobile = 
+        document 
+          .getElementById("mobile") 
+          .value 
+          .trim(); 
+ 
+      const dob = 
+        document 
+          .getElementById("dob") 
+          .value; 
+ 
+      const email = 
+        document 
+          .getElementById("signupEmail") 
+          .value 
+          .trim(); 
+ 
+      const password = 
+        document 
+          .getElementById("signupPassword") 
+          .value; 
+ 
+ 
+      if ( 
+        !name || 
+        !mobile || 
+        !dob || 
+        !email || 
+        !password 
+      ) { 
+ 
+        showMessage( 
+          "कृपया सभी details भरें।" 
+        ); 
+ 
+        return; 
+ 
+      } 
+ 
+ 
+      if (password.length < 6) { 
+ 
+        showMessage( 
+          "Password कम से कम 6 characters का होना चाहिए।" 
+        ); 
+ 
+        return; 
+ 
+      } 
+ 
+ 
+      const age = 
+        calculateAge(dob); 
+ 
+ 
+      if ( 
+        age === "" || 
+        age < 0 || 
+        age > 120 
+      ) { 
+ 
+        showMessage( 
+          "कृपया सही Date of Birth डालें।" 
+        ); 
+ 
+        return; 
+ 
+      } 
+ 
+ 
+      try { 
+ 
+        showMessage( 
+          "Account बनाया जा रहा है...", 
+          "#2563eb" 
+        ); 
+ 
+ 
+        // Make sure LOCAL persistence is ready 
+ 
+        await auth.setPersistence( 
+          firebase.auth.Auth.Persistence.LOCAL 
+        ); 
+ 
+ 
+        // FIREBASE AUTH ACCOUNT 
+ 
+        const userCredential = 
+          await auth.createUserWithEmailAndPassword( 
+            email, 
+            password 
+          ); 
+ 
+        const user = 
+          userCredential.user; 
+ 
+ 
+        // FIRESTORE CUSTOMER PROFILE 
+ 
+        await saveCustomerProfile( 
+          user, 
+          name, 
+          mobile, 
+          dob, 
+          age, 
+          email 
+        ); 
+ 
+ 
+        // LOCAL STORAGE 
+ 
+        localStorage.setItem( 
+          "customerName", 
+          name 
+        ); 
+ 
+        localStorage.setItem( 
+          "customerMobile", 
+          mobile 
+        ); 
+ 
+        localStorage.setItem( 
+          "customerDOB", 
+          dob 
+        ); 
+ 
+        localStorage.setItem( 
+          "customerAge", 
+          age 
+        ); 
+ 
+        localStorage.setItem( 
+          "customerEmail", 
+          email 
+        ); 
+ 
+        localStorage.setItem( 
+          "firebaseLoggedIn", 
+          "true" 
+        ); 
+ 
+ 
+        showMessage( 
+          "Account बन गया। Dashboard खुल रहा है...", 
+          "#16a34a" 
+        ); 
+ 
+ 
+        setTimeout(function() { 
+ 
+          window.location.href = 
+            "dashboard.html"; 
+ 
+        }, 1000); 
+ 
+ 
+      } catch (error) { 
+ 
+        console.error( 
+          "CREATE ACCOUNT ERROR:", 
+          error 
+        ); 
+ 
+ 
+        if ( 
+          error.code === 
+          "auth/email-already-in-use" 
+        ) { 
+ 
+          showMessage( 
+            "इस Email से account पहले से बना हुआ है। Login करें।" 
+          ); 
+ 
+        } 
+ 
+        else if ( 
+          error.code === 
+          "auth/invalid-email" 
+        ) { 
+ 
+          showMessage( 
+            "कृपया सही Email डालें।" 
+          ); 
+ 
+        } 
+ 
+        else { 
+ 
+          showMessage( 
+            error.message || 
+            "Account बनाने में समस्या आई।" 
+          ); 
+ 
+        } 
+ 
+      } 
+ 
+    } 
+ 
+ 
+    // ========================= 
+    // LOGIN 
+    // ========================= 
+ 
+    async function loginAccount() { 
+ 
+      const email = 
+        document 
+          .getElementById("loginEmail") 
+          .value 
+          .trim(); 
+ 
+      const password = 
+        document 
+          .getElementById("loginPassword") 
+          .value; 
+ 
+ 
+      if ( 
+        !email || 
+        !password 
+      ) { 
+ 
+        showMessage( 
+          "Email और Password भरें।" 
+        ); 
+ 
+        return; 
+ 
+      } 
+ 
+ 
+      try { 
+ 
+        showMessage( 
+          "Login हो रहा है...", 
+          "#2563eb" 
+        ); 
+ 
+ 
+        // IMPORTANT: 
+        // Keep Firebase login persistent 
+ 
+        await auth.setPersistence( 
+          firebase.auth.Auth.Persistence.LOCAL 
+        ); 
+ 
+ 
+        // FIREBASE LOGIN 
+ 
+        const userCredential = 
+          await Promise.race([ 
+ 
+            auth.signInWithEmailAndPassword( 
+              email, 
+              password 
+            ), 
+ 
+            new Promise(function(_, reject) { 
+ 
+              setTimeout(function() { 
+ 
+                reject( 
+                  new Error( 
+                    "Firebase login response नहीं आया। Internet या Firebase Auth connection check करें।" 
+                  ) 
+                ); 
+ 
+              }, 12000); 
+ 
+            }) 
+ 
+          ]); 
+ 
+ 
+        const user = 
+          userCredential.user; 
+ 
+ 
+        // ========================= 
+        // CUSTOMER PROFILE CHECK 
+        // ========================= 
+ 
+        const customerRef = 
+          db 
+            .collection("customers") 
+            .doc(user.uid); 
+ 
+        let customer; 
+ 
+ 
+        try { 
+ 
+          const profileResult = 
+            await Promise.race([ 
+ 
+              (async function() { 
+ 
+                const customerDoc = 
+                  await customerRef.get(); 
+ 
+ 
+                if (customerDoc.exists) { 
+ 
+                  customer = 
+                    customerDoc.data(); 
+ 
+ 
+                  let dob = 
+                    customer.dob || 
+                    customer.dateOfBirth || 
+                    customer.DOB || 
+                    customer.birthDate || 
+                    ""; 
+ 
+ 
+                  let age = 
+                    customer.age; 
+ 
+ 
+                  if ( 
+                    ( 
+                      age === undefined || 
+                      age === null || 
+                      age === "" 
+                    ) && 
+                    dob 
+                  ) { 
+ 
+                    age = 
+                      calculateAge(dob); 
+ 
+                  } 
+ 
+ 
+                  await customerRef.set({ 
+ 
+                    name: 
+                      customer.name || 
+                      customer.fullName || 
+                      "", 
+ 
+                    mobile: 
+                      customer.mobile || 
+                      customer.phone || 
+                      "", 
+ 
+                    dob: 
+                      dob || "", 
+ 
+                    age: 
+                      age ?? "", 
+ 
+                    email: 
+                      customer.email || 
+                      user.email || 
+                      email, 
+ 
+                    uid: 
+                      user.uid, 
+ 
+                    updatedAt: 
+                      firebase.firestore.FieldValue.serverTimestamp() 
+ 
+                  }, { 
+ 
+                    merge: true 
+ 
+                  }); 
+ 
+ 
+                  const repairedDoc = 
+                    await customerRef.get(); 
+ 
+ 
+                  customer = 
+                    repairedDoc.data(); 
+ 
+                } 
+ 
+                else { 
+ 
+                  customer = { 
+ 
+                    name: 
+                      user.displayName || "", 
+ 
+                    mobile: 
+                      "", 
+ 
+                    dob: 
+                      "", 
+ 
+                    age: 
+                      "", 
+ 
+                    email: 
+                      user.email || 
+                      email, 
+ 
+                    uid: 
+                      user.uid 
+ 
+                  }; 
+ 
+ 
+                  await customerRef.set({ 
+ 
+                    name: 
+                      customer.name, 
+ 
+                    mobile: 
+                      "", 
+ 
+                    dob: 
+                      "", 
+ 
+                    age: 
+                      "", 
+ 
+                    email: 
+                      customer.email, 
+ 
+                    uid: 
+                      user.uid, 
+ 
+                    createdAt: 
+                      firebase.firestore.FieldValue.serverTimestamp(), 
+ 
+                    updatedAt: 
+                      firebase.firestore.FieldValue.serverTimestamp() 
+ 
+                  }); 
+ 
+                } 
+ 
+ 
+                return customer; 
+ 
+              })(), 
+ 
+ 
+              new Promise(function(_, reject) { 
+ 
+                setTimeout(function() { 
+ 
+                  reject( 
+                    new Error( 
+                      "Customer profile response नहीं आया।" 
+                    ) 
+                  ); 
+ 
+                }, 8000); 
+ 
+              }) 
+ 
+            ]); 
+ 
+ 
+          customer = 
+            profileResult; 
+ 
+ 
+        } catch (profileError) { 
+ 
+          console.error( 
+            "CUSTOMER PROFILE ERROR:", 
+            profileError 
+          ); 
+ 
+          // Auth login successful होने पर 
+          // Firestore problem से login block नहीं करेंगे. 
+ 
+          customer = { 
+ 
+            name: 
+              user.displayName || "", 
+ 
+            mobile: 
+              "", 
+ 
+            dob: 
+              "", 
+ 
+            age: 
+              "", 
+ 
+            email: 
+              user.email || 
+              email, 
+ 
+            uid: 
+              user.uid 
+ 
+          }; 
+ 
+        } 
+ 
+ 
+        // ========================= 
+        // LOCAL STORAGE 
+        // ========================= 
+ 
+        localStorage.setItem( 
+          "customerName", 
+          customer.name || "" 
+        ); 
+ 
+        localStorage.setItem( 
+          "customerMobile", 
+          customer.mobile || 
+          customer.phone || 
+          "" 
+        ); 
+ 
+        localStorage.setItem( 
+          "customerDOB", 
+          customer.dob || 
+          customer.dateOfBirth || 
+          "" 
+        ); 
+ 
+        localStorage.setItem( 
+          "customerAge", 
+          customer.age ?? "" 
+        ); 
+ 
+        localStorage.setItem( 
+          "customerEmail", 
+          customer.email || 
+          user.email || 
+          email 
+        ); 
+ 
+        localStorage.setItem( 
+          "firebaseLoggedIn", 
+          "true" 
+        ); 
+ 
+ 
+        // ========================= 
+        // SUCCESS 
+        // ========================= 
+ 
+        showMessage( 
+          "Login successful। Dashboard खुल रहा है...", 
+          "#16a34a" 
+        ); 
+ 
+ 
+        setTimeout(function() { 
+ 
+          window.location.href = 
+            "dashboard.html"; 
+ 
+        }, 1000); 
+ 
+ 
+      } catch (error) { 
+ 
+        console.error( 
+          "LOGIN ERROR:", 
+          error 
+        ); 
+ 
+ 
+        if ( 
+          error.code === 
+          "auth/user-not-found" 
+        ) { 
+ 
+          showMessage( 
+            "इस Email से कोई account नहीं मिला।" 
+          ); 
+ 
+        } 
+ 
+        else if ( 
+          error.code === 
+          "auth/wrong-password" 
+        ) { 
+ 
+          showMessage( 
+            "Password गलत है।" 
+          ); 
+ 
+        } 
+ 
+        else if ( 
+          error.code === 
+          "auth/invalid-credential" 
+        ) { 
+ 
+          showMessage( 
+            "Email या Password गलत है।" 
+          ); 
+ 
+        } 
+ 
+        else if ( 
+          error.code === 
+          "auth/invalid-api-key" 
+        ) { 
+ 
+          showMessage( 
+            "Firebase API key सही नहीं है। Firebase configuration check करें।" 
+          ); 
+ 
+        } 
+ 
+        else if ( 
+          error.code === 
+          "auth/invalid-email" 
+        ) { 
+ 
+          showMessage( 
+            "कृपया सही Email डालें।" 
+          ); 
+ 
+        } 
+ 
+        else { 
+ 
+          showMessage( 
+            error.message || 
+            "Login में समस्या आई।" 
+          ); 
+ 
+        } 
+ 
+      } 
+ 
+    } 
+ 
+ 
+    // ========================= 
+    // FORGOT PASSWORD 
+    // ========================= 
+ 
+    async function forgotPassword() { 
+ 
+      const email = 
+        document 
+          .getElementById("loginEmail") 
+          .value 
+          .trim(); 
+ 
+ 
+      if (!email) { 
+ 
+        showMessage( 
+          "पहले अपना Email डालें।" 
+        ); 
+ 
+        return; 
+ 
+      } 
+ 
+ 
+      try { 
+ 
+        await auth 
+          .sendPasswordResetEmail( 
+            email 
+          ); 
+ 
+ 
+        showMessage( 
+          "Password reset link आपके Email पर भेज दिया गया है.", 
+          "#16a34a" 
+        ); 
+ 
+ 
+      } catch (error) { 
+ 
+        console.error( 
+          "PASSWORD RESET ERROR:", 
+          error 
+        ); 
+ 
+ 
+        if ( 
+          error.code === 
+          "auth/user-not-found" 
+        ) { 
+ 
+          showMessage( 
+            "इस Email से कोई account नहीं मिला।" 
+          ); 
+ 
+        } 
+ 
+        else if ( 
+          error.code === 
+          "auth/invalid-email" 
+        ) { 
+ 
+          showMessage( 
+            "कृपया सही Email डालें।" 
+          ); 
+ 
+        } 
+ 
+        else if ( 
+          error.code === 
+          "auth/invalid-api-key" 
+        ) { 
+ 
+          showMessage( 
+            "Firebase API key सही नहीं है। Firebase configuration check करें।" 
+          ); 
+ 
+        } 
+ 
+        else { 
+ 
+          showMessage( 
+            error.message || 
+            "Password reset में समस्या आई। बाद में फिर कोशिश करें।" 
+          ); 
+ 
+        } 
+ 
+      } 
+ 
+    } 
+ 
+  </script> 
+ 
+</body> 
 </html>
