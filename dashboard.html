@@ -425,6 +425,233 @@
       line-height:1.55;
     }
 
+    /* =========================
+       PACKAGE CARDS / CLEAR ICONS
+    ========================= */
+
+    #packagesGrid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+    }
+
+    #packagesGrid .package-wrap{
+      min-width:0;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    #packagesGrid .package-card{
+      position:relative;
+      overflow:hidden;
+      color:#0f274b;
+      background:#fff;
+      border:1px solid #dce5f1;
+      min-height:245px;
+      padding:0;
+      border-radius:15px;
+      box-shadow:0 8px 22px rgba(31,41,55,.09);
+    }
+
+    #packagesGrid .package-card.starter{border-color:#8fd7c3;}
+    #packagesGrid .package-card.growth{border-color:#8cc5fa;}
+    #packagesGrid .package-card.pro{border-color:#c5a9f4;}
+    #packagesGrid .package-card.elite{border-color:#cbd5e1;}
+
+    #packagesGrid .package-card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 14px 30px rgba(31,41,55,.14);
+    }
+
+    .package-banner{
+      height:78px;
+      padding:9px 14px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:#fff;
+    }
+
+    .package-card.starter .package-banner{background:linear-gradient(135deg,#10a77c,#32bb98);}
+    .package-card.growth .package-banner{background:linear-gradient(135deg,#0b78df,#218fe8);}
+    .package-card.pro .package-banner{background:linear-gradient(135deg,#6330c9,#7b4ae0);}
+    .package-card.elite .package-banner{background:linear-gradient(135deg,#475569,#64748b);}
+
+    .package-visual{
+      width:62px;
+      height:62px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+    }
+
+    .package-visual svg{
+      width:62px;
+      height:62px;
+      display:block;
+      filter:drop-shadow(0 4px 6px rgba(0,0,0,.15));
+    }
+
+    .package-head{
+      min-width:0;
+      flex:1;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+    }
+
+    #packagesGrid .package-card h3{
+      color:#fff;
+      font-size:20px;
+      line-height:1.05;
+      margin:0 0 4px;
+      letter-spacing:.2px;
+    }
+
+    .package-subtitle{
+      color:rgba(255,255,255,.95);
+      font-size:10.5px;
+      font-weight:700;
+      margin:0;
+      white-space:nowrap;
+    }
+
+    .popular-badge{
+      flex-shrink:0;
+      background:#ffd85a;
+      color:#26313b;
+      border-radius:999px;
+      padding:6px 8px;
+      font-size:9px;
+      font-weight:900;
+      box-shadow:0 4px 9px rgba(0,0,0,.12);
+    }
+
+    .package-body{
+      min-height:166px;
+      padding:13px 15px 15px;
+      background:#fff;
+      position:relative;
+    }
+
+    #packagesGrid .package-card p{
+      color:#193b66;
+      margin:0;
+      line-height:1.45;
+      font-size:11.5px;
+      max-width:90%;
+    }
+
+    .package-features{
+      margin-top:10px;
+      display:flex;
+      flex-direction:column;
+      gap:5px;
+    }
+
+    .package-feature{
+      display:flex;
+      align-items:center;
+      gap:7px;
+      color:#24446b;
+      font-size:11px;
+      font-weight:600;
+    }
+
+    .package-feature .check{
+      width:15px;
+      height:15px;
+      border-radius:50%;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:#e7f8f1;
+      color:#10a77c;
+      font-size:9px;
+      font-weight:900;
+      flex-shrink:0;
+    }
+
+    .package-price-box{
+      background:#f0fbf7;
+      border:1px solid #cceee1;
+      border-radius:12px;
+      padding:13px 14px 14px;
+      color:#0f172a;
+      box-shadow:0 5px 15px rgba(31,41,55,.06);
+    }
+
+    .package-wrap.growth .package-price-box{background:#eff7ff;border-color:#cfe6ff;}
+    .package-wrap.pro .package-price-box{background:#f6f1ff;border-color:#e1d5ff;}
+    .package-wrap.elite .package-price-box{background:#f8fafc;border-color:#e2e8f0;}
+
+    .package-price-row{
+      display:flex;
+      align-items:center;
+      gap:9px;
+      flex-wrap:wrap;
+      margin-bottom:11px;
+    }
+
+    .package-current-price{
+      font-size:27px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:-.6px;
+    }
+
+    .package-wrap.starter .package-current-price{color:#0a8f6b;}
+    .package-wrap.growth .package-current-price{color:#0878e7;}
+    .package-wrap.pro .package-current-price{color:#5b2cc1;}
+
+    .package-old-price{
+      color:#64748b;
+      text-decoration:line-through;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .package-discount{
+      margin-left:auto;
+      border-radius:999px;
+      padding:6px 10px;
+      color:#fff;
+      font-size:10px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+
+    .package-wrap.starter .package-discount{background:#0b9b72;}
+    .package-wrap.growth .package-discount{background:#087cf0;}
+    .package-wrap.pro .package-discount{background:#6840cf;}
+
+    .package-cta{
+      width:100%;
+      border:none;
+      border-radius:11px;
+      min-height:41px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      color:#fff;
+      font-weight:900;
+      font-size:13px;
+      cursor:pointer;
+    }
+
+    .package-wrap.starter .package-cta{background:#10a57a;}
+    .package-wrap.growth .package-cta{background:#087df0;}
+    .package-wrap.pro .package-cta{background:#6637d2;}
+    .package-wrap.elite .package-cta{background:#64748b;}
+
+    .package-wrap .package-count,
+    .package-wrap .course-list,
+    .package-wrap .coming-soon{display:none;}
+
     .package-count{
       display:inline-flex;
       margin-top:13px;
@@ -1052,6 +1279,10 @@
 
     @media(max-width:950px){
 
+      #packagesGrid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
       .grid{
         grid-template-columns:
           repeat(2,minmax(0,1fr));
@@ -1131,6 +1362,11 @@
         font-size:18px;
       }
 
+      #packagesGrid{
+        grid-template-columns:1fr;
+        gap:12px;
+      }
+
       .grid,
       .grid-3,
       .grid-2{
@@ -1199,12 +1435,44 @@
 
     }
 
+
+    /* FINAL PREMIUM DASHBOARD THEME */
+    .desktop-sidebar{position:fixed;left:0;top:0;bottom:0;width:230px;z-index:1800;background:linear-gradient(180deg,#062a4e,#031e3a);color:#fff;padding:18px 14px;overflow:auto;box-shadow:8px 0 24px rgba(3,30,58,.12)}
+    .desktop-brand{display:flex;align-items:center;gap:8px;padding:2px 7px 18px;border-bottom:1px solid rgba(255,255,255,.12)}.desktop-logo-mark{width:48px}.desktop-logo-mark svg{width:48px}.desktop-brand-title{font-size:17px;font-weight:900;line-height:1.03}.desktop-brand-tagline{font-size:9px;color:#dcecff;margin-top:5px}.desktop-nav-label{font-size:9px;letter-spacing:1.2px;color:#8fb2d6;font-weight:800;margin:20px 10px 8px}.desktop-nav-item{width:100%;border:0;background:transparent;color:#d7e7f8;display:flex;align-items:center;gap:13px;text-align:left;padding:11px 12px;border-radius:11px;margin-bottom:4px;font-size:13px;font-weight:650}.desktop-nav-item:hover{background:rgba(46,145,237,.16);color:#fff}.desktop-nav-item.active{background:linear-gradient(90deg,#1685e9,#1675d2);color:#fff;box-shadow:0 7px 16px rgba(22,117,210,.28)}.nav-svg{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 24px}.nav-svg svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.nav-svg:first-child svg{fill:currentColor;stroke:none}.sidebar-mission{margin:42px 6px 0;padding:20px 16px;border:1px solid rgba(35,151,238,.38);border-radius:14px;background:rgba(3,40,72,.8);min-height:230px;position:relative;overflow:hidden}.mission-leaf{font-size:28px;color:#31c67c}.sidebar-mission strong{display:block;font-size:15px;line-height:1.25;margin-top:8px}.sidebar-mission strong span{font-size:20px}.sidebar-mission p{font-size:11px;line-height:1.55;color:#e4effa;margin-top:14px}.mountain-art{position:absolute;left:0;right:0;bottom:-3px;height:70px}.mountain-art i{position:absolute;bottom:0;width:0;height:0;border-left:55px solid transparent;border-right:55px solid transparent;border-bottom:70px solid #0a3c6a}.mountain-art i:nth-child(1){left:-10px}.mountain-art i:nth-child(2){left:48px;border-left-width:48px;border-right-width:48px;border-bottom-color:#0e4d82}.mountain-art i:nth-child(3){right:-8px;border-left-width:62px;border-right-width:62px;border-bottom-color:#0a3760}
+    body{padding-left:230px;background:#f7f9fc}.top-header{left:230px;right:0;width:auto}.header-inner{width:min(100% - 50px,1180px)}.brand-area{display:none}.menu-toggle{display:none}.desktop-search{display:flex;align-items:center;gap:10px;width:455px;height:42px;padding:0 15px;border:1px solid #dce5ef;border-radius:11px;background:#fff;margin-left:auto;margin-right:16px}.desktop-search svg{width:19px;height:19px;fill:none;stroke:#315579;stroke-width:2}.desktop-search input{width:100%;border:0;outline:0;background:transparent;font-size:13px;color:#17365b}.header-learning-link{height:40px;padding:0 13px;border:1px solid #dce5ef;border-radius:10px;background:#fff;color:#173d68;display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;cursor:pointer;transition:.18s;white-space:nowrap}.header-learning-link:hover{border-color:#b9d5ee;background:#f4f9ff;transform:translateY(-1px)}.header-learning-icon{width:22px;height:22px;display:flex;align-items:center;justify-content:center;color:#167be2}.header-learning-icon svg{width:21px;height:21px}.header-notify{position:relative;font-size:0}.header-notify:before{content:'♧';font-size:22px;color:#173d68;transform:rotate(180deg)}.header-notify:after{content:'2';position:absolute;top:1px;right:1px;width:17px;height:17px;border-radius:50%;background:#ef3340;color:#fff;font-size:9px;font-weight:900;display:flex;align-items:center;justify-content:center;border:2px solid #fff}.header-profile-btn{border:0;background:#073a6b;color:#fff;border-radius:50%;width:42px;height:42px}.header-profile-btn svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8}.header-profile-text{display:flex;flex-direction:column;line-height:1.15;min-width:100px}.header-profile-text strong{font-size:13px;color:#17365b}.header-profile-text span{font-size:10px;color:#71839a;margin-top:3px}.header-chevron{border:0;background:transparent;color:#17365b;font-size:19px}.bottom-nav{display:none}
+    main{padding:24px 0 45px}.welcome{min-height:203px;border-radius:16px;padding:17px 24px;background:linear-gradient(115deg,#eaf5ff,#f5faff 55%,#dfefff);color:#12365f;border:1px solid #d3e7fa;box-shadow:0 7px 24px rgba(33,90,145,.07);margin-bottom:21px}.welcome h1{font-size:22px;color:#102f52;margin-bottom:2px}.welcome p{font-size:13px;color:#355b83;opacity:1}.welcome-stats{display:flex;gap:12px;margin-top:16px;position:relative;z-index:3}.welcome-stat{width:196px;min-height:66px;border:1px solid #cfe3f6;border-radius:10px;background:rgba(255,255,255,.72);display:flex;align-items:center;gap:10px;padding:10px 12px}.welcome-stat.green{background:#effcf6;border-color:#cfeee1}.welcome-stat.purple{background:#f4efff;border-color:#e0d5fb}.mini-svg{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#e2f0ff;color:#167be2;font-size:19px;font-weight:900}.welcome-stat.green .mini-svg{background:#dff8ec;color:#08a474}.welcome-stat.purple .mini-svg{background:#e8ddff;color:#6c36c9}.welcome-stat small{display:block;font-size:10px;color:#4f6781}.welcome-stat strong{display:block;font-size:18px;color:#153b63}    .welcome-actions{display:flex;gap:10px;margin-top:18px;position:relative;z-index:4}
+    .welcome-action{border:1px solid #cfe3f6;background:rgba(255,255,255,.78);color:#164a82;border-radius:10px;padding:10px 14px;font-size:12px;font-weight:800;display:inline-flex;align-items:center;gap:8px;cursor:pointer;box-shadow:0 3px 10px rgba(33,90,145,.06);transition:.18s}
+    .welcome-action:hover{transform:translateY(-1px);box-shadow:0 6px 14px rgba(33,90,145,.1)}
+    .welcome-action.primary{background:#1479df;color:#fff;border-color:#1479df}
+    .welcome-action>span:last-child{font-size:15px}
+    .action-icon{width:22px;height:22px;display:flex;align-items:center;justify-content:center}
+    .action-icon svg{width:19px;height:19px;display:block}
+    .welcome-illustration{position:absolute;right:18px;top:0;width:330px;height:100%;overflow:hidden}.welcome-circle{position:absolute;width:215px;height:215px;border-radius:50%;right:10px;top:24px;background:rgba(207,232,252,.58)}.welcome-slogan{position:absolute;right:15px;top:34px;font-size:20px;line-height:1.15;font-weight:900;font-style:italic;color:#164a82;transform:rotate(-5deg)}.welcome-slogan b{font-size:32px}.person-art{position:absolute;right:63px;bottom:15px;width:170px;height:148px}.person-art .head{position:absolute;width:50px;height:50px;border-radius:50%;background:#f4b58e;right:76px;top:8px;box-shadow:0 -9px 0 3px #173f68}.person-art .body{position:absolute;width:102px;height:78px;border-radius:45px 45px 15px 15px;background:#1177c9;right:42px;top:48px;transform:rotate(-6deg)}.person-art .laptop{position:absolute;width:125px;height:55px;background:#263b52;border-radius:6px;right:4px;bottom:0;transform:skew(-10deg)}.person-art .arm{position:absolute;width:75px;height:15px;background:#f4b58e;border-radius:12px;right:34px;top:85px;transform:rotate(18deg)}.plant{position:absolute;left:10px;bottom:18px;color:#2c9a5a;font-size:70px;transform:rotate(-20deg)}
+    .section{margin-bottom:24px}.section-title{font-size:18px;margin-bottom:12px;color:#102f52}.categories-heading{align-items:flex-end}.categories-heading>div{display:flex;flex-direction:column;gap:1px}.categories-heading small{font-size:11px;color:#68809a;font-weight:500}.categories-heading button{border:0;background:none;color:#0874df;font-size:12px;font-weight:800}.category-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:13px}.category-card{border:1px solid #dbe6f2;border-radius:12px;min-height:106px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;color:#102f52}.category-card:hover{transform:translateY(-2px);box-shadow:0 9px 22px rgba(31,65,102,.09)}.category-card strong{font-size:13px}.category-icon{width:45px;height:45px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900}.blue-cat{background:#eef7ff;border-color:#cde5ff}.blue-cat .category-icon{background:#167fe5;color:#fff}.green-cat{background:#effcf7;border-color:#ccefe0}.green-cat .category-icon{background:#08a77a;color:#fff}.purple-cat{background:#f5f0ff;border-color:#e1d6fb}.purple-cat .category-icon{background:#6b35ce;color:#fff}.orange-cat{background:#fff8ea;border-color:#f4dfb3}.orange-cat .category-icon{background:#eea51d;color:#fff}.pink-cat{background:#fff1f5;border-color:#f4d6e0}.pink-cat .category-icon{background:#e63869;color:#fff}
+    #learningSection .section-title{font-size:20px;margin-bottom:13px}#packagesGrid{gap:18px}#packagesGrid .package-card{border-radius:14px;min-height:243px;box-shadow:0 6px 17px rgba(31,41,55,.07)}.package-banner{height:76px;padding:7px 13px}.package-visual,.package-visual svg{width:60px;height:60px}.package-body{min-height:168px;padding:14px 16px 15px}.package-current-price{font-size:29px}
+    .featured-layout{display:grid;grid-template-columns:1.75fr .95fr;gap:14px}.featured-layout .card{box-shadow:0 4px 16px rgba(31,41,55,.06);border-radius:13px;padding:13px}.featured-head{display:flex;justify-content:space-between;gap:10px;margin-bottom:10px}.featured-head h2{font-size:17px;color:#102f52}.featured-head p{font-size:10px;color:#71849b}.featured-head button{border:0;background:none;color:#0874df;font-size:10px;font-weight:800}.featured-course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.featured-course{border:1px solid #dce6f0;border-radius:11px;background:#fff;min-height:92px;display:flex;align-items:center;gap:9px;padding:10px;text-align:left}.course-brand,.path-icon{width:42px;height:42px;flex:0 0 42px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:25px;font-weight:900}.chatgpt{background:#10a77b}.instagram{background:linear-gradient(135deg,#f9ce34,#ee2a7b 50%,#6228d7)}.canva{background:#087bdc}.featured-course span:nth-child(2){display:flex;flex-direction:column}.featured-course b{font-size:10px;color:#17365b;line-height:1.35}.featured-course em{font-style:normal;font-size:8px;color:#6a3bc1;background:#f0eaff;padding:3px 5px;border-radius:6px;margin-top:6px}.featured-course i{margin-left:auto;width:27px;height:27px;border-radius:50%;background:#eef5fb;color:#0874df;display:flex;align-items:center;justify-content:center;font-style:normal}.path-item{display:flex;align-items:center;gap:8px;padding:8px;border:1px solid #e3eaf1;border-radius:10px;margin-top:8px}.path-item>div{min-width:0;flex:1}.path-item b{display:block;font-size:9px;color:#17365b}.path-item small{display:block;font-size:8px;color:#65809a}.path-item>strong{font-size:8px;color:#71839a}.progress{height:5px;background:#e9eef3;border-radius:99px;margin-top:6px;overflow:hidden}.progress span{display:block;height:100%;background:#2abf88;border-radius:99px}.card{border-radius:14px;box-shadow:0 5px 17px rgba(31,41,55,.055)}
+    @media(max-width:1100px){.desktop-sidebar{width:205px}body{padding-left:205px}.top-header{left:205px}.desktop-search{width:350px}.category-grid{grid-template-columns:repeat(3,1fr)}.welcome-illustration{opacity:.65}}
+    @media(max-width:800px){.desktop-sidebar{display:none}body{padding-left:0}.top-header{left:0}.brand-area{display:flex}.menu-toggle{display:flex;align-items:center;justify-content:center}.desktop-search{display:none}.header-profile-text,.header-chevron{display:none}.header-learning-link{width:38px;height:38px;padding:0;justify-content:center;border-radius:50%}.header-learning-link>span:last-child{display:none}.header-learning-icon{width:22px}.header-profile-btn{width:38px;height:38px}.bottom-nav{display:flex}.welcome-illustration{display:none}.welcome{min-height:auto;padding:22px 19px}.welcome-actions{flex-wrap:wrap}.welcome-action{flex:1;justify-content:center;min-width:145px}.category-grid{grid-template-columns:repeat(2,1fr)}.featured-layout{grid-template-columns:1fr}.featured-course-grid{grid-template-columns:1fr}}
+    @media(max-width:480px){.welcome-stats{grid-template-columns:1fr}.category-grid{gap:9px}.category-card{min-height:96px}}
+
   </style>
 
 </head>
 
 <body>
-
+  <aside class="desktop-sidebar" aria-label="Main navigation">
+    <div class="desktop-brand"><div class="desktop-logo-mark"><svg viewBox="0 0 64 64"><path d="M9 45 22 32l9 7 22-25" fill="none" stroke="#38d36f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M47 14h9v9" fill="none" stroke="#38d36f" stroke-width="6" stroke-linecap="round"/><path d="M10 53h44" stroke="#4da3ff" stroke-width="4"/><path d="M14 51V41h8v10M28 51V34h8v17M42 51V27h8v24" fill="#176bd1"/></svg></div><div><div class="desktop-brand-title">Apna<br>Growth Hub</div><div class="desktop-brand-tagline">Learn • Grow • Succeed</div></div></div>
+    <div class="desktop-nav-label">MAIN MENU</div>
+    <button class="desktop-nav-item active" onclick="scrollToSection('learningSection')"><span class="nav-svg"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10Z"/></svg></span>Home</button>
+    <button class="desktop-nav-item" onclick="scrollToSection('learningSection')"><span class="nav-svg"><svg viewBox="0 0 24 24"><path d="M5 4h12a2 2 0 0 1 2 2v14H7a2 2 0 0 1-2-2V4Z"/><path d="M7 4v14M10 8h6M10 12h6"/></svg></span>My Courses</button>
+    <button class="desktop-nav-item" onclick="scrollToSection('growthFeaturesGrid')"><span class="nav-svg"><svg viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-7M22 19V3"/><path d="m4 7 6-4 6 4 6-4"/></svg></span>Learning Path</button>
+    <button class="desktop-nav-item" onclick="scrollToSection('learningSection')"><span class="nav-svg"><svg viewBox="0 0 24 24"><path d="M4 7h16v13H4z"/><path d="M8 7V4h8v3M8 12h8M8 16h5"/></svg></span>Packages</button>
+    <button class="desktop-nav-item" onclick="scrollToSection('growthFeaturesGrid')"><span class="nav-svg"><svg viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg></span>Certificates</button>
+    <button class="desktop-nav-item" onclick="scrollToSection('resourcesGrid')"><span class="nav-svg"><svg viewBox="0 0 24 24"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v5h5M8 12h8M8 16h8"/></svg></span>Resources</button>
+    <button class="desktop-nav-item" onclick="openAccount()"><span class="nav-svg"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>Profile</button>
+    <button class="desktop-nav-item" onclick="openAccount()"><span class="nav-svg"><svg viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8v3a3 3 0 0 0 3 3h2v-6H6a6 6 0 0 1 12 0h-3v6h2a3 3 0 0 0 3-3v-3a8 8 0 0 0-8-8Z"/><path d="M15 21h-6"/></svg></span>Help &amp; Support</button>
+    <div class="sidebar-mission"><div class="mission-leaf">⌁</div><strong>Small Steps<br><span>Big Dreams</span></strong><p>Your Growth<br>Our Mission</p><div class="mountain-art"><i></i><i></i><i></i></div></div>
+  </aside>
 
   <!-- =========================
        SIDE MENU
@@ -1314,25 +1582,26 @@
       </div>
 
 
+      <div class="desktop-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 5 5"/></svg><input id="dashboardSearch" type="search" placeholder="Search courses, topics, or skills..." aria-label="Search dashboard"></div>
+
       <div class="header-actions">
+
+        <button type="button" class="header-learning-link" onclick="scrollToSection('learningSection')" aria-label="My Learning">
+          <span class="header-learning-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z" stroke="currentColor" stroke-width="1.8"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="currentColor" stroke-width="1.8"/></svg></span>
+          <span>My Learning</span>
+        </button>
 
         <button
           type="button"
-          class="icon-btn"
+          class="icon-btn header-notify"
           onclick="openNotifications()"
           aria-label="Notifications"
         >
           🔔
         </button>
 
-        <button
-          type="button"
-          class="icon-btn"
-          onclick="openAccount()"
-          aria-label="Account"
-        >
-          👤
-        </button>
+        <button type="button" class="icon-btn header-profile-btn" onclick="openAccount()" aria-label="Account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></button>
+        <div class="header-profile-text"><strong id="headerProfileName">Virender Chauhan</strong><span>Learner</span></div><button type="button" class="header-chevron" onclick="openAccount()">⌄</button>
 
       </div>
 
@@ -1355,23 +1624,26 @@
       <section class="welcome">
 
         <h1 id="welcomeTitle">
-          Welcome to Apna Growth Hub 👋
+          Welcome Back,
         </h1>
 
         <p>
-          Your personal place to
-          Learn • Grow • Succeed.
+          Keep learning, keep growing. Your future is in your hands!
         </p>
+        <div class="welcome-illustration" aria-hidden="true"><div class="welcome-circle"></div><div class="plant">⌁</div><div class="person-art"><i class="head"></i><i class="body"></i><i class="laptop"></i><i class="arm"></i></div><div class="welcome-slogan">Learn<br>Grow<br>Succeed <b>↗</b></div></div>
+</section>
 
-        <div
-          id="customerAgeDisplay"
-          class="customer-age"
-        >
-          🎂 Age: --
+
+      <section class="section categories-section" id="categoriesSection">
+        <div class="section-title categories-heading"><div>Explore Categories<small>Choose your interest and start learning</small></div><button onclick="scrollToSection('learningSection')">View All →</button></div>
+        <div class="category-grid">
+          <button class="category-card blue-cat" onclick="openLicPlans()"><span class="category-icon">✚</span><strong>LIC Plans</strong></button>
+          <button class="category-card green-cat" onclick="scrollToSection('learningSection')"><span class="category-icon">▣</span><strong>Digital Skills</strong></button>
+          <button class="category-card purple-cat" onclick="scrollToSection('growthFeaturesGrid')"><span class="category-icon">✦</span><strong>AI Tools</strong></button>
+          <button class="category-card orange-cat" onclick="openInquiry('Customer Inquiry')"><span class="category-icon">●</span><strong>Customer Inquiry</strong></button>
+          <button class="category-card pink-cat" onclick="scrollToSection('growthFeaturesGrid')"><span class="category-icon">◆</span><strong>Social Media Earning</strong></button>
         </div>
-
       </section>
-
 
       <!-- =========================
            LEARNING
@@ -1402,6 +1674,11 @@
 
         </div>
 
+      </section>
+
+      <section class="section featured-layout" id="featuredLearningSection">
+        <div class="featured-courses card"><div class="featured-head"><div><h2>Featured Courses</h2><p>Start with our most popular courses</p></div><button onclick="scrollToSection('learningSection')">View All Courses →</button></div><div class="featured-course-grid"><button class="featured-course" onclick="scrollToSection('learningSection')"><span class="course-brand chatgpt">◎</span><span><b>ChatGPT<br>for Beginners</b><em>AI Tools</em></span><i>→</i></button><button class="featured-course" onclick="scrollToSection('learningSection')"><span class="course-brand instagram">◎</span><span><b>Instagram<br>Growth &amp; Earning</b><em>Social Media</em></span><i>→</i></button><button class="featured-course" onclick="scrollToSection('learningSection')"><span class="course-brand canva">C</span><span><b>Canva<br>Design Mastery</b><em>Digital Skills</em></span><i>→</i></button></div></div>
+        <div class="learning-path card"><div class="featured-head"><div><h2>Your Learning Path</h2><p>Continue where you left off</p></div></div><div class="path-item"><span class="path-icon chatgpt">◎</span><div><b>ChatGPT for Beginners</b><small>AI Tools</small><div class="progress"><span style="width:60%"></span></div></div><strong>3/5</strong></div><div class="path-item"><span class="path-icon instagram">◎</span><div><b>Instagram Growth &amp; Earning</b><small>Social Media</small><div class="progress"><span style="width:18%"></span></div></div><strong>1/8</strong></div></div>
       </section>
 
 
@@ -2609,21 +2886,16 @@
 
         await loadCustomer(user);
 
-        await loadPackages();
-
-        await loadResources();
-
-        await loadServices();
-
-        await loadAnnouncements();
-
-        await loadGrowthFeatures();
-
-        await loadNotifications();
-
-        await loadDashboardSettings();
-
-        await loadRequestCount(user);
+        await Promise.allSettled([
+          loadPackages(),
+          loadResources(),
+          loadServices(),
+          loadAnnouncements(),
+          loadGrowthFeatures(),
+          loadNotifications(),
+          loadDashboardSettings(),
+          loadRequestCount(user)
+        ]);
 
       }
     );
@@ -2703,11 +2975,14 @@
         if(welcomeTitle){
 
           welcomeTitle.textContent =
-            "Welcome, " +
+            "Welcome Back, " +
             name +
             " 👋";
 
         }
+
+        const headerProfileName = document.getElementById("headerProfileName");
+        if(headerProfileName){ headerProfileName.textContent = name; }
 
 
         updateCustomerAgeDisplay();
@@ -2870,31 +3145,52 @@
 
     function packageIcon(name){
 
-      const icons = {
-        Starter: "🌱",
-        Growth: "📈",
-        Pro: "🚀",
-        Elite: "👑"
-      };
+      const key = String(name || "").toLowerCase();
 
-      return icons[name] || "📦";
+      if(key === "starter"){
+        return `<svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
+          <circle cx="60" cy="60" r="44" fill="#fff" opacity=".98"/>
+          <path d="M60 31c-14 8-23 21-23 37 0 13 7 25 18 31-1-8 1-15 5-21 4 6 6 13 5 21 11-6 18-18 18-31 0-16-9-29-23-37Z" fill="#35a853"/>
+          <path d="M60 58c-6 5-9 11-9 18 0 6 4 12 9 15 5-3 9-9 9-15 0-7-3-13-9-18Z" fill="#f5c542"/>
+        </svg>`;
+      }
+
+      if(key === "growth"){
+        return `<svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
+          <circle cx="60" cy="60" r="45" fill="#fff"/>
+          <path d="M38 78c1-22 13-40 40-49 3 27-7 44-29 54l-11-5Z" fill="#2788e6" stroke="#0f467f" stroke-width="4"/>
+          <circle cx="68" cy="40" r="8" fill="#eaf5ff" stroke="#0f467f" stroke-width="4"/>
+          <path d="M43 73 28 88M53 83 41 98" stroke="#0f467f" stroke-width="5" stroke-linecap="round"/>
+          <path d="M31 90c-2 6-2 11 1 15 6-2 10-5 14-10l-15-5Z" fill="#ffc13b"/>
+          <path d="M44 97c0 5 2 9 6 12 4-4 6-8 7-13l-13 1Z" fill="#ff7043"/>
+          <path d="M86 25v15M78.5 32.5h15" stroke="#1c78d1" stroke-width="3" stroke-linecap="round"/>
+        </svg>`;
+      }
+
+      if(key === "pro"){
+        return `<svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
+          <circle cx="60" cy="60" r="45" fill="#fff" opacity=".98"/>
+          <path d="M37 48h46l-5 38H42l-5-38Z" fill="#f7c948" stroke="#8a5b00" stroke-width="4"/>
+          <path d="m42 48 10 12 8-16 8 16 10-12" stroke="#8a5b00" stroke-width="5" stroke-linejoin="round"/>
+          <path d="M43 86h34" stroke="#8a5b00" stroke-width="5" stroke-linecap="round"/>
+        </svg>`;
+      }
+
+      return `<svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
+        <circle cx="60" cy="60" r="45" fill="#fff" opacity=".98"/>
+        <path d="M60 31 68 47l18 3-13 13 3 18-16-8-16 8 3-18-13-13 18-3 8-16Z" fill="#d9dee8" stroke="#536078" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M60 44v24M48 56h24" stroke="#536078" stroke-width="5" stroke-linecap="round"/>
+      </svg>`;
 
     }
 
 
     function renderPackages(items){
 
-      const grid =
-        document.getElementById(
-          "packagesGrid"
-        );
-
-      if(!grid){
-        return;
-      }
+      const grid = document.getElementById("packagesGrid");
+      if(!grid){ return; }
 
       if(!items.length){
-
         grid.innerHTML = `
           <div class="card">
             <div class="card-icon">📦</div>
@@ -2902,96 +3198,76 @@
             <p>Abhi koi active package available nahi hai.</p>
           </div>
         `;
-
         return;
-
       }
+
+      const pricing = {
+        starter: { current:499, old:999, discount:"50% OFF", subtitle:"Beginner Learning Package", description:"Get started with essential skills and build your foundation for the future.", level:"Beginner Level", courses:3 },
+        growth:  { current:999, old:1999, discount:"50% OFF", subtitle:"Advanced Learning Package", description:"Go beyond basics with more courses, practical skills and real-world learning.", level:"Intermediate Level", courses:6 },
+        pro:     { current:1999, old:3999, discount:"50% OFF", subtitle:"Professional Learning Package", description:"Master advanced skills, get expert guidance and unlock more opportunities.", level:"Advanced Level", courses:9 }
+      };
 
       grid.innerHTML = items.map(function(item){
 
-        const name =
-          String(item.name || "Package");
+        const name = String(item.name || "Package");
+        const key = name.toLowerCase().replace(/[^a-z0-9]+/g,"-");
+        const isElite = key === "elite" || String(item.status || "").toLowerCase() === "coming soon";
+        const p = pricing[key] || {
+          current:Number(item.price || 0), old:0, discount:"",
+          subtitle:"Learning Package",
+          description:item.description || "Package details will be available here.",
+          level:"Learning Level", courses:Number(item.courseCount || 0)
+        };
 
-        const status =
-          String(item.status || "Active");
+        const count = Number(item.courseCount || p.courses || 0);
+        const desc = item.description || p.description;
+        const level = item.level || p.level;
+        const badge = key === "starter" ? `<span class="popular-badge">Most Popular</span>` : "";
+        const features = [`${count} Courses`, level, "Certificate Included", "Lifetime Access"];
+        const featureHtml = features.map(function(txt){
+          return `<div class="package-feature"><span class="check">✓</span><span>${packageText(txt)}</span></div>`;
+        }).join("");
+        const safeName = packageText(name).replace(/'/g,"\\'");
 
-        const courseCount =
-          Number(item.courseCount || 0);
-
-        const courseNames =
-          Array.isArray(item.courseNames)
-            ? item.courseNames
-            : String(item.courseNames || "")
-                .split("\n")
-                .map(function(x){return x.trim();})
-                .filter(Boolean);
-
-        const price =
-          Number(item.price || 0);
-
-        const accessType =
-          String(item.accessType || item.access || (price > 0 ? "Paid" : "Free"));
-
-        const isElite =
-          name.toLowerCase() === "elite" ||
-          status.toLowerCase() === "coming soon";
-
-        const cardClass =
-          isElite ? "card locked" : "card clickable";
-
-        const description =
-          item.description ||
-          "Package details will be available here.";
-
-        const courseHtml =
-          courseNames.length
-            ? courseNames.map(function(course){
-                return `<div>${packageText(course)}</div>`;
-              }).join("")
-            : `<div>No courses added yet.</div>`;
-
-        const priceHtml =
-          price > 0
-            ? `<div class="package-count">₹${price.toLocaleString("en-IN")} · ${packageText(accessType)}</div>`
-            : `<div class="package-count">${packageText(accessType)}</div>`;
-
-        return `
-          <div
-            class="${cardClass}"
-            onclick="openPackage('${packageText(name).replace(/'/g,"\\'")}')"
-          >
-
-            <div class="card-icon">
-              ${packageIcon(name)}
+        const priceBox = isElite ? `
+          <div class="package-price-box">
+            <div style="font-size:13px;font-weight:900;color:#475569;margin-bottom:10px">Coming Soon</div>
+            <button class="package-cta" type="button" onclick="event.stopPropagation();openPackage('${safeName}')">Coming Soon</button>
+          </div>
+        ` : `
+          <div class="package-price-box">
+            <div class="package-price-row">
+              <span class="package-current-price">₹${p.current.toLocaleString("en-IN")}</span>
+              <span class="package-old-price">₹${p.old.toLocaleString("en-IN")}</span>
+              <span class="package-discount">${p.discount}</span>
             </div>
-
-            <h3>
-              ${packageText(name)}
-            </h3>
-
-            <p>
-              ${packageText(description)}
-            </p>
-
-            ${priceHtml}
-
-            <div class="package-count">
-              ${courseCount} ${courseCount === 1 ? "Course" : "Courses"}
-            </div>
-
-            <div class="course-list">
-              ${courseHtml}
-            </div>
-
-            ${isElite ? `<div class="coming-soon">Coming Soon</div>` : ""}
-
+            <button class="package-cta" type="button" onclick="event.stopPropagation();openPackage('${safeName}')">Get Started <span>→</span></button>
           </div>
         `;
 
+        return `
+          <div class="package-wrap ${key}">
+            <div class="package-card ${key}${isElite ? " locked" : " clickable"}" onclick="openPackage('${safeName}')">
+              <div class="package-banner">
+                <div class="package-visual">${packageIcon(name)}</div>
+                <div class="package-head">
+                  <div>
+                    <h3>${packageText(name).toUpperCase()}</h3>
+                    <div class="package-subtitle">${packageText(p.subtitle)}</div>
+                  </div>
+                  ${badge}
+                </div>
+              </div>
+              <div class="package-body">
+                <p>${packageText(desc)}</p>
+                <div class="package-features">${featureHtml}</div>
+              </div>
+            </div>
+            ${priceBox}
+          </div>
+        `;
       }).join("");
-
     }
-
 
     function resourceText(value){
 
@@ -3210,21 +3486,76 @@
     }
 
 
+    async function getDocsSafe(collectionName, timeoutMs){
+
+      const request = getDocs(collection(db, collectionName));
+
+      const timeout = new Promise(function(_, reject){
+        setTimeout(function(){
+          reject(new Error(collectionName + " load timeout"));
+        }, timeoutMs || 8000);
+      });
+
+      return Promise.race([request, timeout]);
+
+    }
+
+
     async function loadAnnouncements(){
-      const grid=document.getElementById("announcementsGrid");
+
+      const grid = document.getElementById("announcementsGrid");
       if(!grid) return;
+
       try{
-        const snapshot=await getDocs(collection(db,"dashboardAnnouncements"));
+
+        let snapshot;
+
+        try{
+          snapshot = await getDocsSafe("dashboardAnnouncements",8000);
+        }catch(firstError){
+          snapshot = await getDocsSafe("announcements",8000);
+        }
+
         const items=[];
-        snapshot.forEach(function(docSnap){items.push({id:docSnap.id,...docSnap.data()});});
-        items.sort(function(a,b){return Number(a.order||0)-Number(b.order||0);});
-        const active=items.filter(function(item){return String(item.status||"Active").toLowerCase()==="active";});
-        if(!active.length){grid.innerHTML='<div class="card announcement"><div class="announcement-icon">📢</div><div><h3>No New Announcements</h3><p>Abhi koi active announcement available nahi hai.</p></div></div>';return;}
-        grid.innerHTML=active.map(function(item){return `<div class="card announcement"><div class="announcement-icon">📢</div><div><h3>${resourceText(item.title||"Announcement")}</h3><p>${resourceText(item.message||"")}</p></div></div>`;}).join("");
+
+        snapshot.forEach(function(docSnap){
+          items.push({
+            id:docSnap.id,
+            ...docSnap.data()
+          });
+        });
+
+        items.sort(function(a,b){
+          return Number(a.order||0) - Number(b.order||0);
+        });
+
+        const active=items.filter(function(item){
+          return String(item.status||"Active").toLowerCase()==="active";
+        });
+
+        if(!active.length){
+          grid.innerHTML='<div class="card announcement"><div class="announcement-icon">📢</div><div><h3>No New Announcements</h3><p>Abhi koi active announcement available nahi hai.</p></div></div>';
+          return;
+        }
+
+        grid.innerHTML=active.map(function(item){
+          return `<div class="card announcement">
+            <div class="announcement-icon">📢</div>
+            <div>
+              <h3>${resourceText(item.title||"Announcement")}</h3>
+              <p>${resourceText(item.message||item.description||"")}</p>
+            </div>
+          </div>`;
+        }).join("");
+
       }catch(error){
+
         console.error("Announcement load error:",error);
-        grid.innerHTML='<div class="card announcement"><div class="announcement-icon">⚠️</div><div><h3>Announcements Load Failed</h3><p>Updates abhi load nahi ho pa rahe hain.</p></div></div>';
+
+        grid.innerHTML='<div class="card announcement"><div class="announcement-icon">📢</div><div><h3>Announcements</h3><p>Abhi announcements available nahi hain.</p></div></div>';
+
       }
+
     }
 
 
@@ -3232,7 +3563,7 @@
       const grid=document.getElementById("growthFeaturesGrid");
       if(!grid) return;
       try{
-        const snapshot=await getDocs(collection(db,"growthFeatures"));
+        const snapshot=await getDocsSafe("growthFeatures",8000);
         const items=[];
         snapshot.forEach(function(docSnap){items.push({id:docSnap.id,...docSnap.data()});});
         items.sort(function(a,b){return Number(a.order||0)-Number(b.order||0);});
