@@ -961,13 +961,6 @@
           <strong>Level 1 (0 pts)</strong>
         </div>
       </div>
-      <div class="stat-pill">
-        <div class="stat-icon orange">🛡️</div>
-        <div class="stat-meta">
-          <small>My Requests</small>
-          <strong id="serviceActivityCount">0 Open</strong>
-        </div>
-      </div>
     </div>
 
     <!-- Main Content Grid -->
@@ -1021,15 +1014,6 @@
               <div class="service-item-info">
                 <h4>Direct Customer Inquiry</h4>
                 <p>Submit your personalized requirements</p>
-              </div>
-              <span class="service-chevron">→</span>
-            </div>
-
-            <div class="service-item-card" onclick="openTracker()">
-              <div class="service-item-icon">📋</div>
-              <div class="service-item-info">
-                <h4>Track My Requests</h4>
-                <p>Submitted requests status check karein</p>
               </div>
               <span class="service-chevron">→</span>
             </div>
@@ -1210,20 +1194,7 @@
         <button type="button" class="primary-btn" onclick="submitInquiry()">Submit Inquiry</button>
       </div>
     </div>
-  </div>
-
-  <!-- MY REQUESTS TRACKER MODAL -->
-  <div id="trackerModal" class="modal" onclick="if(event.target===this) closeModal('trackerModal')">
-    <div class="modal-box">
-      <div class="modal-head">
-        <h2>📋 My Submitted Requests</h2>
-        <button class="modal-close" onclick="closeModal('trackerModal')">×</button>
-      </div>
-      <div class="modal-body" id="trackerContent"></div>
-    </div>
-  </div>
-
-  <!-- CALCULATOR MODAL -->
+  </div><!-- CALCULATOR MODAL -->
   <div id="calculatorModal" class="modal" onclick="if(event.target===this) closeModal('calculatorModal')">
     <div class="modal-box">
       <div class="modal-head">
@@ -1365,7 +1336,6 @@
       await Promise.allSettled([
         loadPackages(),
         loadPanPricing(),
-        loadRequestCount(user),
         loadNotifications(),
         loadDashboardSettings()
       ]);
@@ -1494,7 +1464,6 @@
         });
         showToast("✅ Application submitted successfully!");
         closeModal("panServiceModal");
-        loadRequestCount(currentUser);
       } catch(e) {
         showToast("Error submitting PAN request.");
         console.error(e);
@@ -1522,43 +1491,7 @@
         });
         showToast("Inquiry received! We'll contact you soon. ✅");
         closeModal("inquiryModal");
-        loadRequestCount(currentUser);
       } catch(e) { showToast("Error sending inquiry."); }
-    };
-
-    async function loadRequestCount(user) {
-      if(!user) return;
-      try {
-        const q = query(collection(db, "inquiries"), where("uid", "==", user.uid));
-        const snap = await getDocs(q);
-        document.getElementById("serviceActivityCount").textContent = `${snap.size} Open`;
-      } catch(e) { console.error(e); }
-    }
-
-    window.openTracker = async () => {
-      const box = document.getElementById("trackerContent");
-      document.getElementById("trackerModal").classList.add("show");
-      box.innerHTML = '<div style="text-align:center; padding:20px;">Loading requests...</div>';
-      try {
-        const q = query(collection(db, "inquiries"), where("uid", "==", currentUser.uid));
-        const snap = await getDocs(q);
-        if(snap.empty) {
-          box.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text-muted);">No submitted requests found.</div>';
-          return;
-        }
-        box.innerHTML = snap.docs.map(d => {
-          const data = d.data();
-          return `
-            <div style="padding:14px; border:1px solid var(--border-color); border-radius:var(--radius-md); margin-bottom:10px;">
-              <div style="display:flex; justify-content:space-between; font-weight:700; font-size:13px; margin-bottom:4px;">
-                <span>${data.service}</span>
-                <span style="color:var(--primary); text-transform:capitalize;">${data.status}</span>
-              </div>
-              <p style="font-size:12px; color:var(--text-muted);">${data.message}</p>
-            </div>
-          `;
-        }).join('');
-      } catch(e) { box.innerHTML = 'Error loading requests.'; }
     };
 
     // CALCULATORS LOGIC
