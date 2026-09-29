@@ -414,6 +414,29 @@
     @media(max-width:1000px){.admin-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:700px){.admin-grid,.admin-form-grid{grid-template-columns:1fr}.admin-table{min-width:650px}}
 
+
+    /* =========================
+       FOUNDING LEADERS ADD-ON
+       Existing admin design untouched
+    ========================= */
+    .leader-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:15px}
+    .leader-mini{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:15px}
+    .leader-mini .label{font-size:12px;color:#64748b;font-weight:700}
+    .leader-mini .value{font-size:22px;font-weight:900;color:#0f172a;margin-top:5px}
+    .leader-table-wrap{overflow:auto;margin-top:15px}
+    .leader-table{width:100%;border-collapse:collapse;min-width:1050px}
+    .leader-table th,.leader-table td{padding:10px;border-bottom:1px solid #e5e7eb;text-align:left;font-size:12px;vertical-align:top}
+    .leader-table th{background:#f8fafc;color:#475569;font-weight:900}
+    .leader-status{display:inline-flex;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:900}
+    .leader-status.active{background:#dcfce7;color:#166534}
+    .leader-status.inactive{background:#fee2e2;color:#991b1b}
+    .leader-link{max-width:260px;word-break:break-all;color:#2563eb;font-size:11px}
+    .leader-actions{display:flex;gap:6px;flex-wrap:wrap}
+    .leader-actions button{padding:7px 9px;border-radius:8px;border:1px solid #dbe3ee;background:#fff;cursor:pointer;font-size:11px;font-weight:800}
+    .leader-actions button:hover{background:#f8fafc}
+    @media(max-width:900px){.leader-summary-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){.leader-summary-grid{grid-template-columns:1fr}}
+
   </style>
 </head>
 
@@ -505,6 +528,14 @@
         🛠️ Services Management
       </button>
 
+      <button class="menu-btn" data-section="panManagement">
+        🪪 PAN Management
+      </button>
+
+      <button class="menu-btn" data-section="panPricing">
+        💰 PAN Service Pricing
+      </button>
+
       <button class="menu-btn" data-section="courses">
         🎓 Course & Package Management
       </button>
@@ -519,6 +550,10 @@
 
       <button class="menu-btn" data-section="growthFeatures">
         🚀 Growth Features Management
+      </button>
+
+      <button class="menu-btn" data-section="foundingLeaders">
+        👑 Founding Leaders
       </button>
 
       <button class="menu-btn" data-section="support">
@@ -1783,16 +1818,114 @@ Social Media Basics"></textarea></div>
         <div class="content-card"><h3>Current Pricing</h3><div id="pricingSummary"></div></div>
       </section>
 
+
+
+      <!-- FOUNDING LEADERS -->
+      <section id="foundingLeaders" class="section">
+        <div class="content-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+            <div>
+              <h2>👑 Founding Leaders</h2>
+              <p>Sirf Admin-selected Founding Leaders ke referral links aur commission records yahan manage honge. Normal customers ko referral UI nahi diya jayega.</p>
+            </div>
+            <button class="btn btn-primary" id="addFoundingLeaderBtn">➕ Add Leader</button>
+          </div>
+        </div>
+
+        <div class="leader-summary-grid">
+          <div class="leader-mini"><div class="label">Total Leaders</div><div class="value" id="flTotal">0</div></div>
+          <div class="leader-mini"><div class="label">Active Leaders</div><div class="value" id="flActive">0</div></div>
+          <div class="leader-mini"><div class="label">Total Referrals</div><div class="value" id="flReferrals">0</div></div>
+          <div class="leader-mini"><div class="label">Pending Commission</div><div class="value" id="flPending">₹0</div></div>
+        </div>
+
+        <div id="foundingLeaderForm" class="content-card hidden" style="margin-top:16px;">
+          <h2 id="foundingLeaderFormTitle">Add Founding Leader</h2>
+          <div class="feature-grid" style="margin-top:15px;">
+            <div class="input-group"><label for="flName">Name *</label><input id="flName" type="text" placeholder="Leader name"></div>
+            <div class="input-group"><label for="flMobile">Mobile *</label><input id="flMobile" type="tel" placeholder="Mobile number"></div>
+            <div class="input-group"><label for="flEmail">Email</label><input id="flEmail" type="email" placeholder="Email optional"></div>
+            <div class="input-group"><label for="flLeaderId">Leader ID *</label><input id="flLeaderId" type="text" placeholder="AGH001"></div>
+            <div class="input-group"><label for="flUpi">UPI ID *</label><input id="flUpi" type="text" placeholder="name@upi"></div>
+            <div class="input-group"><label for="flCommission">Commission % *</label><input id="flCommission" type="number" min="0" max="100" step="0.01" value="50"></div>
+            <div class="input-group"><label for="flUserUid">Leader Firebase UID</label><input id="flUserUid" type="text" placeholder="Optional - link leader login UID"></div>
+            <div class="input-group"><label for="flStatus">Status</label><select id="flStatus"><option value="Active">Active</option><option value="Inactive">Inactive</option></select></div>
+            <div class="input-group full"><label for="flReferralLink">Referral Link</label><input id="flReferralLink" type="text" readonly placeholder="Auto-generated after Leader ID"></div>
+          </div>
+          <div id="foundingLeaderMessage" class="message"></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn btn-primary" id="saveFoundingLeaderBtn">💾 Save Leader</button>
+            <button class="btn btn-light" id="cancelFoundingLeaderBtn">Cancel</button>
+          </div>
+        </div>
+
+        <div class="content-card" style="margin-top:16px;">
+          <h2>Saved Founding Leaders</h2>
+          <div id="foundingLeadersList" class="leader-table-wrap"><div class="empty">Founding Leaders loading...</div></div>
+        </div>
+
+        <div class="content-card" style="margin-top:16px;">
+          <h2>💰 Referral / Commission Records</h2>
+          <p>Commission sirf verified/non-refunded sales par payable maana jayega.</p>
+          <div id="foundingLeaderOrdersList" class="leader-table-wrap"><div class="empty">Commission records loading...</div></div>
+        </div>
+      </section>
+
       <!-- FINANCIAL RECORDS -->
       <section id="financialRecords" class="section"><div class="content-card"><h2>🧾 Audit & Financial Records</h2><p>Actual orders, payment status and revenue history.</p><div class="admin-grid"><div class="admin-mini-card"><h4>Success</h4><div class="big" id="finSuccess">0</div></div><div class="admin-mini-card"><h4>Pending</h4><div class="big" id="finPending">0</div></div><div class="admin-mini-card"><h4>Failed</h4><div class="big" id="finFailed">0</div></div><div class="admin-mini-card"><h4>Refunded</h4><div class="big" id="finRefunded">0</div></div></div></div><div class="content-card"><div class="table-wrap"><table class="admin-table"><thead><tr><th>Customer</th><th>Package/Course</th><th>Amount</th><th>Order ID</th><th>Method</th><th>Status</th><th>Date</th></tr></thead><tbody id="financialList"><tr><td colspan="7">Loading...</td></tr></tbody></table></div></div></section>
 
       <!-- PAN MANAGEMENT -->
+      <section id="panManagement" class="section">
+        <div class="content-card">
+          <h2>🪪 PAN Card Service Management</h2>
+          <p style="color:#64748b;margin-bottom:15px;">Customer ke PAN service requests, documents, UTR/payment aur request status yahan manage karein.</p>
+          <div class="tabs">
+            <button class="tab-btn active pan-status-tab" data-pan-filter="ALL">All</button>
+            <button class="tab-btn pan-status-tab" data-pan-filter="Pending">Pending</button>
+            <button class="tab-btn pan-status-tab" data-pan-filter="Processing">Processing</button>
+            <button class="tab-btn pan-status-tab" data-pan-filter="Completed">Completed</button>
+            <button class="tab-btn pan-status-tab" data-pan-filter="Rejected">Rejected</button>
+          </div>
+          <div class="search-box">
+            <input id="panSearchInput" type="text" placeholder="Search name, mobile, email, request type, UTR...">
+            <button class="btn btn-light" id="refreshPanBtn">🔄 Refresh PAN Requests</button>
+          </div>
+          <div id="panManagementMessage" class="message"></div>
+        </div>
+        <div class="content-card">
+          <div id="panRequestsList"><div class="empty">PAN requests loading...</div></div>
+        </div>
+      </section>
+
+      <!-- PAN SERVICE PRICING -->
+      <section id="panPricing" class="section">
+        <div class="content-card">
+          <h2>💰 PAN Service Pricing</h2>
+          <p style="color:#64748b;margin-bottom:15px;">PAN services ke customer charges aur UPI payment details yahan manage karein.</p>
+          <div class="admin-form-grid">
+            <div class="input-group"><label>New PAN Application (₹)</label><input id="panPriceNew" type="number" min="0" step="1" placeholder="e.g. 199"></div>
+            <div class="input-group"><label>PAN Correction (₹)</label><input id="panPriceCorrection" type="number" min="0" step="1" placeholder="e.g. 149"></div>
+            <div class="input-group"><label>Minor PAN (₹)</label><input id="panPriceMinor" type="number" min="0" step="1" placeholder="e.g. 199"></div>
+            <div class="input-group"><label>Other PAN Service (₹)</label><input id="panPriceOther" type="number" min="0" step="1" placeholder="e.g. 199"></div>
+            <div class="input-group"><label>PAN UPI ID</label><input id="panPriceUpi" type="text" placeholder="yourupi@bank"></div>
+            <div class="input-group"><label>Status</label><select id="panPriceStatus"><option value="Active">Active</option><option value="Inactive">Inactive</option></select></div>
+          </div>
+          <div class="danger-note">Customer ko sirf Active pricing use hogi. Payment/request flow me isi saved pricing ko future me connect kiya jayega.</div>
+          <button class="btn btn-success" id="savePanPricingBtn">💾 Save PAN Pricing</button>
+          <button class="btn btn-warning" id="updatePanPricingStatusBtn" style="margin-left:8px;">🔄 Update Status</button>
+          <div id="panPricingMessage" class="message"></div>
+        </div>
+        <div class="content-card" style="margin-top:16px;">
+          <h3>Current PAN Pricing</h3>
+          <div id="panPricingSummary"><div class="empty">Pricing loading...</div></div>
+        </div>
+      </section>
 
       <!-- APP SETTINGS -->
       <section id="appSettings" class="section"><div class="content-card"><h2>⚙️ App Settings</h2><div class="admin-form-grid"><div class="input-group"><label>App Name</label><input id="settingAppName" value="Apna Growth Hub"></div><div class="input-group"><label>App Logo URL</label><input id="settingLogo"></div><div class="input-group"><label>Website/App URL</label><input id="settingAppUrl" type="url"></div><div class="input-group"><label>WhatsApp Number</label><input id="settingWhatsapp"></div><div class="input-group"><label>Support Email</label><input id="settingEmail" type="email"></div><div class="input-group"><label>Maintenance Mode</label><select id="settingMaintenance"><option value="false">Normal Mode</option><option value="true">Maintenance Mode</option></select></div><div class="input-group full"><label>Social Media Links</label><textarea id="settingSocial" rows="3" placeholder="One link per line"></textarea></div><div class="input-group full"><label>Basic App Information</label><textarea id="settingInfo" rows="4"></textarea></div></div><button class="btn btn-success" id="saveAppSettingsBtn">💾 Save App Settings</button><div id="appSettingsMessage" class="message"></div></div></section>
 
       <!-- ADMIN MANAGEMENT -->
-      <section id="adminManagement" class="section"><div class="content-card"><h2>👑 Admin Management</h2><p>Owner/Main Admin aur Staff Admins manage karein.</p><div class="admin-form-grid"><div class="input-group"><label>Staff Admin Name</label><input id="staffName"></div><div class="input-group"><label>Staff Admin Email</label><input id="staffEmail" type="email"></div><div class="input-group"><label>Temporary Password</label><input id="staffPassword" type="password" minlength="6"></div><div class="input-group"><label>Role</label><select id="staffRole"><option>Staff Admin</option><option>Manager</option><option>Support Admin</option></select></div><div class="input-group full"><label>Permissions</label><textarea id="staffPermissions" rows="3" placeholder="customers,inquiries,courses,notifications"></textarea></div></div><div class="danger-note">Owner Admin ko disable/delete karne ka option nahi diya gaya. Staff permissions production rules se enforce honge.</div><button class="btn btn-success" id="addStaffBtn">➕ Add Staff Admin</button><div id="adminMessage" class="message"></div></div><div class="content-card"><h3>Admin Accounts</h3><div id="adminList"></div></div></section>
+      <section id="adminManagement" class="section"><div class="content-card"><h2>👑 Admin Management</h2><p>Owner/Main Admin aur Staff Admins manage karein.</p><div class="admin-form-grid"><div class="input-group"><label>Staff Admin Name</label><input id="staffName"></div><div class="input-group"><label>Staff Admin Email</label><input id="staffEmail" type="email"></div><div class="input-group"><label>Temporary Password</label><input id="staffPassword" type="password" minlength="6"></div><div class="input-group"><label>Role</label><select id="staffRole"><option>Staff Admin</option><option>Manager</option><option>Support Admin</option></select></div><div class="input-group full"><label>Services / Permissions</label><div id="staffPermissionsBox" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:8px;"><div style="padding:12px;border:1px solid #e5e7eb;border-radius:10px;color:#64748b;">Services loading...</div></div><small style="display:block;margin-top:8px;color:#64748b;">Jis service ka access dena ho, sirf usko select karein.</small></div></div><div class="danger-note">Owner Admin ko disable/delete karne ka option nahi diya gaya. Staff permissions production rules se enforce honge.</div><button class="btn btn-success" id="addStaffBtn">➕ Add Staff Admin</button><div id="adminMessage" class="message"></div></div><div class="content-card"><h3>Admin Accounts</h3><div id="adminList"></div></div></section>
 
       <!-- ACTIVITY LOG -->
       <section id="activityLog" class="section"><div class="content-card"><h2>📝 Admin Activity Log</h2><p>Login, add, update, delete aur important admin actions.</p><div class="table-wrap"><table class="admin-table"><thead><tr><th>Admin</th><th>Action</th><th>Section</th><th>Date/Time</th><th>Details</th></tr></thead><tbody id="activityList"><tr><td colspan="5">Loading...</td></tr></tbody></table></div></div></section>
@@ -1829,7 +1962,7 @@ Social Media Basics"></textarea></div>
   <!-- FIREBASE -->
   <script type="module">
 
-    import { initializeApp } from
+    import { initializeApp, getApps, getApp } from
       "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 
@@ -1838,7 +1971,8 @@ Social Media Basics"></textarea></div>
       onAuthStateChanged,
       signInWithEmailAndPassword,
       signOut,
-      createUserWithEmailAndPassword
+      createUserWithEmailAndPassword,
+      sendPasswordResetEmail
     } from
       "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
@@ -1890,6 +2024,98 @@ Social Media Basics"></textarea></div>
 
     const ADMIN_UID =
       "bhpu24P8Ixfq0ZPSBsoLW3kd0dg1";
+
+    // CURRENT ADMIN ACCESS
+    let CURRENT_ADMIN = {
+      uid: ADMIN_UID,
+      role: "Owner",
+      status: "Active",
+      permissions: "ALL"
+    };
+
+    // Service -> Admin Panel sections mapping.
+    // Owner keeps ALL access. Staff Admins only get selected service sections.
+    const SERVICE_SECTION_MAP = {
+      customers: ["customers"],
+      inquiries: ["inquiries"],
+      lic: ["lic"],
+      pan: ["inquiries"],
+      courses: ["courses"],
+      digitalSkills: ["courses"],
+      aiTools: ["courses"],
+      socialMedia: ["courses"],
+      packages: ["paymentPricing"],
+      resources: ["resources"],
+      notifications: ["notifications", "scheduledNotifications"],
+      support: ["support"]
+    };
+
+    function adminHasPermission(sectionName){
+      if(CURRENT_ADMIN?.uid===ADMIN_UID || CURRENT_ADMIN?.permissions==="ALL") return true;
+      const permissions = Array.isArray(CURRENT_ADMIN?.permissions)
+        ? CURRENT_ADMIN.permissions
+        : [];
+      return permissions.some(permission=>{
+        const id = typeof permission === "object" ? permission.id : permission;
+        return (SERVICE_SECTION_MAP[id]||[]).includes(sectionName);
+      });
+    }
+
+    function applyAdminAccess(){
+      const isOwner = CURRENT_ADMIN?.uid===ADMIN_UID || CURRENT_ADMIN?.permissions==="ALL";
+
+      document.querySelectorAll(".menu-btn[data-section]").forEach(button=>{
+        const sectionName=button.dataset.section;
+        const allowed=isOwner || adminHasPermission(sectionName);
+        button.style.display=allowed ? "" : "none";
+        button.dataset.accessAllowed=allowed ? "true" : "false";
+      });
+
+      document.querySelectorAll(".section").forEach(section=>{
+        const allowed=isOwner || adminHasPermission(section.id);
+        section.dataset.accessAllowed=allowed ? "true" : "false";
+        if(!allowed) section.classList.remove("active");
+      });
+
+      // Staff Admins must never manage other admins.
+      if(!isOwner){
+        const adminBtn=document.querySelector('.menu-btn[data-section="adminManagement"]');
+        if(adminBtn) adminBtn.style.display="none";
+        const adminSection=document.getElementById("adminManagement");
+        if(adminSection) adminSection.classList.remove("active");
+      }
+
+      // Show the first available section.
+      const active=document.querySelector('.section.active[data-access-allowed="true"]');
+      if(!active){
+        const first=document.querySelector('.section[data-access-allowed="true"]');
+        if(first) showSection(first.id);
+      }
+    }
+
+    function enforceAdminAccess(sectionName){
+      const isOwner = CURRENT_ADMIN?.uid===ADMIN_UID || CURRENT_ADMIN?.permissions==="ALL";
+      if(isOwner || adminHasPermission(sectionName)) return true;
+      setText("adminMessage", "Aapko is section ka access nahi diya gaya hai.");
+      return false;
+    }
+
+    function applyInquiryPermissionFilter(){
+      const isOwner=CURRENT_ADMIN?.uid===ADMIN_UID || CURRENT_ADMIN?.permissions==="ALL";
+      const tabs=document.querySelectorAll(".inquiry-tab");
+      if(isOwner){ tabs.forEach(t=>t.style.display=""); return; }
+      const canLIC=adminHasPermission("lic");
+      const canPAN=adminHasPermission("inquiries") && (CURRENT_ADMIN.permissions||[]).some(p=>{const id=typeof p==="object"?p.id:p;return id==="pan";});
+      tabs.forEach(tab=>{
+        const type=tab.dataset.inquiryTab;
+        let allowed=type==="ALL" ? (canLIC||canPAN) : type==="LIC" ? canLIC : type==="PAN" ? canPAN : false;
+        tab.style.display=allowed?"":"none";
+      });
+      const visible=[...tabs].filter(t=>t.style.display!=="none");
+      if(visible.length===1 && inquiryTab!==visible[0].dataset.inquiryTab){
+        visible[0].click();
+      }
+    }
 
 
     // FIREBASE START
@@ -2119,44 +2345,50 @@ Social Media Basics"></textarea></div>
         }
 
 
-        if (
-          user.uid !==
-          ADMIN_UID
-        ) {
+        // Owner Admin or active Staff Admin
+        if(user.uid===ADMIN_UID){
+          CURRENT_ADMIN={uid:user.uid,role:"Owner",status:"Active",permissions:"ALL",email:user.email||""};
+        }else{
+          try{
+            const adminSnap=await getDoc(doc(db,"adminUsers",user.uid));
+            if(!adminSnap.exists()){
+              alert("Aapko Admin Panel ki permission nahi hai.");
+              await signOut(auth);
+              return;
+            }
 
-          alert(
-            "Aapko Admin Panel ki permission nahi hai."
-          );
+            const adminData=adminSnap.data();
+            if(String(adminData.status||"Active").toLowerCase()!=="active"){
+              alert("Aapka Sub-Admin account inactive hai.");
+              await signOut(auth);
+              return;
+            }
 
-          await signOut(
-            auth
-          );
-
-          return;
-
+            CURRENT_ADMIN={uid:user.uid,...adminData,email:adminData.email||user.email||""};
+          }catch(error){
+            alert("Admin access verify nahi ho saka: "+error.message);
+            await signOut(auth);
+            return;
+          }
         }
 
+        loginPage.classList.add("hidden");
+        adminApp.classList.remove("hidden");
 
-        loginPage.classList.add(
-          "hidden"
-        );
+        applyAdminAccess();
+        applyInquiryPermissionFilter();
 
-        adminApp.classList.remove(
-          "hidden"
-        );
+        // Existing loaders remain intact. Access is controlled by the menu/section guard.
+        try{ await loadInquiries(); }catch(e){ console.warn("Inquiries load:",e); }
+        try{ await showLicPlans(); }catch(e){ console.warn("LIC load:",e); }
+        try{ await loadCustomers(); }catch(e){ console.warn("Customers load:",e); }
+        try{ await loadDeleteRequests(); }catch(e){ console.warn("Delete requests load:",e); }
+        try{ await loadCourses(); }catch(e){ console.warn("Courses load:",e); }
+        try{ await loadAllCms(); }catch(e){ console.warn("CMS load:",e); }
+        try{ await loadAdvancedFeatures(); }catch(e){ console.warn("Advanced load:",e); }
 
-
-        await loadInquiries();
-
-        await showLicPlans();
-
-        await loadCustomers();
-
-        await loadDeleteRequests();
-
-        await loadCourses();
-        await loadAllCms();
-        await loadAdvancedFeatures();
+        // Re-apply after all dynamic/admin content has loaded.
+        applyAdminAccess();
 
       }
     );
@@ -6393,7 +6625,7 @@ Social Media Basics"></textarea></div>
     // =====================================================
     // ADVANCED ADMIN FEATURES
     // =====================================================
-    const ADV_COLLECTIONS = ["customers","inquiries","courses","orders","payments","notifications","scheduledNotifications","appointments","adminActivityLogs","adminUsers","dashboardSettings","dashboardServices","dashboardResources","dashboardAnnouncements","growthFeatures","packages"];
+    const ADV_COLLECTIONS = ["customers","inquiries","courses","orders","payments","notifications","scheduledNotifications","appointments","adminActivityLogs","adminUsers","dashboardSettings","dashboardServices","dashboardResources","dashboardAnnouncements","growthFeatures","packages","foundingLeaders"];
     let allOrders = [], allNotifications = [], allAppointments = [], allAdminLogs = [];
     let inquiryTab = "LIC";
 
@@ -6410,6 +6642,266 @@ Social Media Basics"></textarea></div>
     async function logAdminAction(action, section, details=""){
       try{ await addDoc(collection(db,"adminActivityLogs"),{adminUid:auth.currentUser?.uid||ADMIN_UID,adminEmail:auth.currentUser?.email||"",action,section,details,createdAt:new Date().toISOString()}); }catch(e){ console.warn("Activity log failed",e); }
     }
+
+    // PAN CARD SERVICE MANAGEMENT
+    let allPanRequests = [];
+    let panRequestFilter = "ALL";
+
+    function panStatusPill(status){
+      const s=String(status||"Pending");
+      const cls=s==="Completed"?"pill-green":s==="Rejected"?"pill-red":s==="Processing"?"pill-blue":"pill-yellow";
+      return `<span class="pill ${cls}">${escapeHTML(s)}</span>`;
+    }
+
+    function panPaymentPill(status){
+      const s=String(status||"Pending");
+      const cls=s==="Verified"?"pill-green":s==="Rejected"?"pill-red":"pill-yellow";
+      return `<span class="pill ${cls}">${escapeHTML(s)}</span>`;
+    }
+
+    function formatPanDate(value){
+      if(!value) return "Not available";
+      const d=new Date(value);
+      return isNaN(d.getTime()) ? String(value) : d.toLocaleString("en-IN");
+    }
+
+    async function loadPanServices(){
+      const box=document.getElementById("panRequestsList");
+      if(!box) return;
+      box.innerHTML='<div class="empty">PAN requests loading...</div>';
+      try{
+        const snap=await getDocs(collection(db,"panRequests"));
+        allPanRequests=[];
+        snap.forEach(d=>allPanRequests.push({id:d.id,...d.data()}));
+        allPanRequests.sort((a,b)=>new Date(b.createdAt||0)-new Date(a.createdAt||0));
+        renderPanRequests();
+      }catch(e){
+        box.innerHTML=`<div class="empty">PAN requests load nahi ho paaye: ${escapeHTML(e.message)}</div>`;
+      }
+    }
+
+    function renderPanRequests(){
+      const box=document.getElementById("panRequestsList");
+      if(!box) return;
+      const q=String(document.getElementById("panSearchInput")?.value||"").toLowerCase().trim();
+      const list=allPanRequests.filter(x=>{
+        const status=String(x.status||"Pending");
+        if(panRequestFilter!=="ALL" && status!==panRequestFilter) return false;
+        if(!q) return true;
+        const hay=[x.customerName,x.name,x.mobile,x.email,x.requestType,x.details,x.utr,x.id].map(v=>String(v||"").toLowerCase()).join(" ");
+        return hay.includes(q);
+      });
+      if(!list.length){box.innerHTML='<div class="empty">Koi PAN request nahi mili.</div>';return;}
+      box.innerHTML=list.map(x=>{
+        const docs=Array.isArray(x.documents)?x.documents:[];
+        const docHtml=docs.length?docs.map((d,i)=>{
+          const label=escapeHTML(d.label||d.name||`Document ${i+1}`);
+          const url=d.url||d.downloadURL||d.downloadUrl||"";
+          return url?`<a class="btn btn-light" href="${escapeHTML(url)}" target="_blank" rel="noopener">📄 ${label}</a>`:`<span class="pill">📄 ${label}</span>`;
+        }).join(" "):"<span style='color:#64748b'>No documents listed</span>";
+        return `<div class="recent-card">\n          <h3>🪪 PAN Request #${escapeHTML(x.id)}</h3>\n          <p><strong>👤 Customer:</strong> ${escapeHTML(x.customerName||x.name||"Not available")}</p>\n          <p><strong>📱 Mobile:</strong> ${escapeHTML(x.mobile||"Not available")}</p>\n          <p><strong>📧 Email:</strong> ${escapeHTML(x.email||"Not available")}</p>\n          <p><strong>📌 Request Type:</strong> ${escapeHTML(x.requestType||"Not specified")}</p>\n          <p><strong>📝 Details:</strong> ${escapeHTML(x.details||"Not provided")}</p>\n          <p><strong>💳 UTR:</strong> ${escapeHTML(x.utr||"Not provided")}</p>\n          <p><strong>Payment:</strong> ${panPaymentPill(x.paymentStatus||"Pending")} &nbsp; <strong>Request:</strong> ${panStatusPill(x.status||"Pending")}</p>\n          <p><strong>📅 Created:</strong> ${escapeHTML(formatPanDate(x.createdAt))}</p>\n          <p><strong>📎 Documents:</strong><br>${docHtml}</p>\n          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;">\n            <select class="filter-select pan-payment-select" data-id="${escapeHTML(x.id)}" style="max-width:180px;">\n              ${["Pending","Verified","Rejected"].map(v=>`<option ${String(x.paymentStatus||"Pending")===v?"selected":""}>${v}</option>`).join("")}\n            </select>\n            <select class="filter-select pan-request-select" data-id="${escapeHTML(x.id)}" style="max-width:180px;">\n              ${["Pending","Processing","Completed","Rejected"].map(v=>`<option ${String(x.status||"Pending")===v?"selected":""}>${v}</option>`).join("")}\n            </select>\n            <button class="btn btn-success pan-save-btn" data-id="${escapeHTML(x.id)}">💾 Update Request</button>\n          </div>\n        </div>`;
+      }).join("");
+
+      box.querySelectorAll(".pan-save-btn").forEach(btn=>btn.addEventListener("click",()=>updatePanRequest(btn.dataset.id)));
+    }
+
+    async function updatePanRequest(id){
+      const p=document.querySelector(`.pan-payment-select[data-id="${CSS.escape(id)}"]`);
+      const r=document.querySelector(`.pan-request-select[data-id="${CSS.escape(id)}"]`);
+      if(!p||!r) return;
+      const paymentStatus=p.value;
+      const status=r.value;
+      const msg=document.getElementById("panManagementMessage");
+      try{
+        await updateDoc(doc(db,"panRequests",id),{paymentStatus,status,updatedAt:new Date().toISOString(),updatedBy:auth.currentUser?.uid||ADMIN_UID});
+        await logAdminAction("Update PAN Request", "panManagement", `Request ${id}: payment=${paymentStatus}, status=${status}`);
+        if(msg){msg.textContent="PAN request updated successfully.";msg.style.color="#16a34a";}
+        const item=allPanRequests.find(x=>x.id===id); if(item){item.paymentStatus=paymentStatus;item.status=status;}
+        renderPanRequests();
+      }catch(e){
+        if(msg){msg.textContent="Update failed: "+e.message;msg.style.color="#dc2626";}
+      }
+    }
+
+
+
+    /* =====================================================
+       FOUNDING LEADERS - ADD-ON
+       This block does not alter existing customer/package code.
+    ===================================================== */
+    let foundingLeadersCache = [];
+    let editingFoundingLeaderId = null;
+
+    function foundingLeaderSiteBase(){
+      return window.location.origin + window.location.pathname.replace(/\/admin(?:\.html)?$/i, "");
+    }
+
+    function makeFoundingReferralLink(leaderId){
+      const clean = String(leaderId || "").trim();
+      return clean ? (window.location.origin + "/?ref=" + encodeURIComponent(clean)) : "";
+    }
+
+    function flValue(id){
+      const el=document.getElementById(id);
+      return el ? String(el.value || "").trim() : "";
+    }
+
+    function flSet(id,value){
+      const el=document.getElementById(id);
+      if(el) el.value=value ?? "";
+    }
+
+    function flMsg(message,good=false){
+      const el=document.getElementById("foundingLeaderMessage");
+      if(!el) return;
+      el.textContent=message || "";
+      el.style.color=good ? "#15803d" : "#b91c1c";
+    }
+
+    function resetFoundingLeaderForm(){
+      editingFoundingLeaderId=null;
+      document.getElementById("foundingLeaderFormTitle")?.replaceChildren(document.createTextNode("Add Founding Leader"));
+      flSet("flName",""); flSet("flMobile",""); flSet("flEmail",""); flSet("flLeaderId",""); flSet("flUpi",""); flSet("flCommission","50"); flSet("flUserUid",""); flSet("flStatus","Active"); flSet("flReferralLink","");
+      flMsg("");
+      document.getElementById("foundingLeaderForm")?.classList.add("hidden");
+    }
+
+    function openFoundingLeaderForm(item=null){
+      const form=document.getElementById("foundingLeaderForm");
+      if(!form) return;
+      editingFoundingLeaderId=item?.leaderId || null;
+      document.getElementById("foundingLeaderFormTitle").textContent=item ? "Edit Founding Leader" : "Add Founding Leader";
+      flSet("flName",item?.name || "");
+      flSet("flMobile",item?.mobile || "");
+      flSet("flEmail",item?.email || "");
+      flSet("flLeaderId",item?.leaderId || "");
+      flSet("flUpi",item?.upiId || "");
+      flSet("flCommission",item?.commissionPercent ?? 50);
+      flSet("flUserUid",item?.uid || item?.userUid || "");
+      flSet("flStatus",item?.status || "Active");
+      flSet("flReferralLink",item?.referralLink || makeFoundingReferralLink(item?.leaderId));
+      flMsg("");
+      form.classList.remove("hidden");
+      form.scrollIntoView({behavior:"smooth",block:"start"});
+    }
+
+    async function loadFoundingLeaders(){
+      const list=document.getElementById("foundingLeadersList");
+      const ordersBox=document.getElementById("foundingLeaderOrdersList");
+      if(list) list.innerHTML='<div class="empty">Founding Leaders loading...</div>';
+      try{
+        const snap=await getDocs(collection(db,"foundingLeaders"));
+        foundingLeadersCache=[];
+        snap.forEach(d=>foundingLeadersCache.push({docId:d.id,...d.data()}));
+        foundingLeadersCache.sort((a,b)=>String(a.leaderId||"").localeCompare(String(b.leaderId||"")));
+        renderFoundingLeaders();
+        await loadFoundingLeaderOrders();
+      }catch(e){
+        console.error("Founding Leaders load error:",e);
+        if(list) list.innerHTML='<div class="empty">Founding Leaders load nahi ho paaye: '+escapeHTML(e.message||"Unknown error")+'</div>';
+        if(ordersBox) ordersBox.innerHTML='<div class="empty">Commission records load nahi ho paaye.</div>';
+      }
+    }
+
+    function renderFoundingLeaders(){
+      const list=document.getElementById("foundingLeadersList");
+      if(!list) return;
+      const active=foundingLeadersCache.filter(x=>String(x.status||"Active").toLowerCase()==="active").length;
+      setText("flTotal",advNum(foundingLeadersCache.length));
+      setText("flActive",advNum(active));
+      if(!foundingLeadersCache.length){list.innerHTML='<div class="empty">Abhi koi Founding Leader create nahi hua.</div>';return;}
+      list.innerHTML=`<table class="leader-table"><thead><tr><th>Leader</th><th>Leader ID</th><th>Mobile</th><th>Commission</th><th>Status</th><th>Referral Link</th><th>Actions</th></tr></thead><tbody>${foundingLeadersCache.map(item=>{
+        const status=String(item.status||"Active");
+        const link=item.referralLink||makeFoundingReferralLink(item.leaderId);
+        return `<tr><td><strong>${escapeHTML(item.name||"-")}</strong><br><span style="color:#64748b">${escapeHTML(item.email||"")}</span></td><td>${escapeHTML(item.leaderId||"-")}</td><td>${escapeHTML(item.mobile||"-")}</td><td>${advNum(item.commissionPercent||0)}%</td><td><span class="leader-status ${status.toLowerCase()==="active"?"active":"inactive"}">${escapeHTML(status)}</span></td><td><div class="leader-link">${escapeHTML(link)}</div></td><td><div class="leader-actions"><button type="button" onclick="editFoundingLeader('${encodeURIComponent(item.leaderId||"")}')">✏️ Edit</button><button type="button" onclick="copyFoundingLeaderLink('${encodeURIComponent(link)}')">📋 Copy Link</button><button type="button" onclick="toggleFoundingLeader('${encodeURIComponent(item.leaderId||"")}')">${status.toLowerCase()==="active"?"⛔ Disable":"✅ Activate"}</button></div></td></tr>`;
+      }).join("")}</tbody></table>`;
+    }
+
+    window.editFoundingLeader=function(encodedId){
+      const id=decodeURIComponent(encodedId||"");
+      const item=foundingLeadersCache.find(x=>String(x.leaderId||"")===id);
+      if(item) openFoundingLeaderForm(item);
+    };
+
+    window.copyFoundingLeaderLink=function(encodedLink){
+      const link=decodeURIComponent(encodedLink||"");
+      if(navigator.clipboard){navigator.clipboard.writeText(link).then(()=>showAdminToast("Referral link copied."),()=>showAdminToast(link));}
+      else showAdminToast(link);
+    };
+
+    window.toggleFoundingLeader=async function(encodedId){
+      const id=decodeURIComponent(encodedId||"");
+      const item=foundingLeadersCache.find(x=>String(x.leaderId||"")===id);
+      if(!item) return;
+      try{
+        const next=String(item.status||"Active").toLowerCase()==="active" ? "Inactive" : "Active";
+        await updateDoc(doc(db,"foundingLeaders",item.docId||item.leaderId),{status:next,updatedAt:new Date().toISOString()});
+        await logAdminAction("Toggle Founding Leader","foundingLeaders",`${id} -> ${next}`);
+        await loadFoundingLeaders();
+      }catch(e){showAdminToast("Leader status update failed: "+(e.message||"Unknown error"));}
+    };
+
+    function showAdminToast(message){
+      if(typeof showToast === "function") return showToast(message);
+      alert(message);
+    }
+
+    async function saveFoundingLeader(){
+      const name=flValue("flName"), mobile=flValue("flMobile"), email=flValue("flEmail"), leaderId=flValue("flLeaderId").toUpperCase(), upiId=flValue("flUpi"), uid=flValue("flUserUid"), status=flValue("flStatus")||"Active";
+      const commissionPercent=Number(flValue("flCommission"));
+      if(!name || !mobile || !leaderId || !upiId){flMsg("Name, Mobile, Leader ID aur UPI ID required hai.");return;}
+      if(!Number.isFinite(commissionPercent) || commissionPercent<0 || commissionPercent>100){flMsg("Commission 0 se 100% ke beech hona chahiye.");return;}
+      const existing=foundingLeadersCache.find(x=>String(x.leaderId||"").toUpperCase()===leaderId && String(x.leaderId||"").toUpperCase()!==String(editingFoundingLeaderId||"").toUpperCase());
+      if(existing){flMsg("Ye Leader ID already exist karti hai.");return;}
+      const data={name,mobile,email,leaderId,upiId,commissionPercent,status,uid:userIdSafe(uid),userUid:userIdSafe(uid),referralCode:leaderId,referralLink:makeFoundingReferralLink(leaderId),updatedAt:new Date().toISOString()};
+      try{
+        const refDoc=doc(db,"foundingLeaders",editingFoundingLeaderId || leaderId);
+        if(editingFoundingLeaderId){await updateDoc(refDoc,data);}else{await setDoc(refDoc,{...data,createdAt:new Date().toISOString()});}
+        await logAdminAction(editingFoundingLeaderId?"Update Founding Leader":"Create Founding Leader","foundingLeaders",leaderId);
+        flMsg("Saved successfully.",true);
+        await loadFoundingLeaders();
+        setTimeout(resetFoundingLeaderForm,350);
+      }catch(e){
+        console.error("Founding Leader save error:",e);
+        flMsg("Save failed: "+(e.message||"Unknown error"));
+      }
+    }
+
+    function userIdSafe(v){return String(v||"").trim();}
+
+    async function loadFoundingLeaderOrders(){
+      const box=document.getElementById("foundingLeaderOrdersList");
+      if(!box) return;
+      try{
+        const snap=await getDocs(collection(db,"orders"));
+        const rows=[];
+        let referrals=0,pending=0;
+        snap.forEach(d=>{
+          const o={id:d.id,...d.data()};
+          const leaderId=String(o.leaderId||o.referralCode||"");
+          if(!leaderId) return;
+          const leader=foundingLeadersCache.find(x=>String(x.leaderId||"")===leaderId);
+          if(!leader) return;
+          rows.push({o,leader});
+          referrals++;
+          const cs=String(o.commissionStatus||"Pending").toLowerCase();
+          if(cs==="pending") pending+=Number(o.commissionAmount||0);
+        });
+        setText("flReferrals",advNum(referrals));
+        setText("flPending","₹"+advNum(pending));
+        if(!rows.length){box.innerHTML='<div class="empty">Abhi referral-linked order/commission record nahi hai.</div>';return;}
+        rows.sort((a,b)=>String(b.o.createdAt||"").localeCompare(String(a.o.createdAt||"")));
+        box.innerHTML=`<table class="leader-table"><thead><tr><th>Leader</th><th>Customer</th><th>Package</th><th>Sale</th><th>Commission</th><th>Commission Status</th><th>Order Status</th><th>Date</th></tr></thead><tbody>${rows.map(({o,leader})=>`<tr><td>${escapeHTML(leader.name||leader.leaderId||"-")}</td><td>${escapeHTML(o.customerName||o.name||o.email||o.customerUid||"-")}</td><td>${escapeHTML(o.package||o.packageName||o.courseName||"-")}</td><td>₹${advNum(o.amount||o.price||0)}</td><td>₹${advNum(o.commissionAmount||0)}</td><td>${escapeHTML(o.commissionStatus||"Pending")}</td><td>${escapeHTML(o.status||"Pending")}</td><td>${escapeHTML(advDate(o.createdAt))}</td></tr>`).join("")}</tbody></table>`;
+      }catch(e){
+        console.error("Founding Leader orders error:",e);
+        box.innerHTML='<div class="empty">Commission records load nahi ho paaye: '+escapeHTML(e.message||"Unknown error")+'</div>';
+      }
+    }
+
+    document.getElementById("addFoundingLeaderBtn")?.addEventListener("click",()=>openFoundingLeaderForm());
+    document.getElementById("cancelFoundingLeaderBtn")?.addEventListener("click",resetFoundingLeaderForm);
+    document.getElementById("saveFoundingLeaderBtn")?.addEventListener("click",saveFoundingLeader);
+    document.getElementById("flLeaderId")?.addEventListener("input",()=>flSet("flReferralLink",makeFoundingReferralLink(flValue("flLeaderId").toUpperCase())));
 
     // Advanced analytics
     async function loadAdvancedAnalytics(){
@@ -6453,12 +6945,161 @@ Social Media Basics"></textarea></div>
     // PAN services (separate collection)
 
     // App settings
+    async function loadPanPricing(){
+      try{
+        const d=await getDoc(doc(db,"dashboardSettings","panPricing"));
+        const x=d.exists()?d.data():{};
+        document.getElementById("panPriceNew").value=x.newApplication ?? "";
+        document.getElementById("panPriceCorrection").value=x.correction ?? "";
+        document.getElementById("panPriceMinor").value=x.minor ?? "";
+        document.getElementById("panPriceOther").value=x.other ?? "";
+        document.getElementById("panPriceUpi").value=x.upiId || "";
+        document.getElementById("panPriceStatus").value=x.status || "Active";
+        const box=document.getElementById("panPricingSummary");
+        if(box) box.innerHTML=`<div class="recent-card"><p><strong>New PAN:</strong> ₹${advNum(x.newApplication||0)} &nbsp; | &nbsp; <strong>Correction:</strong> ₹${advNum(x.correction||0)}</p><p><strong>Minor PAN:</strong> ₹${advNum(x.minor||0)} &nbsp; | &nbsp; <strong>Other:</strong> ₹${advNum(x.other||0)}</p><p><strong>UPI:</strong> ${escapeHTML(x.upiId||"Not set")}</p><div style="display:flex;align-items:end;gap:10px;flex-wrap:wrap;margin-top:12px;"><div class="input-group" style="min-width:220px;margin:0;"><label>Current Status</label><select id="panPricingCurrentStatus"><option value="Active">Active</option><option value="Inactive">Inactive</option></select></div><button class="btn btn-warning" id="saveCurrentPanStatusBtn">🔄 Save Status</button></div></div>`;
+        const currentStatus=document.getElementById("panPricingCurrentStatus");
+        if(currentStatus) currentStatus.value=x.status||"Active";
+        const currentBtn=document.getElementById("saveCurrentPanStatusBtn");
+        if(currentBtn) currentBtn.onclick=async()=>{
+          const status=currentStatus?.value||"Active";
+          const msg=document.getElementById("panPricingMessage");
+          currentBtn.disabled=true;
+          try{
+            await setDoc(doc(db,"dashboardSettings","panPricing"),{status,updatedAt:new Date().toISOString(),updatedBy:ADMIN_UID},{merge:true});
+            await logAdminAction("Update","panPricing",`PAN service status changed to ${status}`);
+            if(msg){msg.textContent=`PAN pricing status updated to ${status}.`;msg.style.color="#16a34a";}
+            await loadPanPricing();
+          }catch(e){
+            if(msg){msg.textContent="Status update failed: "+e.message;msg.style.color="#dc2626";}
+          }finally{currentBtn.disabled=false;}
+        };
+      }catch(e){
+        const box=document.getElementById("panPricingSummary"); if(box)box.innerHTML='<div class="empty">Pricing load failed: '+escapeHTML(e.message)+'</div>';
+      }
+    }
+
+    document.getElementById("savePanPricingBtn")?.addEventListener("click",async()=>{
+      const d={newApplication:Number(document.getElementById("panPriceNew").value||0),correction:Number(document.getElementById("panPriceCorrection").value||0),minor:Number(document.getElementById("panPriceMinor").value||0),other:Number(document.getElementById("panPriceOther").value||0),upiId:document.getElementById("panPriceUpi").value.trim(),status:document.getElementById("panPriceStatus").value,updatedAt:new Date().toISOString(),updatedBy:ADMIN_UID};
+      const msg=document.getElementById("panPricingMessage");
+      try{await setDoc(doc(db,"dashboardSettings","panPricing"),d,{merge:true});await logAdminAction("Update","panPricing","PAN service pricing updated");if(msg){msg.textContent="PAN pricing saved successfully.";msg.style.color="#16a34a";}await loadPanPricing();}catch(e){if(msg){msg.textContent="Save failed: "+e.message;msg.style.color="#dc2626";}}
+    });
+
+    document.getElementById("updatePanPricingStatusBtn")?.addEventListener("click",async()=>{
+      const status=document.getElementById("panPriceStatus").value;
+      const msg=document.getElementById("panPricingMessage");
+      try{
+        await setDoc(doc(db,"dashboardSettings","panPricing"),{status,updatedAt:new Date().toISOString(),updatedBy:ADMIN_UID},{merge:true});
+        await logAdminAction("Update","panPricing",`PAN service status changed to ${status}`);
+        if(msg){msg.textContent=`PAN pricing status updated to ${status}.`;msg.style.color="#16a34a";}
+        await loadPanPricing();
+      }catch(e){
+        if(msg){msg.textContent="Status update failed: "+e.message;msg.style.color="#dc2626";}
+      }
+    });
+
     async function loadAppSettings(){try{const d=await getDoc(doc(db,"dashboardSettings","app"));if(d.exists()){const x=d.data();document.getElementById("settingAppName").value=x.appName||"Apna Growth Hub";document.getElementById("settingLogo").value=x.logo||"";document.getElementById("settingAppUrl").value=x.appUrl||"";document.getElementById("settingWhatsapp").value=x.whatsapp||"";document.getElementById("settingEmail").value=x.email||"";document.getElementById("settingMaintenance").value=String(x.maintenance||false);document.getElementById("settingSocial").value=x.social||"";document.getElementById("settingInfo").value=x.info||"";}}catch(e){console.warn(e)}}
     document.getElementById("saveAppSettingsBtn").onclick=async()=>{const d={appName:cmsValue("settingAppName"),logo:cmsValue("settingLogo"),appUrl:cmsValue("settingAppUrl"),whatsapp:cmsValue("settingWhatsapp"),email:cmsValue("settingEmail"),maintenance:document.getElementById("settingMaintenance").value==="true",social:cmsValue("settingSocial"),info:cmsValue("settingInfo"),updatedAt:new Date().toISOString(),updatedBy:ADMIN_UID};try{await setDoc(doc(db,"dashboardSettings","app"),d,{merge:true});await logAdminAction("Update","App Settings","Application settings");setText("appSettingsMessage","App settings saved.");}catch(e){setText("appSettingsMessage","Save failed: "+e.message);}};
 
     // Admin management
-    async function loadAdmins(){const box=document.getElementById("adminList");try{const s=await getDocs(collection(db,"adminUsers"));const a=[];s.forEach(d=>a.push({id:d.id,...d.data()}));a.unshift({id:ADMIN_UID,name:"Virender Chauhan",email:"Owner Admin",role:"Owner",status:"Active",permissions:"ALL"});box.innerHTML=a.map(x=>`<div class="recent-card"><h3>👑 ${escapeHTML(x.name||x.email||"Admin")}</h3><p>${escapeHTML(x.email||"")} | <strong>Role:</strong> ${escapeHTML(x.role||"Staff Admin")} | <strong>Status:</strong> ${escapeHTML(x.status||"Active")}</p><p><strong>Permissions:</strong> ${escapeHTML(x.permissions||"-")}</p>${x.role!=="Owner"?`<button class="btn btn-light toggle-admin" data-id="${x.id}" data-status="${x.status||"Active"}">${x.status==="Active"?"Disable":"Enable"}</button>`:""}</div>`).join("");box.querySelectorAll(".toggle-admin").forEach(b=>b.onclick=async()=>{await updateDoc(doc(db,"adminUsers",b.dataset.id),{status:b.dataset.status==="Active"?"Inactive":"Active",updatedAt:new Date().toISOString()});loadAdmins();});}catch(e){box.innerHTML='<div class="empty">Admin list unavailable: '+escapeHTML(e.message)+'</div>';}}
-    document.getElementById("addStaffBtn").onclick=async()=>{const name=cmsValue("staffName"),email=cmsValue("staffEmail"),password=document.getElementById("staffPassword").value,role=cmsValue("staffRole"),permissions=cmsValue("staffPermissions");if(!name||!email||password.length<6){setText("adminMessage","Name, email and 6+ character password required.");return;}try{const secondary=initializeApp(firebaseConfig,"adminCreation");const secAuth=getAuth(secondary);const cred=await createUserWithEmailAndPassword(secAuth,email,password);await setDoc(doc(db,"adminUsers",cred.user.uid),{name,email,role,permissions,status:"Active",createdAt:new Date().toISOString(),createdBy:ADMIN_UID});await signOut(secAuth);setText("adminMessage","Staff Admin created successfully.");logAdminAction("Create","Admin Management",email);loadAdmins();}catch(e){setText("adminMessage","Add Admin failed: "+e.message);}};
+    const DEFAULT_ADMIN_SERVICES=[
+      {id:"customers",name:"Customers",icon:"👥"},
+      {id:"inquiries",name:"Customer Inquiries",icon:"📩"},
+      {id:"lic",name:"LIC Services",icon:"🛡️"},
+      {id:"pan",name:"PAN Card Service",icon:"🪪"},
+      {id:"courses",name:"Courses",icon:"📚"},
+      {id:"digitalSkills",name:"Digital Skills",icon:"💻"},
+      {id:"aiTools",name:"AI Tools",icon:"🤖"},
+      {id:"socialMedia",name:"Social Media Earning",icon:"📱"},
+      {id:"packages",name:"Packages",icon:"📦"},
+      {id:"resources",name:"Resources",icon:"📁"},
+      {id:"notifications",name:"Notifications",icon:"🔔"},
+      {id:"support",name:"Customer Support",icon:"💬"}
+    ];
+
+    async function loadStaffPermissionOptions(){
+      const box=document.getElementById("staffPermissionsBox");
+      if(!box)return;
+      let services=[...DEFAULT_ADMIN_SERVICES];
+      try{
+        const s=await getDocs(collection(db,"dashboardServices"));
+        const dynamic=[];
+        s.forEach(d=>{const x=d.data();if(x&&x.name)dynamic.push({id:d.id,name:x.name,icon:x.icon||"🔹"});});
+        dynamic.forEach(service=>{
+          const exists=services.some(x=>x.id===service.id||x.name.toLowerCase()===service.name.toLowerCase());
+          if(!exists)services.push(service);
+        });
+      }catch(e){console.warn("Service permission list load failed:",e);}
+      box.innerHTML=services.map(service=>`<label style="display:flex;align-items:center;gap:10px;padding:12px;border:1px solid #e5e7eb;border-radius:10px;background:#fff;cursor:pointer;"><input type="checkbox" class="staff-permission-check" value="${escapeHTML(service.id)}" data-name="${escapeHTML(service.name)}" style="width:18px;height:18px;"><span style="font-size:18px;">${escapeHTML(service.icon)}</span><span style="font-weight:600;">${escapeHTML(service.name)}</span></label>`).join("");
+    }
+
+    function formatAdminPermissions(permissions){
+      if(permissions==="ALL")return "ALL";
+      if(Array.isArray(permissions))return permissions.map(x=>typeof x==="object"?(x.name||x.id||""):x).filter(Boolean).join(", ")||"-";
+      if(typeof permissions==="object"&&permissions)return Object.values(permissions).map(x=>typeof x==="object"?(x.name||x.id||""):x).filter(Boolean).join(", ")||"-";
+      return String(permissions||"-");
+    }
+
+    async function loadAdmins(){const box=document.getElementById("adminList");try{const s=await getDocs(collection(db,"adminUsers"));const a=[];s.forEach(d=>a.push({id:d.id,...d.data()}));a.unshift({id:ADMIN_UID,name:"Virender Chauhan",email:"Owner Admin",role:"Owner",status:"Active",permissions:"ALL"});box.innerHTML=a.map(x=>`<div class="recent-card"><h3>👑 ${escapeHTML(x.name||x.email||"Admin")}</h3><p>${escapeHTML(x.email||"")} | <strong>Role:</strong> ${escapeHTML(x.role||"Staff Admin")} | <strong>Status:</strong> ${escapeHTML(x.status||"Active")}</p><p><strong>Permissions:</strong> ${escapeHTML(formatAdminPermissions(x.permissions))}</p>${x.role!=="Owner"?`<button class="btn btn-light toggle-admin" data-id="${x.id}" data-status="${x.status||"Active"}">${x.status==="Active"?"Disable":"Enable"}</button>`:""}</div>`).join("");box.querySelectorAll(".toggle-admin").forEach(b=>b.onclick=async()=>{await updateDoc(doc(db,"adminUsers",b.dataset.id),{status:b.dataset.status==="Active"?"Inactive":"Active",updatedAt:new Date().toISOString()});loadAdmins();});}catch(e){box.innerHTML='<div class="empty">Admin list unavailable: '+escapeHTML(e.message)+'</div>';}}
+
+    loadStaffPermissionOptions();
+
+    function getAdminCreationAuth(){
+      const app = getApps().some(a=>a.name === "adminCreation")
+        ? getApp("adminCreation")
+        : initializeApp(firebaseConfig,"adminCreation");
+      return getAuth(app);
+    }
+
+    async function sendSubAdminSetupEmail(email){
+      const secAuth=getAdminCreationAuth();
+      try{
+        await sendPasswordResetEmail(secAuth,email,{
+          url:window.location.origin + window.location.pathname,
+          handleCodeInApp:false
+        });
+        return true;
+      }catch(e){
+        console.warn("Sub-admin setup email failed:",e);
+        return false;
+      }
+    }
+
+    document.getElementById("addStaffBtn").onclick=async()=>{
+      const name=cmsValue("staffName"),email=cmsValue("staffEmail"),password=document.getElementById("staffPassword").value,role=cmsValue("staffRole");
+      const permissions=[...document.querySelectorAll(".staff-permission-check:checked")].map(check=>({id:check.value,name:check.dataset.name}));
+      if(!name||!email||password.length<6){setText("adminMessage","Name, email and 6+ character password required.");return;}
+      if(!permissions.length){setText("adminMessage","Please select at least one service.");return;}
+      try{
+        const secAuth=getAdminCreationAuth();
+        const cred=await createUserWithEmailAndPassword(secAuth,email,password);
+        await setDoc(doc(db,"adminUsers",cred.user.uid),{
+          name,email,role,permissions,status:"Active",
+          createdAt:new Date().toISOString(),
+          createdBy:ADMIN_UID,
+          setupEmailSent:false
+        });
+
+        const emailSent=await sendSubAdminSetupEmail(email);
+        await updateDoc(doc(db,"adminUsers",cred.user.uid),{
+          setupEmailSent:emailSent,
+          setupEmailSentAt:emailSent?new Date().toISOString():null
+        });
+
+        await signOut(secAuth);
+        setText("adminMessage",emailSent
+          ? "Staff Admin created. Setup/password-reset email sent to "+email+"."
+          : "Staff Admin created, but setup email could not be sent. You can use the temporary password you created.");
+        document.getElementById("staffName").value="";
+        document.getElementById("staffEmail").value="";
+        document.getElementById("staffPassword").value="";
+        document.getElementById("staffRole").value="Staff Admin";
+        document.querySelectorAll(".staff-permission-check").forEach(check=>check.checked=false);
+        await logAdminAction("Create","Admin Management",email+" | Services: "+permissions.map(x=>x.name).join(", ")+" | Setup email: "+(emailSent?"sent":"failed"));
+        loadAdmins();
+      }catch(e){
+        setText("adminMessage","Add Admin failed: "+e.message);
+      }
+    };
 
     // Activity logs
     async function loadActivityLogs(){const box=document.getElementById("activityList");try{const s=await getDocs(collection(db,"adminActivityLogs"));allAdminLogs=[];s.forEach(d=>allAdminLogs.push({id:d.id,...d.data()}));allAdminLogs.sort((a,b)=>new Date(b.createdAt||0)-new Date(a.createdAt||0));box.innerHTML=allAdminLogs.slice(0,200).map(x=>`<tr><td>${escapeHTML(x.adminEmail||x.adminUid||"-")}</td><td>${escapeHTML(x.action||"")}</td><td>${escapeHTML(x.section||"")}</td><td>${escapeHTML(advDate(x.createdAt))}</td><td>${escapeHTML(x.details||"")}</td></tr>`).join("")||'<tr><td colspan="5">No activity yet.</td></tr>';}catch(e){box.innerHTML='<tr><td colspan="5">Logs unavailable.</td></tr>';}}
@@ -6498,7 +7139,7 @@ Social Media Basics"></textarea></div>
     document.getElementById("runSandboxBtn").onclick=async()=>{const d={type:cmsValue("sandboxType"),name:cmsValue("sandboxName"),data:cmsValue("sandboxData"),result:"TEST COMPLETED — no live customer record changed",createdAt:new Date().toISOString(),createdBy:ADMIN_UID};try{await addDoc(collection(db,"sandboxTests"),d);setText("sandboxResult","Test completed safely in sandbox.");loadSandbox();}catch(e){setText("sandboxResult","Test failed: "+e.message);}};
     document.getElementById("clearSandboxBtn").onclick=async()=>{if(!confirm("Delete all sandbox test records?"))return;try{const s=await getDocs(collection(db,"sandboxTests"));for(const d of s.docs)await deleteDoc(doc(db,"sandboxTests",d.id));loadSandbox();}catch(e){setText("sandboxResult","Clear failed: "+e.message);}};
 
-    async function loadAdvancedFeatures(){await loadAdvancedAnalytics();await loadNotifications();await loadSchedules();await loadPricing();await loadPanServices();await loadAppSettings();await loadAdmins();await loadActivityLogs();await runHealth();await renderSegments();await loadAppointments();await loadSandbox();}
+    async function loadAdvancedFeatures(){await loadAdvancedAnalytics();await loadNotifications();await loadSchedules();await loadPricing();await loadPanServices();await loadPanPricing();await loadAppSettings();await loadAdmins();await loadActivityLogs();await runHealth();await renderSegments();await loadAppointments();await loadSandbox();}
 
     // MENU
 
@@ -6529,6 +7170,8 @@ Social Media Basics"></textarea></div>
     function showSection(
       sectionName
     ) {
+
+      if(!enforceAdminAccess(sectionName)) return;
 
       document
         .querySelectorAll(
@@ -6611,6 +7254,9 @@ Social Media Basics"></textarea></div>
         lic:
           "LIC Management",
 
+        panManagement:
+          "PAN Card Service Management",
+
         services:
           "Services Management",
 
@@ -6626,10 +7272,13 @@ Social Media Basics"></textarea></div>
         growthFeatures:
           "Growth Features Management",
 
+        foundingLeaders:
+          "Founding Leaders",
+
         support:
           "Support Management",
 
-        privacy:"Privacy & Policies", notifications:"Notification Management", scheduledNotifications:"Scheduled Notifications", paymentPricing:"Payment & Pricing", financialRecords:"Audit & Financial Records", appSettings:"App Settings", adminManagement:"Admin Management", activityLog:"Admin Activity Log", backupRecovery:"Backup & Recovery", systemHealth:"System Health", dataExport:"Data Export", segmentation:"Customer Segmentation", appointments:"Appointment / Callback", globalSearch:"Global Search", fileManagement:"Document / File Management", sandbox:"Test / Sandbox"
+        panPricing:"PAN Service Pricing", privacy:"Privacy & Policies", notifications:"Notification Management", scheduledNotifications:"Scheduled Notifications", paymentPricing:"Payment & Pricing", financialRecords:"Audit & Financial Records", appSettings:"App Settings", adminManagement:"Admin Management", activityLog:"Admin Activity Log", backupRecovery:"Backup & Recovery", systemHealth:"System Health", dataExport:"Data Export", segmentation:"Customer Segmentation", appointments:"Appointment / Callback", globalSearch:"Global Search", fileManagement:"Document / File Management", sandbox:"Test / Sandbox"
       };
 
 
@@ -6649,10 +7298,13 @@ Social Media Basics"></textarea></div>
 
       }
 
+      if(sectionName === "panManagement") loadPanServices();
+      if(sectionName === "panPricing") loadPanPricing();
       if(sectionName === "services") loadCmsList("services");
       if(sectionName === "resources") loadCmsList("resources");
       if(sectionName === "announcements") loadCmsList("announcements");
       if(sectionName === "growthFeatures") loadCmsList("growthFeatures");
+      if(sectionName === "foundingLeaders") loadFoundingLeaders();
       if(sectionName === "support") loadSupport();
       if(sectionName === "privacy") loadPolicies();
       if(sectionName === "courses") loadPackages();
@@ -6696,6 +7348,16 @@ Social Media Basics"></textarea></div>
 
         }
       );
+
+
+    document.getElementById("refreshPanBtn")?.addEventListener("click",loadPanServices);
+    document.querySelectorAll(".pan-status-tab").forEach(btn=>btn.addEventListener("click",()=>{
+      document.querySelectorAll(".pan-status-tab").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      panRequestFilter=btn.dataset.panFilter||"ALL";
+      renderPanRequests();
+    }));
+    document.getElementById("panSearchInput")?.addEventListener("input",renderPanRequests);
 
 
     // HOME
