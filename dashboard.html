@@ -1060,16 +1060,6 @@
       </div>
     </section>
 
-    <!-- GROWTH FEATURES -->
-    <section class="final-section" id="growthFeaturesSection">
-      <div class="final-section-card">
-        <div class="final-section-head">
-          <div><h3>✨ Growth Features</h3><p>Dashboard ke useful tools aur support features</p></div>
-        </div>
-        <div class="mini-feature-grid"></div>
-      </div>
-    </section>
-
     <!-- DISCLAIMER - SINGLE INSTANCE -->
     <section class="final-section" id="disclaimerSection">
       <div class="disclaimer-box" style="font-size:11.5px;">
@@ -1142,24 +1132,17 @@
           <textarea id="panRequestDetails" placeholder="Apni details yahan explain karein..."></textarea>
         </div>
 
-        <div style="background:#f8fafc; border:1px solid var(--border-color); border-radius:var(--radius-md); padding:16px; margin-bottom:16px;">
-          <label style="font-size:12px; font-weight:700;">📎 Attach Required Documents</label>
-          <small id="panDocumentHint" style="display:block; color:var(--text-muted); margin-bottom:12px;">Aadhaar Card, Passport Photo & Signature</small>
-          
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
-            <input id="panDocId" type="file" accept="image/*,.pdf">
-            <input id="panDocPhoto" type="file" accept="image/*,.pdf">
-            <input id="panDocSignature" type="file" accept="image/*,.pdf">
-            <input id="panDocSupporting" type="file" accept="image/*,.pdf">
-          </div>
-        </div>
-
         <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:var(--radius-md); padding:16px; margin-bottom:16px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
             <span style="font-size:13px; font-weight:700; color:#166534;">Payable Amount: <span id="panAmountText">--</span></span>
             <button type="button" class="secondary-btn" style="padding:4px 10px; font-size:11px;" onclick="copyPanUpi()">Copy UPI ID</button>
           </div>
           <div style="font-size:12px; color:#15803d; margin-bottom:10px;">UPI ID: <strong id="panUpiIdText">virenderchauhan22002@okhdfcbank</strong></div>
+          <div style="text-align:center; background:#fff; border:1px solid #dcfce7; border-radius:12px; padding:12px; margin:10px 0 12px;">
+            <div style="font-size:12px; font-weight:700; color:#166534; margin-bottom:8px;">📲 Scan & Pay</div>
+            <img id="panQrCode" src="" alt="PAN Payment QR Code" style="width:190px; height:190px; max-width:100%; object-fit:contain; border-radius:8px; display:block; margin:0 auto; background:#fff;">
+            <div id="panQrHint" style="font-size:11px; color:#64748b; margin-top:7px;">QR scan karke payable amount pay karein.</div>
+          </div>
           <div class="form-group" style="margin-bottom:0;">
             <input id="panUtr" type="text" placeholder="UTR / Transaction Reference No. (optional)">
           </div>
@@ -1300,8 +1283,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut, updatePassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-    import { getFirestore, doc, getDoc, setDoc, addDoc, collection, serverTimestamp, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+    import { getFirestore, doc, getDoc, setDoc, addDoc, collection, serverTimestamp, query, where, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
@@ -1316,10 +1298,8 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
-    const storage = getStorage(app);
 
     const PAN_UPI_ID = "virenderchauhan22002@okhdfcbank";
-    const PAN_MAX_FILE_SIZE = 10 * 1024 * 1024;
     let currentUser = null;
     let currentCustomerData = {};
     let panPricing = { newApplication: 0, correction: 0, minor: 0, other: 0, upiId: PAN_UPI_ID, status: "Active" };
@@ -1340,6 +1320,40 @@
         loadDashboardSettings()
       ]);
     });
+
+    async function loadNotifications() {
+      try {
+        const snap = await getDocs(collection(db, "notifications"));
+        const items = [];
+        snap.forEach(d => items.push({ id: d.id, ...d.data() }));
+        items.sort((a,b) => String(b.createdAt || "").localeCompare(String(a.createdAt || "")));
+        window.__dashboardNotifications = items;
+      } catch (e) {
+        console.warn("Notifications load skipped:", e);
+        window.__dashboardNotifications = [];
+      }
+    }
+
+    async function loadDashboardSettings() {
+      try {
+        const annSnap = await getDocs(collection(db, "dashboardAnnouncements"));
+        const announcements = [];
+        annSnap.forEach(d => announcements.push({ id: d.id, ...d.data() }));
+        announcements.sort((a,b) => Number(a.order || 0) - Number(b.order || 0));
+        const annBox = document.querySelector("#announcementsSection .announcement-list");
+        const activeAnnouncements = announcements.filter(x => String(x.status || "Active").toLowerCase() !== "disabled");
+        if (annBox && activeAnnouncements.length) {
+          annBox.innerHTML = activeAnnouncements.map(x => `
+            <div class="announcement-item"><span class="announcement-dot"></span><div>
+              <strong>${String(x.title || "Announcement").replace(/[&<>\"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':'&quot;'}[c]))}</strong>
+              <span>${String(x.message || "").replace(/[&<>\"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':'&quot;'}[c]))}</span>
+            </div></div>`).join("");
+        }
+
+      } catch (e) {
+        console.warn("Dashboard settings load skipped:", e);
+      }
+    }
 
     async function loadCustomer(user) {
       try {
@@ -1363,7 +1377,10 @@
         
         const active = [];
         const seenPackageKeys = new Set();
-        items.filter(x => (x.status || "Active").toLowerCase() !== "disabled").forEach(x => {
+        items.filter(x => {
+          const status = String(x.status || "Active").toLowerCase();
+          return status !== "disabled" && status !== "hidden";
+        }).forEach(x => {
           const packageKey = String(x.name || "package").toLowerCase().replace(/[^a-z0-9]+/g, "").replace(/starter|growth|pro|elite/, m => m);
           if (!seenPackageKeys.has(packageKey)) { seenPackageKeys.add(packageKey); active.push(x); }
         });
@@ -1382,7 +1399,16 @@
         grid.innerHTML = active.map(item => {
           const rawName = String(item.name || "Package");
           const key = rawName.toLowerCase().includes("starter") ? "starter" : rawName.toLowerCase().includes("growth") ? "growth" : rawName.toLowerCase().includes("pro") ? "pro" : "elite";
-          const p = pricingMeta[key];
+          const fallback = pricingMeta[key] || pricingMeta.starter;
+          const p = {
+            current: Number(item.price ?? fallback.current) || 0,
+            old: Number(item.oldPrice ?? fallback.old) || 0,
+            discount: String(item.discount ?? fallback.discount).trim(),
+            subtitle: String(item.subtitle ?? fallback.subtitle).trim(),
+            feat: Array.isArray(item.features) && item.features.length ? item.features : fallback.feat
+          };
+          const status = String(item.status || "Active").toLowerCase();
+          const actionText = status === "coming soon" ? "Coming Soon" : "View Package →";
           return `
             <div class="pkg-card ${key === "starter" ? "starter-card" : key === "growth" ? "growth-card-style" : key === "pro" ? "pro-card" : "elite-card"}">
               ${key === "starter" ? '<span class="pkg-tag">★ Popular</span>' : ''}
@@ -1397,7 +1423,7 @@
                 <span class="old-price">₹${p.old}</span>
                 <span class="discount-badge">${p.discount}</span>
               </div>
-              <button type="button" class="btn-action" onclick="openPackage('${rawName}')">Get Started →</button>
+              <button type="button" class="btn-action" onclick="openPackage('${rawName}')">${actionText}</button>
             </div>
           `;
         }).join('');
@@ -1408,7 +1434,7 @@
     }
 
     window.openPackage = (name) => {
-      showToast(`${name} enrolled flow is being initialized.`);
+      showToast(`${name} package details abhi showcase mode mein hain. Purchase/access jaldi enable kiya jayega.`);
     };
 
     // PAN LOGIC
@@ -1425,10 +1451,22 @@
 
     function updatePanPaymentUI() {
       const type = document.getElementById("panRequestType")?.value || "New PAN";
-      const key = type === "PAN Correction" ? "correction" : type === "Minor PAN" ? "minor" : "newApplication";
-      const price = Number(panPricing[key] || 107);
+      const key = type === "PAN Correction" ? "correction" : type === "Minor PAN" ? "minor" : type === "Other PAN Service" ? "other" : "newApplication";
+      const price = Number(panPricing[key] || 0);
+      const upiId = String(panPricing.upiId || PAN_UPI_ID || "virenderchauhan22002@okhdfcbank").trim();
       const textEl = document.getElementById("panAmountText");
+      const upiEl = document.getElementById("panUpiIdText");
       if(textEl) textEl.textContent = `₹${price}`;
+      if(upiEl) upiEl.textContent = upiId;
+
+      const qr = document.getElementById("panQrCode");
+      const qrHint = document.getElementById("panQrHint");
+      if(qr) {
+        const upiUrl = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent("Apna Growth Hub")}&am=${encodeURIComponent(price.toFixed(2))}&cu=INR`;
+        qr.src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=8&data=${encodeURIComponent(upiUrl)}`;
+        qr.onerror = () => { if(qrHint) qrHint.textContent = "QR load nahi hua. UPI ID se manually payment kar sakte hain."; };
+        qr.onload = () => { if(qrHint) qrHint.textContent = `₹${price} payment ke liye QR scan karein.`; };
+      }
     }
 
     window.copyPanUpi = () => {
@@ -1437,36 +1475,60 @@
 
     window.submitPanRequest = async () => {
       if(!currentUser) return showToast("Please login first.");
-      const customerName = document.getElementById("panCustomerName").value.trim();
-      const customerMobile = document.getElementById("panCustomerMobile").value.trim();
-      const details = document.getElementById("panRequestDetails").value.trim();
-      const utr = document.getElementById("panUtr").value.trim();
-      const type = document.getElementById("panRequestType").value;
 
-      if(!customerName || !customerMobile || !details) return showToast("Please fill all required fields.");
-      
+      const customerName = document.getElementById("panCustomerName")?.value.trim();
+      const customerMobile = document.getElementById("panCustomerMobile")?.value.trim();
+      const details = document.getElementById("panRequestDetails")?.value.trim();
+      const utr = (document.getElementById("panUtr")?.value || "").trim().replace(/[^a-zA-Z0-9]/g, "").slice(0, 30);
+      const type = document.getElementById("panRequestType")?.value || "New PAN";
+
+      if(!customerName || !customerMobile || !details) {
+        return showToast("Please fill all required fields.");
+      }
+
+      const priceKey = type === "PAN Correction" ? "correction" : type === "Minor PAN" ? "minor" : type === "PAN Reprint" ? "other" : "newApplication";
+      const amount = Number(panPricing[priceKey] || 0);
+      const email = String(currentUser.email || currentCustomerData?.email || "").trim();
       const btn = document.getElementById("panSubmitBtn");
+      const message = document.getElementById("panSubmitMessage");
+
       btn.disabled = true;
-      btn.textContent = "Uploading & Submitting...";
+      btn.textContent = "Submitting...";
+      if(message) message.textContent = "Request submit ho rahi hai...";
 
       try {
         const requestRef = doc(collection(db, "panRequests"));
-        await setDoc(requestRef, {
+        const requestData = {
           uid: currentUser.uid,
           customerName,
           mobile: customerMobile,
+          email,
           details,
-          utr,
+          utr: utr || "Not Provided",
           requestType: type,
           service: "PAN Card Service",
+          amount,
+          currency: "INR",
+          paymentMethod: "UPI",
+          paymentStatus: utr ? "Pending Verification" : "UTR Not Provided",
           status: "Pending",
+          documents: [],
           createdAt: serverTimestamp()
-        });
+        };
+
+        // PAN request only uses Firestore. No Firebase Storage/document upload is required.
+        await Promise.race([
+          setDoc(requestRef, requestData),
+          new Promise((_, reject) => setTimeout(() => reject(new Error("Server response nahi aa raha. Internet/Firebase connection check karke dobara try karein.")), 15000))
+        ]);
+
         showToast("✅ Application submitted successfully!");
+        if(message) message.textContent = "Application successfully submitted.";
         closeModal("panServiceModal");
       } catch(e) {
-        showToast("Error submitting PAN request.");
-        console.error(e);
+        console.error("PAN request submit error", e);
+        showToast("Request submit nahi hui: " + (e.message || "Please try again."));
+        if(message) message.textContent = e.message || "Request submit failed.";
       } finally {
         btn.disabled = false;
         btn.textContent = "Submit Application";
@@ -1571,6 +1633,19 @@
           `;
         }).join('');
       } catch(e) { box.innerHTML = "No LIC plans available."; }
+    };
+
+    window.openNotifications = () => {
+      const modal = document.getElementById("notificationsModal");
+      const box = document.getElementById("notificationsContent");
+      if (!modal || !box) return;
+      const items = Array.isArray(window.__dashboardNotifications) ? window.__dashboardNotifications : [];
+      box.innerHTML = items.length ? items.map(n => `
+        <div style="padding:12px;border:1px solid var(--border-color);border-radius:12px;margin-bottom:10px;">
+          <strong>🔔 ${String(n.title || "Notification")}</strong>
+          <p style="margin:5px 0 0;color:var(--text-muted);font-size:12px;">${String(n.message || "")}</p>
+        </div>`).join("") : '<div style="padding:20px;text-align:center;color:var(--text-muted);">No new notifications.</div>';
+      modal.classList.add("show");
     };
 
     // UI UTILITIES

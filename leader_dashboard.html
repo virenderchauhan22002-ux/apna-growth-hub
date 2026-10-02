@@ -1,0 +1,3210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Leader Dashboard | Apna Growth Hub</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --blue-light: #eff6ff;
+      --green: #10b981;
+      --green-light: #ecfdf5;
+      --purple: #7c3aed;
+      --purple-light: #f5f3ff;
+      --orange: #f59e0b;
+      --orange-light: #fff7ed;
+      --red: #ef4444;
+      --red-light: #fef2f2;
+
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #f8fafc;
+      --white: #ffffff;
+
+      --shadow: 0 8px 25px rgba(15, 23, 42, 0.07);
+      --radius: 18px;
+    }
+
+    body {
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* =========================
+       LOGIN
+    ========================= */
+
+    #loginScreen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background:
+        radial-gradient(circle at top left, #dbeafe, transparent 35%),
+        radial-gradient(circle at bottom right, #ede9fe, transparent 35%),
+        #f8fafc;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 430px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.10);
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .brand-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 20px;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue-light);
+      font-size: 30px;
+    }
+
+    .brand h1 {
+      font-size: 24px;
+      font-weight: 850;
+      letter-spacing: -0.5px;
+    }
+
+    .brand p {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .leader-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: var(--purple-light);
+      color: var(--purple);
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .form-group input {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 14px;
+      outline: none;
+      background: #fff;
+      color: var(--text);
+    }
+
+    .form-group input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+    }
+
+    .password-wrap {
+      position: relative;
+    }
+
+    .password-wrap input {
+      padding-right: 45px;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .primary-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 12px;
+      padding: 13px 16px;
+      background: var(--primary);
+      color: white;
+      font-weight: 800;
+      transition: 0.2s;
+    }
+
+    .primary-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .primary-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .login-error {
+      margin-top: 14px;
+      padding: 11px 12px;
+      border-radius: 10px;
+      background: var(--red-light);
+      color: #b91c1c;
+      font-size: 12px;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .login-help {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* =========================
+       APP
+    ========================= */
+
+    #app {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar-inner {
+      width: min(1180px, calc(100% - 30px));
+      margin: auto;
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .top-brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+    }
+
+    .top-brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      background: var(--blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 21px;
+      flex-shrink: 0;
+    }
+
+    .top-brand h2 {
+      font-size: 16px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .top-brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 2px;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .leader-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 7px 10px;
+      border-radius: 999px;
+    }
+
+    .leader-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    .leader-pill-text strong {
+      display: block;
+      font-size: 11px;
+    }
+
+    .leader-pill-text span {
+      display: block;
+      color: var(--muted);
+      font-size: 9px;
+    }
+
+    .logout-btn {
+      border: 1px solid #fecaca;
+      color: #dc2626;
+      background: #fff;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 750;
+    }
+
+    .logout-btn:hover {
+      background: var(--red-light);
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 30px));
+      margin: auto;
+      padding: 25px 0 40px;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      background:
+        radial-gradient(circle at right top, rgba(255,255,255,0.22), transparent 35%),
+        linear-gradient(135deg, #2563eb, #4f46e5);
+      color: white;
+      border-radius: 22px;
+      padding: 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 14px 35px rgba(37,99,235,0.20);
+    }
+
+    .hero h1 {
+      font-size: 27px;
+      font-weight: 850;
+      letter-spacing: -0.6px;
+    }
+
+    .hero p {
+      margin-top: 7px;
+      font-size: 13px;
+      color: #dbeafe;
+      max-width: 650px;
+      line-height: 1.55;
+    }
+
+    .hero-icon {
+      font-size: 58px;
+      opacity: 0.92;
+    }
+
+    /* =========================
+       STATS
+    ========================= */
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 13px;
+      margin-top: 18px;
+    }
+
+    .stat-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 17px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .stat-icon {
+      width: 39px;
+      height: 39px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+    }
+
+    .blue-icon {
+      background: var(--blue-light);
+    }
+
+    .green-icon {
+      background: var(--green-light);
+    }
+
+    .purple-icon {
+      background: var(--purple-light);
+    }
+
+    .orange-icon {
+      background: var(--orange-light);
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 12px;
+    }
+
+    .stat-value {
+      margin-top: 3px;
+      font-size: 22px;
+      font-weight: 850;
+    }
+
+    /* =========================
+       PROFILE + REFERRAL
+    ========================= */
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 17px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .section-title h3 {
+      font-size: 16px;
+      font-weight: 850;
+    }
+
+    .section-title span {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+    }
+
+    .profile-item {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .profile-item small {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .profile-item strong {
+      display: block;
+      font-size: 12px;
+      word-break: break-word;
+    }
+
+    .referral-box {
+      background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+      border: 1px solid #dbeafe;
+      border-radius: 14px;
+      padding: 15px;
+    }
+
+    .referral-label {
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 750;
+      margin-bottom: 7px;
+    }
+
+    .referral-link-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .referral-link {
+      flex: 1;
+      min-width: 0;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 11px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .copy-btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 0 14px;
+      background: var(--primary);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .referral-note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    /* =========================
+       REWARD
+    ========================= */
+
+    .reward-card {
+      margin-top: 18px;
+    }
+
+    .reward-main {
+      display: grid;
+      grid-template-columns: 1fr 240px;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .reward-name {
+      font-size: 20px;
+      font-weight: 850;
+    }
+
+    .reward-description {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 5px;
+      line-height: 1.5;
+    }
+
+    .progress-track {
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 15px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #2563eb, #7c3aed);
+      border-radius: 999px;
+      transition: width 0.3s;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .reward-badge {
+      border-radius: 17px;
+      background: var(--orange-light);
+      border: 1px solid #fed7aa;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .reward-badge-icon {
+      font-size: 34px;
+    }
+
+    .reward-badge strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 13px;
+    }
+
+    .reward-badge span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    /* =========================
+       COMMISSION HISTORY
+    ========================= */
+
+    .history-card {
+      margin-top: 18px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 650px;
+    }
+
+    th {
+      background: #f8fafc;
+      color: var(--muted);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 11px;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .status-pending {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .status-approved {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .status-paid {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status-rejected {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .empty-state {
+      padding: 30px 15px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      text-align: center;
+      padding: 25px 0 5px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    footer strong {
+      color: var(--text);
+    }
+
+    /* =========================
+       LOADING
+    ========================= */
+
+    #loadingScreen {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(248,250,252,0.96);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .loader {
+      width: 38px;
+      height: 38px;
+      border: 4px solid #dbeafe;
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    #loadingText {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      max-width: 350px;
+    }
+
+    /* =========================
+       ERROR
+    ========================= */
+
+    .system-message {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 11px;
+      display: none;
+      line-height: 1.5;
+    }
+
+    .system-message.warning {
+      display: block;
+      background: #fffbeb;
+      color: #92400e;
+      border: 1px solid #fde68a;
+    }
+
+    .system-message.error {
+      display: block;
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 900px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+
+      .reward-main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .topbar-inner {
+        width: min(100% - 20px, 1180px);
+        min-height: 65px;
+      }
+
+      .top-brand h2 {
+        font-size: 14px;
+      }
+
+      .top-brand span {
+        font-size: 9px;
+      }
+
+      .leader-pill-text {
+        display: none;
+      }
+
+      .leader-pill {
+        padding: 5px;
+      }
+
+      .logout-btn {
+        padding: 8px 9px;
+        font-size: 10px;
+      }
+
+      .container {
+        width: calc(100% - 20px);
+        padding-top: 16px;
+      }
+
+      .hero {
+        padding: 20px;
+        border-radius: 18px;
+      }
+
+      .hero h1 {
+        font-size: 22px;
+      }
+
+      .hero p {
+        font-size: 11px;
+      }
+
+      .hero-icon {
+        font-size: 43px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+      }
+
+      .stat-card {
+        padding: 13px;
+      }
+
+      .stat-value {
+        font-size: 18px;
+      }
+
+      .stat-label {
+        font-size: 9px;
+      }
+
+      .card {
+        padding: 15px;
+        border-radius: 16px;
+      }
+
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .referral-link-row {
+        flex-direction: column;
+      }
+
+      .copy-btn {
+        height: 40px;
+      }
+
+      .reward-name {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       LOADING
+  ========================= -->
+
+  <div id="loadingScreen">
+    <div class="loader"></div>
+    <div id="loadingText">Leader Dashboard load ho raha hai...</div>
+  </div>
+
+
+  <!-- =========================
+       LOGIN SCREEN
+  ========================= -->
+
+  <section id="loginScreen" class="hidden">
+
+    <div class="login-card">
+
+      <div class="brand">
+        <div class="brand-logo">👑</div>
+
+        <h1>Apna Growth Hub</h1>
+
+        <p>Leader Dashboard</p>
+
+        <div class="leader-badge">
+          👑 Founding Leader
+        </div>
+      </div>
+
+      <form id="loginForm">
+
+        <div class="form-group">
+          <label for="email">Leader Email</label>
+
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            autocomplete="email"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+
+          <label for="password">Password</label>
+
+          <div class="password-wrap">
+
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              required
+            />
+
+            <button
+              type="button"
+              class="password-toggle"
+              id="togglePassword"
+            >
+              👁
+            </button>
+
+          </div>
+
+        </div>
+
+        <button
+          type="submit"
+          class="primary-btn"
+          id="loginBtn"
+        >
+          Login
+        </button>
+
+        <div
+          id="loginError"
+          class="login-error"
+        ></div>
+
+      </form>
+
+      <div class="login-help">
+        Founding Leader account Admin Panel se create/hire kiya jata hai.
+        <br />
+        Apne registered leader email aur password se login karein.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       APP
+  ========================= -->
+
+  <section id="app" class="hidden">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+      <div class="topbar-inner">
+
+        <div class="top-brand">
+
+          <div class="top-brand-logo">
+            👑
+          </div>
+
+          <div>
+            <h2>Apna Growth Hub</h2>
+            <span>Founding Leader Dashboard</span>
+          </div>
+
+        </div>
+
+
+        <div class="top-actions">
+
+          <div class="leader-pill">
+
+            <div
+              class="leader-avatar"
+              id="topAvatar"
+            >
+              L
+            </div>
+
+            <div class="leader-pill-text">
+
+              <strong id="topLeaderName">
+                Leader
+              </strong>
+
+              <span id="topLeaderId">
+                Leader ID
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <button
+            class="logout-btn"
+            id="logoutBtn"
+          >
+            Logout
+          </button>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main class="container">
+
+      <!-- HERO -->
+
+      <section class="hero">
+
+        <div>
+
+          <h1 id="welcomeText">
+            Welcome Leader 👋
+          </h1>
+
+          <p>
+            Apna Growth Hub ke Founding Leader Dashboard me
+            aap apni sales, commission, referrals aur rewards
+            track kar sakte hain.
+          </p>
+
+        </div>
+
+        <div class="hero-icon">
+          🚀
+        </div>
+
+      </section>
+
+
+      <!-- SYSTEM MESSAGE -->
+
+      <div
+        id="systemMessage"
+        class="system-message"
+      ></div>
+
+
+      <!-- STATS -->
+
+      <section class="stats-grid">
+
+        <div class="stat-card">
+
+          <div class="stat-top">
+            <div class="stat-icon blue-icon">
+              👥
+            </div>
+          </div>
+
+          <div class="stat-label">
+            Total Sales
+          </div>
+
+          <div
+            class="stat-value"
+            id="totalSales"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-top">
+            <div class="stat-icon green-icon">
+              ₹
+            </div>
+          </div>
+
+          <div class="stat-label">
+            Revenue
+          </div>
+
+          <div
+            class="stat-value"
+            id="totalRevenue"
+          >
+            ₹0
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-top">
+            <div class="stat-icon purple-icon">
+              💰
+            </div>
+          </div>
+
+          <div class="stat-label">
+            Commission
+          </div>
+
+          <div
+            class="stat-value"
+            id="totalCommission"
+          >
+            ₹0
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-top">
+            <div class="stat-icon orange-icon">
+              ✅
+            </div>
+          </div>
+
+          <div class="stat-label">
+            Paid Commission
+          </div>
+
+          <div
+            class="stat-value"
+            id="paidCommission"
+          >
+            ₹0
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PROFILE + REFERRAL -->
+
+      <section class="two-column">
+
+        <!-- PROFILE -->
+
+        <div class="card">
+
+          <div class="section-title">
+
+            <h3>
+              👤 Leader Profile
+            </h3>
+
+            <span>
+              Personal
+            </span>
+
+          </div>
+
+
+          <div class="profile-grid">
+
+            <div class="profile-item">
+
+              <small>
+                Leader Name
+              </small>
+
+              <strong id="profileName">
+                —
+              </strong>
+
+            </div>
+
+
+            <div class="profile-item">
+
+              <small>
+                Leader ID
+              </small>
+
+              <strong id="profileLeaderId">
+                —
+              </strong>
+
+            </div>
+
+
+            <div class="profile-item">
+
+              <small>
+                Email
+              </small>
+
+              <strong id="profileEmail">
+                —
+              </strong>
+
+            </div>
+
+
+            <div class="profile-item">
+
+              <small>
+                Referral Code
+              </small>
+
+              <strong id="profileReferralCode">
+                —
+              </strong>
+
+            </div>
+
+
+            <div class="profile-item">
+
+              <small>
+                Status
+              </small>
+
+              <strong id="profileStatus">
+                —
+              </strong>
+
+            </div>
+
+
+            <div class="profile-item">
+
+              <small>
+                Commission
+              </small>
+
+              <strong id="profileCommissionRate">
+                —
+              </strong>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- REFERRAL -->
+
+        <div class="card">
+
+          <div class="section-title">
+
+            <h3>
+              🔗 Personal Referral Link
+            </h3>
+
+            <span>
+              Share
+            </span>
+
+          </div>
+
+
+          <div class="referral-box">
+
+            <div class="referral-label">
+              YOUR REFERRAL LINK
+            </div>
+
+
+            <div class="referral-link-row">
+
+              <input
+                class="referral-link"
+                id="referralLink"
+                readonly
+                value=""
+              />
+
+              <button
+                class="copy-btn"
+                id="copyReferralBtn"
+              >
+                Copy
+              </button>
+
+            </div>
+
+
+            <div class="referral-note">
+              Is link ko customer ke saath share karein.
+              Referral ke through aane wali eligible sales
+              aapke Leader account se map ki jayengi.
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- REWARD -->
+
+      <section class="card reward-card">
+
+        <div class="section-title">
+
+          <h3>
+            🎁 Reward Progress
+          </h3>
+
+          <span>
+            Founding Leader Rewards
+          </span>
+
+        </div>
+
+
+        <div class="reward-main">
+
+          <div>
+
+            <div
+              class="reward-name"
+              id="rewardName"
+            >
+              Reward Progress
+            </div>
+
+            <div
+              class="reward-description"
+              id="rewardDescription"
+            >
+              Reward information will appear here.
+            </div>
+
+
+            <div class="progress-track">
+
+              <div
+                class="progress-fill"
+                id="rewardProgress"
+              ></div>
+
+            </div>
+
+
+            <div class="progress-meta">
+
+              <span id="rewardCurrent">
+                0
+              </span>
+
+              <span id="rewardTarget">
+                0
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="reward-badge">
+
+            <div
+              class="reward-badge-icon"
+              id="rewardIcon"
+            >
+              🎁
+            </div>
+
+            <strong id="rewardBadgeName">
+              No Reward Yet
+            </strong>
+
+            <span id="rewardBadgeText">
+              Keep growing
+            </span>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- COMMISSION HISTORY -->
+
+      <section class="card history-card">
+
+        <div class="section-title">
+
+          <h3>
+            📋 Commission History
+          </h3>
+
+          <span id="historyCount">
+            0 records
+          </span>
+
+        </div>
+
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Date
+                </th>
+
+                <th>
+                  Sale
+                </th>
+
+                <th>
+                  Revenue
+                </th>
+
+                <th>
+                  Commission
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody id="commissionTable">
+
+              <tr>
+
+                <td colspan="5">
+
+                  <div class="empty-state">
+                    Commission history load ho rahi hai...
+                  </div>
+
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <footer>
+
+        <strong>Apna Growth Hub</strong>
+        — Learn • Grow • Succeed
+
+        <br />
+
+        Founding Leader Dashboard
+
+      </footer>
+
+    </main>
+
+  </section>
+
+
+  <!-- =========================
+       FIREBASE
+  ========================= -->
+
+  <script type="module">
+
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+
+
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signInWithEmailAndPassword,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+
+    import {
+      getFirestore,
+      collection,
+      query,
+      where,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+
+    /* =========================
+       FIREBASE CONFIG
+    ========================= */
+
+    const firebaseConfig = {
+
+      apiKey:
+        "AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
+
+      authDomain:
+        "apna-growth-hub.firebaseapp.com",
+
+      projectId:
+        "apna-growth-hub",
+
+      storageBucket:
+        "apna-growth-hub.firebasestorage.app",
+
+      messagingSenderId:
+        "939001251123",
+
+      appId:
+        "1:939001251123:web:f2966004acaa64186e2a46",
+
+      measurementId:
+        "G-GZGCHL4XQ3"
+    };
+
+
+    /* =========================
+       FIREBASE INITIALIZATION
+    ========================= */
+
+    let app;
+    let auth;
+    let db;
+
+    try {
+
+      app = initializeApp(firebaseConfig);
+
+      auth = getAuth(app);
+
+      db = getFirestore(app);
+
+    } catch (error) {
+
+      console.error(
+        "Firebase initialization failed:",
+        error
+      );
+
+      document.getElementById(
+        "loadingText"
+      ).textContent =
+        "Firebase initialize nahi ho paya. Console me exact error check karein.";
+
+      document.getElementById(
+        "loadingScreen"
+      ).style.display =
+        "flex";
+
+    }
+
+
+    /* =========================
+       GLOBAL STATE
+    ========================= */
+
+    let currentUser = null;
+    let currentLeader = null;
+    let currentSales = [];
+    let currentCommissions = [];
+    let currentRewards = [];
+
+
+    /* =========================
+       ELEMENTS
+    ========================= */
+
+    const loadingScreen =
+      document.getElementById("loadingScreen");
+
+    const loginScreen =
+      document.getElementById("loginScreen");
+
+    const appScreen =
+      document.getElementById("app");
+
+    const loadingText =
+      document.getElementById("loadingText");
+
+    const loginForm =
+      document.getElementById("loginForm");
+
+    const loginBtn =
+      document.getElementById("loginBtn");
+
+    const loginError =
+      document.getElementById("loginError");
+
+    const systemMessage =
+      document.getElementById("systemMessage");
+
+
+    /* =========================
+       HELPERS
+    ========================= */
+
+    function hideLoading() {
+      loadingScreen.classList.add("hidden");
+    }
+
+
+    function showLogin() {
+
+      hideLoading();
+
+      appScreen.classList.add("hidden");
+
+      loginScreen.classList.remove("hidden");
+
+    }
+
+
+    function showApp() {
+
+      hideLoading();
+
+      loginScreen.classList.add("hidden");
+
+      appScreen.classList.remove("hidden");
+
+    }
+
+
+    function showLoginError(message) {
+
+      loginError.textContent = message;
+
+      loginError.style.display = "block";
+
+    }
+
+
+    function clearLoginError() {
+
+      loginError.textContent = "";
+
+      loginError.style.display = "none";
+
+    }
+
+
+    function showSystemMessage(
+      message,
+      type = "warning"
+    ) {
+
+      systemMessage.textContent = message;
+
+      systemMessage.className =
+        "system-message " + type;
+
+    }
+
+
+    function clearSystemMessage() {
+
+      systemMessage.textContent = "";
+
+      systemMessage.className =
+        "system-message";
+
+    }
+
+
+    function safeNumber(value) {
+
+      const n = Number(value);
+
+      return Number.isFinite(n)
+        ? n
+        : 0;
+
+    }
+
+
+    function money(value) {
+
+      const n = safeNumber(value);
+
+      return "₹" +
+        n.toLocaleString("en-IN");
+
+    }
+
+
+    function escapeHtml(value) {
+
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+    }
+
+
+    function formatDate(value) {
+
+      if (!value) {
+        return "—";
+      }
+
+      try {
+
+        if (
+          typeof value === "object" &&
+          typeof value.toDate === "function"
+        ) {
+
+          return value
+            .toDate()
+            .toLocaleDateString("en-IN");
+
+        }
+
+        const date =
+          new Date(value);
+
+        if (
+          Number.isNaN(
+            date.getTime()
+          )
+        ) {
+
+          return String(value);
+
+        }
+
+        return date.toLocaleDateString(
+          "en-IN"
+        );
+
+      } catch {
+
+        return "—";
+
+      }
+
+    }
+
+
+    function firstValue(
+      obj,
+      keys,
+      fallback = ""
+    ) {
+
+      for (const key of keys) {
+
+        const value = obj?.[key];
+
+        if (
+          value !== undefined &&
+          value !== null &&
+          String(value).trim() !== ""
+        ) {
+
+          return value;
+
+        }
+
+      }
+
+      return fallback;
+
+    }
+
+
+    /* =========================
+       AUTH LOGIN
+    ========================= */
+
+    loginForm.addEventListener(
+      "submit",
+      async (event) => {
+
+        event.preventDefault();
+
+        clearLoginError();
+
+        const email =
+          document
+            .getElementById("email")
+            .value
+            .trim();
+
+        const password =
+          document
+            .getElementById("password")
+            .value;
+
+
+        if (!email || !password) {
+
+          showLoginError(
+            "Email aur password dono enter karein."
+          );
+
+          return;
+        }
+
+
+        loginBtn.disabled = true;
+
+        loginBtn.textContent =
+          "Logging in...";
+
+
+        try {
+
+          await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+
+        } catch (error) {
+
+          console.error(
+            "Leader login error:",
+            error
+          );
+
+
+          let message =
+            error?.message ||
+            "Login failed.";
+
+
+          if (
+            error?.code ===
+            "auth/invalid-credential"
+          ) {
+
+            message =
+              "Email ya password incorrect hai.";
+
+          }
+
+
+          if (
+            error?.code ===
+            "auth/user-not-found"
+          ) {
+
+            message =
+              "Is email ka Firebase account nahi mila.";
+
+          }
+
+
+          if (
+            error?.code ===
+            "auth/wrong-password"
+          ) {
+
+            message =
+              "Password incorrect hai.";
+
+          }
+
+
+          if (
+            error?.code ===
+            "auth/invalid-email"
+          ) {
+
+            message =
+              "Email format incorrect hai.";
+
+          }
+
+
+          if (
+            error?.code ===
+            "auth/too-many-requests"
+          ) {
+
+            message =
+              "Bahut zyada attempts ho gaye. Thodi der baad try karein.";
+
+          }
+
+
+          showLoginError(message);
+
+        } finally {
+
+          loginBtn.disabled = false;
+
+          loginBtn.textContent =
+            "Login";
+
+        }
+
+      }
+    );
+
+
+    /* =========================
+       PASSWORD TOGGLE
+    ========================= */
+
+    document
+      .getElementById("togglePassword")
+      .addEventListener(
+        "click",
+        () => {
+
+          const input =
+            document.getElementById(
+              "password"
+            );
+
+          if (
+            input.type === "password"
+          ) {
+
+            input.type = "text";
+
+          } else {
+
+            input.type = "password";
+
+          }
+
+        }
+      );
+
+
+    /* =========================
+       AUTH STATE
+    ========================= */
+
+    onAuthStateChanged(
+      auth,
+      async (user) => {
+
+        if (!user) {
+
+          currentUser = null;
+
+          showLogin();
+
+          return;
+
+        }
+
+
+        currentUser = user;
+
+
+        loadingScreen.classList.remove(
+          "hidden"
+        );
+
+
+        loadingText.textContent =
+          "Leader profile load ho raha hai...";
+
+
+        try {
+
+          await loadLeaderDashboard(
+            user
+          );
+
+          showApp();
+
+        } catch (error) {
+
+          console.error(
+            "Leader Dashboard Error:",
+            error
+          );
+
+
+          showLogin();
+
+
+          showLoginError(
+            "Leader Dashboard load nahi ho paya: " +
+            (error?.message || error)
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =========================
+       LOAD LEADER DASHBOARD
+    ========================= */
+
+    async function loadLeaderDashboard(
+      user
+    ) {
+
+      clearSystemMessage();
+
+
+      /* STEP 1 */
+
+      loadingText.textContent =
+        "Leader profile verify ho raha hai...";
+
+
+      const leaderResult =
+        await findLeaderProfile(user);
+
+
+      if (!leaderResult) {
+
+        throw new Error(
+          "Founding Leader profile nahi mila. Admin Panel me foundingLeaders document me is Firebase Auth email ko check karein."
+        );
+
+      }
+
+
+      currentLeader =
+        leaderResult;
+
+
+      renderLeaderProfile(
+        currentLeader
+      );
+
+
+      /* STEP 2 */
+
+      loadingText.textContent =
+        "Sales data load ho raha hai...";
+
+
+      const salesResult =
+        await loadOwnCollection(
+          "sales",
+          "leaderUid",
+          user.uid
+        );
+
+
+      currentSales =
+        salesResult.data;
+
+
+      if (
+        salesResult.permissionError
+      ) {
+
+        showSystemMessage(
+          "Sales data ke liye Firestore permission abhi enable nahi hai. Profile dashboard available hai.",
+          "warning"
+        );
+
+      }
+
+
+      /* STEP 3 */
+
+      loadingText.textContent =
+        "Commission data load ho raha hai...";
+
+
+      const commissionResult =
+        await loadOwnCollection(
+          "commissions",
+          "leaderUid",
+          user.uid
+        );
+
+
+      currentCommissions =
+        commissionResult.data;
+
+
+      if (
+        commissionResult.permissionError
+      ) {
+
+        showSystemMessage(
+          "Commission history ke liye Firestore permission abhi enable nahi hai. Profile dashboard available hai.",
+          "warning"
+        );
+
+      }
+
+
+      /* STEP 4 */
+
+      loadingText.textContent =
+        "Referral data load ho raha hai...";
+
+
+      await loadOwnCollection(
+        "referrals",
+        "leaderUid",
+        user.uid
+      );
+
+
+      /* STEP 5 */
+
+      loadingText.textContent =
+        "Reward data load ho raha hai...";
+
+
+      const rewardResult =
+        await loadOwnCollection(
+          "leaderRewards",
+          "leaderUid",
+          user.uid
+        );
+
+
+      currentRewards =
+        rewardResult.data;
+
+
+      /* STEP 6 */
+
+      renderStats();
+
+      renderCommissionHistory();
+
+      renderRewards();
+
+
+      loadingText.textContent =
+        "Dashboard ready.";
+
+    }
+
+
+    /* =========================
+       FIND LEADER PROFILE
+    ========================= */
+
+    async function findLeaderProfile(
+      user
+    ) {
+
+      try {
+
+        const email =
+          String(user.email || "")
+            .trim()
+            .toLowerCase();
+
+
+        if (!email) {
+
+          throw new Error(
+            "Firebase account me email available nahi hai."
+          );
+
+        }
+
+
+        /*
+          Leader profile is matched by
+          Firebase Auth email.
+        */
+
+
+        const q =
+          query(
+            collection(
+              db,
+              "foundingLeaders"
+            ),
+            where(
+              "email",
+              "==",
+              email
+            )
+          );
+
+
+        const snap =
+          await getDocs(q);
+
+
+        if (snap.empty) {
+
+          return null;
+
+        }
+
+
+        const docSnap =
+          snap.docs[0];
+
+
+        return {
+          id: docSnap.id,
+          ...docSnap.data()
+        };
+
+
+      } catch (error) {
+
+        console.error(
+          "Leader profile error:",
+          error
+        );
+
+        throw error;
+
+      }
+
+    }
+
+
+    /* =========================
+       LOAD OWN COLLECTION
+    ========================= */
+
+    async function loadOwnCollection(
+      collectionName,
+      ownerField,
+      uid
+    ) {
+
+      try {
+
+        const q =
+          query(
+            collection(
+              db,
+              collectionName
+            ),
+            where(
+              ownerField,
+              "==",
+              uid
+            )
+          );
+
+
+        const snap =
+          await getDocs(q);
+
+
+        return {
+
+          data:
+            snap.docs.map(
+              docSnap => ({
+                id: docSnap.id,
+                ...docSnap.data()
+              })
+            ),
+
+          permissionError: false
+
+        };
+
+
+      } catch (error) {
+
+        console.error(
+          collectionName +
+          " load error:",
+          error
+        );
+
+
+        const isPermission =
+          error?.code ===
+          "permission-denied";
+
+
+        return {
+
+          data: [],
+
+          permissionError:
+            isPermission
+
+        };
+
+      }
+
+    }
+
+
+    /* =========================
+       RENDER PROFILE
+    ========================= */
+
+    function renderLeaderProfile(
+      leader
+    ) {
+
+      const name =
+        firstValue(
+          leader,
+          [
+            "name",
+            "leaderName",
+            "fullName",
+            "displayName"
+          ],
+          "Leader"
+        );
+
+
+      const leaderId =
+        firstValue(
+          leader,
+          [
+            "leaderId",
+            "id",
+            "leaderID"
+          ],
+          leader.id
+        );
+
+
+      const referralCode =
+        firstValue(
+          leader,
+          [
+            "referralCode",
+            "referral",
+            "code"
+          ],
+          leaderId
+        );
+
+
+      const email =
+        firstValue(
+          leader,
+          [
+            "email"
+          ],
+          currentUser?.email ||
+          "—"
+        );
+
+
+      const status =
+        firstValue(
+          leader,
+          [
+            "status"
+          ],
+          "Active"
+        );
+
+
+      const commissionRate =
+        firstValue(
+          leader,
+          [
+            "commissionRate",
+            "commissionPercent",
+            "commissionPercentage",
+            "commission"
+          ],
+          "—"
+        );
+
+
+      document.getElementById(
+        "welcomeText"
+      ).textContent =
+        `Welcome, ${name} 👋`;
+
+
+      document.getElementById(
+        "topLeaderName"
+      ).textContent =
+        name;
+
+
+      document.getElementById(
+        "topLeaderId"
+      ).textContent =
+        leaderId;
+
+
+      document.getElementById(
+        "topAvatar"
+      ).textContent =
+        name
+          .charAt(0)
+          .toUpperCase();
+
+
+      document.getElementById(
+        "profileName"
+      ).textContent =
+        name;
+
+
+      document.getElementById(
+        "profileLeaderId"
+      ).textContent =
+        leaderId;
+
+
+      document.getElementById(
+        "profileEmail"
+      ).textContent =
+        email;
+
+
+      document.getElementById(
+        "profileReferralCode"
+      ).textContent =
+        referralCode;
+
+
+      document.getElementById(
+        "profileStatus"
+      ).textContent =
+        status;
+
+
+      document.getElementById(
+        "profileCommissionRate"
+      ).textContent =
+        commissionRate === "—"
+          ? "—"
+          : String(
+              commissionRate
+            ).includes("%")
+              ? commissionRate
+              : commissionRate + "%";
+
+
+      /*
+        FINAL REFERRAL LINK
+
+        Always points to the customer
+        packages page (packages.html).
+
+        Example:
+        packages.html?ref=AGH004
+      */
+
+
+      const currentUrl =
+        new URL(
+          window.location.href
+        );
+
+
+      const basePath =
+        currentUrl.pathname
+          .replace(
+            /[^/]*$/,
+            ""
+          );
+
+
+      const referralUrl =
+        new URL(
+          basePath + "packages.html",
+          currentUrl.origin
+        );
+
+
+      referralUrl.searchParams.set(
+        "ref",
+        referralCode
+      );
+
+
+      document.getElementById(
+        "referralLink"
+      ).value =
+        referralUrl.toString();
+
+    }
+
+
+    /* =========================
+       STATS
+    ========================= */
+
+    function renderStats() {
+
+      const totalSales =
+        currentSales.length;
+
+
+      const revenue =
+        currentSales.reduce(
+          (sum, sale) => {
+
+            const amount =
+              firstValue(
+                sale,
+                [
+                  "amount",
+                  "saleAmount",
+                  "revenue",
+                  "totalAmount",
+                  "price"
+                ],
+                0
+              );
+
+
+            return sum +
+              safeNumber(amount);
+
+          },
+          0
+        );
+
+
+      const totalCommission =
+        currentCommissions.reduce(
+          (sum, commission) => {
+
+            const amount =
+              firstValue(
+                commission,
+                [
+                  "commissionAmount",
+                  "amount",
+                  "commission",
+                  "earning"
+                ],
+                0
+              );
+
+
+            return sum +
+              safeNumber(amount);
+
+          },
+          0
+        );
+
+
+      const paidCommission =
+        currentCommissions.reduce(
+          (sum, commission) => {
+
+            const status =
+              String(
+                firstValue(
+                  commission,
+                  [
+                    "status",
+                    "paymentStatus"
+                  ],
+                  ""
+                )
+              ).toLowerCase();
+
+
+            const amount =
+              firstValue(
+                commission,
+                [
+                  "commissionAmount",
+                  "amount",
+                  "commission",
+                  "earning"
+                ],
+                0
+              );
+
+
+            if (
+              status === "paid" ||
+              status === "completed"
+            ) {
+
+              return sum +
+                safeNumber(amount);
+
+            }
+
+
+            return sum;
+
+          },
+          0
+        );
+
+
+      document.getElementById(
+        "totalSales"
+      ).textContent =
+        totalSales;
+
+
+      document.getElementById(
+        "totalRevenue"
+      ).textContent =
+        money(revenue);
+
+
+      document.getElementById(
+        "totalCommission"
+      ).textContent =
+        money(totalCommission);
+
+
+      document.getElementById(
+        "paidCommission"
+      ).textContent =
+        money(paidCommission);
+
+    }
+
+
+    /* =========================
+       COMMISSION HISTORY
+    ========================= */
+
+    function renderCommissionHistory() {
+
+      const tbody =
+        document.getElementById(
+          "commissionTable"
+        );
+
+
+      document.getElementById(
+        "historyCount"
+      ).textContent =
+        `${currentCommissions.length} records`;
+
+
+      if (
+        !currentCommissions.length
+      ) {
+
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5">
+              <div class="empty-state">
+                Abhi commission history available nahi hai.
+              </div>
+            </td>
+          </tr>
+        `;
+
+        return;
+
+      }
+
+
+      const sorted =
+        [...currentCommissions]
+          .sort(
+            (a, b) => {
+
+              const da =
+                firstValue(
+                  a,
+                  [
+                    "createdAt",
+                    "date",
+                    "createdDate"
+                  ],
+                  ""
+                );
+
+
+              const dbValue =
+                firstValue(
+                  b,
+                  [
+                    "createdAt",
+                    "date",
+                    "createdDate"
+                  ],
+                  ""
+                );
+
+
+              return String(
+                dbValue
+              ).localeCompare(
+                String(da)
+              );
+
+            }
+          );
+
+
+      tbody.innerHTML =
+        sorted
+          .map(
+            item => {
+
+              const date =
+                firstValue(
+                  item,
+                  [
+                    "createdAt",
+                    "date",
+                    "createdDate"
+                  ],
+                  ""
+                );
+
+
+              const sale =
+                firstValue(
+                  item,
+                  [
+                    "saleName",
+                    "packageName",
+                    "productName",
+                    "package",
+                    "service"
+                  ],
+                  "Sale"
+                );
+
+
+              const revenue =
+                firstValue(
+                  item,
+                  [
+                    "revenue",
+                    "saleAmount",
+                    "totalAmount",
+                    "amount"
+                  ],
+                  0
+                );
+
+
+              const commission =
+                firstValue(
+                  item,
+                  [
+                    "commissionAmount",
+                    "commission",
+                    "earning",
+                    "amount"
+                  ],
+                  0
+                );
+
+
+              const status =
+                String(
+                  firstValue(
+                    item,
+                    [
+                      "status",
+                      "paymentStatus"
+                    ],
+                    "Pending"
+                  )
+                );
+
+
+              const statusLower =
+                status.toLowerCase();
+
+
+              let statusClass =
+                "status-pending";
+
+
+              if (
+                statusLower === "paid" ||
+                statusLower === "completed"
+              ) {
+
+                statusClass =
+                  "status-paid";
+
+              } else if (
+                statusLower === "approved"
+              ) {
+
+                statusClass =
+                  "status-approved";
+
+              } else if (
+                statusLower === "rejected" ||
+                statusLower === "cancelled"
+              ) {
+
+                statusClass =
+                  "status-rejected";
+
+              }
+
+
+              return `
+                <tr>
+
+                  <td>
+                    ${escapeHtml(
+                      formatDate(date)
+                    )}
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      sale
+                    )}
+                  </td>
+
+                  <td>
+                    ${money(
+                      revenue
+                    )}
+                  </td>
+
+                  <td>
+                    ${money(
+                      commission
+                    )}
+                  </td>
+
+                  <td>
+                    <span class="status ${statusClass}">
+                      ${escapeHtml(
+                        status
+                      )}
+                    </span>
+                  </td>
+
+                </tr>
+              `;
+
+            }
+          )
+          .join("");
+
+    }
+
+
+    /* =========================
+       REWARDS
+    ========================= */
+
+    function renderRewards() {
+
+      if (
+        !currentRewards.length
+      ) {
+
+        document.getElementById(
+          "rewardName"
+        ).textContent =
+          "Reward Progress";
+
+
+        document.getElementById(
+          "rewardDescription"
+        ).textContent =
+          "Reward progress admin ke reward data ke according yahan automatically show hoga.";
+
+
+        document.getElementById(
+          "rewardCurrent"
+        ).textContent =
+          "0";
+
+
+        document.getElementById(
+          "rewardTarget"
+        ).textContent =
+          "0";
+
+
+        document.getElementById(
+          "rewardProgress"
+        ).style.width =
+          "0%";
+
+
+        document.getElementById(
+          "rewardBadgeName"
+        ).textContent =
+          "No Reward Yet";
+
+
+        document.getElementById(
+          "rewardBadgeText"
+        ).textContent =
+          "Keep growing";
+
+
+        return;
+
+      }
+
+
+      const reward =
+        currentRewards[
+          currentRewards.length - 1
+        ];
+
+
+      const name =
+        firstValue(
+          reward,
+          [
+            "rewardName",
+            "name",
+            "title"
+          ],
+          "Reward"
+        );
+
+
+      const description =
+        firstValue(
+          reward,
+          [
+            "description",
+            "details",
+            "message"
+          ],
+          "Reward progress"
+        );
+
+
+      const current =
+        safeNumber(
+          firstValue(
+            reward,
+            [
+              "current",
+              "progress",
+              "currentSales",
+              "sales"
+            ],
+            0
+          )
+        );
+
+
+      const target =
+        safeNumber(
+          firstValue(
+            reward,
+            [
+              "target",
+              "targetSales",
+              "requiredSales",
+              "goal"
+            ],
+            0
+          )
+        );
+
+
+      let percent = 0;
+
+
+      if (target > 0) {
+
+        percent =
+          Math.min(
+            100,
+            Math.round(
+              (current / target) *
+              100
+            )
+          );
+
+      } else if (
+        reward.progressPercent !==
+        undefined
+      ) {
+
+        percent =
+          Math.min(
+            100,
+            safeNumber(
+              reward.progressPercent
+            )
+          );
+
+      }
+
+
+      const status =
+        String(
+          firstValue(
+            reward,
+            [
+              "status"
+            ],
+            ""
+          )
+        );
+
+
+      document.getElementById(
+        "rewardName"
+      ).textContent =
+        name;
+
+
+      document.getElementById(
+        "rewardDescription"
+      ).textContent =
+        description;
+
+
+      document.getElementById(
+        "rewardCurrent"
+      ).textContent =
+        target > 0
+          ? `${current} / ${target}`
+          : `${percent}%`;
+
+
+      document.getElementById(
+        "rewardTarget"
+      ).textContent =
+        target > 0
+          ? `${percent}%`
+          : "";
+
+
+      document.getElementById(
+        "rewardProgress"
+      ).style.width =
+        percent + "%";
+
+
+      document.getElementById(
+        "rewardBadgeName"
+      ).textContent =
+        status ||
+        name;
+
+
+      document.getElementById(
+        "rewardBadgeText"
+      ).textContent =
+        percent >= 100
+          ? "Reward achieved 🎉"
+          : `${percent}% completed`;
+
+    }
+
+
+    /* =========================
+       COPY REFERRAL
+    ========================= */
+
+    document
+      .getElementById(
+        "copyReferralBtn"
+      )
+      .addEventListener(
+        "click",
+        async () => {
+
+          const input =
+            document.getElementById(
+              "referralLink"
+            );
+
+
+          try {
+
+            await navigator.clipboard.writeText(
+              input.value
+            );
+
+
+            const button =
+              document.getElementById(
+                "copyReferralBtn"
+              );
+
+
+            button.textContent =
+              "Copied ✓";
+
+
+            setTimeout(
+              () => {
+
+                button.textContent =
+                  "Copy";
+
+              },
+              1600
+            );
+
+
+          } catch {
+
+            input.select();
+
+            document.execCommand(
+              "copy"
+            );
+
+          }
+
+        }
+      );
+
+
+    /* =========================
+       LOGOUT
+    ========================= */
+
+    document
+      .getElementById(
+        "logoutBtn"
+      )
+      .addEventListener(
+        "click",
+        async () => {
+
+          try {
+
+            await signOut(auth);
+
+          } catch (error) {
+
+            console.error(
+              "Logout error:",
+              error
+            );
+
+          }
+
+        }
+      );
+
+  </script>
+
+</body>
+</html>

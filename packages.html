@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apna Growth Hub – Packages</title>
+  <style>
+    *{box-sizing:border-box;font-family:Arial,sans-serif}
+    body{margin:0;min-height:100vh;background:linear-gradient(135deg,#eff6ff,#f8fafc);color:#0f172a;padding:20px}
+    .wrap{max-width:1050px;margin:auto}
+    .hero{text-align:center;padding:18px 10px 24px}
+    .hero h1{margin:0;color:#1d4ed8;font-size:30px}
+    .hero p{margin:8px 0 0;color:#64748b}
+    .ref{display:none;margin:12px auto 0;max-width:520px;background:#ecfdf5;color:#166534;border:1px solid #bbf7d0;padding:9px 12px;border-radius:12px;font-size:13px}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .card{background:#fff;border-radius:20px;padding:18px;box-shadow:0 8px 25px rgba(15,23,42,.08);border:1px solid #e2e8f0;position:relative}
+    .icon{width:48px;height:48px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:25px;margin-bottom:12px}
+    .starter .icon{background:#dbeafe}.growth .icon{background:#dcfce7}.pro .icon{background:#ede9fe}.elite .icon{background:#ffedd5}
+    h2{font-size:20px;margin:0 0 6px}.sub{font-size:13px;color:#64748b;min-height:38px}
+    .price{margin:13px 0}.price strong{font-size:25px}.old{text-decoration:line-through;color:#94a3b8;font-size:13px;margin-left:6px}.discount{display:inline-block;background:#dcfce7;color:#166534;border-radius:20px;padding:4px 8px;font-size:11px;font-weight:bold;margin-top:6px}
+    ul{padding-left:18px;color:#475569;font-size:13px;min-height:105px}li{margin:7px 0}
+    button{width:100%;border:0;border-radius:11px;padding:12px;background:#2563eb;color:#fff;font-weight:bold;font-size:14px;cursor:pointer}
+    button:hover{background:#1d4ed8}.soon{background:#64748b!important;cursor:default}
+    .note{text-align:center;color:#64748b;font-size:12px;margin:20px 0}
+    .loading{text-align:center;padding:35px;color:#64748b}
+    @media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:520px){body{padding:12px}.grid{grid-template-columns:1fr 1fr;gap:9px}.card{padding:13px;border-radius:16px}.hero h1{font-size:25px}.sub{min-height:48px;font-size:12px}.price strong{font-size:21px}ul{min-height:125px;font-size:12px;padding-left:16px}.icon{width:42px;height:42px;font-size:21px}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <h1>Choose Your Package</h1>
+    <p>Apna Growth Hub par apne liye suitable learning package select karein.</p>
+    <div id="refBox" class="ref"></div>
+  </div>
+  <div id="packageGrid" class="grid">
+    <div class="loading">Packages load ho rahe hain...</div>
+  </div>
+  <div class="note">Package select karne ke baad Create Account / Login aur payment flow next step mein open hoga. Abhi payment verification live nahi ki gayi hai.</div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey:"AIzaSyBasu6SpOqvldxWEmTHs9WUSTXsK2qz-0w",
+  authDomain:"apna-growth-hub.firebaseapp.com",
+  projectId:"apna-growth-hub",
+  storageBucket:"apna-growth-hub.firebasestorage.app",
+  messagingSenderId:"939001251123",
+  appId:"1:939001251123:web:f2966004acaa64186e2a46",
+  measurementId:"G-GZGCHL4XQ3"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const fallback = [
+  {name:"Starter",price:249,old:499,discount:"50% OFF",subtitle:"Start your learning journey",features:["Beginner-friendly learning","Practical resources","Dashboard access"],icon:"🚀",cls:"starter"},
+  {name:"Growth",price:499,old:999,discount:"50% OFF",subtitle:"Build useful digital skills",features:["Skill-based learning","Practical resources","Growth roadmap"],icon:"📈",cls:"growth"},
+  {name:"Pro",price:999,old:1999,discount:"50% OFF",subtitle:"Go deeper with advanced learning",features:["Advanced learning","Practical projects","Premium resources"],icon:"💎",cls:"pro"},
+  {name:"Elite",price:1499,old:2999,discount:"50% OFF",subtitle:"Complete growth-focused package",features:["Complete learning access","Advanced resources","Future growth options"],icon:"👑",cls:"elite"}
+];
+
+function esc(v){
+  return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+}
+function getRef(){
+  const p=new URLSearchParams(location.search);
+  const ref=(p.get("ref")||"").trim();
+  if(ref) localStorage.setItem("aghReferralCode",ref);
+  return ref || localStorage.getItem("aghReferralCode") || "";
+}
+function num(v,fallback=0){const n=Number(v);return Number.isFinite(n)?n:fallback}
+
+async function loadPackages(){
+  let packages=fallback;
+  try{
+    const snap=await getDocs(collection(db,"packages"));
+    const rows=[];
+    snap.forEach(d=>{
+      const x={id:d.id,...d.data()};
+      const status=String(x.status||"Active").toLowerCase();
+      if(status==="hidden"||status==="disabled") return;
+      rows.push(x);
+    });
+    if(rows.length) packages=rows;
+  }catch(e){console.warn("Package load fallback:",e)}
+
+  const order=["Starter","Growth","Pro","Elite"];
+  packages.sort((a,b)=>{
+    const ai=order.indexOf(String(a.name||a.packageName||""));
+    const bi=order.indexOf(String(b.name||b.packageName||""));
+    return (ai<0?99:ai)-(bi<0?99:bi);
+  });
+
+  const icons=["🚀","📈","💎","👑"];
+  const classes=["starter","growth","pro","elite"];
+
+  document.getElementById("packageGrid").innerHTML=packages.map((p,i)=>{
+    const name=p.name||p.packageName||"Package";
+    const current=num(p.currentPrice ?? p.price,0);
+    const old=num(p.oldPrice,0);
+    const discount=p.discount||"";
+    const subtitle=p.subtitle||p.description||"Apna Growth Hub package";
+    let features=p.features;
+    if(Array.isArray(features)) features=features.slice(0,5);
+    else features=String(features||"Learning access, Practical resources, Dashboard access").split(",").map(x=>x.trim()).filter(Boolean).slice(0,5);
+    const status=String(p.status||"Active").toLowerCase();
+    const coming=status==="coming soon"||status==="comingsoon";
+    return `<div class="card ${classes[i]||""}">
+      <div class="icon">${icons[i]||"📦"}</div>
+      <h2>${esc(name)}</h2>
+      <div class="sub">${esc(subtitle)}</div>
+      <div class="price"><strong>₹${current.toLocaleString("en-IN")}</strong>${old?` <span class="old">₹${old.toLocaleString("en-IN")}</span>`:""}<br>${discount?`<span class="discount">${esc(discount)}</span>`:""}</div>
+      <ul>${features.map(f=>`<li>${esc(f)}</li>`).join("")}</ul>
+      <button class="${coming?"soon":""}" ${coming?"disabled":""} onclick='selectPackage(${JSON.stringify(name)},${JSON.stringify(p.id||"")},${current})'>${coming?"Coming Soon":"Select Package →"}</button>
+    </div>`;
+  }).join("");
+}
+
+window.selectPackage=function(name,id,price){
+  const ref=getRef();
+  const params=new URLSearchParams();
+  params.set("package",name);
+  if(id) params.set("packageId",id);
+  if(price) params.set("packagePrice",String(price));
+  if(ref) params.set("ref",ref);
+  window.location.href="index.html?"+params.toString();
+};
+
+const ref=getRef();
+if(ref){
+  const box=document.getElementById("refBox");
+  box.textContent="Referral: "+ref;
+  box.style.display="block";
+}
+loadPackages();
+</script>
+</body>
+</html>

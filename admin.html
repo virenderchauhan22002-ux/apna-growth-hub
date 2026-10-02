@@ -434,6 +434,7 @@
     .leader-actions{display:flex;gap:6px;flex-wrap:wrap}
     .leader-actions button{padding:7px 9px;border-radius:8px;border:1px solid #dbe3ee;background:#fff;cursor:pointer;font-size:11px;font-weight:800}
     .leader-actions button:hover{background:#f8fafc}
+    .leader-actions-btn{padding:5px 7px;border-radius:7px;border:1px solid #dbe3ee;background:#fff;cursor:pointer;font-size:10px;font-weight:800}.leader-actions-btn:hover{background:#f8fafc}
     @media(max-width:900px){.leader-summary-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:600px){.leader-summary-grid{grid-template-columns:1fr}}
 
@@ -548,12 +549,11 @@
         📢 Announcements Management
       </button>
 
-      <button class="menu-btn" data-section="growthFeatures">
-        🚀 Growth Features Management
-      </button>
-
       <button class="menu-btn" data-section="foundingLeaders">
         👑 Founding Leaders
+      </button>
+      <button class="menu-btn" data-section="leaderRevenueRewards">
+        🎁 Leader Rewards
       </button>
 
       <button class="menu-btn" data-section="support">
@@ -751,8 +751,8 @@
           </h2>
           <div class="tabs">
             <button class="tab-btn active inquiry-tab" data-inquiry-tab="LIC">🛡️ LIC Inquiry</button>
-            <button class="tab-btn inquiry-tab" data-inquiry-tab="PAN">🪪 PAN Inquiry</button>
-            <button class="tab-btn inquiry-tab" data-inquiry-tab="ALL">📋 All</button>
+            <button class="tab-btn inquiry-tab" data-inquiry-tab="GENERAL">📩 Free Inquiry</button>
+            <button class="tab-btn inquiry-tab" data-inquiry-tab="ALL">📋 All Free/LIC</button>
           </div>
           <p id="inquiryTabInfo" style="color:#64748b;margin-bottom:10px;">LIC inquiries</p>
 
@@ -1430,12 +1430,12 @@
           <div class="input-group">
 
             <label for="courseThumbnail">
-              Course Thumbnail (optional)
+              Course Thumbnail (temporarily unavailable)
             </label>
 
             <input
               id="courseThumbnail"
-              type="file"
+              type="file" disabled
               accept="image/*"
             >
 
@@ -1486,11 +1486,17 @@
           <div class="input-group"><label for="packageName">Package</label><select id="packageName"><option>Starter</option><option>Growth</option><option>Pro</option><option>Elite</option></select></div>
           <div class="input-group"><label for="packageStatus">Status</label><select id="packageStatus"><option>Active</option><option>Hidden</option><option>Coming Soon</option></select></div>
           <div class="input-group"><label for="packageOrder">Order</label><input id="packageOrder" type="number" min="1" value="1"></div>
-          <div class="input-group"><label for="packagePrice">Price (₹)</label><input id="packagePrice" type="number" min="0" step="1" value="0" placeholder="0 for free"></div>
+          <div class="input-group"><label for="packagePrice">Current Price (₹)</label><input id="packagePrice" type="number" min="0" step="1" value="0" placeholder="0 for free"></div>
+          <div class="input-group"><label for="packageOldPrice">Old Price (₹)</label><input id="packageOldPrice" type="number" min="0" step="1" value="0" placeholder="Optional"></div>
+          <div class="input-group"><label for="packageDiscount">Discount Label</label><input id="packageDiscount" type="text" placeholder="e.g. 50% OFF"></div>
+          <div class="input-group"><label for="packageSubtitle">Subtitle</label><input id="packageSubtitle" type="text" placeholder="Short package tagline"></div>
           <div class="input-group"><label for="packageAccessType">Access Type</label><select id="packageAccessType"><option>Free</option><option>Paid</option></select></div>
           <div class="input-group"><label for="packageCourseCount">Course Count</label><input id="packageCourseCount" type="number" min="0" value="0"></div>
         </div>
         <div class="input-group"><label for="packageDescription">Package Description</label><textarea id="packageDescription" rows="4"></textarea></div>
+        <div class="input-group"><label for="packageFeatures">Package Features (one per line)</label><textarea id="packageFeatures" rows="5" placeholder="Basic Video Tutorials
+PDF Study Notes
+Certification Award"></textarea></div>
         <div class="input-group"><label for="packageCourseNames">Course Names (one per line)</label><textarea id="packageCourseNames" rows="6" placeholder="Digital Skills Basics
 AI Tools Basics
 Social Media Basics"></textarea></div>
@@ -1760,11 +1766,6 @@ Social Media Basics"></textarea></div>
       </section>
 
       <!-- GROWTH FEATURES -->
-      <section id="growthFeatures" class="section">
-        <div class="content-card"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;"><div><h2>🚀 Growth Features Management</h2><p>Rewards, tasks, certificates, referral aur future features manage karein.</p></div><button class="btn btn-primary" id="addGrowthFeatureBtn">➕ Add Feature</button></div></div>
-        <div id="growthFeatureForm" class="content-card hidden" style="margin-top:16px;"><h2 id="growthFeatureFormTitle">Add Growth Feature</h2><div class="feature-grid"><div class="input-group"><label for="growthFeatureTitle">Title *</label><input id="growthFeatureTitle"></div><div class="input-group"><label for="growthFeatureIcon">Icon</label><input id="growthFeatureIcon" value="⭐"></div><div class="input-group"><label for="growthFeatureOrder">Order</label><input id="growthFeatureOrder" type="number" min="1" value="1"></div><div class="input-group"><label for="growthFeatureStatus">Status</label><select id="growthFeatureStatus"><option>Active</option><option>Hidden</option></select></div></div><div class="input-group"><label for="growthFeatureDescription">Description</label><textarea id="growthFeatureDescription" rows="4"></textarea></div><div id="growthFeatureMessage" class="message"></div><button class="btn btn-success" id="saveGrowthFeatureBtn">💾 Save Feature</button> <button class="btn btn-light" id="cancelGrowthFeatureBtn">Cancel</button></div>
-        <div class="content-card" style="margin-top:16px;"><h2>Saved Growth Features</h2><div id="growthFeaturesList" style="margin-top:15px;"></div></div>
-      </section>
 
       <!-- SUPPORT -->
       <section id="support" class="section">
@@ -1832,6 +1833,18 @@ Social Media Basics"></textarea></div>
           </div>
         </div>
 
+        <div class="content-card" style="margin-top:16px;">
+          <h3>⚙️ Global Leader Commission</h3>
+          <p>Yahan commission sirf <strong>ek baar</strong> set/update hoga. Active Founding Leaders ke liye ye common rate apply hoga.</p>
+          <div class="admin-form-grid">
+            <div class="input-group"><label for="globalLeaderCommission">Commission % *</label><input id="globalLeaderCommission" type="number" min="0" max="100" step="0.01" value="50"></div>
+            <div class="input-group"><label for="globalCommissionEffective">Effective From</label><input id="globalCommissionEffective" type="date"></div>
+            <div class="input-group full"><label for="globalCommissionNote">Update / Announcement</label><input id="globalCommissionNote" type="text" placeholder="e.g. Commission updated to 10% effective from 5 Oct 2026"></div>
+          </div>
+          <div id="globalCommissionMessage" class="message"></div>
+          <button class="btn btn-success" id="saveGlobalCommissionBtn">💾 Save Global Commission</button>
+        </div>
+
         <div class="leader-summary-grid">
           <div class="leader-mini"><div class="label">Total Leaders</div><div class="value" id="flTotal">0</div></div>
           <div class="leader-mini"><div class="label">Active Leaders</div><div class="value" id="flActive">0</div></div>
@@ -1847,7 +1860,7 @@ Social Media Basics"></textarea></div>
             <div class="input-group"><label for="flEmail">Email</label><input id="flEmail" type="email" placeholder="Email optional"></div>
             <div class="input-group"><label for="flLeaderId">Leader ID *</label><input id="flLeaderId" type="text" placeholder="AGH001"></div>
             <div class="input-group"><label for="flUpi">UPI ID *</label><input id="flUpi" type="text" placeholder="name@upi"></div>
-            <div class="input-group"><label for="flCommission">Commission % *</label><input id="flCommission" type="number" min="0" max="100" step="0.01" value="50"></div>
+            <div class="input-group"><label>Commission %</label><input id="flCommission" type="number" value="50" readonly><small style="color:#64748b;display:block;margin-top:5px;">Global setting se automatically apply hoga.</small></div>
             <div class="input-group"><label for="flUserUid">Leader Firebase UID</label><input id="flUserUid" type="text" placeholder="Optional - link leader login UID"></div>
             <div class="input-group"><label for="flStatus">Status</label><select id="flStatus"><option value="Active">Active</option><option value="Inactive">Inactive</option></select></div>
             <div class="input-group full"><label for="flReferralLink">Referral Link</label><input id="flReferralLink" type="text" readonly placeholder="Auto-generated after Leader ID"></div>
@@ -1871,6 +1884,61 @@ Social Media Basics"></textarea></div>
         </div>
       </section>
 
+      <!-- LEADER REVENUE + REWARDS -->
+      <section id="leaderRevenueRewards" class="section">
+        <div class="content-card">
+          <h2>📊 Leader Revenue & Rewards</h2>
+          <p style="color:#64748b;margin-bottom:15px;">Sirf verified/approved retained sales revenue me count hongi. Pending, rejected, cancelled aur refunded sales count nahi hongi.</p>
+          <div class="leader-summary-grid">
+            <div class="leader-mini"><div class="label">Total Revenue</div><div class="value" id="lrTotalRevenue">₹0</div></div>
+            <div class="leader-mini"><div class="label">Direct Revenue</div><div class="value" id="lrDirectRevenue">₹0</div></div>
+            <div class="leader-mini"><div class="label">Leader Generated</div><div class="value" id="lrLeaderRevenue">₹0</div></div>
+            <div class="leader-mini"><div class="label">Commission Pending</div><div class="value" id="lrCommissionPending">₹0</div></div>
+          </div>
+          <div class="leader-table-wrap" style="margin-top:16px;" id="leaderRevenueTable"><div class="empty">Leader revenue loading...</div></div>
+        </div>
+
+        <div class="content-card" style="margin-top:16px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+            <div><h2>🎁 Reward Management</h2><p style="color:#64748b;margin:0;">Weekly aur Monthly rewards manually set karein. Target complete hone par hi main reward eligible hoga.</p></div>
+            <button class="btn btn-primary" id="addLeaderRewardBtn">➕ Add Reward</button>
+          </div>
+          <div class="leader-summary-grid" style="margin-top:15px;">
+            <div class="leader-mini"><div class="label">Monthly Reward Cap</div><div class="value">5%</div></div>
+            <div class="leader-mini"><div class="label">Weekly Reward</div><div class="value" id="rwWeeklyCap">1%</div></div>
+            <div class="leader-mini"><div class="label">Reward Budget</div><div class="value" id="rwBudget">₹0</div></div>
+            <div class="leader-mini"><div class="label">Pending Approval</div><div class="value" id="rwPending">₹0</div></div>
+          </div>
+          <div id="leaderRewardForm" class="content-card hidden" style="margin-top:16px;background:#f8fafc;">
+            <h3 id="leaderRewardFormTitle">Add Reward</h3>
+            <div class="feature-grid" style="margin-top:15px;">
+              <div class="input-group"><label for="rwName">Reward Name *</label><input id="rwName" type="text" placeholder="Monthly Growth Reward"></div>
+              <div class="input-group"><label for="rwPeriod">Period *</label><select id="rwPeriod"><option value="Monthly">Monthly</option><option value="Weekly">Weekly</option><option value="Consistency">Consistency</option><option value="Special">Special</option></select></div>
+              <div class="input-group"><label for="rwTargetType">Target Type *</label><select id="rwTargetType"><option value="Sales">Sales</option><option value="Revenue">Revenue</option></select></div>
+              <div class="input-group"><label for="rwTargetValue">Target Value *</label><input id="rwTargetValue" type="number" min="0" step="0.01" placeholder="10"></div>
+              <div class="input-group"><label for="rwAmount">Reward Amount *</label><input id="rwAmount" type="number" min="0" step="1" placeholder="1000"></div>
+              <div class="input-group"><label for="rwBudget">Campaign Budget</label><input id="rwBudget" type="number" min="0" step="1" value="0" placeholder="10000"></div>
+              <div class="input-group"><label for="rwCap">Max Reward % of Eligible Revenue</label><input id="rwCap" type="number" min="0" max="100" step="0.1" value="5"></div>
+              <div class="input-group"><label for="rwStart">Start Date</label><input id="rwStart" type="date"></div>
+              <div class="input-group"><label for="rwEnd">End Date</label><input id="rwEnd" type="date"></div>
+              <div class="input-group"><label for="rwRepeat">Repeatable</label><select id="rwRepeat"><option value="No">No</option><option value="Yes">Yes</option></select></div>
+              <div class="input-group"><label for="rwStatus">Status</label><select id="rwStatus"><option value="Active">Active</option><option value="Inactive">Inactive</option></select></div>
+              <div class="input-group"><label for="rwScope">Applicable To</label><select id="rwScope"><option value="All Leaders">All Leaders</option><option value="Selected Leaders">Selected Leaders</option></select></div>
+              <div class="input-group full"><label for="rwDescription">Description</label><textarea id="rwDescription" rows="2" placeholder="Target complete hone par reward..." style="width:100%;padding:10px;border:1px solid #dbe3ee;border-radius:10px;"></textarea></div>
+            </div>
+            <div id="leaderRewardMessage" class="message"></div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;"><button class="btn btn-primary" id="saveLeaderRewardBtn">💾 Save Reward</button><button class="btn btn-light" id="cancelLeaderRewardBtn">Cancel</button></div>
+          </div>
+          <div id="leaderRewardsList" class="leader-table-wrap"><div class="empty">Rewards loading...</div></div>
+        </div>
+
+        <div class="content-card" style="margin-top:16px;">
+          <h2>🏅 Reward Progress & Approval</h2>
+          <p style="color:#64748b;">100% target complete hone par hi main reward Achieved hoga. Consistency reward chhota optional reward hai; payout Admin approve karega.</p>
+          <div id="leaderRewardProgressList" class="leader-table-wrap"><div class="empty">Reward progress loading...</div></div>
+        </div>
+      </section>
+
       <!-- FINANCIAL RECORDS -->
       <section id="financialRecords" class="section"><div class="content-card"><h2>🧾 Audit & Financial Records</h2><p>Actual orders, payment status and revenue history.</p><div class="admin-grid"><div class="admin-mini-card"><h4>Success</h4><div class="big" id="finSuccess">0</div></div><div class="admin-mini-card"><h4>Pending</h4><div class="big" id="finPending">0</div></div><div class="admin-mini-card"><h4>Failed</h4><div class="big" id="finFailed">0</div></div><div class="admin-mini-card"><h4>Refunded</h4><div class="big" id="finRefunded">0</div></div></div></div><div class="content-card"><div class="table-wrap"><table class="admin-table"><thead><tr><th>Customer</th><th>Package/Course</th><th>Amount</th><th>Order ID</th><th>Method</th><th>Status</th><th>Date</th></tr></thead><tbody id="financialList"><tr><td colspan="7">Loading...</td></tr></tbody></table></div></div></section>
 
@@ -1878,7 +1946,7 @@ Social Media Basics"></textarea></div>
       <section id="panManagement" class="section">
         <div class="content-card">
           <h2>🪪 PAN Card Service Management</h2>
-          <p style="color:#64748b;margin-bottom:15px;">Customer ke PAN service requests, documents, UTR/payment aur request status yahan manage karein.</p>
+          <p style="color:#64748b;margin-bottom:15px;">Customer ke PAN service requests, UTR/payment aur request status yahan manage karein.</p>
           <div class="tabs">
             <button class="tab-btn active pan-status-tab" data-pan-filter="ALL">All</button>
             <button class="tab-btn pan-status-tab" data-pan-filter="Pending">Pending</button>
@@ -1986,7 +2054,9 @@ Social Media Basics"></textarea></div>
       deleteDoc,
       setDoc,
       doc,
-      getDoc
+      getDoc,
+      query,
+      where
     } from
       "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
       import { getStorage, ref, uploadBytes, getDownloadURL, listAll, deleteObject } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
@@ -2039,7 +2109,7 @@ Social Media Basics"></textarea></div>
       customers: ["customers"],
       inquiries: ["inquiries"],
       lic: ["lic"],
-      pan: ["inquiries"],
+      pan: ["panManagement"],
       courses: ["courses"],
       digitalSkills: ["courses"],
       aiTools: ["courses"],
@@ -2105,10 +2175,10 @@ Social Media Basics"></textarea></div>
       const tabs=document.querySelectorAll(".inquiry-tab");
       if(isOwner){ tabs.forEach(t=>t.style.display=""); return; }
       const canLIC=adminHasPermission("lic");
-      const canPAN=adminHasPermission("inquiries") && (CURRENT_ADMIN.permissions||[]).some(p=>{const id=typeof p==="object"?p.id:p;return id==="pan";});
+      const canGeneral=adminHasPermission("inquiries");
       tabs.forEach(tab=>{
         const type=tab.dataset.inquiryTab;
-        let allowed=type==="ALL" ? (canLIC||canPAN) : type==="LIC" ? canLIC : type==="PAN" ? canPAN : false;
+        const allowed=type==="ALL" ? (canLIC||canGeneral) : type==="LIC" ? canLIC : type==="GENERAL" ? canGeneral : false;
         tab.style.display=allowed?"":"none";
       });
       const visible=[...tabs].filter(t=>t.style.display!=="none");
@@ -5189,10 +5259,6 @@ Social Media Basics"></textarea></div>
         .getElementById("courseDetails")
         .value.trim();
 
-    const thumbnailFile =
-      document.getElementById("courseThumbnail")
-        .files[0];
-
     if (!name || !shortDescription) {
       courseMessage.style.color = "#dc2626";
       courseMessage.textContent =
@@ -5201,24 +5267,10 @@ Social Media Basics"></textarea></div>
     }
 
     courseMessage.style.color = "#2563eb";
-    courseMessage.textContent =
-      thumbnailFile
-        ? "Course save aur thumbnail upload ho raha hai..."
-        : "Saving course...";
+    courseMessage.textContent = "Saving course...";
 
     try {
 
-      let thumbnailUrl = null;
-
-      if (thumbnailFile) {
-
-        thumbnailUrl =
-          await uploadCourseFile(
-            thumbnailFile,
-            `courses/thumbnails/${Date.now()}_${thumbnailFile.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`
-          );
-
-      }
 
       const data = {
 
@@ -5251,13 +5303,6 @@ Social Media Basics"></textarea></div>
           new Date().toISOString()
 
       };
-
-      if (thumbnailUrl) {
-
-        data.thumbnailUrl =
-          thumbnailUrl;
-
-      }
 
       if (editingCourseId) {
 
@@ -6240,8 +6285,7 @@ Social Media Basics"></textarea></div>
           "#2563eb";
 
 
-        lessonMessage.textContent =
-          "Lesson save/upload ho raha hai...";
+        lessonMessage.textContent = "Lesson save ho raha hai...";
 
 
         try {
@@ -6284,20 +6328,8 @@ Social Media Basics"></textarea></div>
           }
 
 
-          const pdfUrl =
-            await replaceStorageFile(
-              old.pdfUrl,
-              pdfFile,
-              `courses/${selectedCourseForLessons.id}/lessons/${editingLessonId || "new"}/pdf`
-            );
-
-
-          const videoUrl =
-            await replaceStorageFile(
-              old.videoUrl,
-              videoFile,
-              `courses/${selectedCourseForLessons.id}/lessons/${editingLessonId || "new"}/video`
-            );
+          const pdfUrl = old.pdfUrl || null;
+          const videoUrl = old.videoUrl || null;
 
 
           const data = {
@@ -6543,7 +6575,7 @@ Social Media Basics"></textarea></div>
       growthFeatures: { collection: "growthFeatures", listId: "growthFeaturesList", formId: "growthFeatureForm", titleId: "growthFeatureFormTitle", messageId: "growthFeatureMessage", label: "Growth Feature" }
     };
 
-    const cmsEditing = { services: null, resources: null, announcements: null, growthFeatures: null };
+    const cmsEditing = { services: null, resources: null, announcements: null };
     function cmsEl(id){ return document.getElementById(id); }
     function cmsValue(id){ const el=cmsEl(id); return el ? el.value.trim() : ""; }
     function setCmsValue(id,value){ const el=cmsEl(id); if(el) el.value=value ?? ""; }
@@ -6551,12 +6583,12 @@ Social Media Basics"></textarea></div>
     function resetCmsForm(type){
       const cfg=CMS_CONFIG[type]; cmsEditing[type]=null;
       cmsEl(cfg.titleId).textContent=`Add ${cfg.label}`;
-      const ids={services:["serviceTitle","serviceIcon","serviceDescription","serviceUrl","serviceOrder"],resources:["resourceTitle","resourceIcon","resourceDescription","resourceUrl","resourceOrder"],announcements:["announcementTitle","announcementMessage","announcementOrder"],growthFeatures:["growthFeatureTitle","growthFeatureIcon","growthFeatureDescription","growthFeatureOrder"]};
+      const ids={services:["serviceTitle","serviceIcon","serviceDescription","serviceUrl","serviceOrder"],resources:["resourceTitle","resourceIcon","resourceDescription","resourceUrl","resourceOrder"],announcements:["announcementTitle","announcementMessage","announcementOrder"]};
       (ids[type]||[]).forEach(id=>setCmsValue(id,""));
       if(type==="services"){setCmsValue("serviceIcon","🛠️");setCmsValue("serviceCategory","Other");setCmsValue("serviceAction","inquiry");setCmsValue("serviceOrder","1");setCmsValue("serviceStatus","Active");}
       if(type==="resources"){setCmsValue("resourceIcon","📄");setCmsValue("resourceType","PDF / Guide");setCmsValue("resourceOrder","1");setCmsValue("resourceStatus","Active");}
       if(type==="announcements"){setCmsValue("announcementOrder","1");setCmsValue("announcementStatus","Active");}
-      if(type==="growthFeatures"){setCmsValue("growthFeatureIcon","⭐");setCmsValue("growthFeatureOrder","1");setCmsValue("growthFeatureStatus","Active");}
+      
       cmsEl(cfg.messageId).textContent="";
     }
 
@@ -6566,7 +6598,7 @@ Social Media Basics"></textarea></div>
       if(type==="services"){setCmsValue("serviceTitle",item?.title||"");setCmsValue("serviceIcon",item?.icon||"🛠️");setCmsValue("serviceCategory",item?.category||"Other");setCmsValue("serviceDescription",item?.description||"");setCmsValue("serviceAction",item?.action||"inquiry");setCmsValue("serviceUrl",item?.url||"");setCmsValue("serviceOrder",item?.order??1);setCmsValue("serviceStatus",item?.status||"Active");}
       if(type==="resources"){setCmsValue("resourceTitle",item?.title||"");setCmsValue("resourceIcon",item?.icon||"📄");setCmsValue("resourceDescription",item?.description||"");setCmsValue("resourceType",item?.type||"PDF / Guide");setCmsValue("resourceUrl",item?.url||"");setCmsValue("resourceOrder",item?.order??1);setCmsValue("resourceStatus",item?.status||"Active");}
       if(type==="announcements"){setCmsValue("announcementTitle",item?.title||"");setCmsValue("announcementMessage",item?.message||"");setCmsValue("announcementOrder",item?.order??1);setCmsValue("announcementStatus",item?.status||"Active");}
-      if(type==="growthFeatures"){setCmsValue("growthFeatureTitle",item?.title||"");setCmsValue("growthFeatureIcon",item?.icon||"⭐");setCmsValue("growthFeatureDescription",item?.description||"");setCmsValue("growthFeatureOrder",item?.order??1);setCmsValue("growthFeatureStatus",item?.status||"Active");}
+      
       cmsEl(cfg.formId).classList.remove("hidden"); cmsEl(cfg.formId).scrollIntoView({behavior:"smooth",block:"start"});
     }
 
@@ -6575,7 +6607,7 @@ Social Media Basics"></textarea></div>
       if(type==="services") data={title:cmsValue("serviceTitle"),icon:cmsValue("serviceIcon")||"🛠️",category:cmsValue("serviceCategory")||"Other",description:cmsValue("serviceDescription"),action:cmsValue("serviceAction")||"inquiry",url:cmsValue("serviceUrl"),order:Number(cmsValue("serviceOrder")||0),status:cmsValue("serviceStatus")||"Active"};
       if(type==="resources") data={title:cmsValue("resourceTitle"),icon:cmsValue("resourceIcon")||"📄",description:cmsValue("resourceDescription"),type:cmsValue("resourceType")||"PDF / Guide",url:cmsValue("resourceUrl"),order:Number(cmsValue("resourceOrder")||0),status:cmsValue("resourceStatus")||"Active"};
       if(type==="announcements") data={title:cmsValue("announcementTitle"),message:cmsValue("announcementMessage"),order:Number(cmsValue("announcementOrder")||0),status:cmsValue("announcementStatus")||"Active"};
-      if(type==="growthFeatures") data={title:cmsValue("growthFeatureTitle"),icon:cmsValue("growthFeatureIcon")||"⭐",description:cmsValue("growthFeatureDescription"),order:Number(cmsValue("growthFeatureOrder")||0),status:cmsValue("growthFeatureStatus")||"Active"};
+      
       if(!data.title || (type==="announcements"&&!data.message)){cmsEl(cfg.messageId).style.color="#dc2626";cmsEl(cfg.messageId).textContent="Required details fill karein.";return;}
       data.updatedAt=new Date().toISOString();
       try{if(id){await updateDoc(doc(db,cfg.collection,id),data);}else{data.createdAt=new Date().toISOString();data.createdBy=ADMIN_UID;await addDoc(collection(db,cfg.collection),data);}cmsEl(cfg.messageId).style.color="#16a34a";cmsEl(cfg.messageId).textContent="Saved successfully.";cmsEl(cfg.formId).classList.add("hidden");resetCmsForm(type);await loadCmsList(type);}catch(error){console.error(error);cmsEl(cfg.messageId).style.color="#dc2626";cmsEl(cfg.messageId).textContent="Save failed: "+error.message;}
@@ -6589,11 +6621,11 @@ Social Media Basics"></textarea></div>
     }
 
     let editingPackageId=null;
-    function resetPackageForm(){editingPackageId=null;setCmsValue("packageName","Starter");setCmsValue("packageStatus","Active");setCmsValue("packageOrder","1");setCmsValue("packagePrice","0");setCmsValue("packageAccessType","Free");setCmsValue("packageCourseCount","0");setCmsValue("packageDescription","");setCmsValue("packageCourseNames","");cmsEl("packageMessage").textContent="";}
-    function editPackage(item){editingPackageId=item.id;setCmsValue("packageName",item.name||"Starter");setCmsValue("packageStatus",item.status||"Active");setCmsValue("packageOrder",item.order??1);setCmsValue("packagePrice",item.price??0);setCmsValue("packageAccessType",item.accessType||((Number(item.price||0)>0)?"Paid":"Free"));setCmsValue("packageCourseCount",item.courseCount??0);setCmsValue("packageDescription",item.description||"");setCmsValue("packageCourseNames",Array.isArray(item.courseNames)?item.courseNames.join("\n"):(item.courseNames||""));cmsEl("packageForm").classList.remove("hidden");}
-    async function savePackage(){const name=cmsValue("packageName");if(!name){cmsEl("packageMessage").textContent="Package select karein.";return;}const price=Math.max(0,Number(cmsValue("packagePrice")||0));const accessType=cmsValue("packageAccessType")||"Free";const data={name,status:cmsValue("packageStatus")||"Active",order:Number(cmsValue("packageOrder")||0),price,accessType,courseCount:Number(cmsValue("packageCourseCount")||0),description:cmsValue("packageDescription"),courseNames:cmsValue("packageCourseNames").split("\n").map(x=>x.trim()).filter(Boolean),updatedAt:new Date().toISOString()};try{if(editingPackageId){await updateDoc(doc(db,"packages",editingPackageId),data);}else{data.createdAt=new Date().toISOString();data.createdBy=ADMIN_UID;await addDoc(collection(db,"packages"),data);}cmsEl("packageForm").classList.add("hidden");resetPackageForm();await loadPackages();}catch(error){cmsEl("packageMessage").style.color="#dc2626";cmsEl("packageMessage").textContent="Save failed: "+error.message;}}
-    async function deletePackage(id){if(!confirm("Kya aap ye package delete karna chahte ho?"))return;try{await deleteDoc(doc(db,"packages",id));await loadPackages();}catch(error){alert("Delete failed: "+error.message);}}
-    async function loadPackages(){const box=cmsEl("packagesList");if(!box)return;box.innerHTML='<div class="empty">Packages loading...</div>';try{const snap=await getDocs(collection(db,"packages"));const items=[];snap.forEach(x=>items.push({id:x.id,...x.data()}));items.sort((a,b)=>Number(a.order||0)-Number(b.order||0));if(!items.length){box.innerHTML='<div class="empty">Abhi package settings add nahi hui.</div>';return;}box.innerHTML="";items.forEach(item=>{const card=document.createElement("div");card.className="recent-card";card.innerHTML=`<h3>📦 ${escapeHTML(item.name||"Package")}</h3><p>${escapeHTML(item.description||"")}</p><p><strong>Price:</strong> ₹${escapeHTML(item.price??0)} | <strong>Access:</strong> ${escapeHTML(item.accessType||((Number(item.price||0)>0)?"Paid":"Free"))}</p><p><strong>Courses:</strong> ${escapeHTML(item.courseCount??0)} | <strong>Status:</strong> ${escapeHTML(item.status||"Active")}</p><p><strong>Course Names:</strong> ${escapeHTML(Array.isArray(item.courseNames)?item.courseNames.join(", "):(item.courseNames||"Not added"))}</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;"><button class="btn btn-light edit-package-btn">✏️ Edit</button><button class="btn btn-danger delete-package-btn">🗑️ Delete</button></div>`;card.querySelector(".edit-package-btn").addEventListener("click",()=>editPackage(item));card.querySelector(".delete-package-btn").addEventListener("click",()=>deletePackage(item.id));box.appendChild(card);});}catch(error){box.innerHTML='<div class="empty">Packages load failed: '+escapeHTML(error.message)+'</div>';}}
+    function resetPackageForm(){editingPackageId=null;setCmsValue("packageName","Starter");setCmsValue("packageStatus","Active");setCmsValue("packageOrder","1");setCmsValue("packagePrice","0");setCmsValue("packageOldPrice","0");setCmsValue("packageDiscount","");setCmsValue("packageSubtitle","");setCmsValue("packageAccessType","Free");setCmsValue("packageCourseCount","0");setCmsValue("packageDescription","");setCmsValue("packageFeatures","");setCmsValue("packageCourseNames","");cmsEl("packageMessage").textContent="";}
+    function editPackage(item){editingPackageId=item.id;setCmsValue("packageName",item.name||"Starter");setCmsValue("packageStatus",item.status||"Active");setCmsValue("packageOrder",item.order??1);setCmsValue("packagePrice",item.price??0);setCmsValue("packageOldPrice",item.oldPrice??0);setCmsValue("packageDiscount",item.discount||"");setCmsValue("packageSubtitle",item.subtitle||"");setCmsValue("packageAccessType",item.accessType||((Number(item.price||0)>0)?"Paid":"Free"));setCmsValue("packageCourseCount",item.courseCount??0);setCmsValue("packageDescription",item.description||"");setCmsValue("packageFeatures",Array.isArray(item.features)?item.features.join("\n"):(item.features||""));setCmsValue("packageCourseNames",Array.isArray(item.courseNames)?item.courseNames.join("\n"):(item.courseNames||""));cmsEl("packageForm").classList.remove("hidden");}
+    async function savePackage(){const name=cmsValue("packageName");if(!name){cmsEl("packageMessage").textContent="Package select karein.";return;}const price=Math.max(0,Number(cmsValue("packagePrice")||0));const oldPrice=Math.max(0,Number(cmsValue("packageOldPrice")||0));const accessType=cmsValue("packageAccessType")||"Free";const data={name,status:cmsValue("packageStatus")||"Active",order:Number(cmsValue("packageOrder")||0),price,oldPrice,discount:cmsValue("packageDiscount"),subtitle:cmsValue("packageSubtitle"),accessType,courseCount:Number(cmsValue("packageCourseCount")||0),description:cmsValue("packageDescription"),features:cmsValue("packageFeatures").split("\n").map(x=>x.trim()).filter(Boolean),courseNames:cmsValue("packageCourseNames").split("\n").map(x=>x.trim()).filter(Boolean),updatedAt:new Date().toISOString(),updatedBy:ADMIN_UID};try{if(editingPackageId){await updateDoc(doc(db,"packages",editingPackageId),data);await logAdminAction("Update Package","packages",name);}else{data.createdAt=new Date().toISOString();data.createdBy=ADMIN_UID;await addDoc(collection(db,"packages"),data);await logAdminAction("Create Package","packages",name);}cmsEl("packageForm").classList.add("hidden");resetPackageForm();await loadPackages();}catch(error){cmsEl("packageMessage").style.color="#dc2626";cmsEl("packageMessage").textContent="Save failed: "+error.message;}}
+    async function deletePackage(id){if(!confirm("Kya aap ye package delete karna chahte ho?"))return;try{await deleteDoc(doc(db,"packages",id));await logAdminAction("Delete Package","packages",id);await loadPackages();}catch(error){alert("Delete failed: "+error.message);}}
+    async function loadPackages(){const box=cmsEl("packagesList");if(!box)return;box.innerHTML='<div class="empty">Packages loading...</div>';try{const snap=await getDocs(collection(db,"packages"));const items=[];snap.forEach(x=>items.push({id:x.id,...x.data()}));items.sort((a,b)=>Number(a.order||0)-Number(b.order||0));if(!items.length){box.innerHTML='<div class="empty">Abhi package settings add nahi hui.</div>';return;}box.innerHTML="";items.forEach(item=>{const card=document.createElement("div");card.className="recent-card";const features=Array.isArray(item.features)?item.features.join(", "):(item.features||"Not added");card.innerHTML=`<h3>📦 ${escapeHTML(item.name||"Package")}</h3><p>${escapeHTML(item.subtitle||item.description||"")}</p><p><strong>Price:</strong> ₹${escapeHTML(item.price??0)}${Number(item.oldPrice||0)>0?` | <strong>Old:</strong> ₹${escapeHTML(item.oldPrice)}`:""}${item.discount?` | <strong>Offer:</strong> ${escapeHTML(item.discount)}`:""}</p><p><strong>Access:</strong> ${escapeHTML(item.accessType||((Number(item.price||0)>0)?"Paid":"Free"))} | <strong>Courses:</strong> ${escapeHTML(item.courseCount??0)} | <strong>Status:</strong> ${escapeHTML(item.status||"Active")}</p><p><strong>Features:</strong> ${escapeHTML(features)}</p><p><strong>Course Names:</strong> ${escapeHTML(Array.isArray(item.courseNames)?item.courseNames.join(", "):(item.courseNames||"Not added"))}</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;"><button class="btn btn-light edit-package-btn">✏️ Edit</button><button class="btn btn-danger delete-package-btn">🗑️ Delete</button></div>`;card.querySelector(".edit-package-btn").addEventListener("click",()=>editPackage(item));card.querySelector(".delete-package-btn").addEventListener("click",()=>deletePackage(item.id));box.appendChild(card);});}catch(error){box.innerHTML='<div class="empty">Packages load failed: '+escapeHTML(error.message)+'</div>';}}
 
     async function loadSupport(){try{const snap=await getDocs(collection(db,"dashboardSettings"));let found=null;snap.forEach(x=>{if(x.id==="support")found=x.data();});if(found){setCmsValue("supportWhatsapp",found.whatsapp||"");setCmsValue("supportEmail",found.email||"");setCmsValue("supportHelp",found.help||"");}}catch(error){console.error("Support load error",error);}}
     async function saveSupport(){try{await setDoc(doc(db,"dashboardSettings","support"),{whatsapp:cmsValue("supportWhatsapp"),email:cmsValue("supportEmail"),help:cmsValue("supportHelp"),updatedAt:new Date().toISOString(),updatedBy:ADMIN_UID},{merge:true});cmsEl("supportMessage").style.color="#16a34a";cmsEl("supportMessage").textContent="Support settings saved.";}catch(error){cmsEl("supportMessage").style.color="#dc2626";cmsEl("supportMessage").textContent="Save failed: "+error.message;}}
@@ -6609,9 +6641,6 @@ Social Media Basics"></textarea></div>
     cmsEl("addAnnouncementBtn").addEventListener("click",()=>{resetCmsForm("announcements");cmsEl("announcementForm").classList.remove("hidden");});
     cmsEl("cancelAnnouncementBtn").addEventListener("click",()=>{resetCmsForm("announcements");cmsEl("announcementForm").classList.add("hidden");});
     cmsEl("saveAnnouncementBtn").addEventListener("click",()=>saveCmsItem("announcements"));
-    cmsEl("addGrowthFeatureBtn").addEventListener("click",()=>{resetCmsForm("growthFeatures");cmsEl("growthFeatureForm").classList.remove("hidden");});
-    cmsEl("cancelGrowthFeatureBtn").addEventListener("click",()=>{resetCmsForm("growthFeatures");cmsEl("growthFeatureForm").classList.add("hidden");});
-    cmsEl("saveGrowthFeatureBtn").addEventListener("click",()=>saveCmsItem("growthFeatures"));
     cmsEl("saveSupportBtn").addEventListener("click",saveSupport);
     cmsEl("savePolicyBtn").addEventListener("click",savePolicies);
     cmsEl("addPackageBtn").addEventListener("click",()=>{resetPackageForm();cmsEl("packageForm").classList.remove("hidden");});
@@ -6625,7 +6654,7 @@ Social Media Basics"></textarea></div>
     // =====================================================
     // ADVANCED ADMIN FEATURES
     // =====================================================
-    const ADV_COLLECTIONS = ["customers","inquiries","courses","orders","payments","notifications","scheduledNotifications","appointments","adminActivityLogs","adminUsers","dashboardSettings","dashboardServices","dashboardResources","dashboardAnnouncements","growthFeatures","packages","foundingLeaders"];
+    const ADV_COLLECTIONS = ["customers","inquiries","courses","orders","payments","notifications","scheduledNotifications","appointments","adminActivityLogs","adminUsers","dashboardSettings","dashboardServices","dashboardResources","dashboardAnnouncements","packages","foundingLeaders"];
     let allOrders = [], allNotifications = [], allAppointments = [], allAdminLogs = [];
     let inquiryTab = "LIC";
 
@@ -6638,7 +6667,14 @@ Social Media Basics"></textarea></div>
     function setText(id,v){ const e=document.getElementById(id); if(e)e.textContent=v; }
     function collectionField(item, keys){ for(const k of keys){ if(item[k]!==undefined && item[k]!==null && item[k]!=="") return item[k]; } return ""; }
     function isPanInquiry(i){ const x=String(i.service||i.requestType||i.category||i.type||"").toLowerCase(); return x.includes("pan"); }
-    function isLicInquiry(i){ return !isPanInquiry(i); }
+    function inquiryType(i){
+      const service=String(i.service||i.category||i.type||"").toLowerCase();
+      if(service.includes("pan")) return "PAN";
+      if(service.includes("lic")) return "LIC";
+      return "GENERAL";
+    }
+    function isLicInquiry(i){ return inquiryType(i)==="LIC"; }
+    function isGeneralInquiry(i){ return inquiryType(i)==="GENERAL"; }
     async function logAdminAction(action, section, details=""){
       try{ await addDoc(collection(db,"adminActivityLogs"),{adminUid:auth.currentUser?.uid||ADMIN_UID,adminEmail:auth.currentUser?.email||"",action,section,details,createdAt:new Date().toISOString()}); }catch(e){ console.warn("Activity log failed",e); }
     }
@@ -6761,7 +6797,7 @@ Social Media Basics"></textarea></div>
     function resetFoundingLeaderForm(){
       editingFoundingLeaderId=null;
       document.getElementById("foundingLeaderFormTitle")?.replaceChildren(document.createTextNode("Add Founding Leader"));
-      flSet("flName",""); flSet("flMobile",""); flSet("flEmail",""); flSet("flLeaderId",""); flSet("flUpi",""); flSet("flCommission","50"); flSet("flUserUid",""); flSet("flStatus","Active"); flSet("flReferralLink","");
+      flSet("flName",""); flSet("flMobile",""); flSet("flEmail",""); flSet("flLeaderId",""); flSet("flUpi",""); flSet("flCommission",document.getElementById("globalLeaderCommission")?.value || "50"); flSet("flUserUid",""); flSet("flStatus","Active"); flSet("flReferralLink","");
       flMsg("");
       document.getElementById("foundingLeaderForm")?.classList.add("hidden");
     }
@@ -6776,13 +6812,43 @@ Social Media Basics"></textarea></div>
       flSet("flEmail",item?.email || "");
       flSet("flLeaderId",item?.leaderId || "");
       flSet("flUpi",item?.upiId || "");
-      flSet("flCommission",item?.commissionPercent ?? 50);
+      flSet("flCommission",document.getElementById("globalLeaderCommission")?.value || item?.commissionPercent || 50);
       flSet("flUserUid",item?.uid || item?.userUid || "");
       flSet("flStatus",item?.status || "Active");
       flSet("flReferralLink",item?.referralLink || makeFoundingReferralLink(item?.leaderId));
       flMsg("");
       form.classList.remove("hidden");
       form.scrollIntoView({behavior:"smooth",block:"start"});
+    }
+
+    let globalCommissionRate=50;
+    async function loadGlobalLeaderCommission(){
+      try{
+        const ref=doc(db,"dashboardSettings","leaderCommission");
+        const snap=await getDoc(ref);
+        const d=snap.exists()?snap.data():{};
+        const rate=Number(d.commissionPercent ?? 50);
+        globalCommissionRate=Number.isFinite(rate)?rate:50;
+        const el=document.getElementById("globalLeaderCommission"); if(el) el.value=Number.isFinite(rate)?rate:50;
+        const eff=document.getElementById("globalCommissionEffective"); if(eff) eff.value=String(d.effectiveFrom||"").slice(0,10);
+        const note=document.getElementById("globalCommissionNote"); if(note) note.value=d.updateNote||"";
+        const fl=document.getElementById("flCommission"); if(fl) fl.value=Number.isFinite(rate)?rate:50;
+      }catch(e){ console.warn("Global commission load failed",e); }
+    }
+    async function saveGlobalLeaderCommission(){
+      const msg=document.getElementById("globalCommissionMessage");
+      const rate=Number(document.getElementById("globalLeaderCommission")?.value);
+      const effective=String(document.getElementById("globalCommissionEffective")?.value||"");
+      const note=String(document.getElementById("globalCommissionNote")?.value||"").trim();
+      if(!Number.isFinite(rate)||rate<0||rate>100){if(msg){msg.textContent="Commission 0 se 100% ke beech hona chahiye.";msg.className="message error";}return;}
+      try{
+        globalCommissionRate=rate;
+        await setDoc(doc(db,"dashboardSettings","leaderCommission"),{commissionPercent:rate,effectiveFrom:effective,updateNote:note,updatedAt:new Date().toISOString(),updatedBy:ADMIN_UID},{merge:true});
+        const fl=document.getElementById("flCommission"); if(fl) fl.value=rate;
+        if(msg){msg.textContent=`Global commission ${rate}% save ho gaya. Sabhi active leaders ke liye apply hoga.`;msg.className="message success";}
+        await logAdminAction("Update Global Leader Commission","dashboardSettings",`${rate}%`);
+        await loadFoundingLeaders();
+      }catch(e){if(msg){msg.textContent="Save failed: "+(e.message||"Unknown error");msg.className="message error";}}
     }
 
     async function loadFoundingLeaders(){
@@ -6813,7 +6879,7 @@ Social Media Basics"></textarea></div>
       list.innerHTML=`<table class="leader-table"><thead><tr><th>Leader</th><th>Leader ID</th><th>Mobile</th><th>Commission</th><th>Status</th><th>Referral Link</th><th>Actions</th></tr></thead><tbody>${foundingLeadersCache.map(item=>{
         const status=String(item.status||"Active");
         const link=item.referralLink||makeFoundingReferralLink(item.leaderId);
-        return `<tr><td><strong>${escapeHTML(item.name||"-")}</strong><br><span style="color:#64748b">${escapeHTML(item.email||"")}</span></td><td>${escapeHTML(item.leaderId||"-")}</td><td>${escapeHTML(item.mobile||"-")}</td><td>${advNum(item.commissionPercent||0)}%</td><td><span class="leader-status ${status.toLowerCase()==="active"?"active":"inactive"}">${escapeHTML(status)}</span></td><td><div class="leader-link">${escapeHTML(link)}</div></td><td><div class="leader-actions"><button type="button" onclick="editFoundingLeader('${encodeURIComponent(item.leaderId||"")}')">✏️ Edit</button><button type="button" onclick="copyFoundingLeaderLink('${encodeURIComponent(link)}')">📋 Copy Link</button><button type="button" onclick="toggleFoundingLeader('${encodeURIComponent(item.leaderId||"")}')">${status.toLowerCase()==="active"?"⛔ Disable":"✅ Activate"}</button></div></td></tr>`;
+        return `<tr><td><strong>${escapeHTML(item.name||"-")}</strong><br><span style="color:#64748b">${escapeHTML(item.email||"")}</span></td><td>${escapeHTML(item.leaderId||"-")}</td><td>${escapeHTML(item.mobile||"-")}</td><td>${advNum(globalCommissionRate)}%</td><td><span class="leader-status ${status.toLowerCase()==="active"?"active":"inactive"}">${escapeHTML(status)}</span></td><td><div class="leader-link">${escapeHTML(link)}</div></td><td><div class="leader-actions"><button type="button" onclick="editFoundingLeader('${encodeURIComponent(item.leaderId||"")}')">✏️ Edit</button><button type="button" onclick="copyFoundingLeaderLink('${encodeURIComponent(link)}')">📋 Copy Link</button><button type="button" onclick="resendFoundingLeaderSetup('${encodeURIComponent(item.leaderId||"")}')">📧 Resend Setup</button><button type="button" onclick="toggleFoundingLeader('${encodeURIComponent(item.leaderId||"")}')">${status.toLowerCase()==="active"?"⛔ Disable":"✅ Activate"}</button></div></td></tr>`;
       }).join("")}</tbody></table>`;
     }
 
@@ -6827,6 +6893,32 @@ Social Media Basics"></textarea></div>
       const link=decodeURIComponent(encodedLink||"");
       if(navigator.clipboard){navigator.clipboard.writeText(link).then(()=>showAdminToast("Referral link copied."),()=>showAdminToast(link));}
       else showAdminToast(link);
+    };
+
+    window.resendFoundingLeaderSetup=async function(encodedId){
+      const id=decodeURIComponent(encodedId||"");
+      const item=foundingLeadersCache.find(x=>String(x.leaderId||"")===id);
+      if(!item || !item.email){showAdminToast("Leader email nahi mila.");return;}
+      if(!confirm(`Setup link dobara ${item.email} par bhejna hai?`)) return;
+      try{
+        showAdminToast("Secure setup link bheja ja raha hai...");
+        const result=await createLeaderAuthAndSendSetup(item.email);
+        await updateDoc(doc(db,"foundingLeaders",item.docId||item.leaderId),{
+          uid: result.uid || item.uid || item.userUid || "",
+          userUid: result.uid || item.userUid || item.uid || "",
+          setupEmailSent:true,
+          setupEmailSentAt:new Date().toISOString(),
+          setupEmailStatus:"Sent",
+          updatedAt:new Date().toISOString()
+        });
+        await logAdminAction("Resend Founding Leader Setup Email","foundingLeaders",id);
+        showAdminToast("Setup link email dobara bhej diya gaya.");
+        await loadFoundingLeaders();
+      }catch(e){
+        console.error("Resend leader setup error:",e);
+        try{await updateDoc(doc(db,"foundingLeaders",item.docId||item.leaderId),{setupEmailSent:false,setupEmailStatus:"Failed",setupEmailError:String(e?.message||e),setupEmailFailedAt:new Date().toISOString()});}catch(_){}
+        showAdminToast("Setup email failed: "+(e?.message||"Unknown error"));
+      }
     };
 
     window.toggleFoundingLeader=async function(encodedId){
@@ -6846,21 +6938,60 @@ Social Media Basics"></textarea></div>
       alert(message);
     }
 
+    function generateLeaderTempPassword(){
+      const chars="ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%";
+      let out="";
+      const a=new Uint32Array(16);
+      crypto.getRandomValues(a);
+      for(let i=0;i<a.length;i++) out+=chars[a[i]%chars.length];
+      return out+"Aa9!";
+    }
+
+    async function createLeaderAuthAndSendSetup(email){
+      const secAuth = getApps().some(a=>a.name === "leaderCreation")
+        ? getApp("leaderCreation")
+        : initializeApp(firebaseConfig,"leaderCreation");
+      const auth = getAuth(secAuth);
+      let uid="", emailSent=false;
+      try{
+        const tempPassword=generateLeaderTempPassword();
+        const cred=await createUserWithEmailAndPassword(auth,email,tempPassword);
+        uid=cred.user.uid;
+      }catch(e){
+        if(e?.code !== "auth/email-already-in-use") throw e;
+      }
+      // Firebase Auth will use its configured/default password-reset page.
+      // Do not force localhost/127.0.0.1 as a continue URL; that commonly causes
+      // auth/unauthorized-continue-uri while testing from VS Code Live Server.
+      await sendPasswordResetEmail(auth,email);
+      emailSent=true;
+      await signOut(auth).catch(()=>{});
+      return {uid,emailSent};
+    }
+
     async function saveFoundingLeader(){
       const name=flValue("flName"), mobile=flValue("flMobile"), email=flValue("flEmail"), leaderId=flValue("flLeaderId").toUpperCase(), upiId=flValue("flUpi"), uid=flValue("flUserUid"), status=flValue("flStatus")||"Active";
-      const commissionPercent=Number(flValue("flCommission"));
-      if(!name || !mobile || !leaderId || !upiId){flMsg("Name, Mobile, Leader ID aur UPI ID required hai.");return;}
+      const commissionPercent=Number(document.getElementById("globalLeaderCommission")?.value ?? flValue("flCommission"));
+      if(!name || !mobile || !leaderId || !upiId || !email){flMsg("Name, Mobile, Email, Leader ID aur UPI ID required hai.");return;}
       if(!Number.isFinite(commissionPercent) || commissionPercent<0 || commissionPercent>100){flMsg("Commission 0 se 100% ke beech hona chahiye.");return;}
       const existing=foundingLeadersCache.find(x=>String(x.leaderId||"").toUpperCase()===leaderId && String(x.leaderId||"").toUpperCase()!==String(editingFoundingLeaderId||"").toUpperCase());
       if(existing){flMsg("Ye Leader ID already exist karti hai.");return;}
-      const data={name,mobile,email,leaderId,upiId,commissionPercent,status,uid:userIdSafe(uid),userUid:userIdSafe(uid),referralCode:leaderId,referralLink:makeFoundingReferralLink(leaderId),updatedAt:new Date().toISOString()};
+      let resolvedUid=userIdSafe(uid);
+      let setupEmailSent=false;
       try{
+        if(!editingFoundingLeaderId && email){
+          flMsg("Leader account create ho raha hai aur secure setup link email par bheja ja raha hai...");
+          const authResult=await createLeaderAuthAndSendSetup(email);
+          resolvedUid=authResult.uid || resolvedUid;
+          setupEmailSent=authResult.emailSent;
+        }
+        const data={name,mobile,email,leaderId,upiId,status,uid:resolvedUid,userUid:resolvedUid,referralCode:leaderId,referralLink:makeFoundingReferralLink(leaderId),commissionSource:"global",setupEmailSent,setupEmailSentAt:setupEmailSent?new Date().toISOString():null,setupEmailStatus:setupEmailSent?"Sent":"Not Sent",updatedAt:new Date().toISOString()};
         const refDoc=doc(db,"foundingLeaders",editingFoundingLeaderId || leaderId);
         if(editingFoundingLeaderId){await updateDoc(refDoc,data);}else{await setDoc(refDoc,{...data,createdAt:new Date().toISOString()});}
         await logAdminAction(editingFoundingLeaderId?"Update Founding Leader":"Create Founding Leader","foundingLeaders",leaderId);
-        flMsg("Saved successfully.",true);
+        flMsg(setupEmailSent?"Leader saved successfully. Secure setup link email bhej diya gaya hai.":"Leader saved successfully.",true);
         await loadFoundingLeaders();
-        setTimeout(resetFoundingLeaderForm,350);
+        setTimeout(resetFoundingLeaderForm,700);
       }catch(e){
         console.error("Founding Leader save error:",e);
         flMsg("Save failed: "+(e.message||"Unknown error"));
@@ -6891,17 +7022,117 @@ Social Media Basics"></textarea></div>
         setText("flPending","₹"+advNum(pending));
         if(!rows.length){box.innerHTML='<div class="empty">Abhi referral-linked order/commission record nahi hai.</div>';return;}
         rows.sort((a,b)=>String(b.o.createdAt||"").localeCompare(String(a.o.createdAt||"")));
-        box.innerHTML=`<table class="leader-table"><thead><tr><th>Leader</th><th>Customer</th><th>Package</th><th>Sale</th><th>Commission</th><th>Commission Status</th><th>Order Status</th><th>Date</th></tr></thead><tbody>${rows.map(({o,leader})=>`<tr><td>${escapeHTML(leader.name||leader.leaderId||"-")}</td><td>${escapeHTML(o.customerName||o.name||o.email||o.customerUid||"-")}</td><td>${escapeHTML(o.package||o.packageName||o.courseName||"-")}</td><td>₹${advNum(o.amount||o.price||0)}</td><td>₹${advNum(o.commissionAmount||0)}</td><td>${escapeHTML(o.commissionStatus||"Pending")}</td><td>${escapeHTML(o.status||"Pending")}</td><td>${escapeHTML(advDate(o.createdAt))}</td></tr>`).join("")}</tbody></table>`;
+        box.innerHTML=`<table class="leader-table"><thead><tr><th>Leader</th><th>Customer</th><th>Package</th><th>Sale</th><th>Commission</th><th>Commission Status</th><th>Order Status</th><th>Date</th></tr></thead><tbody>${rows.map(({o,leader})=>{const cs=String(o.commissionStatus||"Pending");return `<tr><td>${escapeHTML(leader.name||leader.leaderId||"-")}</td><td>${escapeHTML(o.customerName||o.name||o.email||o.customerUid||"-")}</td><td>${escapeHTML(o.package||o.packageName||o.courseName||"-")}</td><td>₹${advNum(o.amount||o.price||0)}</td><td>₹${advNum(o.commissionAmount||0)}</td><td><div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center;"><strong>${escapeHTML(cs)}</strong><button type="button" class="leader-actions-btn" data-order="${escapeHTML(o.id)}" data-status="Approved">Approve</button><button type="button" class="leader-actions-btn" data-order="${escapeHTML(o.id)}" data-status="Paid">Paid</button></div></td><td>${escapeHTML(o.status||"Pending")}</td><td>${escapeHTML(advDate(o.createdAt))}</td></tr>`;}).join("")}</tbody></table>`;
+        box.querySelectorAll('.leader-actions-btn').forEach(btn=>btn.onclick=async()=>{try{await updateDoc(doc(db,"orders",btn.dataset.order),{commissionStatus:btn.dataset.status,commissionUpdatedAt:new Date().toISOString(),commissionUpdatedBy:ADMIN_UID});await logAdminAction("Update Commission", "orders", `${btn.dataset.order} -> ${btn.dataset.status}`);await loadFoundingLeaders();showAdminToast(`Commission marked ${btn.dataset.status}.`);}catch(e){showAdminToast("Commission update failed: "+(e.message||"Unknown error"));}});
       }catch(e){
         console.error("Founding Leader orders error:",e);
         box.innerHTML='<div class="empty">Commission records load nahi ho paaye: '+escapeHTML(e.message||"Unknown error")+'</div>';
       }
     }
 
+        document.getElementById("saveGlobalCommissionBtn")?.addEventListener("click",saveGlobalLeaderCommission);
     document.getElementById("addFoundingLeaderBtn")?.addEventListener("click",()=>openFoundingLeaderForm());
     document.getElementById("cancelFoundingLeaderBtn")?.addEventListener("click",resetFoundingLeaderForm);
     document.getElementById("saveFoundingLeaderBtn")?.addEventListener("click",saveFoundingLeader);
     document.getElementById("flLeaderId")?.addEventListener("input",()=>flSet("flReferralLink",makeFoundingReferralLink(flValue("flLeaderId").toUpperCase())));
+
+    /* =====================================================
+       LEADER REVENUE + REWARD MANAGEMENT
+    ===================================================== */
+    let leaderRewardsCache = [];
+    let editingLeaderRewardId = null;
+    const ELIGIBLE_ORDER_STATUSES = new Set(["success","approved","verified","completed","paid"]);
+    const INVALID_ORDER_STATUSES = new Set(["pending","rejected","cancelled","canceled","refunded","failed","declined"]);
+
+    function orderIsEligible(o){
+      const s=String(o.status||"success").trim().toLowerCase();
+      if(INVALID_ORDER_STATUSES.has(s)) return false;
+      return ELIGIBLE_ORDER_STATUSES.has(s);
+    }
+    function orderAmount(o){ return Math.max(0,Number(o.amount??o.price??0)||0); }
+    function rewardValue(id){const e=document.getElementById(id);return e?String(e.value||"").trim():"";}
+    function rewardSet(id,v){const e=document.getElementById(id);if(e)e.value=v??"";}
+    function rewardMsg(m,good=false){const e=document.getElementById("leaderRewardMessage");if(!e)return;e.textContent=m||"";e.style.color=good?"#15803d":"#b91c1c";}
+    function resetLeaderRewardForm(){
+      editingLeaderRewardId=null;
+      document.getElementById("leaderRewardFormTitle").textContent="Add Reward";
+      rewardSet("rwName","");rewardSet("rwPeriod","Monthly");rewardSet("rwTargetType","Sales");rewardSet("rwTargetValue","");rewardSet("rwAmount","");rewardSet("rwBudget","0");rewardSet("rwCap","5");rewardSet("rwStart","");rewardSet("rwEnd","");rewardSet("rwRepeat","No");rewardSet("rwStatus","Active");rewardSet("rwScope","All Leaders");rewardSet("rwDescription","");rewardMsg("");
+      document.getElementById("leaderRewardForm")?.classList.add("hidden");
+    }
+    function openLeaderRewardForm(item=null){
+      editingLeaderRewardId=item?.id||null;
+      document.getElementById("leaderRewardFormTitle").textContent=item?"Edit Reward":"Add Reward";
+      rewardSet("rwName",item?.name||"");rewardSet("rwPeriod",item?.period||"Monthly");rewardSet("rwTargetType",item?.targetType||"Sales");rewardSet("rwTargetValue",item?.targetValue??"");rewardSet("rwAmount",item?.rewardAmount??"");rewardSet("rwBudget",item?.budget??0);rewardSet("rwCap",item?.maxRewardPercent??5);rewardSet("rwStart",item?.startDate||"");rewardSet("rwEnd",item?.endDate||"");rewardSet("rwRepeat",item?.repeatable||"No");rewardSet("rwStatus",item?.status||"Active");rewardSet("rwScope",item?.scope||"All Leaders");rewardSet("rwDescription",item?.description||"");rewardMsg("");
+      document.getElementById("leaderRewardForm")?.classList.remove("hidden");document.getElementById("leaderRewardForm")?.scrollIntoView({behavior:"smooth",block:"start"});
+    }
+    async function loadLeaderRevenue(){
+      try{
+        const snap=await getDocs(collection(db,"orders"));
+        const leaders=foundingLeadersCache||[]; const by={}; let total=0,direct=0,leaderRev=0,pendingComm=0;
+        leaders.forEach(l=>by[l.leaderId]={leader:l,sales:0,revenue:0,commission:0,pending:0,approved:0,paid:0});
+        snap.forEach(d=>{
+          const o={id:d.id,...d.data()}; if(!orderIsEligible(o)) return;
+          const amount=orderAmount(o); total+=amount;
+          const lid=String(o.leaderId||o.referralCode||"").trim(); const rec=by[lid];
+          if(!lid||!rec){direct+=amount;return;}
+          leaderRev+=amount; rec.sales++; rec.revenue+=amount;
+          const saleRate=Number(o.commissionRateAtSale); const commission=Number(o.commissionAmount ?? (Number.isFinite(saleRate)?amount*saleRate/100:0))||0; rec.commission+=commission;
+          const cs=String(o.commissionStatus||"Pending").toLowerCase();
+          if(cs==="paid")rec.paid+=commission; else if(cs==="approved")rec.approved+=commission; else {rec.pending+=commission;pendingComm+=commission;}
+        });
+        setText("lrTotalRevenue","₹"+advNum(total));setText("lrDirectRevenue","₹"+advNum(direct));setText("lrLeaderRevenue","₹"+advNum(leaderRev));setText("lrCommissionPending","₹"+advNum(pendingComm));
+        const box=document.getElementById("leaderRevenueTable");
+        const rows=Object.values(by).filter(x=>x.sales||x.revenue||x.commission);
+        if(!rows.length){box.innerHTML='<div class="empty">Abhi verified leader-generated revenue nahi hai.</div>';return;}
+        box.innerHTML=`<table class="leader-table"><thead><tr><th>Leader</th><th>Sales</th><th>Revenue</th><th>Commission</th><th>Pending</th><th>Approved</th><th>Paid</th></tr></thead><tbody>${rows.map(x=>`<tr><td><strong>${escapeHTML(x.leader.name||x.leader.leaderId)}</strong><br><small>${escapeHTML(x.leader.leaderId||"")}</small></td><td>${advNum(x.sales)}</td><td>₹${advNum(x.revenue)}</td><td>₹${advNum(x.commission)}</td><td>₹${advNum(x.pending)}</td><td>₹${advNum(x.approved)}</td><td>₹${advNum(x.paid)}</td></tr>`).join("")}</tbody></table>`;
+      }catch(e){console.warn("Leader revenue load:",e);}
+    }
+    async function loadLeaderRewards(){
+      const box=document.getElementById("leaderRewardsList");if(!box)return;
+      try{const snap=await getDocs(collection(db,"leaderRewards"));leaderRewardsCache=[];snap.forEach(d=>leaderRewardsCache.push({id:d.id,...d.data()}));leaderRewardsCache.sort((a,b)=>String(b.createdAt||"").localeCompare(String(a.createdAt||"")));
+        const budget=leaderRewardsCache.reduce((n,x)=>n+(Number(x.budget)||0),0);const pending=leaderRewardsCache.reduce((n,x)=>n+(Number(x.pendingAmount)||0),0);setText("rwBudget","₹"+advNum(budget));setText("rwPending","₹"+advNum(pending));
+        const weekly=leaderRewardsCache.find(x=>x.period==="Weekly"&&String(x.status||"")==="Active");setText("rwWeeklyCap",weekly?advNum(weekly.maxRewardPercent??1)+"%":"1%");
+        if(!leaderRewardsCache.length){box.innerHTML='<div class="empty">Abhi koi reward configured nahi hai.</div>';renderLeaderRewardProgress();return;}
+        box.innerHTML=`<table class="leader-table"><thead><tr><th>Reward</th><th>Period</th><th>Target</th><th>Reward</th><th>Budget</th><th>Max %</th><th>Status</th><th>Actions</th></tr></thead><tbody>${leaderRewardsCache.map(x=>`<tr><td><strong>${escapeHTML(x.name||"-")}</strong><br><small>${escapeHTML(x.scope||"All Leaders")}</small></td><td>${escapeHTML(x.period||"-")}</td><td>${escapeHTML(x.targetType||"Sales")}: ${advNum(x.targetValue||0)}</td><td>₹${advNum(x.rewardAmount||0)}</td><td>₹${advNum(x.budget||0)}</td><td>${advNum(x.maxRewardPercent??5)}%</td><td>${escapeHTML(x.status||"Inactive")}</td><td><div class="leader-actions"><button type="button" onclick="editLeaderReward('${encodeURIComponent(x.id)}')">✏️ Edit</button><button type="button" onclick="toggleLeaderReward('${encodeURIComponent(x.id)}')">${String(x.status||"")==="Active"?"⛔ Disable":"✅ Activate"}</button></div></td></tr>`).join("")}</tbody></table>`;
+        renderLeaderRewardProgress();
+      }catch(e){box.innerHTML='<div class="empty">Reward load failed: '+escapeHTML(e.message||"Unknown error")+'</div>';}
+    }
+    function rewardWindowActive(r,now=new Date()){
+      const t=now.getTime();const st=r.startDate?new Date(r.startDate+"T00:00:00").getTime():-Infinity;const en=r.endDate?new Date(r.endDate+"T23:59:59").getTime():Infinity;return t>=st&&t<=en;
+    }
+    async function renderLeaderRewardProgress(){
+      const box=document.getElementById("leaderRewardProgressList");if(!box)return;
+      try{const snap=await getDocs(collection(db,"orders"));const orders=[];snap.forEach(d=>orders.push({id:d.id,...d.data()}));const activeRewards=leaderRewardsCache.filter(r=>String(r.status||"")==="Active"&&rewardWindowActive(r));
+        if(!activeRewards.length||!foundingLeadersCache.length){box.innerHTML='<div class="empty">Active reward aur leader data available nahi hai.</div>';return;}
+        const rows=[];
+        for(const r of activeRewards){for(const l of foundingLeadersCache.filter(x=>String(x.status||"Active")==="Active")){const os=orders.filter(o=>orderIsEligible(o)&&String(o.leaderId||o.referralCode||"")===String(l.leaderId||""));const sales=os.length;const revenue=os.reduce((n,o)=>n+orderAmount(o),0);const current=r.targetType==="Revenue"?revenue:sales;const target=Number(r.targetValue)||0;const achieved=target>0&&current>=target;const rawReward=Number(r.rewardAmount)||0;const capBase=revenue*(Number(r.maxRewardPercent??5)/100);const safeReward=Math.min(rawReward,capBase,Number(r.budget)>0?Number(r.budget):Infinity);rows.push({r,l,current,target,achieved,reward:safeReward,revenue});}}
+        box.innerHTML=`<table class="leader-table"><thead><tr><th>Leader</th><th>Reward</th><th>Progress</th><th>Eligible Revenue</th><th>Potential Reward</th><th>Status</th><th>Action</th></tr></thead><tbody>${rows.map(x=>`<tr><td>${escapeHTML(x.l.name||x.l.leaderId)}</td><td>${escapeHTML(x.r.name||"-")}<br><small>${escapeHTML(x.r.period||"")}</small></td><td>${advNum(x.current)} / ${advNum(x.target)}</td><td>₹${advNum(x.revenue)}</td><td>₹${advNum(x.reward)}</td><td>${x.achieved?"🏆 Achieved":"🔒 In Progress"}</td><td>${x.achieved?`<button type="button" class="btn btn-primary reward-approve-btn" data-leader="${escapeHTML(x.l.leaderId||"")}" data-reward="${escapeHTML(x.r.id||"")}" data-amount="${x.reward}">Approve</button>`:"—"}</td></tr>`).join("")}</tbody></table>`;
+        box.querySelectorAll(".reward-approve-btn").forEach(btn=>btn.onclick=()=>approveLeaderReward(btn.dataset.leader,btn.dataset.reward,Number(btn.dataset.amount)||0));
+      }catch(e){box.innerHTML='<div class="empty">Reward progress load failed: '+escapeHTML(e.message||"Unknown error")+'</div>';}
+    }
+    window.editLeaderReward=function(id){const x=leaderRewardsCache.find(r=>r.id===decodeURIComponent(id));if(x)openLeaderRewardForm(x);};
+    window.toggleLeaderReward=async function(id){const x=leaderRewardsCache.find(r=>r.id===decodeURIComponent(id));if(!x)return;try{await updateDoc(doc(db,"leaderRewards",x.id),{status:String(x.status||"")==="Active"?"Inactive":"Active",updatedAt:new Date().toISOString(),updatedBy:ADMIN_UID});await logAdminAction("Toggle","leaderRewards",x.name||x.id);await loadLeaderRewards();}catch(e){showAdminToast("Reward status update failed: "+(e.message||"Unknown error"));}};
+    async function approveLeaderReward(leaderId,rewardId,amount){
+      try{
+        const existing=await getDocs(query(collection(db,"leaderRewardClaims"),where("leaderId","==",leaderId),where("rewardId","==",rewardId)));
+        const already=existing.docs.some(d=>["Approved","Paid"].includes(String(d.data().status||"")));
+        if(already){showAdminToast("Is reward ka claim pehle hi approve ho chuka hai.");return;}
+        const ref=await addDoc(collection(db,"leaderRewardClaims"),{leaderId,rewardId,amount,status:"Approved",approvedBy:ADMIN_UID,approvedAt:new Date().toISOString(),createdAt:new Date().toISOString()});
+        await logAdminAction("Approve Leader Reward","leaderRewardClaims",ref.id);
+        showAdminToast("Reward approved. Payment status Admin manually update karega.");
+        await loadLeaderRewards();
+      }catch(e){showAdminToast("Reward approval failed: "+(e.message||"Unknown error"));}
+    }
+    document.getElementById("addLeaderRewardBtn")?.addEventListener("click",()=>openLeaderRewardForm());
+    document.getElementById("cancelLeaderRewardBtn")?.addEventListener("click",resetLeaderRewardForm);
+    document.getElementById("saveLeaderRewardBtn")?.addEventListener("click",async()=>{
+      const name=rewardValue("rwName"),period=rewardValue("rwPeriod"),targetType=rewardValue("rwTargetType"),targetValue=Number(rewardValue("rwTargetValue")),rewardAmount=Number(rewardValue("rwAmount")),budget=Number(rewardValue("rwBudget")||0),maxRewardPercent=Number(rewardValue("rwCap")||0),startDate=rewardValue("rwStart"),endDate=rewardValue("rwEnd"),repeatable=rewardValue("rwRepeat"),status=rewardValue("rwStatus"),scope=rewardValue("rwScope"),description=rewardValue("rwDescription");
+      if(!name||!Number.isFinite(targetValue)||targetValue<=0||!Number.isFinite(rewardAmount)||rewardAmount<0){rewardMsg("Reward Name, valid Target aur Reward Amount required hai.");return;}
+      if(maxRewardPercent<0||maxRewardPercent>100){rewardMsg("Maximum reward % 0 se 100 ke beech hona chahiye.");return;}
+      if(startDate&&endDate&&new Date(endDate)<new Date(startDate)){rewardMsg("End Date, Start Date se pehle nahi ho sakti.");return;}
+      const data={name,period,targetType,targetValue,rewardAmount,budget,maxRewardPercent,startDate,endDate,repeatable,status,scope,description,updatedAt:new Date().toISOString(),updatedBy:ADMIN_UID};
+      try{if(editingLeaderRewardId)await updateDoc(doc(db,"leaderRewards",editingLeaderRewardId),data);else await addDoc(collection(db,"leaderRewards"),{...data,createdAt:new Date().toISOString(),pendingAmount:0});await logAdminAction(editingLeaderRewardId?"Update Leader Reward":"Create Leader Reward","leaderRewards",name);rewardMsg("Reward saved successfully.",true);await loadLeaderRewards();setTimeout(resetLeaderRewardForm,400);}catch(e){rewardMsg("Save failed: "+(e.message||"Unknown error"));}
+    });
 
     // Advanced analytics
     async function loadAdvancedAnalytics(){
@@ -6913,7 +7144,7 @@ Social Media Basics"></textarea></div>
         const total=orders.reduce((n,o)=>String(o.status||"success").toLowerCase()==="success"?n+Number(o.amount||o.price||0):n,0);
         const now=Date.now(), day=86400000; const newCust=customers.filter(c=>{const t=new Date(c.createdAt||c.registrationDate||0).getTime();return t&&now-t<=30*day}).length;
         setText("aTotalCustomers",advNum(customers.length)); setText("aNewCustomers",advNum(newCust)); setText("aCourses",advNum(courses.length)); setText("aActiveCourses",advNum(courses.filter(c=>String(c.status||"Active")==="Active").length)); setText("aOrders",advNum(orders.length)); setText("aRevenue","₹"+advNum(total));
-        setText("aLicInquiries",advNum(allInquiries.filter(isLicInquiry).length)); setText("aPanInquiries",advNum(allInquiries.filter(isPanInquiry).length));
+        setText("aLicInquiries",advNum(allInquiries.filter(isLicInquiry).length)); setText("aPanInquiries",advNum(allInquiries.filter(isGeneralInquiry).length));
         const rev={Starter:0,Growth:0,Pro:0,Elite:0}; orders.forEach(o=>{if(String(o.status||"success").toLowerCase()!=="success")return; const p=String(o.package||o.packageName||""); if(rev[p]!==undefined)rev[p]+=Number(o.amount||o.price||0)}); Object.keys(rev).forEach(k=>setText("rev"+k,"₹"+advNum(rev[k])));
         updateFinancialSummary(orders);
       }catch(e){ console.warn("Analytics load:",e); }
@@ -6922,11 +7153,11 @@ Social Media Basics"></textarea></div>
     function renderFinancial(orders){ const box=document.getElementById("financialList"); if(!box)return; if(!orders.length){box.innerHTML='<tr><td colspan="7">No orders/payments found.</td></tr>';return;} box.innerHTML=orders.slice().sort((a,b)=>new Date(b.createdAt||0)-new Date(a.createdAt||0)).map(o=>`<tr><td>${escapeHTML(o.customerName||o.name||o.email||"-")}</td><td>${escapeHTML(o.package||o.packageName||o.courseName||"-")}</td><td>₹${advNum(o.amount||o.price||0)}</td><td>${escapeHTML(o.orderId||o.id||"-")}</td><td>${escapeHTML(o.paymentMethod||o.method||"-")}</td><td>${escapeHTML(o.status||"Success")}</td><td>${escapeHTML(advDate(o.createdAt))}</td></tr>`).join(""); }
 
     // Inquiry tabs
-    document.querySelectorAll(".inquiry-tab").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".inquiry-tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");inquiryTab=b.dataset.inquiryTab;setText("inquiryTabInfo",inquiryTab==="PAN"?"PAN inquiries":inquiryTab==="LIC"?"LIC inquiries":"All inquiries");applyInquiryFilters();}));
+    document.querySelectorAll(".inquiry-tab").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".inquiry-tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");inquiryTab=b.dataset.inquiryTab;setText("inquiryTabInfo",inquiryTab==="GENERAL"?"Free/general inquiries":inquiryTab==="LIC"?"LIC inquiries":"LIC + Free inquiries");applyInquiryFilters();}));
     const originalApplyInquiryFilters=applyInquiryFilters;
     applyInquiryFilters=function(){
       const searchText=searchInput.value.toLowerCase().trim(), selectedStatus=statusFilter.value;
-      const filtered=allInquiries.filter(item=>{const name=String(item.name||item.customerName||"").toLowerCase(),mobile=String(item.mobile||item.phone||"").toLowerCase(),email=String(item.email||"").toLowerCase(),plan=String(item.plan||item.selectedPlan||item.requestType||"").toLowerCase(),status=item.status||"Pending"; const typeOK=inquiryTab==="ALL"||(inquiryTab==="PAN"?isPanInquiry(item):isLicInquiry(item)); return typeOK&&(name.includes(searchText)||mobile.includes(searchText)||email.includes(searchText)||plan.includes(searchText))&&(selectedStatus==="All"||status===selectedStatus);}); displayInquiries(filtered);
+      const filtered=allInquiries.filter(item=>{const name=String(item.name||item.customerName||"").toLowerCase(),mobile=String(item.mobile||item.phone||"").toLowerCase(),email=String(item.email||"").toLowerCase(),plan=String(item.plan||item.selectedPlan||item.requestType||"").toLowerCase(),status=item.status||"Pending"; const typeOK=inquiryTab==="ALL" ? (isLicInquiry(item)||isGeneralInquiry(item)) : inquiryTab==="LIC" ? isLicInquiry(item) : inquiryTab==="GENERAL" ? isGeneralInquiry(item) : false; return typeOK&&(name.includes(searchText)||mobile.includes(searchText)||email.includes(searchText)||plan.includes(searchText))&&(selectedStatus==="All"||status===selectedStatus);}); displayInquiries(filtered);
     };
 
     // Notifications
@@ -7066,9 +7297,10 @@ Social Media Basics"></textarea></div>
 
     document.getElementById("addStaffBtn").onclick=async()=>{
       const name=cmsValue("staffName"),email=cmsValue("staffEmail"),password=document.getElementById("staffPassword").value,role=cmsValue("staffRole");
-      const permissions=[...document.querySelectorAll(".staff-permission-check:checked")].map(check=>({id:check.value,name:check.dataset.name}));
+      const permissionItems=[...document.querySelectorAll(".staff-permission-check:checked")].map(check=>({id:check.value,name:check.dataset.name}));
+      const permissions=permissionItems.map(x=>x.id).filter(Boolean).join(",");
       if(!name||!email||password.length<6){setText("adminMessage","Name, email and 6+ character password required.");return;}
-      if(!permissions.length){setText("adminMessage","Please select at least one service.");return;}
+      if(!permissionItems.length){setText("adminMessage","Please select at least one service.");return;}
       try{
         const secAuth=getAdminCreationAuth();
         const cred=await createUserWithEmailAndPassword(secAuth,email,password);
@@ -7094,7 +7326,7 @@ Social Media Basics"></textarea></div>
         document.getElementById("staffPassword").value="";
         document.getElementById("staffRole").value="Staff Admin";
         document.querySelectorAll(".staff-permission-check").forEach(check=>check.checked=false);
-        await logAdminAction("Create","Admin Management",email+" | Services: "+permissions.map(x=>x.name).join(", ")+" | Setup email: "+(emailSent?"sent":"failed"));
+        await logAdminAction("Create","Admin Management",email+" | Services: "+permissionItems.map(x=>x.name).join(", ")+" | Setup email: "+(emailSent?"sent":"failed"));
         loadAdmins();
       }catch(e){
         setText("adminMessage","Add Admin failed: "+e.message);
@@ -7106,9 +7338,9 @@ Social Media Basics"></textarea></div>
 
     // Backup / restore
     async function readCollectionData(name){const s=await getDocs(collection(db,name));const a=[];s.forEach(d=>a.push({id:d.id,data:d.data()}));return a;}
-    document.getElementById("createBackupBtn").onclick=async()=>{try{const data={version:1,createdAt:new Date().toISOString(),collections:{}};for(const c of ["customers","inquiries","courses","packages","orders","payments","notifications","scheduledNotifications","appointments","dashboardServices","dashboardResources","dashboardAnnouncements","growthFeatures","dashboardSettings"]){try{data.collections[c]=await readCollectionData(c);}catch(e){data.collections[c]=[];}}delete data.collections.customers; // customer auth/profile backup intentionally excluded for privacy
+    document.getElementById("createBackupBtn").onclick=async()=>{try{const data={version:1,createdAt:new Date().toISOString(),collections:{}};for(const c of ["customers","inquiries","courses","packages","orders","payments","notifications","scheduledNotifications","appointments","dashboardServices","dashboardResources","dashboardAnnouncements","dashboardSettings"]){try{data.collections[c]=await readCollectionData(c);}catch(e){data.collections[c]=[];}}delete data.collections.customers; // customer auth/profile backup intentionally excluded for privacy
       const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=`apna-growth-hub-backup-${Date.now()}.json`;a.click();URL.revokeObjectURL(url);await logAdminAction("Create","Backup & Recovery","Manual backup");setText("backupMessage","Backup downloaded. Customer passwords/auth data excluded.");}catch(e){setText("backupMessage","Backup failed: "+e.message);}};
-    document.getElementById("restoreBackupBtn").onclick=async()=>{const f=document.getElementById("restoreFile").files[0];if(!f){setText("backupMessage","Backup JSON select karo.");return;}if(!confirm("Restore se existing records change ho sakte hain. Continue?"))return;try{const data=JSON.parse(await f.text());const allowed=["packages","dashboardServices","dashboardResources","dashboardAnnouncements","growthFeatures","dashboardSettings","notifications","scheduledNotifications","appointments"];let count=0;for(const c of allowed){for(const item of (data.collections?.[c]||[])){await setDoc(doc(db,c,item.id),item.data,{merge:true});count++;}}await logAdminAction("Restore","Backup & Recovery",`${count} records`);setText("backupMessage",`Safe restore complete: ${count} records.`);}catch(e){setText("backupMessage","Restore failed: "+e.message);}};
+    document.getElementById("restoreBackupBtn").onclick=async()=>{const f=document.getElementById("restoreFile").files[0];if(!f){setText("backupMessage","Backup JSON select karo.");return;}if(!confirm("Restore se existing records change ho sakte hain. Continue?"))return;try{const data=JSON.parse(await f.text());const allowed=["packages","dashboardServices","dashboardResources","dashboardAnnouncements","dashboardSettings","notifications","scheduledNotifications","appointments"];let count=0;for(const c of allowed){for(const item of (data.collections?.[c]||[])){await setDoc(doc(db,c,item.id),item.data,{merge:true});count++;}}await logAdminAction("Restore","Backup & Recovery",`${count} records`);setText("backupMessage",`Safe restore complete: ${count} records.`);}catch(e){setText("backupMessage","Restore failed: "+e.message);}};
 
     // System health
     async function runHealth(){setText("healthFirebase","OK");setText("healthAuth",auth.currentUser?"OK":"Login required");try{await getDocs(collection(db,"dashboardSettings"));setText("healthFirestore","OK");}catch(e){setText("healthFirestore","ERROR");}setText("healthStorage","Ready");}
@@ -7139,7 +7371,7 @@ Social Media Basics"></textarea></div>
     document.getElementById("runSandboxBtn").onclick=async()=>{const d={type:cmsValue("sandboxType"),name:cmsValue("sandboxName"),data:cmsValue("sandboxData"),result:"TEST COMPLETED — no live customer record changed",createdAt:new Date().toISOString(),createdBy:ADMIN_UID};try{await addDoc(collection(db,"sandboxTests"),d);setText("sandboxResult","Test completed safely in sandbox.");loadSandbox();}catch(e){setText("sandboxResult","Test failed: "+e.message);}};
     document.getElementById("clearSandboxBtn").onclick=async()=>{if(!confirm("Delete all sandbox test records?"))return;try{const s=await getDocs(collection(db,"sandboxTests"));for(const d of s.docs)await deleteDoc(doc(db,"sandboxTests",d.id));loadSandbox();}catch(e){setText("sandboxResult","Clear failed: "+e.message);}};
 
-    async function loadAdvancedFeatures(){await loadAdvancedAnalytics();await loadNotifications();await loadSchedules();await loadPricing();await loadPanServices();await loadPanPricing();await loadAppSettings();await loadAdmins();await loadActivityLogs();await runHealth();await renderSegments();await loadAppointments();await loadSandbox();}
+    async function loadAdvancedFeatures(){await loadAdvancedAnalytics();await loadNotifications();await loadSchedules();await loadPricing();await loadPanServices();await loadPanPricing();await loadAppSettings();await loadAdmins();await loadActivityLogs();await runHealth();await renderSegments();await loadAppointments();await loadSandbox();try{await loadFoundingLeaders();await loadLeaderRevenue();await loadLeaderRewards();}catch(e){console.warn("Leader/reward load:",e);}}
 
     // MENU
 
@@ -7269,8 +7501,6 @@ Social Media Basics"></textarea></div>
         announcements:
           "Announcements Management",
 
-        growthFeatures:
-          "Growth Features Management",
 
         foundingLeaders:
           "Founding Leaders",
@@ -7303,8 +7533,8 @@ Social Media Basics"></textarea></div>
       if(sectionName === "services") loadCmsList("services");
       if(sectionName === "resources") loadCmsList("resources");
       if(sectionName === "announcements") loadCmsList("announcements");
-      if(sectionName === "growthFeatures") loadCmsList("growthFeatures");
-      if(sectionName === "foundingLeaders") loadFoundingLeaders();
+            if(sectionName === "foundingLeaders") { loadGlobalLeaderCommission(); loadFoundingLeaders(); }
+      if(sectionName === "leaderRevenueRewards"){loadLeaderRevenue();loadLeaderRewards();}
       if(sectionName === "support") loadSupport();
       if(sectionName === "privacy") loadPolicies();
       if(sectionName === "courses") loadPackages();
