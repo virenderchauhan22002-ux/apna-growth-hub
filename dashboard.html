@@ -817,6 +817,25 @@
       .dashboard-footer { margin-top:20px; }
     }
 
+    /* ===== ADMIN RESOURCES ===== */
+    
+    .course-list{display:grid;gap:10px}
+    .course-card{border:1px solid var(--border-color);border-radius:14px;background:#fff;padding:12px;cursor:pointer;transition:.18s}
+    .course-card:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(15,23,42,.07)}
+    .course-card-top{display:flex;gap:10px;align-items:flex-start}
+    .course-icon{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:#eff6ff;font-size:19px;flex:none}
+    .course-card-info{min-width:0;flex:1}.course-card-info h4{margin:0;font-size:13px}.course-card-info p{margin:4px 0 0;font-size:10.5px;color:var(--text-muted);line-height:1.35}
+    .course-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.course-chip{font-size:9.5px;padding:4px 7px;border-radius:999px;background:#f1f5f9;color:#475569}.course-chip.active{background:#ecfdf5;color:#15803d}.course-chip.paid{background:#fff7ed;color:#c2410c}
+    .course-modal-summary{padding:12px;border:1px solid var(--border-color);border-radius:12px;background:#f8fafc;margin-bottom:12px}.course-modal-summary h3{margin:0 0 5px;font-size:16px}.course-modal-summary p{margin:3px 0;font-size:11px;color:var(--text-muted);line-height:1.45}
+    .lesson-list{display:grid;gap:8px}.lesson-card{border:1px solid var(--border-color);border-radius:11px;padding:10px;background:#fff}.lesson-card h4{margin:0;font-size:12px}.lesson-card p{margin:5px 0 0;font-size:10.5px;color:var(--text-muted);line-height:1.45;white-space:pre-wrap}.lesson-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.lesson-actions a{font-size:10px;text-decoration:none}
+
+.resource-list{display:grid;gap:8px}
+    .resource-item-card{display:flex;align-items:center;gap:10px;padding:11px;border:1px solid var(--border-color);border-radius:12px;background:#fff;cursor:pointer;transition:.18s}
+    .resource-item-card:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(15,23,42,.07)}
+    .resource-item-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#eff6ff;font-size:19px;flex:none}
+    .resource-item-info{min-width:0;flex:1}.resource-item-info h4{margin:0;font-size:12.5px}.resource-item-info p{margin:3px 0 0;font-size:10.5px;color:var(--text-muted);line-height:1.35}
+    .resource-chevron{font-size:14px;color:var(--primary);font-weight:700}
+
     /* Mobile Responsive */
     @media (max-width: 1024px) {
       .dashboard-layout { grid-template-columns: 1fr; }
@@ -983,6 +1002,17 @@
         </div>
       </section>
 
+      <!-- LIC COURSES -->
+      <section class="final-section" id="coursesSection">
+        <div class="lic-final-card">
+          <div class="lic-final-copy">
+            <h4>🎓 LIC Courses</h4>
+            <p>LIC se jude courses aur lessons yahan dekhein.</p>
+          </div>
+          <button type="button" class="primary-btn lic-final-btn" onclick="openLicCourses()">Explore LIC Courses →</button>
+        </div>
+      </section>
+
       <!-- LIC PLANS -->
       <section class="final-section" id="licSection">
         <div class="lic-final-card">
@@ -999,7 +1029,7 @@
         <!-- Services Block -->
         <div class="sidebar-block" id="servicesSection">
           <div class="sidebar-block-title">🛠️ Quick Services</div>
-          <div class="service-list">
+          <div class="service-list" id="customerServicesList">
             <div class="service-item-card" onclick="openPanService()">
               <div class="service-item-icon">🪪</div>
               <div class="service-item-info">
@@ -1008,15 +1038,14 @@
               </div>
               <span class="service-chevron">→</span>
             </div>
+          </div>
+        </div>
 
-            <div class="service-item-card" onclick="openInquiry('Customer Inquiry')">
-              <div class="service-item-icon">📩</div>
-              <div class="service-item-info">
-                <h4>Direct Customer Inquiry</h4>
-                <p>Submit your personalized requirements</p>
-              </div>
-              <span class="service-chevron">→</span>
-            </div>
+        <!-- Resources Block -->
+        <div class="sidebar-block" id="resourcesSection">
+          <div class="sidebar-block-title">📚 Resources</div>
+          <div class="resource-list" id="customerResourcesList">
+            <div style="padding:10px;text-align:center;color:var(--text-muted);font-size:11px;">Resources load ho rahe hain...</div>
           </div>
         </div>
 
@@ -1094,6 +1123,21 @@
       <div class="modal-body">
         <div id="licPlansAgeDisplay" style="padding: 10px 14px; background: var(--primary-soft); border-radius: var(--radius-sm); font-weight: 700; margin-bottom: 14px;">🎂 Age: --</div>
         <div id="licPlansContent"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIC COURSES MODAL -->
+  <div id="licCoursesModal" class="modal" onclick="if(event.target===this) closeModal('licCoursesModal')">
+    <div class="modal-box" style="max-width:720px;">
+      <div class="modal-head">
+        <h2>🎓 LIC Courses</h2>
+        <button class="modal-close" onclick="closeModal('licCoursesModal')">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="licCoursesContent">
+          <div style="padding:20px;text-align:center;color:var(--text-muted);">LIC courses load ho rahe hain...</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1237,7 +1281,39 @@
         <button type="button" class="secondary-btn" style="text-align:left;" onclick="openSupport()">💬 Support & Helpdesk</button>
         <button type="button" class="secondary-btn" style="text-align:left;" onclick="openPolicy('privacy')">🔒 Privacy Policy</button>
         <button type="button" class="secondary-btn" style="text-align:left;" onclick="openPolicy('terms')">📄 Terms of Use</button>
+        <button type="button" class="secondary-btn" style="text-align:left;" onclick="openPolicy('about')">ℹ️ About Apna Growth Hub</button>
         <button type="button" class="secondary-btn" style="text-align:left; color:#ef4444; border-color:#fecaca; margin-top:8px;" onclick="logout()">🚪 Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUPPORT & HELPDESK MODAL -->
+  <div id="courseModal" class="modal" onclick="if(event.target===this) closeModal('courseModal')">
+    <div class="modal-box" style="max-width:720px;">
+      <div class="modal-head">
+        <h2 id="courseModalTitle">Course</h2>
+        <button class="modal-close" onclick="closeModal('courseModal')">×</button>
+      </div>
+      <div class="modal-body" id="courseModalContent">
+        <div style="text-align:center;color:var(--text-muted);font-size:12px;">Loading...</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="supportModal" class="modal" onclick="if(event.target===this) closeModal('supportModal')">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h2>💬 Support & Helpdesk</h2>
+        <button class="modal-close" onclick="closeModal('supportModal')">×</button>
+      </div>
+      <div class="modal-body">
+        <p id="supportHelpText" style="margin:0 0 14px;color:var(--text-muted);">Support ke liye WhatsApp ya email par contact karein.</p>
+        <a id="supportWhatsappBtn" class="secondary-btn" href="#" target="_blank" rel="noopener" style="display:block;text-decoration:none;margin-bottom:8px;">💬 WhatsApp Support <span id="supportWhatsappText" style="display:block;font-size:11px;margin-top:3px;">Loading...</span></a>
+        <a id="supportEmailBtn" class="secondary-btn" href="#" style="display:block;text-decoration:none;margin-bottom:8px;">✉️ Email Support <span id="supportEmailText" style="display:block;font-size:11px;margin-top:3px;">Loading...</span></a>
+        <button type="button" class="secondary-btn" style="width:100%;text-align:left;margin-bottom:8px;" onclick="openSupportHelp('faq')">❓ Help Center / FAQs</button>
+        <button type="button" class="secondary-btn" style="width:100%;text-align:left;margin-bottom:8px;" onclick="openSupportHelp('problem')">⚠️ Report a Problem</button>
+        <button type="button" class="secondary-btn" style="width:100%;text-align:left;" onclick="openSupportHelp('account')">👤 Account Help</button>
+        <div id="supportExtraText" style="display:none;margin-top:12px;padding:12px;border-radius:12px;background:#f8fafc;color:var(--text-muted);font-size:12px;"></div>
       </div>
     </div>
   </div>
@@ -1302,6 +1378,8 @@
     const PAN_UPI_ID = "virenderchauhan22002@okhdfcbank";
     let currentUser = null;
     let currentCustomerData = {};
+    let supportSettings = { whatsapp: "", email: "", help: "" };
+    let policySettings = { privacy: "", terms: "", about: "" };
     let panPricing = { newApplication: 0, correction: 0, minor: 0, other: 0, upiId: PAN_UPI_ID, status: "Active" };
     let panPricingLoadState = "idle";
 
@@ -1317,7 +1395,11 @@
         loadPackages(),
         loadPanPricing(),
         loadNotifications(),
-        loadDashboardSettings()
+        loadDashboardSettings(),
+        loadSupportSettings(),
+        loadPolicySettings(),
+        loadCustomerServices(),
+        loadCustomerResources(),
       ]);
     });
 
@@ -1325,7 +1407,16 @@
       try {
         const snap = await getDocs(collection(db, "notifications"));
         const items = [];
-        snap.forEach(d => items.push({ id: d.id, ...d.data() }));
+        snap.forEach(d => {
+          const item = { id: d.id, ...d.data() };
+          const status = String(item.status ?? "Active").trim().toLowerCase();
+          const audience = String(item.audience ?? "All Customers").trim().toLowerCase();
+          // Customer dashboard currently shows only active notifications intended for all customers.
+          // Targeted audience delivery is not enabled until customer-segmentation rules are connected.
+          if (["hidden", "inactive", "disabled", "draft"].includes(status)) return;
+          if (audience && audience !== "all customers") return;
+          items.push(item);
+        });
         items.sort((a,b) => String(b.createdAt || "").localeCompare(String(a.createdAt || "")));
         window.__dashboardNotifications = items;
       } catch (e) {
@@ -1336,12 +1427,36 @@
 
     async function loadDashboardSettings() {
       try {
+        const appSnap = await getDoc(doc(db, "dashboardSettings", "app"));
+        if (appSnap.exists()) {
+          const app = appSnap.data() || {};
+          const appName = String(app.appName || "Apna Growth Hub").trim() || "Apna Growth Hub";
+          const logo = String(app.logo || "").trim();
+          const appInfo = String(app.info || "").trim();
+          document.title = `${appName} - Dashboard`;
+          document.querySelectorAll(".brand-info h1, .footer-brand").forEach(el => el.textContent = appName);
+          const footerCopy = document.querySelector(".footer-copy");
+          if (footerCopy) footerCopy.textContent = `© ${new Date().getFullYear()} ${appName}. All rights reserved.`;
+          const aboutButtons = document.querySelectorAll('[onclick*="openAccountInfo"]');
+          aboutButtons.forEach(btn => btn.setAttribute("onclick", `openAccountInfo('About ${appName}', ${JSON.stringify(appInfo || `${appName} is a learning, growth and customer-service platform.`)})`));
+          const logoBox = document.querySelector(".brand-logo-badge");
+          if (logoBox && logo) logoBox.innerHTML = `<img src="${escapeDashboardText(logo)}" alt="${escapeDashboardText(appName)}" style="width:100%;height:100%;object-fit:contain;border-radius:12px;">`;
+          const wa = String(app.whatsapp || "").trim();
+          const email = String(app.email || "").trim();
+          if (wa) { supportSettings.whatsapp = wa; }
+          if (email) { supportSettings.email = email; }
+          renderSupportSettings();
+        }
+
         const annSnap = await getDocs(collection(db, "dashboardAnnouncements"));
         const announcements = [];
         annSnap.forEach(d => announcements.push({ id: d.id, ...d.data() }));
         announcements.sort((a,b) => Number(a.order || 0) - Number(b.order || 0));
         const annBox = document.querySelector("#announcementsSection .announcement-list");
-        const activeAnnouncements = announcements.filter(x => String(x.status || "Active").toLowerCase() !== "disabled");
+        const activeAnnouncements = announcements.filter(x => {
+          const status = String(x.status ?? "Active").trim().toLowerCase();
+          return ["active", "published"].includes(status);
+        });
         if (annBox && activeAnnouncements.length) {
           annBox.innerHTML = activeAnnouncements.map(x => `
             <div class="announcement-item"><span class="announcement-dot"></span><div>
@@ -1353,6 +1468,249 @@
       } catch (e) {
         console.warn("Dashboard settings load skipped:", e);
       }
+    }
+
+    async function loadSupportSettings() {
+      try {
+        const snap = await getDoc(doc(db, "dashboardSettings", "support"));
+        supportSettings = snap.exists() ? {
+          whatsapp: String(snap.data().whatsapp || "").trim(),
+          email: String(snap.data().email || "").trim(),
+          help: String(snap.data().help || "").trim()
+        } : { whatsapp: "", email: "", help: "" };
+        renderSupportSettings();
+      } catch (e) {
+        console.warn("Support settings load skipped:", e);
+        renderSupportSettings();
+      }
+    }
+
+    function renderSupportSettings() {
+      const wa = supportSettings.whatsapp || "";
+      const email = supportSettings.email || "";
+      const help = supportSettings.help || "Support ke liye WhatsApp ya email par contact karein.";
+      const waDigits = wa.replace(/[^0-9]/g, "");
+      const waBtn = document.getElementById("supportWhatsappBtn");
+      const emailBtn = document.getElementById("supportEmailBtn");
+      const waText = document.getElementById("supportWhatsappText");
+      const emailText = document.getElementById("supportEmailText");
+      const helpText = document.getElementById("supportHelpText");
+      if (helpText) helpText.textContent = help;
+      if (waText) waText.textContent = wa || "WhatsApp details admin se set nahi hain.";
+      if (emailText) emailText.textContent = email || "Email details admin se set nahi hain.";
+      if (waBtn) {
+        waBtn.href = waDigits ? `https://wa.me/${waDigits}` : "#";
+        waBtn.style.opacity = waDigits ? "1" : ".55";
+        waBtn.style.pointerEvents = waDigits ? "auto" : "none";
+      }
+      if (emailBtn) {
+        emailBtn.href = email ? `mailto:${email}` : "#";
+        emailBtn.style.opacity = email ? "1" : ".55";
+        emailBtn.style.pointerEvents = email ? "auto" : "none";
+      }
+    }
+
+    async function loadPolicySettings() {
+      try {
+        const snap = await getDoc(doc(db, "dashboardSettings", "policies"));
+        policySettings = snap.exists() ? {
+          privacy: String(snap.data().privacy || "").trim(),
+          terms: String(snap.data().terms || "").trim(),
+          about: String(snap.data().about || "").trim()
+        } : { privacy: "", terms: "", about: "" };
+      } catch (e) {
+        console.warn("Policy settings load skipped:", e);
+      }
+    }
+
+    window.openLicCourses = async () => {
+      const modal = document.getElementById("licCoursesModal");
+      const box = document.getElementById("licCoursesContent");
+      if (!modal || !box) return;
+
+      modal.classList.add("show");
+      box.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text-muted);">LIC courses load ho rahe hain...</div>';
+
+      try {
+        const snap = await getDocs(collection(db, "courses"));
+        const items = [];
+        snap.forEach(d => items.push({ id: d.id, ...d.data() }));
+
+        const activeLicCourses = items.filter(x => {
+          const name = String(x.name || x.courseName || x.title || "").trim();
+          const category = String(x.category || x.courseCategory || "").trim().toLowerCase();
+          const rawStatus = x.status ?? x.courseStatus ?? x.visibility ?? (x.isActive === false ? "Inactive" : "Active");
+          const status = String(rawStatus).trim().toLowerCase();
+          const isLic = category === "lic" || category.includes("life insurance") || /\blic\b/i.test(name);
+          return name && isLic && !["disabled","hidden","inactive","draft","deleted","archived"].includes(status) && x.isActive !== false;
+        });
+
+        activeLicCourses.sort((a,b) => String(a.name || a.courseName || a.title || "").localeCompare(String(b.name || b.courseName || b.title || "")));
+
+        if (!activeLicCourses.length) {
+          box.innerHTML = '<div style="padding:14px;text-align:center;color:var(--text-muted);font-size:12px;">Abhi koi active LIC course available nahi hai.</div>';
+          window.__dashboardCourses = [];
+          return;
+        }
+
+        window.__dashboardCourses = activeLicCourses;
+        box.innerHTML = activeLicCourses.map(x => {
+          const id = String(x.id).replace(/'/g, "\\'");
+          const name = escapeDashboardText(x.name || x.courseName || x.title || "LIC Course");
+          const desc = escapeDashboardText(x.shortDescription || x.description || x.details || "LIC course");
+          const instructor = escapeDashboardText(x.instructor || x.teacher || "");
+          const access = String(x.access || x.accessType || "Free");
+          const lessonCount = Number(x.lessons ?? x.lessonCount ?? x.totalLessons ?? 0);
+          const numericPrice = Number(x.price ?? x.amount ?? 0);
+          const price = access.toLowerCase() === "paid" ? `₹${numericPrice}` : "Free";
+          return `<div class="course-card" onclick="openDashboardCourse('${id}')"><div class="course-card-top"><div class="course-icon">🎓</div><div class="course-card-info"><h4>${name}</h4><p>${desc}</p></div></div><div class="course-meta"><span class="course-chip">📚 ${lessonCount} Lessons</span>${instructor ? `<span class="course-chip">👨‍🏫 ${instructor}</span>` : ""}<span class="course-chip ${access.toLowerCase()==="paid" ? "paid" : "active"}">${price}</span></div></div>`;
+        }).join("");
+      } catch (e) {
+        console.error("LIC courses load error:", e);
+        window.__dashboardCourses = [];
+        box.innerHTML = '<div style="padding:14px;text-align:center;color:var(--text-muted);font-size:11px;">LIC courses abhi load nahi ho pa rahe hain. Firebase access/rules check karein.</div>';
+      }
+    };
+
+    async function loadCustomerCourses() {
+      const list = document.getElementById("customerCoursesList");
+      if (!list) return;
+      try {
+        const snap = await getDocs(collection(db, "courses"));
+        const items = [];
+        snap.forEach(d => items.push({ id: d.id, ...d.data() }));
+        items.sort((a,b) => String(a.name || a.courseName || a.title || "").localeCompare(String(b.name || b.courseName || b.title || "")));
+        const active = items.filter(x => {
+          const name = String(x.name || x.courseName || x.title || "").trim();
+          const rawStatus = x.status ?? x.courseStatus ?? x.visibility ?? (x.isActive === false ? "Inactive" : "Active");
+          const status = String(rawStatus).trim().toLowerCase();
+          return name && !["disabled","hidden","inactive","draft","deleted","archived"].includes(status) && x.isActive !== false;
+        });
+        if (!active.length) {
+          list.innerHTML = '<div style="padding:12px;text-align:center;color:var(--text-muted);font-size:11px;">Abhi koi active course available nahi hai.</div>';
+          window.__dashboardCourses = [];
+          return;
+        }
+        list.innerHTML = active.map(x => {
+          const nameRaw = x.name || x.courseName || x.title || "Course";
+          const name = escapeDashboardText(nameRaw);
+          const desc = escapeDashboardText(x.shortDescription || x.description || x.details || "Course details");
+          const pkg = escapeDashboardText(x.packageName || x.package || x.packageTitle || "Unassigned");
+          const instructor = escapeDashboardText(x.instructor || x.teacher || "");
+          const access = String(x.access || x.accessType || "Free");
+          const lessonCount = Number(x.lessons ?? x.lessonCount ?? x.totalLessons ?? 0);
+          const numericPrice = Number(x.price ?? x.amount ?? 0);
+          const price = access.toLowerCase() === "paid" ? `₹${numericPrice}` : "Free";
+          return `<div class="course-card" onclick="openDashboardCourse('${String(x.id).replace(/'/g, "\\'")}')"><div class="course-card-top"><div class="course-icon">🎓</div><div class="course-card-info"><h4>${name}</h4><p>${desc}</p></div></div><div class="course-meta"><span class="course-chip">📦 ${pkg}</span><span class="course-chip">📚 ${lessonCount} Lessons</span>${instructor ? `<span class="course-chip">👨‍🏫 ${instructor}</span>` : ""}<span class="course-chip ${access.toLowerCase()==="paid" ? "paid" : "active"}">${price}</span></div></div>`;
+        }).join("");
+        window.__dashboardCourses = active;
+      } catch (e) {
+        console.error("Customer courses load error:", e);
+        window.__dashboardCourses = [];
+        list.innerHTML = '<div style="padding:12px;text-align:center;color:var(--text-muted);font-size:11px;">Courses abhi load nahi ho pa rahe hain. Firebase access/rules check karein.</div>';
+      }
+    }
+
+    window.openDashboardCourse = async (id) => {
+      const course = (window.__dashboardCourses || []).find(x => String(x.id) === String(id));
+      if (!course) return;
+      const titleEl = document.getElementById("courseModalTitle");
+      const contentEl = document.getElementById("courseModalContent");
+      if (!titleEl || !contentEl) return;
+      titleEl.textContent = course.name || course.courseName || course.title || "Course";
+      const access = String(course.access || "Free");
+      const price = access.toLowerCase() === "paid" ? `₹${Number(course.price || 0)}` : "Free";
+      contentEl.innerHTML = `<div class="course-modal-summary"><h3>🎓 ${escapeDashboardText(course.name || course.courseName || course.title || "Course")}</h3><p>${escapeDashboardText(course.shortDescription || course.details || "")}</p><p><strong>Lessons:</strong> ${Number(course.lessons ?? course.lessonCount ?? course.totalLessons ?? 0)} &nbsp; • &nbsp; <strong>Access:</strong> ${escapeDashboardText(access)} ${price !== "Free" ? "• " + price : ""}</p>${course.instructor ? `<p><strong>Instructor:</strong> ${escapeDashboardText(course.instructor)}</p>` : ""}</div><div class="lesson-list"><div style="padding:8px;color:var(--text-muted);font-size:11px;">Lessons load ho rahe hain...</div></div>`;
+      document.getElementById("courseModal").classList.add("show");
+      try {
+        const snap = await getDocs(collection(db, "courses", course.id, "lessons"));
+        const lessons = [];
+        snap.forEach(d => lessons.push({ id: d.id, ...d.data() }));
+        lessons.sort((a,b) => Number(a.order || 0) - Number(b.order || 0));
+        const activeLessons = lessons.filter(x => {
+          const status = String(x.status || "Active").toLowerCase();
+          return status !== "disabled" && status !== "hidden" && status !== "inactive";
+        });
+        const list = contentEl.querySelector(".lesson-list");
+        if (!activeLessons.length) {
+          list.innerHTML = '<div style="padding:10px;text-align:center;color:var(--text-muted);font-size:11px;">Abhi koi lesson available nahi hai.</div>';
+          return;
+        }
+        list.innerHTML = activeLessons.map((lesson, i) => {
+          const n = Number(lesson.order || (i + 1));
+          const title = escapeDashboardText(lesson.title || `Lesson ${n}`);
+          const content = escapeDashboardText(lesson.content || "Lesson content admin ne abhi add nahi kiya hai.");
+          const pdf = String(lesson.pdfUrl || "").trim();
+          const video = String(lesson.videoUrl || "").trim();
+          return `<div class="lesson-card"><h4>📘 Lesson ${n}: ${title}</h4><p>${content}</p><div class="lesson-actions">${pdf ? `<a class="secondary-btn" href="${escapeDashboardText(pdf)}" target="_blank" rel="noopener">📄 Open PDF</a>` : ""}${video ? `<a class="secondary-btn" href="${escapeDashboardText(video)}" target="_blank" rel="noopener">🎥 Open Video</a>` : ""}</div></div>`;
+        }).join("");
+      } catch (e) {
+        console.warn("Course lessons load skipped:", e);
+        const list = contentEl.querySelector(".lesson-list");
+        if (list) list.innerHTML = '<div style="padding:10px;text-align:center;color:var(--text-muted);font-size:11px;">Lessons abhi load nahi ho pa rahe hain.</div>';
+      }
+    };
+
+    async function loadCustomerServices() {
+      const list = document.getElementById("customerServicesList");
+      if (!list) return;
+      try {
+        const snap = await getDocs(collection(db, "dashboardServices"));
+        const items = [];
+        snap.forEach(d => items.push({ id: d.id, ...d.data() }));
+        items.sort((a,b) => Number(a.order || 0) - Number(b.order || 0));
+        const active = items.filter(x => {
+          const status = String(x.status || "Active").toLowerCase();
+          const title = String(x.title || "").toLowerCase();
+          return status !== "disabled" && status !== "hidden" && !title.includes("pan card") && !title.includes("customer inquiry") && !title.includes("support");
+        });
+        const cards = active.map(x => {
+          const title = escapeDashboardText(x.title || "Service");
+          const desc = escapeDashboardText(x.description || "Service details ke liye yahan click karein.");
+          const icon = escapeDashboardText(x.icon || "🛠️");
+          return `<div class="service-item-card" onclick="openDashboardService('${String(x.id).replace(/'/g, "\\'")}')"><div class="service-item-icon">${icon}</div><div class="service-item-info"><h4>${title}</h4><p>${desc}</p></div><span class="service-chevron">→</span></div>`;
+        }).join("");
+        list.innerHTML = `<div class="service-item-card" onclick="openPanService()"><div class="service-item-icon">🪪</div><div class="service-item-info"><h4>PAN Card Service</h4><p>New, Correction, Minor & Reprint</p></div><span class="service-chevron">→</span></div>${cards}`;
+        window.__dashboardServices = active;
+      } catch (e) {
+        console.warn("Customer services load skipped:", e);
+        window.__dashboardServices = [];
+      }
+    }
+
+    async function loadCustomerResources() {
+      const list = document.getElementById("customerResourcesList");
+      if (!list) return;
+      try {
+        const snap = await getDocs(collection(db, "dashboardResources"));
+        const items = [];
+        snap.forEach(d => items.push({ id: d.id, ...d.data() }));
+        items.sort((a,b) => Number(a.order || 0) - Number(b.order || 0));
+        const active = items.filter(x => {
+          const status = String(x.status || "Active").toLowerCase();
+          return status !== "disabled" && status !== "hidden" && String(x.title || "").trim();
+        });
+        if (!active.length) {
+          list.innerHTML = '<div style="padding:10px;text-align:center;color:var(--text-muted);font-size:11px;">Abhi koi resource available nahi hai.</div>';
+          window.__dashboardResources = [];
+          return;
+        }
+        list.innerHTML = active.map(x => {
+          const title = escapeDashboardText(x.title || "Resource");
+          const desc = escapeDashboardText(x.description || x.type || "Resource");
+          const icon = escapeDashboardText(x.icon || "📄");
+          return `<div class="resource-item-card" onclick="openDashboardResource('${String(x.id).replace(/'/g, "\\'")}')"><div class="resource-item-icon">${icon}</div><div class="resource-item-info"><h4>${title}</h4><p>${desc}</p></div><span class="resource-chevron">→</span></div>`;
+        }).join("");
+        window.__dashboardResources = active;
+      } catch (e) {
+        console.warn("Customer resources load skipped:", e);
+        window.__dashboardResources = [];
+        list.innerHTML = '<div style="padding:10px;text-align:center;color:var(--text-muted);font-size:11px;">Resources abhi available nahi hain.</div>';
+      }
+    }
+
+    function escapeDashboardText(value) {
+      return String(value || "").replace(/[&<>\"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':'&quot;'}[c]));
     }
 
     async function loadCustomer(user) {
@@ -1616,23 +1974,109 @@
     };
 
     // LIC PLANS MODAL
+    // Customer ko sirf Active/Available plans dikhaye jaate hain jo uski age range mein aate hain.
     window.openLicPlans = async () => {
-      document.getElementById("licPlansModal").classList.add("show");
+      const modal = document.getElementById("licPlansModal");
       const box = document.getElementById("licPlansContent");
-      box.innerHTML = "Loading policies...";
+      const ageDisplay = document.getElementById("licPlansAgeDisplay");
+      if (!modal || !box) return;
+
+      modal.classList.add("show");
+      box.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text-muted);">LIC plans load ho rahe hain...</div>';
+
       try {
+        // Customer age: Firestore profile -> localStorage fallback -> DOB calculation fallback
+        let customerAge = Number(currentCustomerData?.age);
+        if (!Number.isFinite(customerAge) || customerAge < 0 || customerAge > 120) {
+          const storedAge = Number(localStorage.getItem("customerAge"));
+          if (Number.isFinite(storedAge) && storedAge >= 0 && storedAge <= 120) {
+            customerAge = storedAge;
+          }
+        }
+        if ((!Number.isFinite(customerAge) || customerAge < 0 || customerAge > 120) && currentCustomerData?.dob) {
+          const dob = new Date(currentCustomerData.dob);
+          if (!Number.isNaN(dob.getTime())) {
+            const today = new Date();
+            customerAge = today.getFullYear() - dob.getFullYear();
+            const birthdayPassed =
+              today.getMonth() > dob.getMonth() ||
+              (today.getMonth() === dob.getMonth() && today.getDate() >= dob.getDate());
+            if (!birthdayPassed) customerAge--;
+          }
+        }
+
+        const hasAge = Number.isFinite(customerAge) && customerAge >= 0 && customerAge <= 120;
+        if (ageDisplay) {
+          ageDisplay.textContent = hasAge ? `🎂 Age: ${customerAge} Years` : "🎂 Age: Not available";
+        }
+
         const snap = await getDocs(collection(db, "licPlans"));
-        box.innerHTML = snap.docs.map(d => {
-          const p = d.data();
+        const allPlans = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+        const activePlans = allPlans.filter(p => {
+          const status = String(p.status ?? "Available").trim().toLowerCase();
+          return !["hidden", "inactive", "disabled", "unavailable", "draft"].includes(status);
+        });
+
+        const eligiblePlans = activePlans.filter(p => {
+          if (!hasAge) return true;
+
+          const minAgeRaw = p.minAge ?? p.min_age ?? p.minimumAge ?? p.ageMin;
+          const maxAgeRaw = p.maxAge ?? p.max_age ?? p.maximumAge ?? p.ageMax;
+
+          const minAge = minAgeRaw === "" || minAgeRaw == null ? null : Number(minAgeRaw);
+          const maxAge = maxAgeRaw === "" || maxAgeRaw == null ? null : Number(maxAgeRaw);
+
+          if (Number.isFinite(minAge) && customerAge < minAge) return false;
+          if (Number.isFinite(maxAge) && customerAge > maxAge) return false;
+          return true;
+        });
+
+        if (!eligiblePlans.length) {
+          box.innerHTML = hasAge
+            ? '<div style="padding:20px;text-align:center;color:var(--text-muted);">Aapki current age ke liye abhi koi LIC plan available nahi hai.</div>'
+            : '<div style="padding:20px;text-align:center;color:var(--text-muted);">Abhi koi LIC plan available nahi hai.</div>';
+          return;
+        }
+
+        const esc = (value) => String(value ?? "").replace(/[&<>"']/g, c => ({
+          "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+        }[c]));
+
+        box.innerHTML = eligiblePlans.map(p => {
+          const name = esc(p.name || "LIC Plan");
+          const benefits = esc(p.benefits || p.benefit || "LIC plan details available.");
+          const details = esc(p.details || "");
+          const planNumber = esc(p.planNumber || p.planNo || p.plan_number || "");
+          const uin = esc(p.uin || p.UIN || "");
+          const source = String(p.officialSourceLink || p.officialLink || p.sourceLink || p.link || "").trim();
+
+          const meta = [
+            planNumber ? `Plan No. ${planNumber}` : "",
+            uin ? `UIN ${uin}` : ""
+          ].filter(Boolean).join(" • ");
+
+          const sourceBtn = /^https?:\/\//i.test(source)
+            ? `<a href="${esc(source)}" target="_blank" rel="noopener noreferrer" class="secondary-btn" style="padding:6px 12px;font-size:11px;display:inline-block;">Official Details</a>`
+            : "";
+
           return `
-            <div style="padding:14px; border:1px solid var(--border-color); border-radius:var(--radius-md); margin-bottom:10px;">
-              <h4 style="font-weight:700; color:var(--primary);">${p.name || 'LIC Plan'}</h4>
-              <p style="font-size:12px; color:var(--text-muted); margin:4px 0 10px;">${p.benefits || 'High financial cover with maturity guarantee.'}</p>
-              <button class="secondary-btn" style="padding:6px 12px; font-size:11px;" onclick="openInquiry('${p.name}')">Enquire Policy</button>
+            <div style="padding:14px;border:1px solid var(--border-color);border-radius:var(--radius-md);margin-bottom:10px;background:#fff;">
+              <h4 style="font-weight:800;color:var(--primary);">${name}</h4>
+              ${meta ? `<div style="font-size:11px;color:var(--text-muted);margin:4px 0 6px;">${meta}</div>` : ""}
+              <p style="font-size:12px;color:var(--text-muted);margin:4px 0 6px;">${benefits}</p>
+              ${details ? `<p style="font-size:11.5px;color:#475569;line-height:1.45;margin:0 0 10px;">${details}</p>` : ""}
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <button type="button" class="secondary-btn" style="padding:6px 12px;font-size:11px;" data-plan-name="${name}" onclick="openLicInquiry(this)">Enquire Policy</button>
+                ${sourceBtn}
+              </div>
             </div>
           `;
-        }).join('');
-      } catch(e) { box.innerHTML = "No LIC plans available."; }
+        }).join("");
+      } catch (e) {
+        console.error("LIC plans load failed:", e);
+        box.innerHTML = '<div style="padding:20px;text-align:center;color:#b91c1c;">LIC plans load nahi ho pa rahe. Please thodi der baad try karein.</div>';
+      }
     };
 
     window.openNotifications = () => {
@@ -1642,8 +2086,8 @@
       const items = Array.isArray(window.__dashboardNotifications) ? window.__dashboardNotifications : [];
       box.innerHTML = items.length ? items.map(n => `
         <div style="padding:12px;border:1px solid var(--border-color);border-radius:12px;margin-bottom:10px;">
-          <strong>🔔 ${String(n.title || "Notification")}</strong>
-          <p style="margin:5px 0 0;color:var(--text-muted);font-size:12px;">${String(n.message || "")}</p>
+          <strong>🔔 ${escapeDashboardText(n.title || "Notification")}</strong>
+          <p style="margin:5px 0 0;color:var(--text-muted);font-size:12px;">${escapeDashboardText(n.message || "")}</p>
         </div>`).join("") : '<div style="padding:20px;text-align:center;color:var(--text-muted);">No new notifications.</div>';
       modal.classList.add("show");
     };
@@ -1665,8 +2109,114 @@
       updatePanPaymentUI();
     };
     window.openInquiry = (service) => {
-      document.getElementById("inquiryService").value = service;
+      const serviceEl = document.getElementById("inquiryService");
+      if (serviceEl) {
+        const allowed = Array.from(serviceEl.options).map(o => o.value);
+        serviceEl.value = allowed.includes(service) ? service : "Customer Inquiry";
+      }
       document.getElementById("inquiryModal").classList.add("show");
+    };
+
+    window.openLicInquiry = (button) => {
+      const planName = button?.dataset?.planName || "LIC Plan";
+      const serviceEl = document.getElementById("inquiryService");
+      const messageEl = document.getElementById("inquiryMessage");
+      if (serviceEl) serviceEl.value = "LIC Services";
+      if (messageEl) messageEl.value = `LIC Plan enquiry: ${planName}\n\nMujhe is plan ke baare mein details chahiye.`;
+      document.getElementById("inquiryModal").classList.add("show");
+    };
+
+    window.openAccountInfo = (title, message) => {
+      document.getElementById("accountInfoTitle").textContent = title || "Information";
+      document.getElementById("accountInfoContent").textContent = message || "";
+      document.getElementById("accountInfoModal").classList.add("show");
+    };
+
+    window.openSupport = () => {
+      closeModal("accountModal");
+      renderSupportSettings();
+      const extra = document.getElementById("supportExtraText");
+      if (extra) extra.style.display = "none";
+      document.getElementById("supportModal").classList.add("show");
+    };
+
+    window.openSupportHelp = (type) => {
+      const extra = document.getElementById("supportExtraText");
+      if (!extra) return;
+      const messages = {
+        faq: "FAQ / Help Center: Login, profile, package, PAN service aur dashboard related common help ke liye support team se contact karein.",
+        problem: "Problem report karte waqt apna issue, relevant screenshot/details aur registered mobile/email mention karein.",
+        account: "Account Help: Profile update, password ya account-related issue ke liye registered account details ke saath support se contact karein."
+      };
+      extra.textContent = messages[type] || "Support help available hai.";
+      extra.style.display = "block";
+    };
+
+    window.openDashboardService = (id) => {
+      const item = (window.__dashboardServices || []).find(x => String(x.id) === String(id));
+      if (!item) return;
+      const action = String(item.action || "inquiry").toLowerCase();
+      const url = String(item.url || "").trim();
+      if ((action === "url" || action === "link" || action === "open") && url) {
+        window.open(url, "_blank", "noopener");
+        return;
+      }
+      if (action === "whatsapp") {
+        const wa = String(supportSettings.whatsapp || "").replace(/[^0-9]/g, "");
+        if (wa) window.open(`https://wa.me/${wa}?text=${encodeURIComponent("Mujhe " + (item.title || "service") + " ke baare mein help chahiye.")}`, "_blank", "noopener");
+        else showToast("WhatsApp support details available nahi hain.");
+        return;
+      }
+      openInquiry(item.title || "Customer Inquiry");
+    };
+
+    window.openDashboardResource = (id) => {
+      const item = (window.__dashboardResources || []).find(x => String(x.id) === String(id));
+      if (!item) return;
+      const url = String(item.url || "").trim();
+      if (!url) { showToast("Is resource ka link abhi available nahi hai."); return; }
+      window.open(url, "_blank", "noopener");
+    };
+
+    window.openPasswordChange = () => {
+      closeModal("accountModal");
+      const newPassword = document.getElementById("newPassword");
+      const confirmPassword = document.getElementById("confirmPassword");
+      if (newPassword) newPassword.value = "";
+      if (confirmPassword) confirmPassword.value = "";
+      document.getElementById("passwordModal").classList.add("show");
+    };
+
+    window.changePassword = async () => {
+      if (!currentUser) return showToast("Please login first.");
+      const newPassword = document.getElementById("newPassword")?.value || "";
+      const confirmPassword = document.getElementById("confirmPassword")?.value || "";
+
+      if (newPassword.length < 6) return showToast("Password minimum 6 characters ka hona chahiye.");
+      if (newPassword !== confirmPassword) return showToast("Passwords match nahi kar rahe.");
+
+      try {
+        await updatePassword(currentUser, newPassword);
+        showToast("Password updated successfully! ✅");
+        closeModal("passwordModal");
+      } catch (e) {
+        console.error("Password update error:", e);
+        const message = e?.code === "auth/requires-recent-login"
+          ? "Security ke liye dobara login karke password change karein."
+          : (e?.message || "Password update failed.");
+        showToast(message);
+      }
+    };
+
+    window.openPolicy = (type) => {
+      const key = type === "privacy" ? "privacy" : type === "terms" ? "terms" : "about";
+      const title = key === "privacy" ? "Privacy Policy" : key === "terms" ? "Terms of Use" : "About Apna Growth Hub";
+      const fallback = key === "privacy"
+        ? "Apna Growth Hub customer information ko service, support aur account management ke liye use karta hai. Sensitive information sirf required service process ke according handle ki jaani chahiye."
+        : key === "terms"
+          ? "Apna Growth Hub par services, learning resources aur information general guidance ke liye hain. Final eligibility, pricing, terms aur official product details ko relevant official source se verify karein."
+          : "Apna Growth Hub is a learning, growth and customer-service platform.";
+      openAccountInfo(title, policySettings[key] || fallback);
     };
 
     window.saveProfile = async () => {

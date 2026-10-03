@@ -63,6 +63,39 @@
       display: none !important;
     }
 
+
+    /* CLEAN SUPPORT CARD */
+    .leader-support-card { overflow:hidden; }
+    .support-intro {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin:12px 0 16px;
+      padding:12px 14px;
+      border:1px solid #e5e7eb;
+      border-radius:14px;
+      background:#f8fafc;
+    }
+    .support-intro-icon {
+      width:40px;height:40px;flex:0 0 40px;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      background:#eff6ff;color:#2563eb;font-size:19px;
+    }
+    .support-intro strong { display:block;font-size:14px;color:var(--text);margin-bottom:3px; }
+    .support-intro span { display:block;font-size:12px;color:var(--muted);line-height:1.45; }
+    .support-actions { display:grid;grid-template-columns:1fr 1fr;gap:10px; }
+    .support-action {
+      min-height:52px;border:0;border-radius:13px;padding:10px 13px;
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      font-weight:750;font-size:13px;transition:transform .15s ease,box-shadow .15s ease,opacity .15s ease;
+    }
+    .support-action:hover:not(:disabled){ transform:translateY(-1px);box-shadow:0 7px 18px rgba(15,23,42,.10); }
+    .support-action:disabled { opacity:.48;cursor:not-allowed; }
+    .support-whatsapp { background:#dcfce7;color:#15803d;border:1px solid #bbf7d0; }
+    .support-email { background:#dbeafe;color:#1d4ed8;border:1px solid #bfdbfe; }
+    .support-action .action-icon { font-size:18px;line-height:1; }
+    @media (max-width:560px){ .support-actions{grid-template-columns:1fr;} }
+
     /* =========================
        LOGIN
     ========================= */
@@ -214,6 +247,98 @@
       color: var(--muted);
       line-height: 1.6;
     }
+
+    .top-brand-logo { background:linear-gradient(135deg,#eff6ff,#eef2ff); border:1px solid #dbeafe; box-shadow:0 7px 18px rgba(37,99,235,.08); }
+    .leader-pill { transition:.18s ease; border:1px solid #e2e8f0 !important; background:#fff !important; box-shadow:0 5px 15px rgba(15,23,42,.05); }
+    .leader-pill:hover { transform:translateY(-1px); border-color:#bfdbfe !important; box-shadow:0 9px 20px rgba(37,99,235,.10); }
+    .logout-btn { transition:.18s ease; }
+    .logout-btn:hover { transform:translateY(-1px); }
+
+    /* FINAL LOGIN DESIGN */
+    #loginScreen {
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      padding: 28px 18px;
+      background:
+        radial-gradient(circle at 8% 10%, rgba(59,130,246,.24), transparent 30%),
+        radial-gradient(circle at 92% 88%, rgba(124,58,237,.20), transparent 30%),
+        linear-gradient(135deg, #eff6ff 0%, #f8fafc 48%, #f5f3ff 100%);
+    }
+    #loginScreen::before, #loginScreen::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(2px);
+      pointer-events: none;
+    }
+    #loginScreen::before { width: 220px; height: 220px; background: rgba(37,99,235,.10); top:-90px; left:-70px; }
+    #loginScreen::after { width: 260px; height: 260px; background: rgba(124,58,237,.09); bottom:-120px; right:-90px; }
+    .login-card {
+      position: relative;
+      z-index: 1;
+      max-width: 460px;
+      padding: 34px 32px 26px;
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 28px;
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 28px 80px rgba(15,23,42,.14), 0 2px 8px rgba(15,23,42,.04);
+      backdrop-filter: blur(18px);
+    }
+    .brand-logo {
+      width: 72px;
+      height: 72px;
+      border-radius: 22px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg,#2563eb,#7c3aed);
+      color:#fff;
+      box-shadow: 0 14px 30px rgba(37,99,235,.25);
+      font-size: 32px;
+    }
+    .brand h1 { font-size: 27px; letter-spacing:-.8px; }
+    .brand p { font-size: 13px; margin-top:7px; }
+    .leader-badge {
+      margin-top: 14px;
+      padding: 7px 13px;
+      background: linear-gradient(135deg,#eff6ff,#f5f3ff);
+      border:1px solid #dbeafe;
+      color:#4338ca;
+    }
+    .login-card form { margin-top: 24px; }
+    .form-group { margin-bottom: 17px; }
+    .form-group label { margin-bottom:8px; color:#334155; }
+    .form-group input {
+      height: 50px;
+      border-radius: 14px;
+      border: 1px solid #dbe3ef;
+      background:#f8fafc;
+      transition:.2s ease;
+    }
+    .form-group input:focus { background:#fff; border-color:#60a5fa; box-shadow:0 0 0 4px rgba(37,99,235,.10); }
+    .primary-btn {
+      height: 50px;
+      border-radius: 14px;
+      background: linear-gradient(135deg,#2563eb,#1d4ed8);
+      box-shadow: 0 10px 22px rgba(37,99,235,.20);
+      letter-spacing:.1px;
+    }
+    .primary-btn:hover { transform:translateY(-1px); box-shadow:0 13px 26px rgba(37,99,235,.24); }
+    .login-help {
+      margin-top: 20px;
+      padding-top: 17px;
+      border-top: 1px solid #eef2f7;
+    }
+    .login-security {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      margin-top:14px;
+      color:#64748b;
+      font-size:11px;
+    }
+    .login-security span:first-child { color:#10b981; font-size:14px; }
+    .login-footer { margin-top:18px; text-align:center; color:#94a3b8; font-size:10px; }
 
     /* =========================
        APP
@@ -788,6 +913,25 @@
        MOBILE
     ========================= */
 
+    .leader-pill { border:0; cursor:pointer; font:inherit; color:inherit; text-align:left; }
+    .leader-pill:focus-visible { outline:3px solid rgba(59,130,246,.35); outline-offset:3px; }
+    .profile-modal { position:fixed; inset:0; z-index:10000; display:flex; align-items:center; justify-content:center; padding:18px; }
+    .profile-modal.hidden { display:none !important; }
+    .profile-modal-backdrop { position:absolute; inset:0; background:rgba(15,23,42,.58); backdrop-filter:blur(4px); }
+    .profile-modal-card { position:relative; width:min(520px,100%); max-height:min(720px,90vh); overflow:auto; background:#fff; border:1px solid #e2e8f0; border-radius:22px; box-shadow:0 24px 70px rgba(15,23,42,.28); padding:22px; animation:profileModalIn .18s ease-out; }
+    @keyframes profileModalIn { from { opacity:0; transform:translateY(10px) scale(.98); } to { opacity:1; transform:translateY(0) scale(1); } }
+    .profile-modal-head { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:18px; }
+    .profile-modal-kicker { display:block; font-size:11px; font-weight:800; letter-spacing:.12em; color:#2563eb; margin-bottom:5px; }
+    .profile-modal-head h2 { margin:0; font-size:21px; color:#0f172a; }
+    .profile-modal-close { width:36px; height:36px; border:0; border-radius:50%; background:#f1f5f9; color:#334155; font-size:24px; line-height:1; cursor:pointer; }
+    .profile-modal-user { display:flex; align-items:center; gap:13px; padding:14px; border-radius:16px; background:linear-gradient(135deg,#eff6ff,#f8fafc); margin-bottom:16px; }
+    .profile-modal-avatar { width:50px; height:50px; border-radius:15px; display:grid; place-items:center; background:#2563eb; color:#fff; font-size:20px; font-weight:800; }
+    .profile-modal-user strong { display:block; color:#0f172a; font-size:17px; } .profile-modal-user span { display:block; margin-top:3px; color:#64748b; font-size:13px; }
+    .profile-modal-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .profile-modal-item { border:1px solid #e2e8f0; border-radius:14px; padding:13px; min-width:0; }
+    .profile-modal-item small { display:block; color:#64748b; font-size:10px; font-weight:800; letter-spacing:.08em; margin-bottom:6px; } .profile-modal-item strong { display:block; color:#0f172a; font-size:14px; overflow-wrap:anywhere; }
+    .profile-modal-done { width:100%; margin-top:16px; border:0; border-radius:12px; padding:12px 16px; background:#2563eb; color:#fff; font-weight:700; cursor:pointer; }
+
     @media (max-width: 900px) {
       .stats-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -985,6 +1129,12 @@
         Apne registered leader email aur password se login karein.
       </div>
 
+      <div class="login-security">
+        <span>●</span> Secure Leader Access &nbsp;•&nbsp; Private Dashboard
+      </div>
+
+      <div class="login-footer">Apna Growth Hub &nbsp;•&nbsp; Learn • Grow • Succeed</div>
+
     </div>
 
   </section>
@@ -1018,28 +1168,14 @@
 
         <div class="top-actions">
 
-          <div class="leader-pill">
-
-            <div
-              class="leader-avatar"
-              id="topAvatar"
-            >
-              L
-            </div>
-
+          <button type="button" class="leader-pill" id="leaderProfileBtn" title="Open Leader Profile" aria-label="Open Leader Profile">
+            <div class="leader-avatar" id="topAvatar">L</div>
             <div class="leader-pill-text">
-
-              <strong id="topLeaderName">
-                Leader
-              </strong>
-
-              <span id="topLeaderId">
-                Leader ID
-              </span>
-
+              <strong id="topLeaderName">Leader</strong>
+              <span>Profile</span>
             </div>
-
-          </div>
+            <span aria-hidden="true" style="font-size:13px;opacity:.7;margin-left:2px;">⌄</span>
+          </button>
 
 
           <button
@@ -1055,6 +1191,22 @@
 
     </header>
 
+
+    <!-- LEADER PROFILE MODAL -->
+    <div id="leaderProfileModal" class="profile-modal hidden" aria-hidden="true">
+      <div class="profile-modal-backdrop" data-close-profile="true"></div>
+      <div class="profile-modal-card" role="dialog" aria-modal="true" aria-labelledby="leaderProfileModalTitle">
+        <div class="profile-modal-head"><div><span class="profile-modal-kicker">FOUNDING LEADER</span><h2 id="leaderProfileModalTitle">👤 Leader Profile</h2></div><button type="button" class="profile-modal-close" id="closeLeaderProfileBtn" aria-label="Close profile">×</button></div>
+        <div class="profile-modal-user"><div class="profile-modal-avatar" id="modalProfileAvatar">L</div><div><strong id="modalProfileName">Leader</strong><span id="modalProfileLeaderId">Leader ID</span></div></div>
+        <div class="profile-modal-grid">
+          <div class="profile-modal-item"><small>EMAIL</small><strong id="modalProfileEmail">—</strong></div>
+          <div class="profile-modal-item"><small>REFERRAL CODE</small><strong id="modalProfileReferralCode">—</strong></div>
+          <div class="profile-modal-item"><small>STATUS</small><strong id="modalProfileStatus">Active</strong></div>
+          <div class="profile-modal-item"><small>COMMISSION</small><strong id="modalProfileCommission">—</strong></div>
+        </div>
+        <button type="button" class="profile-modal-done" id="profileModalDoneBtn">Close</button>
+      </div>
+    </div>
 
     <!-- MAIN -->
 
@@ -1332,6 +1484,8 @@
                 Copy
               </button>
 
+              <button type="button" class="copy-btn" id="shareReferralBtn">💬 Share</button>
+
             </div>
 
 
@@ -1347,6 +1501,49 @@
 
       </section>
 
+
+      <!-- PACKAGE / SERVICE SALES -->
+      <section class="card">
+        <div class="section-title"><h3>📦 Package / Service Sales</h3><span id="packageSalesCount">0 items</span></div>
+        <div class="table-wrap"><table><thead><tr><th>Package / Service</th><th>Sales</th><th>Revenue</th><th>Commission</th></tr></thead><tbody id="packageSalesTable"><tr><td colspan="4"><div class="empty-state">Sales breakdown load ho raha hai...</div></td></tr></tbody></table></div>
+      </section>
+
+      <!-- MONTHLY PERFORMANCE -->
+      <section class="card">
+        <div class="section-title"><h3>📊 Monthly Performance</h3><span>Current Month</span></div>
+        <div class="stats-grid" style="margin-top:14px;">
+          <div class="stat-card"><span>Sales</span><strong id="monthlySales">0</strong></div>
+          <div class="stat-card"><span>Revenue</span><strong id="monthlyRevenue">₹0</strong></div>
+          <div class="stat-card"><span>Commission</span><strong id="monthlyCommission">₹0</strong></div>
+          <div class="stat-card"><span>Target Progress</span><strong id="monthlyTargetProgress">—</strong></div>
+        </div>
+      </section>
+
+      <!-- NOTIFICATIONS -->
+      <section class="card"><div class="section-title"><h3>🔔 Important Notifications</h3><span id="notificationCount">0</span></div><div id="leaderNotifications"><div class="empty-state">Notifications load ho rahi hain...</div></div></section>
+
+      <!-- SUPPORT -->
+      <section class="card leader-support-card">
+        <div class="section-title">
+          <h3>🆘 Leader Support</h3>
+          <span>Help Center</span>
+        </div>
+        <div class="support-intro">
+          <div class="support-intro-icon">💬</div>
+          <div>
+            <strong>Need help?</strong>
+            <span id="leaderSupportText">Support details load ho rahe hain...</span>
+          </div>
+        </div>
+        <div class="support-actions">
+          <button type="button" class="support-action support-whatsapp" id="leaderWhatsAppBtn">
+            <span class="action-icon">💬</span><span>WhatsApp Support</span>
+          </button>
+          <button type="button" class="support-action support-email" id="leaderEmailBtn">
+            <span class="action-icon">✉️</span><span>Email Support</span>
+          </button>
+        </div>
+      </section>
 
       <!-- REWARD -->
 
@@ -1624,6 +1821,8 @@
     let currentSales = [];
     let currentCommissions = [];
     let currentRewards = [];
+    let currentNotifications = [];
+    let supportSettings = { whatsapp: "", email: "", help: "" };
 
 
     /* =========================
@@ -1995,6 +2194,53 @@
 
 
     /* =========================
+       TOP PROFILE MODAL
+    ========================= */
+    function fillLeaderProfileModal() {
+      const leader=currentLeader||{};
+      const name=firstValue(leader,["name","leaderName","fullName","displayName"],"Leader");
+      const leaderId=firstValue(leader,["leaderId","id","leaderID"],leader.id||"—");
+      const email=firstValue(leader,["email"],currentUser?.email||"—");
+      const referralCode=firstValue(leader,["referralCode","referral","code"],leaderId);
+      const status=firstValue(leader,["status"],"Active");
+      const commission=firstValue(leader,["commissionRate","commissionPercent","commissionPercentage","commission"],"—");
+      const commissionText=commission==="—"?"—":String(commission).includes("%")?String(commission):String(commission)+"%";
+      const set=(id,value)=>{ const el=document.getElementById(id); if(el) el.textContent=value ?? "—"; };
+      set("modalProfileName",name);
+      set("modalProfileLeaderId",leaderId);
+      set("modalProfileEmail",email);
+      set("modalProfileReferralCode",referralCode);
+      set("modalProfileStatus",status);
+      set("modalProfileCommission",commissionText);
+      set("modalProfileAvatar",String(name).charAt(0).toUpperCase()||"L");
+    }
+    function openLeaderProfile() {
+      const modal=document.getElementById("leaderProfileModal");
+      if(!modal)return;
+      fillLeaderProfileModal();
+      modal.classList.remove("hidden");
+      modal.setAttribute("aria-hidden","false");
+      document.body.style.overflow="hidden";
+    }
+    function closeLeaderProfile() {
+      const modal=document.getElementById("leaderProfileModal");
+      if(!modal)return;
+      modal.classList.add("hidden");
+      modal.setAttribute("aria-hidden","true");
+      document.body.style.overflow="";
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("leaderProfileBtn")?.addEventListener("click", openLeaderProfile);
+      document.getElementById("closeLeaderProfileBtn")?.addEventListener("click", closeLeaderProfile);
+      document.getElementById("profileModalDoneBtn")?.addEventListener("click", closeLeaderProfile);
+      document.querySelector('[data-close-profile="true"]')?.addEventListener("click", closeLeaderProfile);
+      document.addEventListener("keydown", (event) => {
+        if(event.key === "Escape") closeLeaderProfile();
+      });
+    });
+
+    /* =========================
        AUTH STATE
     ========================= */
 
@@ -2064,141 +2310,138 @@
     ) {
 
       clearSystemMessage();
+      loadingText.textContent = "Leader profile verify ho raha hai...";
 
-
-      /* STEP 1 */
-
-      loadingText.textContent =
-        "Leader profile verify ho raha hai...";
-
-
-      const leaderResult =
-        await findLeaderProfile(user);
-
-
+      const leaderResult = await findLeaderProfile(user);
       if (!leaderResult) {
-
         throw new Error(
           "Founding Leader profile nahi mila. Admin Panel me foundingLeaders document me is Firebase Auth email ko check karein."
         );
-
       }
 
+      currentLeader = leaderResult;
+      renderLeaderProfile(currentLeader);
 
-      currentLeader =
-        leaderResult;
+      if (String(currentLeader.status || "Active").toLowerCase() !== "active") {
+        throw new Error("Aapka Leader account abhi Active nahi hai. Admin Panel me status check karein.");
+      }
 
+      /* ADMIN SOURCE OF TRUTH: orders collection */
+      loadingText.textContent = "Admin orders se sales data load ho raha hai...";
+      const orderResult = await loadLeaderOrders(currentLeader);
+      currentSales = orderResult.data;
+      currentCommissions = orderResult.data;
 
-      renderLeaderProfile(
-        currentLeader
-      );
-
-
-      /* STEP 2 */
-
-      loadingText.textContent =
-        "Sales data load ho raha hai...";
-
-
-      const salesResult =
-        await loadOwnCollection(
-          "sales",
-          "leaderUid",
-          user.uid
-        );
-
-
-      currentSales =
-        salesResult.data;
-
-
-      if (
-        salesResult.permissionError
-      ) {
-
+      if (orderResult.permissionError) {
         showSystemMessage(
-          "Sales data ke liye Firestore permission abhi enable nahi hai. Profile dashboard available hai.",
+          "Leader orders ke liye Firestore permission abhi enable nahi hai. Admin Panel ke orders rules check karein.",
           "warning"
         );
-
       }
 
+      /* Global Admin reward rules + this leader's live progress */
+      loadingText.textContent = "Admin reward rules load ho rahe hain...";
+      const rewardResult = await loadLeaderRewardRules(currentLeader, currentSales);
+      currentRewards = rewardResult.data;
 
-      /* STEP 3 */
-
-      loadingText.textContent =
-        "Commission data load ho raha hai...";
-
-
-      const commissionResult =
-        await loadOwnCollection(
-          "commissions",
-          "leaderUid",
-          user.uid
-        );
-
-
-      currentCommissions =
-        commissionResult.data;
-
-
-      if (
-        commissionResult.permissionError
-      ) {
-
-        showSystemMessage(
-          "Commission history ke liye Firestore permission abhi enable nahi hai. Profile dashboard available hai.",
-          "warning"
-        );
-
-      }
-
-
-      /* STEP 4 */
-
-      loadingText.textContent =
-        "Referral data load ho raha hai...";
-
-
-      await loadOwnCollection(
-        "referrals",
-        "leaderUid",
-        user.uid
-      );
-
-
-      /* STEP 5 */
-
-      loadingText.textContent =
-        "Reward data load ho raha hai...";
-
-
-      const rewardResult =
-        await loadOwnCollection(
-          "leaderRewards",
-          "leaderUid",
-          user.uid
-        );
-
-
-      currentRewards =
-        rewardResult.data;
-
-
-      /* STEP 6 */
+      /* Admin-managed notifications and support */
+      loadingText.textContent = "Notifications aur support settings load ho rahi hain...";
+      await loadLeaderExtras();
 
       renderStats();
-
+      renderPackageServiceSales();
+      renderMonthlyPerformance();
+      renderNotifications();
+      renderSupport();
       renderCommissionHistory();
-
       renderRewards();
 
-
-      loadingText.textContent =
-        "Dashboard ready.";
-
+      loadingText.textContent = "Dashboard ready.";
     }
 
+    async function loadLeaderOrders(leader) {
+      const leaderUid = String(currentUser?.uid || "").trim();
+      const unique = new Map();
+      let permissionError = false;
+
+      if (!leaderUid) {
+        return { data: [], permissionError: false };
+      }
+
+      try {
+        // SECURITY: Leader orders are scoped directly to the signed-in
+        // Firebase Auth UID. Firestore rules can validate this query
+        // without resolving leaderId/referralCode through another document.
+        const q = query(
+          collection(db, "orders"),
+          where("leaderUid", "==", leaderUid)
+        );
+        const snap = await getDocs(q);
+        snap.docs.forEach(d => unique.set(d.id, { id: d.id, ...d.data() }));
+      } catch (error) {
+        if (error?.code === "permission-denied") {
+          permissionError = true;
+        } else {
+          console.warn("Leader orders query error:", error);
+        }
+      }
+
+      const eligible = ["success", "approved", "verified", "completed", "paid"];
+      const invalid = ["pending", "rejected", "cancelled", "canceled", "refunded", "failed", "declined"];
+      const rows = [...unique.values()].filter(order => {
+        const status = String(order?.status || "success").trim().toLowerCase();
+        if (invalid.includes(status)) return false;
+        return eligible.includes(status);
+      });
+
+      return { data: rows, permissionError };
+    }
+
+    async function loadLeaderRewardRules(leader, sales) {
+      try {
+        const snap = await getDocs(collection(db, "leaderRewards"));
+        const now = new Date();
+        const leaderId = String(leader?.leaderId || "").trim();
+        const active = [];
+
+        snap.docs.forEach(d => {
+          const reward = { id: d.id, ...d.data() };
+          if (String(reward.status || "Active").toLowerCase() !== "active") return;
+
+          const start = reward.startDate ? new Date(reward.startDate) : null;
+          const end = reward.endDate ? new Date(reward.endDate) : null;
+          if (start && !Number.isNaN(start.getTime()) && now < start) return;
+          if (end && !Number.isNaN(end.getTime())) {
+            const endDay = new Date(end);
+            endDay.setHours(23, 59, 59, 999);
+            if (now > endDay) return;
+          }
+
+          const scope = String(reward.scope || "All Leaders").trim().toLowerCase();
+          if (scope && scope !== "all leaders" && scope !== "all" && scope !== leaderId.toLowerCase()) return;
+
+          const target = safeNumber(reward.targetValue ?? reward.target ?? reward.targetSales ?? reward.requiredSales ?? reward.goal);
+          const type = String(reward.targetType || "Sales").toLowerCase();
+          const current = type.includes("revenue")
+            ? sales.reduce((sum, sale) => sum + saleAmount(sale), 0)
+            : sales.length;
+          const percent = target > 0 ? Math.min(100, Math.round(current / target * 100)) : 0;
+
+          active.push({
+            ...reward,
+            current,
+            target,
+            progressPercent: percent
+          });
+        });
+
+        active.sort((a, b) => String(a.startDate || "").localeCompare(String(b.startDate || "")));
+        return { data: active, permissionError: false };
+      } catch (error) {
+        console.warn("Leader reward rules load error:", error);
+        return { data: [], permissionError: error?.code === "permission-denied" };
+      }
+    }
 
     /* =========================
        FIND LEADER PROFILE
@@ -2353,6 +2596,34 @@
     }
 
 
+    async function loadLeaderExtras() {
+      currentNotifications=[]; supportSettings={whatsapp:"",email:"",help:""};
+      try {
+        const snap=await getDocs(collection(db,"notifications"));
+        currentNotifications=snap.docs.map(d=>({id:d.id,...d.data()})).filter(n=>String(firstValue(n,["status","state"],"Active")).toLowerCase()!=="inactive").slice(0,5);
+      } catch(e){ console.warn("Leader notifications unavailable",e); }
+      try {
+        const snap=await getDocs(collection(db,"dashboardSettings"));
+        snap.forEach(d=>{ if(d.id==="support") supportSettings={...supportSettings,...d.data()}; if(d.id==="app"){const x=d.data(); supportSettings.whatsapp=supportSettings.whatsapp||x.whatsapp||""; supportSettings.email=supportSettings.email||x.email||"";} });
+      } catch(e){ console.warn("Leader support unavailable",e); }
+    }
+    function saleAmount(s){return safeNumber(firstValue(s,["amount","saleAmount","revenue","totalAmount","price"],0));}
+    function saleCommission(s){return safeNumber(firstValue(s,["commissionAmount","commission","earning"],0));}
+    function saleDate(s){const raw=firstValue(s,["createdAt","date","saleDate","updatedAt","timestamp"],"");const d=raw?.seconds?new Date(raw.seconds*1000):new Date(raw);return isNaN(d.getTime())?null:d;}
+    function esc(v){return String(v??"").replace(/[&<>\'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\'":"&#39;","\"":"&quot;"}[c]));}
+    function renderPackageServiceSales(){
+      const tb=document.getElementById("packageSalesTable"),count=document.getElementById("packageSalesCount");if(!tb)return;const g={};
+      currentSales.forEach(s=>{const n=String(firstValue(s,["package","packageName","service","serviceName","courseName","productName"],"Other Sale")||"Other Sale");if(!g[n])g[n]={sales:0,revenue:0,commission:0};g[n].sales++;g[n].revenue+=saleAmount(s);g[n].commission+=saleCommission(s);});
+      const rows=Object.entries(g);if(count)count.textContent=`${rows.length} items`;if(!rows.length){tb.innerHTML='<tr><td colspan="4"><div class="empty-state">Abhi package/service sales available nahi hain.</div></td></tr>';return;}tb.innerHTML=rows.map(([n,x])=>`<tr><td>${esc(n)}</td><td>${x.sales}</td><td>${money(x.revenue)}</td><td>${money(x.commission)}</td></tr>`).join("");
+    }
+    function renderMonthlyPerformance(){
+      const now=new Date(),rows=currentSales.filter(s=>{const d=saleDate(s);return d&&d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();});
+      const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};set("monthlySales",rows.length);set("monthlyRevenue",money(rows.reduce((a,s)=>a+saleAmount(s),0)));set("monthlyCommission",money(rows.reduce((a,s)=>a+saleCommission(s),0)));
+      const r=currentRewards[0]||{},t=safeNumber(firstValue(r,["targetValue","target","targetSales","requiredSales","goal"],0));set("monthlyTargetProgress",t?`${Math.min(100,Math.round(rows.length/t*100))}%`:"—");
+    }
+    function renderNotifications(){const b=document.getElementById("leaderNotifications"),c=document.getElementById("notificationCount");if(!b)return;if(c)c.textContent=currentNotifications.length;if(!currentNotifications.length){b.innerHTML='<div class="empty-state">Abhi koi important notification nahi hai.</div>';return;}b.innerHTML=currentNotifications.map(n=>`<div style="padding:12px 0;border-bottom:1px solid var(--border);"><strong>${esc(firstValue(n,["title","notificationTitle","name"],"Notification"))}</strong><div style="color:var(--muted);font-size:13px;margin-top:4px;line-height:1.5;">${esc(firstValue(n,["message","description","text","body"],""))}</div></div>`).join("");}
+    function renderSupport(){const t=document.getElementById("leaderSupportText"),w=document.getElementById("leaderWhatsAppBtn"),e=document.getElementById("leaderEmailBtn");if(t)t.textContent=supportSettings.help||"Leader account, commission, referral ya dashboard issue ke liye support se contact karein.";if(w){w.disabled=!supportSettings.whatsapp;w.onclick=()=>{if(supportSettings.whatsapp)window.open(`https://wa.me/${String(supportSettings.whatsapp).replace(/\D/g,"")}?text=${encodeURIComponent("Hello Apna Growth Hub Support, I need help with my Leader Dashboard.")}`,"_blank");};}if(e){e.disabled=!supportSettings.email;e.onclick=()=>{if(supportSettings.email)window.location.href=`mailto:${supportSettings.email}?subject=${encodeURIComponent("Leader Dashboard Support")}`;};}}
+
     /* =========================
        RENDER PROFILE
     ========================= */
@@ -2442,12 +2713,6 @@
         "topLeaderName"
       ).textContent =
         name;
-
-
-      document.getElementById(
-        "topLeaderId"
-      ).textContent =
-        leaderId;
 
 
       document.getElementById(
@@ -2616,8 +2881,10 @@
                 firstValue(
                   commission,
                   [
+                    "commissionStatus",
                     "status",
-                    "paymentStatus"
+                    "paymentStatus",
+                    "commissionPaymentStatus"
                   ],
                   ""
                 )
@@ -2819,8 +3086,10 @@
                   firstValue(
                     item,
                     [
+                      "commissionStatus",
                       "status",
-                      "paymentStatus"
+                      "paymentStatus",
+                      "commissionPaymentStatus"
                     ],
                     "Pending"
                   )
@@ -3115,6 +3384,8 @@
 
     }
 
+
+    document.getElementById("shareReferralBtn")?.addEventListener("click",()=>{const link=document.getElementById("referralLink")?.value||"";if(link)window.open(`https://wa.me/?text=${encodeURIComponent("Apna Growth Hub join karein: "+link)}`,"_blank");});
 
     /* =========================
        COPY REFERRAL

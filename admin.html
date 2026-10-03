@@ -6879,7 +6879,7 @@ Social Media Basics"></textarea></div>
       list.innerHTML=`<table class="leader-table"><thead><tr><th>Leader</th><th>Leader ID</th><th>Mobile</th><th>Commission</th><th>Status</th><th>Referral Link</th><th>Actions</th></tr></thead><tbody>${foundingLeadersCache.map(item=>{
         const status=String(item.status||"Active");
         const link=item.referralLink||makeFoundingReferralLink(item.leaderId);
-        return `<tr><td><strong>${escapeHTML(item.name||"-")}</strong><br><span style="color:#64748b">${escapeHTML(item.email||"")}</span></td><td>${escapeHTML(item.leaderId||"-")}</td><td>${escapeHTML(item.mobile||"-")}</td><td>${advNum(globalCommissionRate)}%</td><td><span class="leader-status ${status.toLowerCase()==="active"?"active":"inactive"}">${escapeHTML(status)}</span></td><td><div class="leader-link">${escapeHTML(link)}</div></td><td><div class="leader-actions"><button type="button" onclick="editFoundingLeader('${encodeURIComponent(item.leaderId||"")}')">✏️ Edit</button><button type="button" onclick="copyFoundingLeaderLink('${encodeURIComponent(link)}')">📋 Copy Link</button><button type="button" onclick="resendFoundingLeaderSetup('${encodeURIComponent(item.leaderId||"")}')">📧 Resend Setup</button><button type="button" onclick="toggleFoundingLeader('${encodeURIComponent(item.leaderId||"")}')">${status.toLowerCase()==="active"?"⛔ Disable":"✅ Activate"}</button></div></td></tr>`;
+        return `<tr><td><strong>${escapeHTML(item.name||"-")}</strong><br><span style="color:#64748b">${escapeHTML(item.email||"")}</span></td><td>${escapeHTML(item.leaderId||"-")}</td><td>${escapeHTML(item.mobile||"-")}</td><td>${advNum(globalCommissionRate)}%</td><td><span class="leader-status ${status.toLowerCase()==="active"?"active":"inactive"}">${escapeHTML(status)}</span></td><td><div class="leader-link">${escapeHTML(link)}</div></td><td><div class="leader-actions"><button type="button" onclick="editFoundingLeader('${encodeURIComponent(item.leaderId||"")}')">✏️ Edit</button><button type="button" onclick="copyFoundingLeaderLink('${encodeURIComponent(link)}')">📋 Copy Link</button><button type="button" onclick="resendFoundingLeaderSetup('${encodeURIComponent(item.leaderId||"")}')">📧 Resend Setup</button><button type="button" onclick="toggleFoundingLeader('${encodeURIComponent(item.leaderId||"")}')">${status.toLowerCase()==="active"?"⛔ Disable":"✅ Activate"}</button><button type="button" class="danger" onclick="deleteFoundingLeader('${encodeURIComponent(item.leaderId||"")}')">🗑️ Delete</button></div></td></tr>`;
       }).join("")}</tbody></table>`;
     }
 
@@ -6921,6 +6921,23 @@ Social Media Basics"></textarea></div>
       }
     };
 
+    window.deleteFoundingLeader=async function(encodedId){
+      const id=decodeURIComponent(encodedId||"");
+      const item=foundingLeadersCache.find(x=>String(x.leaderId||"")===id);
+      if(!item) return;
+      const email=item.email||"";
+      if(!confirm(`Founding Leader ${id}${email?` (${email})`:""} ko delete karna hai?\n\nIsse Firestore ka Founding Leader record delete hoga. Existing orders/commission records delete nahi honge.`)) return;
+      try{
+        await deleteDoc(doc(db,"foundingLeaders",item.docId||item.leaderId));
+        await logAdminAction("Delete Founding Leader","foundingLeaders",id);
+        showAdminToast("Founding Leader record delete ho gaya.");
+        await loadFoundingLeaders();
+      }catch(e){
+        console.error("Delete founding leader error:",e);
+        showAdminToast("Leader delete failed: "+(e?.message||"Unknown error"));
+      }
+    };
+
     window.toggleFoundingLeader=async function(encodedId){
       const id=decodeURIComponent(encodedId||"");
       const item=foundingLeadersCache.find(x=>String(x.leaderId||"")===id);
@@ -6947,6 +6964,10 @@ Social Media Basics"></textarea></div>
       return out+"Aa9!";
     }
 
+    // Production Leader Dashboard URL used after password setup.
+    // Keep this on the same Firebase Hosting project so the link works for every leader.
+    const LEADER_LOGIN_URL = "https://apna-growth-hub.web.app/leader_dashboard.html";
+
     async function createLeaderAuthAndSendSetup(email){
       const secAuth = getApps().some(a=>a.name === "leaderCreation")
         ? getApp("leaderCreation")
@@ -6960,10 +6981,14 @@ Social Media Basics"></textarea></div>
       }catch(e){
         if(e?.code !== "auth/email-already-in-use") throw e;
       }
-      // Firebase Auth will use its configured/default password-reset page.
-      // Do not force localhost/127.0.0.1 as a continue URL; that commonly causes
-      // auth/unauthorized-continue-uri while testing from VS Code Live Server.
-      await sendPasswordResetEmail(auth,email);
+
+      // After the leader creates the password, Firebase takes them back to
+      // the Leader Dashboard login page automatically.
+      // The LEADER_LOGIN_URL domain must be present in Firebase Auth Authorized Domains.
+      await sendPasswordResetEmail(auth,email,{
+        url: LEADER_LOGIN_URL,
+        handleCodeInApp: false
+      });
       emailSent=true;
       await signOut(auth).catch(()=>{});
       return {uid,emailSent};
