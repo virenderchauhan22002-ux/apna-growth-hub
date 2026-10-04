@@ -916,27 +916,29 @@
     @media(max-width:680px){.container{width:min(100% - 24px,1320px)}.hero-banner{margin-top:14px;padding:20px}.quick-stats-row{gap:9px;margin-top:12px}.stat-pill{padding:12px;gap:10px}.stat-icon{width:38px;height:38px}.stat-meta strong{font-size:17px}.packages-grid{gap:11px}.pkg-card{padding:15px}.growth-strip{grid-template-columns:1fr}.lic-final-card{flex-direction:column;align-items:stretch}.lic-final-btn{max-width:none}.mini-feature-grid{grid-template-columns:1fr}.final-section-card{padding:13px}}
 
   
-    /* ===== APK / SMALL-SCREEN HEADER — COMPACT FINAL ===== */
+    /* ===== APK / SMALL-SCREEN HEADER — FINAL FIT ===== */
     @media (max-width: 680px) {
       .app-header { height: 52px; }
-      .app-header .container { width: calc(100% - 16px); }
-      .header-inner { gap: 4px; min-width: 0; width: 100%; }
-      .brand-wrap { gap: 5px; min-width: 0; flex: 1 1 auto; }
+      .app-header .container { width: calc(100% - 12px); }
+      .header-inner { gap: 3px; min-width: 0; width: 100%; }
+      .brand-wrap { gap: 4px; min-width: 0; flex: 1 1 auto; overflow: hidden; }
       .brand-logo-badge {
-        width: 30px !important;
-        height: 30px !important;
-        min-width: 30px !important;
-        border-radius: 8px !important;
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+        border-radius: 7px !important;
         padding: 1px !important;
-        box-shadow: 0 2px 6px rgba(24,104,219,.10) !important;
+        box-shadow: 0 2px 5px rgba(24,104,219,.10) !important;
       }
-      .brand-logo-badge img { border-radius: 7px !important; }
-      .brand-info { min-width: 0; overflow: hidden; }
+      .brand-logo-badge img { border-radius: 6px !important; }
+      .brand-info { min-width: 0; max-width: 125px; overflow: hidden; }
       .brand-info h1 {
-        font-size: 11px !important;
+        font-size: 10px !important;
         line-height: 1 !important;
         letter-spacing: -.15px !important;
         white-space: nowrap;
+        overflow: hidden;
+        text-overflow: clip;
       }
       .brand-info span { display: none !important; }
       .search-box { display: none !important; }
@@ -951,12 +953,12 @@
       .badge-dot { width: 5px !important; height: 5px !important; top: 3px !important; right: 3px !important; border-width: 1px !important; }
       .user-pill {
         height: 30px !important;
-        width: 112px !important;
-        max-width: 112px !important;
-        min-width: 112px !important;
+        width: 126px !important;
+        max-width: 126px !important;
+        min-width: 126px !important;
         box-sizing: border-box;
         gap: 4px !important;
-        padding: 2px 5px 2px 2px !important;
+        padding: 2px 6px 2px 2px !important;
         border-radius: 16px !important;
       }
       .user-avatar {
@@ -969,7 +971,7 @@
         flex: 1 1 auto !important;
         min-width: 0 !important;
         max-width: none !important;
-        font-size: 9px !important;
+        font-size: 9.5px !important;
         line-height: 1 !important;
         white-space: nowrap !important;
         overflow: visible !important;
@@ -980,13 +982,14 @@
 
     @media (max-width: 390px) {
       .app-header { height: 50px; }
-      .app-header .container { width: calc(100% - 12px); }
-      .brand-logo-badge { width: 28px !important; height: 28px !important; min-width: 28px !important; }
-      .brand-info h1 { font-size: 10px !important; }
-      .btn-icon { width: 27px !important; height: 27px !important; min-width: 27px !important; font-size: 11px !important; }
-      .user-pill { width: 108px !important; min-width: 108px !important; max-width: 108px !important; height: 29px !important; }
-      .user-avatar { width: 23px !important; height: 23px !important; min-width: 23px !important; }
-      .user-text { font-size: 8.5px !important; }
+      .app-header .container { width: calc(100% - 8px); }
+      .brand-logo-badge { width: 26px !important; height: 26px !important; min-width: 26px !important; }
+      .brand-info { max-width: 118px; }
+      .brand-info h1 { font-size: 9.5px !important; }
+      .btn-icon { width: 26px !important; height: 26px !important; min-width: 26px !important; font-size: 11px !important; }
+      .user-pill { width: 122px !important; min-width: 122px !important; max-width: 122px !important; height: 28px !important; }
+      .user-avatar { width: 22px !important; height: 22px !important; min-width: 22px !important; }
+      .user-text { font-size: 9px !important; }
     }
 </style>
 </head>
