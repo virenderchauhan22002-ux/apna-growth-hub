@@ -1858,7 +1858,7 @@ Social Media Basics"></textarea></div>
             <div class="input-group"><label for="flName">Name *</label><input id="flName" type="text" placeholder="Leader name"></div>
             <div class="input-group"><label for="flMobile">Mobile *</label><input id="flMobile" type="tel" placeholder="Mobile number"></div>
             <div class="input-group"><label for="flEmail">Email</label><input id="flEmail" type="email" placeholder="Email optional"></div>
-            <div class="input-group"><label for="flLeaderId">Leader ID *</label><input id="flLeaderId" type="text" placeholder="AGH001"></div>
+            <div class="input-group"><label for="flLeaderId">Leader ID *</label><input id="flLeaderId" type="text" placeholder="Auto Generated" readonly><small style="color:#64748b;display:block;margin-top:5px;">AGH ID automatically generate hogi.</small></div>
             <div class="input-group"><label for="flUpi">UPI ID *</label><input id="flUpi" type="text" placeholder="name@upi"></div>
             <div class="input-group"><label>Commission %</label><input id="flCommission" type="number" value="50" readonly><small style="color:#64748b;display:block;margin-top:5px;">Global setting se automatically apply hoga.</small></div>
             <div class="input-group"><label for="flUserUid">Leader Firebase UID</label><input id="flUserUid" type="text" placeholder="Optional - link leader login UID"></div>
@@ -2056,7 +2056,8 @@ Social Media Basics"></textarea></div>
       doc,
       getDoc,
       query,
-      where
+      where,
+      runTransaction
     } from
       "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
       import { getStorage, ref, uploadBytes, getDownloadURL, listAll, deleteObject } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
@@ -6794,6 +6795,38 @@ Social Media Basics"></textarea></div>
       el.style.color=good ? "#15803d" : "#b91c1c";
     }
 
+    function getFoundingLeaderNumberFromId(value){
+      const m=String(value||"").trim().toUpperCase().match(/^AGH(\d+)$/);
+      return m ? Number(m[1]) : 0;
+    }
+
+    function getCurrentMaxFoundingLeaderNumber(){
+      return (foundingLeadersCache||[]).reduce((max,x)=>Math.max(max,getFoundingLeaderNumberFromId(x?.leaderId)),0);
+    }
+
+    async function getNextFoundingLeaderIdPreview(){
+      let last=0;
+      try{
+        const snap=await getDoc(doc(db,"dashboardSettings","foundingLeaderIdCounter"));
+        if(snap.exists()) last=Number(snap.data()?.lastNumber)||0;
+      }catch(e){ console.warn("AGH ID counter read failed:",e); }
+      const next=Math.max(last,getCurrentMaxFoundingLeaderNumber())+1;
+      return `AGH${String(next).padStart(3,"0")}`;
+    }
+
+    async function reserveNextFoundingLeaderId(){
+      const counterRef=doc(db,"dashboardSettings","foundingLeaderIdCounter");
+      const reserved=await runTransaction(db,async(transaction)=>{
+        const snap=await transaction.get(counterRef);
+        const storedLast=snap.exists()?Number(snap.data()?.lastNumber)||0:0;
+        const cacheLast=getCurrentMaxFoundingLeaderNumber();
+        const next=Math.max(storedLast,cacheLast)+1;
+        transaction.set(counterRef,{lastNumber:next,updatedAt:new Date().toISOString(),updatedBy:ADMIN_UID},{merge:true});
+        return `AGH${String(next).padStart(3,"0")}`;
+      });
+      return reserved;
+    }
+
     function resetFoundingLeaderForm(){
       editingFoundingLeaderId=null;
       document.getElementById("foundingLeaderFormTitle")?.replaceChildren(document.createTextNode("Add Founding Leader"));
@@ -6802,7 +6835,7 @@ Social Media Basics"></textarea></div>
       document.getElementById("foundingLeaderForm")?.classList.add("hidden");
     }
 
-    function openFoundingLeaderForm(item=null){
+    async function openFoundingLeaderForm(item=null){
       const form=document.getElementById("foundingLeaderForm");
       if(!form) return;
       editingFoundingLeaderId=item?.leaderId || null;
@@ -6818,6 +6851,11 @@ Social Media Basics"></textarea></div>
       flSet("flReferralLink",item?.referralLink || makeFoundingReferralLink(item?.leaderId));
       flMsg("");
       form.classList.remove("hidden");
+      if(!item){
+        const nextId=await getNextFoundingLeaderIdPreview();
+        flSet("flLeaderId",nextId);
+        flSet("flReferralLink",makeFoundingReferralLink(nextId));
+      }
       form.scrollIntoView({behavior:"smooth",block:"start"});
     }
 
@@ -6995,9 +7033,22 @@ Social Media Basics"></textarea></div>
     }
 
     async function saveFoundingLeader(){
-      const name=flValue("flName"), mobile=flValue("flMobile"), email=flValue("flEmail"), leaderId=flValue("flLeaderId").toUpperCase(), upiId=flValue("flUpi"), uid=flValue("flUserUid"), status=flValue("flStatus")||"Active";
+      const name=flValue("flName"), mobile=flValue("flMobile"), email=flValue("flEmail"), upiId=flValue("flUpi"), uid=flValue("flUserUid"), status=flValue("flStatus")||"Active";
+      let leaderId=flValue("flLeaderId").toUpperCase();
       const commissionPercent=Number(document.getElementById("globalLeaderCommission")?.value ?? flValue("flCommission"));
-      if(!name || !mobile || !leaderId || !upiId || !email){flMsg("Name, Mobile, Email, Leader ID aur UPI ID required hai.");return;}
+      if(!name || !mobile || !upiId || !email){flMsg("Name, Mobile, Email aur UPI ID required hai.");return;}
+      if(!editingFoundingLeaderId){
+        try{
+          leaderId=await reserveNextFoundingLeaderId();
+          flSet("flLeaderId",leaderId);
+          flSet("flReferralLink",makeFoundingReferralLink(leaderId));
+        }catch(e){
+          console.error("AGH ID reserve error:",e);
+          flMsg("AGH ID generate nahi ho paayi: "+(e.message||"Unknown error"));
+          return;
+        }
+      }
+      if(!leaderId){flMsg("Leader ID generate nahi hui.");return;}
       if(!Number.isFinite(commissionPercent) || commissionPercent<0 || commissionPercent>100){flMsg("Commission 0 se 100% ke beech hona chahiye.");return;}
       const existing=foundingLeadersCache.find(x=>String(x.leaderId||"").toUpperCase()===leaderId && String(x.leaderId||"").toUpperCase()!==String(editingFoundingLeaderId||"").toUpperCase());
       if(existing){flMsg("Ye Leader ID already exist karti hai.");return;}
