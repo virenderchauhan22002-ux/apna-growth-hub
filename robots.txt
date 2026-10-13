@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://virenderchauhan22002-ux.github.io/apna-growth-hub/sitemap.xml
